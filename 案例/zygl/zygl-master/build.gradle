@@ -1,0 +1,82 @@
+import org.gradle.internal.os.OperatingSystem
+
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+        maven { url "http://repo.spring.io/plugins-release" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${spring_boot_version}"
+        classpath "org.springframework.build.gradle:propdeps-plugin:0.0.7"
+    }
+}
+
+
+allprojects {
+   apply plugin: 'eclipse'
+   apply plugin: 'org.springframework.boot'
+   
+    group = 'zy.cy6.dqyt'
+
+   repositories {
+           maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+   
+       mavenCentral()
+    }
+    
+
+}
+
+
+subprojects {
+   version = '1.0'
+   
+   apply plugin: 'java'
+   
+   sourceCompatibility=1.8
+   targetCompatibility=1.8   
+   
+    repositories {
+       mavenCentral()
+    }
+ 
+    
+    ext.configDir = new File(rootDir, 'config')
+    
+    apply from: "$rootDir/gradle/pmd.gradle"
+    apply from: "$rootDir/gradle/findbugs.gradle"
+    apply from: "$rootDir/gradle/checkstyle.gradle"
+ 
+   
+//   apply from: "$rootDir/gradle/jacoco.gradle"
+//   apply from: "$rootDir/gradle/jdepend.gradle"
+
+    apply from: "$rootDir/gradle/integrationTest.gradle"
+
+    dependencies {
+    
+        compile "org.springframework.boot:spring-boot-starter"
+        compile "com.google.guava:guava:${guava_version}"
+        compile "org.projectlombok:lombok:${lombok_version}"
+    
+//	compile "org.springframework.boot:spring-boot-devtools"
+	
+        compile "com.h2database:h2"
+    
+    
+        testCompile "org.springframework.boot:spring-boot-starter-test"
+
+
+    }
+    
+}
+
+//bootRun {
+//    addResources = true
+//}
+
+defaultTasks 'clean', 'assemble', 'check', 'liquibaseUpdate', 'test'
+

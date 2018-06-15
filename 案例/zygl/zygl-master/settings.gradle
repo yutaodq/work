@@ -1,0 +1,45 @@
+rootProject.name = 'zygl'
+
+include 'common'
+project(':common').buildFileName = 'common.gradle'
+
+include 'core-api'
+project(':core-api').buildFileName = 'core-api.gradle'
+
+include 'infrastructure'
+project(':infrastructure').buildFileName = 'infrastructure.gradle'
+
+
+
+include 'query'
+project(':query').buildFileName = 'query.gradle'
+
+include 'users-query'
+project(':users-query').buildFileName = 'usersQuery.gradle'
+
+
+include 'users'
+project(':users').buildFileName = 'users.gradle'
+
+
+include 'orders'
+project(':orders').buildFileName = 'orders.gradle'
+
+include 'company'
+project(':company').buildFileName = 'company.gradle'
+
+include 'trade-engine'
+project(':trade-engine').buildFileName = 'tradeEngine.gradle'
+
+include 'external-listeners'
+project(':external-listeners').buildFileName = 'externalListeners.gradle'
+                                                
+
+
+include 'product'
+project(':product').buildFileName = 'product.gradle'
+
+
+include 'web'
+project(':web').buildFileName = 'web.gradle'
+

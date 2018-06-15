@@ -1,0 +1,6 @@
+dependencies {
+    compile "org.axonframework:axon-core:${axon_version}"
+    
+//    compile ("org.liquibase:liquibase-core")
+
+}

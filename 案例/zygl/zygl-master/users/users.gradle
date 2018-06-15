@@ -1,0 +1,13 @@
+
+dependencies {
+      compile project(':common')
+      compile project(':core-api')
+      compile project(':users-query')
+
+      compile project(':query')
+
+    compile "org.axonframework:axon-core:${axon_version}"
+    compile "org.axonframework:axon-spring:${axon_version}"
+    compile "org.axonframework:axon-test:${axon_version}"
+
+}

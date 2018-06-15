@@ -1,0 +1,29 @@
+
+// Tips on properly configuring Jacoco found at:
+// http://jworks.nl/2013/06/03/jacoco-code-coverage-with-gradle/
+
+jacoco {
+    // Version must be 0.7.5+ to make .exec compatible with Jenkins Jacoco Plugin 2.0+
+    toolVersion = '0.7.7.201606060606'
+}
+
+jacocoTestReport {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+
+task jacocoIntegrationTestReport(type: JacocoReport) {
+    sourceSets sourceSets.main
+    executionData integrationTest
+    reports {
+        html.destination "${buildDir}/reports/jacoco/integrationTest/html"
+    }
+}
+
+integrationTest {
+    finalizedBy jacocoIntegrationTestReport
+}

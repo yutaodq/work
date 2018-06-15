@@ -1,0 +1,7 @@
+configurations {
+    liquibase
+}
+
+dependencies {
+    liquibase "org.liquibase.ext:liquibase-hibernate4:${liquibase_hibernate4_version}"
+}

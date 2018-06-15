@@ -1,0 +1,15 @@
+
+dependencies {
+      compile project(':common')
+      compile project(':core-api')
+      compile project(':infrastructure')
+
+    compile "org.axonframework:axon-core:${axon_version}"
+    compile "org.axonframework:axon-test:${axon_version}"
+    compile "org.axonframework:axon-test:${axon_version}"
+    compile "org.axonframework:axon-spring:${axon_version}"
+
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+
+}

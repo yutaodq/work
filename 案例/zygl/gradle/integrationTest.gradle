@@ -1,0 +1,29 @@
+    sourceSets {
+        integrationTest {
+            java.srcDir file('src/integTest/java')   //集成测试源目录
+            resources.srcDir file('src/integTest/resources')   //集成测试资源目录
+            compileClasspath = sourceSets.main.output + configurations.testRuntime  //指定编译时classpath
+            runtimeClasspath = output + compileClasspath  //指定运行时classpath
+        }
+     }
+ 
+    
+        task integrationTest(type: Test) {
+            description = 'Runs the integration tests.'
+            group = 'verification'
+            testClassesDir = sourceSets.integrationTest.output.classesDir  //将测试task指定给可以找到测试类的目录
+            classpath = sourceSets.integrationTest.runtimeClasspath  //执行测试所需要的classpath
+            reports.html.destination = file("$reports.html.destination/integration")
+            reports.junitXml.destination = file("$reports.junitXml.destination/integration")
+      //    dependsOn startAndPrepareDatabase
+      //    finalizedBy stopDatabase
+       }
+
+      tasks.withType(Test) {
+          testLogging {
+              showStandardStreams = true
+              exceptionFormat 'full'
+          }
+      }
+
+      check.dependsOn integrationTest        

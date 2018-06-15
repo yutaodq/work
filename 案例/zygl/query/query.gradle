@@ -1,0 +1,27 @@
+apply from: 'gradle/liquibase.gradle'
+
+dependencies {
+      compile project(':common')
+      compile project(':core-api')
+     compile project(':users-query')
+      compile project(':infrastructure')
+
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-hateoas')
+    
+    
+    compile "org.hibernate:hibernate-core:${hibernate_version}"
+    compile "org.hibernate:hibernate-jcache:${hibernate_version}"
+    compile "org.hibernate:hibernate-envers:${hibernate_version}"
+    compile "org.hibernate:hibernate-validator"
+    compile "org.hibernate:hibernate-entitymanager:${hibernate_version}"
+    
+ 
+    	
+    compile "org.axonframework:axon-core:${axon_version}"
+    compile "org.axonframework:axon-test:${axon_version}"
+    compile "org.axonframework:axon-spring:${axon_version}"
+
+//    compile "org.axonframework:axon-spring-boot-starter:${axon_version}"
+
+}
