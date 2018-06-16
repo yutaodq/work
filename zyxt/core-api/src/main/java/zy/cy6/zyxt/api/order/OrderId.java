@@ -1,23 +1,30 @@
 package zy.cy6.zyxt.api.order;
-import org.axonframework.common.IdentifierFactory;
 
-public class OrderId {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import zy.cy6.zyxt.common.domain.AbstractIdentifier;
 
-    protected final String identifier;
+import static org.axonframework.common.IdentifierFactory.getInstance;
 
+public class OrderId extends AbstractIdentifier {
+  private Logger log = LoggerFactory.getLogger(OrderId.class);
 
-    private OrderId(String identifier) {
-        if (identifier.isEmpty()) {
+  public OrderId(String identifier) {
+    super(identifier);
+    log.info("新建：OrderId");
+  }
 
-        }
-        this.identifier = identifier;
-    }
+  public static OrderId create() {
+    return create(getInstance().generateIdentifier());
+  }
 
-    public static OrderId OrderId(){
-        return new OrderId(IdentifierFactory.getInstance().generateIdentifier());
-    }
-    public static OrderId OrderId(String id){
-        return new OrderId(id);
-    }
+  public static OrderId create(String identifier) {
+    return new OrderId(identifier);
+  }
+
+  @Override
+  public String toString() {
+    return "OrderId{" + "identifier='" + identifier() + '\'' + '}';
+  }
 
 }

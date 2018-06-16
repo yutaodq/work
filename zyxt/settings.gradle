@@ -13,4 +13,5 @@ include 'companies'
 //project(':companies').buildFileName = 'companies.gradle'
 include 'product'
 include 'core-api'
+include 'common'
 
