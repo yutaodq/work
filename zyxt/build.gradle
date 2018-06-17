@@ -19,6 +19,9 @@ buildscript {
 allprojects {
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/repositories/jcenter" }
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+
     }
 }
 
@@ -29,14 +32,17 @@ subprojects {
     apply plugin: 'idea'
     apply plugin: 'java'
 
-    sourceCompatibility=1.8
-    targetCompatibility=1.8
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
     dependencies {
         compile('org.springframework.boot:spring-boot-starter')
+        compile "com.google.guava:guava:${guava_version}"
+        compile "org.projectlombok:lombok:${lombok_version}"
         compile "org.axonframework:axon-core:${axon_version}"
+//        testCompile('org.springframework.boot:spring-boot-starter-test')
 
-        testCompile('org.springframework.boot:spring-boot-starter-test')
+        testCompile "org.springframework.boot:spring-boot-starter-test"
     }
 
 

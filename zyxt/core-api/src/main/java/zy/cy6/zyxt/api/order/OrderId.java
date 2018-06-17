@@ -4,18 +4,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zy.cy6.zyxt.common.domain.AbstractIdentifier;
 
-import static org.axonframework.common.IdentifierFactory.getInstance;
-
-public class OrderId extends AbstractIdentifier {
+public final class OrderId extends AbstractIdentifier {
   private Logger log = LoggerFactory.getLogger(OrderId.class);
 
-  public OrderId(String identifier) {
+  private OrderId() {
+    super();
+    log.info("新建：OrderId");
+  }
+
+  private OrderId(String identifier) {
     super(identifier);
     log.info("新建：OrderId");
   }
 
   public static OrderId create() {
-    return create(getInstance().generateIdentifier());
+    return new OrderId();
   }
 
   public static OrderId create(String identifier) {
@@ -26,5 +29,4 @@ public class OrderId extends AbstractIdentifier {
   public String toString() {
     return "OrderId{" + "identifier='" + identifier() + '\'' + '}';
   }
-
 }
