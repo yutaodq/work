@@ -3,7 +3,6 @@ package zy.cy6.zyxt.api.product;
 import com.google.common.base.MoreObjects;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-
 import java.io.Serializable;
 
 import static com.google.common.base.Preconditions.checkArgument;
