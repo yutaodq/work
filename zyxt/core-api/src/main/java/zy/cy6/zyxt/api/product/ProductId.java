@@ -2,14 +2,14 @@ package zy.cy6.zyxt.api.product;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import zy.cy6.zyxt.common.domain.AbstractIdentifier;
+import zy.cy6.zyxt.common.domain.AbstractAggregateIdentifier;
 
-public final class ProductId extends AbstractIdentifier {
+public final class ProductId extends AbstractAggregateIdentifier {
   private Logger log = LoggerFactory.getLogger(ProductId.class);
 
   private ProductId() {
     super();
-    log.info("新建：OrderId");
+    log.info("新建：ProductId");
   }
 
   private ProductId(String identifier) {

@@ -2,9 +2,9 @@ package zy.cy6.zyxt.api.order;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import zy.cy6.zyxt.common.domain.AbstractIdentifier;
+import zy.cy6.zyxt.common.domain.AbstractAggregateIdentifier;
 
-public final class OrderId extends AbstractIdentifier {
+public final class OrderId extends AbstractAggregateIdentifier {
   private Logger log = LoggerFactory.getLogger(OrderId.class);
 
   private OrderId() {

@@ -8,14 +8,14 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 @EqualsAndHashCode
-public abstract class AbstractIdentifier implements Identifier, Serializable {
+public abstract class AbstractAggregateIdentifier implements AggregateIdentifier, Serializable {
   private final String identifier;
 
-  public AbstractIdentifier() {
-    this(Identifier.generateIdentifier());
+  public AbstractAggregateIdentifier() {
+    this(AggregateIdentifier.generateIdentifier());
   }
 
-  public AbstractIdentifier(String identifier) {
+  public AbstractAggregateIdentifier(String identifier) {
     this.identifier = identifier;
     checkIdentifier();
   }
@@ -32,6 +32,6 @@ public abstract class AbstractIdentifier implements Identifier, Serializable {
 
   @Override
   public String toString() {
-    return "AbstractIdentifier{" + "identifier='" + identifier + '\'' + '}';
+    return "AbstractAggregateIdentifier{" + "identifier='" + identifier + '\'' + '}';
   }
 }

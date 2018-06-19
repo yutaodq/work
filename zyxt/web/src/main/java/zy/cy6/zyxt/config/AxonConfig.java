@@ -1,4 +1,10 @@
-package zy.cy6.zyxt.web.config;
+package zy.cy6.zyxt.config;
+
+import org.axonframework.commandhandling.CommandBus;
+import org.axonframework.commandhandling.SimpleCommandBus;
+import org.axonframework.messaging.interceptors.BeanValidationInterceptor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AxonConfig {
@@ -18,7 +24,6 @@ public class AxonConfig {
     public CommandBus commandBus() {
         SimpleCommandBus commandBus = new SimpleCommandBus();
         commandBus.registerDispatchInterceptor(new BeanValidationInterceptor<>());
-
         return commandBus;
     }
 
