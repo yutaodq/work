@@ -41,13 +41,12 @@ subprojects {
         compile('org.springframework.boot:spring-boot-starter-validation')
         compile "com.google.guava:guava:${guava_version}"
         compile "org.projectlombok:lombok:${lombok_version}"
-        compile "org.axonframework:axon-core:${axon_version}"
-//        compile "org.hibernate:hibernate-validator"
-//        testCompile('org.springframework.boot:spring-boot-starter-test')
+        compile "org.axonframework:axon-spring-boot-starter:${axon_version}"
+
 
         testCompile "org.springframework.boot:spring-boot-starter-test"
+        testCompile "org.axonframework:axon-test:3.0.4"
     }
-
 
 }
 
