@@ -17,16 +17,12 @@ public class ProductNameTest {
   private static final String UNIT_NULL = null;
   private static final String UNIT_EMPTY = "";
 
-  //	private static final String CHANGE_NAME = "改变工具名称";
-  //	private static final String CHANGE_MODEL = "改变型号";
-  //	private static final String CHANGE_SIZE = "改变规格";
-  //	private static final String CHANGE_UNIT = "改变计量单位";
-
   ProductName productName;
 
   @Test
   public void createIdentifierTest() {
     productName = ProductName.create(NAME, MODEL, SIZE, UNIT);
+
     assertThat(productName.getName()).as("工具名称不正确").isEqualTo(NAME);
     assertThat(productName.getModel()).as("型号不正确").isEqualTo(MODEL);
     assertThat(productName.getSize()).as("规格不正确").isEqualTo(SIZE);
@@ -52,4 +48,5 @@ public class ProductNameTest {
   public void testUnitIsEmpty() {
     productName = ProductName.create(NAME, MODEL, SIZE, UNIT_EMPTY);
   }
+
 }
