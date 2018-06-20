@@ -10,7 +10,6 @@ public final class CreateProductCommand {
   private final ProductName productName;
 
   private CreateProductCommand(ProductId productId, ProductName productName) {
-
     this.productId = checkNotNull(productId, "没有工具标识符！");
     this.productName = checkNotNull(productName, "没有工具名称！");
   }

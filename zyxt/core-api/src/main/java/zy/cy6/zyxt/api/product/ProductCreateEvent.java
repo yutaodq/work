@@ -10,7 +10,6 @@ public final class ProductCreateEvent {
   private final ProductName productName;
 
   private ProductCreateEvent(ProductId productId, ProductName productName) {
-
     this.productId = checkNotNull(productId, "没有工具标识符！");
     this.productName = checkNotNull(productName, "没有工具名称！");
   }
@@ -19,3 +18,4 @@ public final class ProductCreateEvent {
     return new ProductCreateEvent(productId, productName);
   }
 }
+
