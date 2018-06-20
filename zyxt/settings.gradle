@@ -9,10 +9,9 @@
 
 rootProject.name = 'zyxt'
 
-include 'companies'
-//project(':companies').buildFileName = 'companies.gradle'
+include 'common'
+//project(':common').buildFileName = 'common.gradle'
 include 'product'
 include 'core-api'
-include 'common'
 include 'web'
 
