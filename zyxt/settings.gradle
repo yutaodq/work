@@ -14,4 +14,5 @@ include 'common'
 include 'product'
 include 'core-api'
 include 'web'
+include 'infrastructure'
 

@@ -1,0 +1,7 @@
+dependencies {
+    compile project(':common')
+    compile project(':infrastructure')
+    compile project(':core-api')
+//    compile project(':query')
+    compile project(':product')
+}
