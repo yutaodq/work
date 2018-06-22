@@ -5,6 +5,10 @@
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds/
  */
 buildscript {
+    ext {
+        springBootVersion = '2.0.3.RELEASE'
+    }
+
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/repositories/jcenter" }
         maven { url "https://repo.spring.io/snapshot" }
@@ -41,7 +45,7 @@ subprojects {
         compile('org.springframework.boot:spring-boot-starter-validation')
         compile "com.google.guava:guava:${guava_version}"
         compile "org.projectlombok:lombok:${lombok_version}"
-        compile "org.axonframework:axon-spring-boot-starter:${axon_version}"
+//        compile "org.axonframework:axon-spring-boot-starter:${axon_version}"
 
 
         testCompile "org.springframework.boot:spring-boot-starter-test"
