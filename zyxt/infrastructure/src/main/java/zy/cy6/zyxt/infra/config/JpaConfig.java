@@ -18,13 +18,12 @@ import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(
-        entityManagerFactoryRef="entityManagerFactory",
-        transactionManagerRef="transactionManager",
-        basePackages= { "zy.cy6.zyxt" }) //设置Repository所在位置
+@EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager", basePackages = {"zy.cy6.zyxt"})
+// 设置Repository所在位置
 public class JpaConfig {
 
-    @Autowired @Qualifier("dataSource")
+    @Autowired
+    @Qualifier("dataSource")
     private DataSource dataSource;
 
     @Bean(name = "entityManager")
@@ -33,13 +32,9 @@ public class JpaConfig {
     }
 
     @Bean(name = "entityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory (EntityManagerFactoryBuilder builder) {
-        return builder
-                .dataSource(dataSource)
-                .properties(getVendorProperties(dataSource))
-                .packages("zy.cy6.zyxt") //设置实体类所在位置
-                .persistenceUnit("persistenceUnit")
-                .build();
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
+        return builder.dataSource(dataSource).properties(getVendorProperties(dataSource)).packages("zy.cy6.zyxt") // 设置实体类所在位置
+                .persistenceUnit("persistenceUnit").build();
     }
 
     @Autowired
@@ -50,7 +45,7 @@ public class JpaConfig {
     }
 
     @Bean(name = "transactionManager")
-    PlatformTransactionManager transactionManager(EntityManagerFactoryBuilder builder) {
+    public PlatformTransactionManager transactionManager(EntityManagerFactoryBuilder builder) {
         return new JpaTransactionManager(entityManagerFactory(builder).getObject());
     }
 }
