@@ -20,15 +20,11 @@ import org.axonframework.eventhandling.EventProcessor;
 import org.axonframework.eventhandling.SimpleEventHandlerInvoker;
 import org.axonframework.eventhandling.SubscribingEventProcessor;
 import org.axonframework.eventsourcing.eventstore.EventStore;
-import org.axonframework.samples.trader.query.company.CompanyListener;
-import org.axonframework.samples.trader.query.orderbook.OrderBookListener;
-import org.axonframework.samples.trader.query.portfolio.PortfolioItemEventListener;
-import org.axonframework.samples.trader.query.portfolio.PortfolioMoneyEventListener;
-import org.axonframework.samples.trader.query.transaction.TransactionEventListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import zy.cy6.zyxt.query.product.ProductListener;
 
 @Configuration
 @ImportResource("classpath:META-INF/spring/query-context.xml")
@@ -38,26 +34,11 @@ public class QueryConfig {
     private EventStore eventStore;
 
     @Autowired
-    private CompanyListener companyListener;
-    @Autowired
-    private OrderBookListener orderBookListener;
-    @Autowired
-    private PortfolioItemEventListener portfolioItemEventListener;
-    @Autowired
-    private PortfolioMoneyEventListener portfolioMoneyEventListener;
-    @Autowired
-    private TransactionEventListener transactionEventListener;
+    private ProductListener productListener;
 
     @Bean
     public EventProcessor queryEventProcessor() {
-        SubscribingEventProcessor eventProcessor = new SubscribingEventProcessor("queryEventProcessor",
-                                                                                 new SimpleEventHandlerInvoker(
-                                                                                         companyListener,
-                                                                                         orderBookListener,
-                                                                                         portfolioItemEventListener,
-                                                                                         portfolioMoneyEventListener,
-                                                                                         transactionEventListener),
-                                                                                 eventStore);
+        SubscribingEventProcessor eventProcessor = new SubscribingEventProcessor("queryEventProcessor", new SimpleEventHandlerInvoker(productListener), eventStore);
         eventProcessor.start();
 
         return eventProcessor;

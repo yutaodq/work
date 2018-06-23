@@ -12,15 +12,15 @@ public class ProductListener {
     private ProductQueryRepository productRepository;
 
     @EventHandler
-    public void handleCompanyCreatedEvent(ProductCreateEvent event) {
-//        ProductEntry productEntry = new productEntry();
-//        productEntry.setIdentifier(event.getCompanyIdentifier().toString());
-//        productEntry.setValue(event.getCompanyValue());
-//        productEntry.setAmountOfShares(event.getAmountOfShares());
-//        productEntry.setTradeStarted(true);
-//        productEntry.setName(event.getCompanyName());
+    public void handleProductCreatedEvent(ProductCreateEvent event) {
+      ProductEntry productEntry = new ProductEntry();
 
-//        productRepository.save(productEntry);
+      productEntry.setIdentifier(event.getProductId().toString());
+      productEntry.setName(event.getProductName().getName());
+      productEntry.setSize(event.getProductName().getSize());
+      productEntry.setModel(event.getProductName().getModel());
+
+      productRepository.save(productEntry);
     }
 
     @Autowired

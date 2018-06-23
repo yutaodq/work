@@ -1,6 +1,7 @@
 package zy.cy6.zyxt.product.config;
 
 import org.axonframework.commandhandling.model.Repository;
+import org.axonframework.common.caching.Cache;
 import org.axonframework.eventhandling.EventProcessor;
 import org.axonframework.eventhandling.SimpleEventHandlerInvoker;
 import org.axonframework.eventhandling.SubscribingEventProcessor;
