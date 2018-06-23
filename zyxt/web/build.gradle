@@ -1,7 +1,13 @@
 dependencies {
     compile project(':common')
-    compile project(':infrastructure')
-    compile project(':core-api')
+//    compile project(':infrastructure')
+//    compile project(':core-api')
 //    compile project(':query')
-    compile project(':product')
+//    compile project(':product')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile("org.springframework.boot:spring-boot-starter-hateoas")
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile("com.zaxxer:HikariCP:${hikaricp_version}")
+    compile "com.h2database:h2"
+
 }

@@ -2,25 +2,22 @@ package zy.cy6.zyxt.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.env.Environment;
-import org.springframework.hateoas.config.EnableHypermediaSupport;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import zy.cy6.dqyt.common.config.Constants;
-import zy.cy6.dqyt.common.config.DefaultProfileUtil;
-
-import java.util.Arrays;
-import java.util.Collection;
-
-import javax.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.env.Environment;
+import org.springframework.hateoas.config.EnableHypermediaSupport;
+import org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import zy.cy6.zyxt.common.config.Constants;
+import zy.cy6.zyxt.common.config.DefaultProfileUtil;
 
+import javax.annotation.PostConstruct;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType;
+import java.util.Arrays;
+import java.util.Collection;
 
 @SpringBootApplication
 @EnableAutoConfiguration
