@@ -1,15 +1,22 @@
 package zy.cy6.zyxt.infra.config;
 
+import net.sf.ehcache.CacheManager;
 import org.axonframework.commandhandling.CommandBus;
+import org.axonframework.commandhandling.CommandMessage;
 import org.axonframework.commandhandling.SimpleCommandBus;
 import org.axonframework.common.caching.EhCacheAdapter;
 import org.axonframework.messaging.interceptors.BeanValidationInterceptor;
 import org.axonframework.spring.config.CommandHandlerSubscriber;
 import org.axonframework.spring.config.annotation.AnnotationCommandHandlerBeanPostProcessor;
 import org.axonframework.spring.eventsourcing.SpringAggregateSnapshotterFactoryBean;
-import org.springframework.cache.CacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class CQRSInfrastructureConfig {

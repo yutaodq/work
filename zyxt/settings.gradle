@@ -15,4 +15,5 @@ include 'product'
 include 'core-api'
 include 'web'
 include 'infrastructure'
+include 'query'
 
