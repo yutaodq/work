@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.config;
+package zy.cy6.zyxt.web.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
