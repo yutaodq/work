@@ -21,52 +21,52 @@ import zy.cy6.zyxt.product.command.ProductListener;
 
 @Configuration
 public class ProductConfig {
-  @Autowired
-  private EventStore eventStore;
+    @Autowired
+    private EventStore eventStore;
 
-  @Autowired
-  private Snapshotter snapshotter;
+    @Autowired
+    private Snapshotter snapshotter;
 
-  @Autowired
-  private Cache cache;
+    @Autowired
+    private Cache cache;
 
-  @Autowired
-  private ProductListener productListener;
+    @Autowired
+    private ProductListener productListener;
 
-  @Bean
-  @Scope("prototype")
-  public Product product() {
-    return new Product();
-  }
+    @Bean
+    @Scope("prototype")
+    public Product product() {
+        return new Product();
+    }
 
-  @Bean
-  public Repository<Product> productRepository() {
-    EventCountSnapshotTriggerDefinition snapshotTriggerDefinition = new EventCountSnapshotTriggerDefinition(snapshotter, 50);
+    @Bean
+    public Repository<Product> productRepository() {
+        EventCountSnapshotTriggerDefinition snapshotTriggerDefinition = new EventCountSnapshotTriggerDefinition(snapshotter, 50);
 
-    CachingEventSourcingRepository<Product> repository = new CachingEventSourcingRepository<>(productAggregateFactory(), eventStore, cache, snapshotTriggerDefinition);
+        CachingEventSourcingRepository<Product> repository = new CachingEventSourcingRepository<>(productAggregateFactory(), eventStore, cache, snapshotTriggerDefinition);
 
-    return repository;
-  }
+        return repository;
+    }
 
-  @Bean
-  public AggregateFactory<Product> productAggregateFactory() {
-    SpringPrototypeAggregateFactory<Product> springPrototypeAggregateFactory = new SpringPrototypeAggregateFactory<>();
-    springPrototypeAggregateFactory.setPrototypeBeanName("product");
+    @Bean
+    public AggregateFactory<Product> productAggregateFactory() {
+        SpringPrototypeAggregateFactory<Product> springPrototypeAggregateFactory = new SpringPrototypeAggregateFactory<>();
+        springPrototypeAggregateFactory.setPrototypeBeanName("product");
 
-    return springPrototypeAggregateFactory;
-  }
+        return springPrototypeAggregateFactory;
+    }
 
-  @Bean
-  public ProductCommandHandler productCommandHandler() {
-    return new ProductCommandHandler(productRepository());
-  }
+    @Bean
+    public ProductCommandHandler productCommandHandler() {
+        return new ProductCommandHandler(productRepository());
+    }
 
-  @Bean
-  public EventProcessor productsEventProcessor() {
-    SubscribingEventProcessor eventProcessor = new SubscribingEventProcessor("productEventProcessor", new SimpleEventHandlerInvoker(productListener), eventStore);
-    eventProcessor.start();
+    @Bean
+    public EventProcessor productsEventProcessor() {
+        SubscribingEventProcessor eventProcessor = new SubscribingEventProcessor("productEventProcessor", new SimpleEventHandlerInvoker(productListener), eventStore);
+        eventProcessor.start();
 
-    return eventProcessor;
-  }
+        return eventProcessor;
+    }
 
 }
