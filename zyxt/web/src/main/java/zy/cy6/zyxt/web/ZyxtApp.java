@@ -33,7 +33,7 @@ public class ZyxtApp {
  */
 	@RequestMapping("/zygl")
 	String home() {
-		return "Hello World!yyyyyyyyy";
+		return "Hello World!";
 	}
 
 	private final Environment env;

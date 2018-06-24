@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.web;
+package zy.cy6.zyxt.web.config;
 
 import lombok.Getter;
 import lombok.Setter;
