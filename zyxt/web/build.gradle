@@ -7,7 +7,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile("org.springframework.boot:spring-boot-starter-hateoas")
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile("com.zaxxer:HikariCP:${hikaricp_version}")
+    compile("com.zaxxer:HikariCP")
     compile "com.h2database:h2"
 
 }

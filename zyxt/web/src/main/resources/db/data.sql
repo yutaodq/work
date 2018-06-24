@@ -8,5 +8,6 @@ insert into tb_organization(organization_id, organization_name, contact_name, co
 insert into tb_organization(organization_id, organization_name, contact_name, contact_email) values('12','testOrganization2', 'testContactName2', 'test2@email.com');
 insert into tb_organization(organization_id, organization_name, contact_name, contact_email) values('13','testOrganization3', 'testContactName3', 'test3@email.com');
 
-delete from product_entry;
-insert into product_entry(identifier, name, model, size) values('13','testOrganization3', 'testContactName3', 'test3@email.com');
+delete from product;
+insert into product(identifier, name, model, size) values('13','testOrganization3', 'testContactName3', 'test3@email.com');
+insert into product values('23','aaaa', 'bbbb', 'ccccccccc');

@@ -16,9 +16,10 @@ contact_name varchar(200),
 contact_email varchar(200)
 );
 
-create table product_entry(
+create table product(
 identifier varchar(255) PRIMARY KEY ,
 name varchar(200),
 model varchar(200),
 size varchar(255)
 );
+
