@@ -23,11 +23,10 @@ import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 import zy.cy6.zyxt.query.product.ProductListener;
 
 @Configuration
-@ImportResource("classpath:META-INF/spring/query-context.xml")
+//@ImportResource("classpath:META-INF/spring/query-context.xml")
 public class QueryConfig {
 
     @Autowired

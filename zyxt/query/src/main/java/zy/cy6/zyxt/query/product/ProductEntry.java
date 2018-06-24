@@ -1,19 +1,25 @@
 package zy.cy6.zyxt.query.product;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.annotation.Id;
+import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
 
-@Entity
-@Getter
-@Setter
-public class ProductEntry {
+@Entity(name = "product")
+@Data
+public class ProductEntry implements Serializable {
   @Id
-  @javax.persistence.Id
+  @Column(name = "identifier")
   private String identifier;
+  @Column(name = "name")
   private String name;  //工具名称
+  @Column(name = "model")
   private String model; // 型号
+  @Column(name = "size")
   private String size; // 规格
+
+  public ProductEntry() {
+  }
 }

@@ -30,7 +30,6 @@ allprojects {
 }
 
 
-
 subprojects {
     version = '1.0'
     apply plugin: 'idea'
@@ -45,9 +44,8 @@ subprojects {
         compile('org.springframework.boot:spring-boot-starter-validation')
 //        compile "com.google.guava:guava"
         compile "com.google.guava:guava:${guava_version}"
-        compile "org.projectlombok:lombok"
+        compileOnly "org.projectlombok:lombok"
 
-//        compile "org.projectlombok:lombok:${lombok_version}"
 //        compile "org.axonframework:axon-spring-boot-starter:${axon_version}"
 
 

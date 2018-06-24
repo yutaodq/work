@@ -1,4 +1,4 @@
-package zy.cy6.dqyt.zygl.infra.config;
+package zy.cy6.zyxt.infra.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
