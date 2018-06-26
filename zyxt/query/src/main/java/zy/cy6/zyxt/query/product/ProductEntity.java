@@ -1,16 +1,15 @@
 package zy.cy6.zyxt.query.product;
 
 import lombok.Data;
+import zy.cy6.zyxt.common.model.AbstractEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.io.Serializable;
 
 @Entity(name = "product")
 @Data
-public class ProductEntry implements Serializable {
-  @Id
+public class ProductEntity extends AbstractEntity {
+
   @Column(name = "identifier")
   private String identifier;
   @Column(name = "name")
@@ -20,6 +19,6 @@ public class ProductEntry implements Serializable {
   @Column(name = "size")
   private String size; // 规格
 
-  public ProductEntry() {
+  public ProductEntity() {
   }
 }

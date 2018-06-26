@@ -13,7 +13,7 @@ public class ProductListener {
 
     @EventHandler
     public void handleProductCreatedEvent(ProductCreateEvent event) {
-      ProductEntry productEntry = new ProductEntry();
+      ProductEntity productEntry = new ProductEntity();
 
       productEntry.setIdentifier(event.getProductId().toString());
       productEntry.setName(event.getProductName().getName());

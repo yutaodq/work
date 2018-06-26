@@ -16,12 +16,16 @@
 
 package zy.cy6.zyxt.query.product.repositories;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
-import zy.cy6.zyxt.query.product.ProductEntry;
+import org.springframework.data.repository.CrudRepository;
+import zy.cy6.zyxt.query.product.ProductEntity;
+
+import java.util.Optional;
 
 /**
  * @author Jettro Coenradie
  */
-public interface ProductQueryRepository extends PagingAndSortingRepository<ProductEntry, String> {
+public interface ProductQueryRepository extends CrudRepository<ProductEntity, Long> {
+
+  Optional<ProductEntity> findById(Long id);
 
 }

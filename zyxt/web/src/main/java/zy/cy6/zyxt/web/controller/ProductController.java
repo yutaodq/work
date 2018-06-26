@@ -3,53 +3,37 @@ package zy.cy6.zyxt.web.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.hateoas.MediaTypes;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.Resources;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import zy.cy6.zyxt.query.product.ProductEntry;
+import zy.cy6.zyxt.query.product.ProductEntity;
 import zy.cy6.zyxt.query.product.repositories.ProductQueryRepository;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import zy.cy6.zyxt.web.product.ProductResourceAssembler;
 
 @RestController
 public class ProductController {
     private static final Logger log = LoggerFactory.getLogger(ProductController.class);
-    private ProductQueryRepository productQueryRepository;
+    private final ProductQueryRepository repository;
+    private final ProductResourceAssembler assembler;
 
     @Autowired
-    public ProductController(ProductQueryRepository productQueryRepository) {
-        this.productQueryRepository = productQueryRepository;
+    public ProductController(ProductQueryRepository repository, ProductResourceAssembler assembler) {
+        this.repository = repository;
+        this.assembler = assembler;
     }
 
-    @RequestMapping("/product")
-    public List<ProductEntry> productList() {
-        Iterator<ProductEntry> iterable = productQueryRepository.findAll().iterator();
-        List<ProductEntry> list = new ArrayList<ProductEntry>();
-        while (iterable.hasNext()) {
-            ProductEntry product = iterable.next();
-
-            String name = product.getName();
-            log.info("ffffffffffffffffff:");
-            list.add(product);
-        }
-        return list;
+    @GetMapping(value = "/products", produces = MediaTypes.HAL_JSON_VALUE)
+    public ResponseEntity<Resources<Resource<ProductEntity>>> findAll() {
+        return ResponseEntity.ok(assembler.toResources(repository.findAll()));
     }
 
-    //    @RequestMapping("/product")
-    //    List<ProductEntry> productList() {
-    //        log.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-    //        List<ProductEntry> staffList = null;
-    //        try {
-    ////            int sl =staffList.size();
-    //            staffList = productService.queryAllStaffList();
-    ////            log.info("dddddddddddddddddddddd"+Integer.toString(sl));
-    //
-    //        } catch (Exception e) {
-    //            log.error("查询失败");
-    //        }
-    //        return staffList;
-    //
-    //    }
+    @GetMapping(value = "/products/{id}", produces = MediaTypes.HAL_JSON_VALUE)
+    public ResponseEntity<Resource<ProductEntity>> findOne(@PathVariable Long id) {
+        return repository.findById(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
 
 }
