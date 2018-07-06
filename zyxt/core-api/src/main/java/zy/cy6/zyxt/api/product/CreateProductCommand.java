@@ -1,24 +1,20 @@
 package zy.cy6.zyxt.api.product;
 
-import lombok.Getter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.google.common.base.MoreObjects;
+import lombok.Value;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import javax.validation.constraints.NotNull;
 
-@Getter
-public final class CreateProductCommand {
-  private final static Logger log = LoggerFactory.getLogger(CreateProductCommand.class);
-  private final ProductId productId;
-  private final ProductName productName;
+@Value
+public class CreateProductCommand {
+  @NotNull(message = "工具标识对象不能为空")
+  private ProductId productId;
+  @NotNull(message = "工具名称对象不能为空")
+  private ProductName productName;
 
-  private CreateProductCommand(ProductId productId, ProductName productName) {
-    log.info("新建：CreateProductCommand");
-    this.productId = checkNotNull(productId, "没有工具标识符！");
-    this.productName = checkNotNull(productName, "没有工具名称！");
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this).add("新建工具标识：", productId.toString()).add("新建工具名称", productName.getName()).add("新建工具规格：", productName.getSize()).add("新建工具型号：", productName.getModel()).toString();
   }
 
-  public static CreateProductCommand create(ProductId productId, ProductName productName) {
-    return new CreateProductCommand(productId, productName);
-  }
 }

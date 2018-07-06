@@ -1,9 +1,7 @@
 package zy.cy6.zyxt.web;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
 import org.springframework.hateoas.config.EnableHypermediaSupport;
@@ -20,13 +18,13 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @SpringBootApplication
-@EnableAutoConfiguration
+//@EnableAutoConfiguration
 @RestController
 
 @EnableHypermediaSupport(type= {HypermediaType.HAL})
-
+@Slf4j
 public class ZyxtApp {
-    private static final Logger log = LoggerFactory.getLogger(ZyxtApp.class);
+	//    private static final Logger log = LoggerFactory.getLogger(ZyxtApp.class);
 /*
  * Environment 环境变量
  * Spring抽象了一个Environment来表示Spring应用程序环境配置，它整合了各种各样的外部环境，并且提供统一访问的方法

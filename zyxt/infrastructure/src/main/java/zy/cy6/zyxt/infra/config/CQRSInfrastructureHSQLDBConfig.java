@@ -16,7 +16,8 @@
 
 package zy.cy6.zyxt.infra.config;
 
-import org.axonframework.common.jdbc.ConnectionProvider;
+import org.axonframework.common.jpa.ContainerManagedEntityManagerProvider;
+import org.axonframework.common.jpa.EntityManagerProvider;
 import org.axonframework.common.transaction.NoTransactionManager;
 import org.axonframework.eventhandling.saga.repository.SagaStore;
 import org.axonframework.eventhandling.saga.repository.jdbc.HsqlSagaSqlSchema;
@@ -27,11 +28,10 @@ import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.axonframework.eventsourcing.eventstore.jdbc.EventSchema;
 import org.axonframework.eventsourcing.eventstore.jdbc.EventTableFactory;
 import org.axonframework.eventsourcing.eventstore.jdbc.HsqlEventTableFactory;
-import org.axonframework.eventsourcing.eventstore.jdbc.JdbcEventStorageEngine;
+import org.axonframework.eventsourcing.eventstore.jpa.JpaEventStorageEngine;
 import org.axonframework.spring.jdbc.SpringDataSourceConnectionProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 import javax.sql.DataSource;
 
@@ -43,19 +43,26 @@ public class CQRSInfrastructureHSQLDBConfig {
         return new SpringDataSourceConnectionProvider(dataSource);
     }
 
+
     @Bean
-    public JdbcEventStorageEngine eventStorageEngine(ConnectionProvider connectionProvider) {
-        return new JdbcEventStorageEngine(connectionProvider, NoTransactionManager.INSTANCE);
+    public JpaEventStorageEngine eventStorageEngine(EntityManagerProvider entityManagerProvider) {
+
+        return new JpaEventStorageEngine(entityManagerProvider, NoTransactionManager.INSTANCE);
+    }
+
+    @Bean
+    public EntityManagerProvider entityManagerProvider() {
+        return new ContainerManagedEntityManagerProvider();
     }
 
 //    @Bean
-//    public JpaEventStorageEngine eventStorageEngine(ConnectionProvider connectionProvider) {
-//        return new JpaEventStorageEngine(connectionProvider, NoTransactionManager.INSTANCE);
+//    public EventStore eventStore(EventStorageEngine eventStorageEngine) {
+//        return new EmbeddedEventStore(eventStorageEngine);
 //    }
 
     @Bean
-    public EventStore eventStore(ConnectionProvider connectionProvider) {
-        return new EmbeddedEventStore(eventStorageEngine(connectionProvider));
+    public EventStore eventStore(EntityManagerProvider entityManagerProvider) {
+        return new EmbeddedEventStore(eventStorageEngine(entityManagerProvider));
     }
 
     @Bean

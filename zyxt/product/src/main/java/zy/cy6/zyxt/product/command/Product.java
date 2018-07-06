@@ -1,11 +1,11 @@
 package zy.cy6.zyxt.product.command;
 
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.spring.stereotype.Aggregate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zy.cy6.zyxt.api.product.CreateProductCommand;
 import zy.cy6.zyxt.api.product.ProductCreateEvent;
 import zy.cy6.zyxt.api.product.ProductId;
@@ -13,21 +13,26 @@ import zy.cy6.zyxt.api.product.ProductName;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
+/*
+事件溯源聚合的聚合根还必须包含一个无参的构造函数，用@NoArgsConstructor这个构造函数。
+，Axon Framework使用这个构造函数创建一个空的聚合实例，
+在使用过去的事件之前初始化它。没有提供这种构造函数加载聚合时将导致异常
+ */
 @Aggregate
+@Slf4j
+@NoArgsConstructor
 public class Product {
-    private final static Logger log = LoggerFactory.getLogger(Product.class);
     @AggregateIdentifier
     private ProductId productId;
     private ProductName productName;
-    @SuppressWarnings("UnusedDeclaration")
-    public Product() {
-    }
+
     @CommandHandler
     public Product(CreateProductCommand command) {
         log.info("新建：Product");
         apply(ProductCreateEvent.create(command.getProductId(), command.getProductName()));
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     public void handle(ProductCreateEvent event) {
         this.productId = event.getProductId();

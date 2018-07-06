@@ -1,11 +1,10 @@
 package zy.cy6.zyxt.api.product;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import zy.cy6.zyxt.common.domain.AbstractAggregateIdentifier;
 
+@Slf4j
 public final class ProductId extends AbstractAggregateIdentifier {
-  private final static Logger log = LoggerFactory.getLogger(ProductId.class);
 
   private ProductId() {
     super();

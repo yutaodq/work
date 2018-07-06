@@ -1,23 +1,16 @@
 package zy.cy6.zyxt.product.command;
 
 import org.axonframework.commandhandling.model.Repository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import zy.cy6.zyxt.api.product.ProductId;
+import org.axonframework.eventsourcing.eventstore.EventStore;
 
 public class ProductCommandHandler {
-    private final static Logger log = LoggerFactory.getLogger(ProductId.class);
 
     private Repository<Product> repository;
+    private EventStore eventStore;
 
-    public ProductCommandHandler(Repository<Product> repository) {
+    public ProductCommandHandler(Repository<Product> repository, EventStore eventStore) {
         this.repository = repository;
+        this.eventStore = eventStore;
     }
-
-//    @Autowired
-//    @Qualifier("productRepository")
-//    public void setRepository(Repository<Product> productRepository) {
-//        this.repository = productRepository;
-//    }
 
 }
