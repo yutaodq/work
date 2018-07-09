@@ -1,13 +1,15 @@
 package zy.cy6.zyxt.query.product;
 
 import lombok.Data;
-import zy.cy6.zyxt.common.model.AbstractEntity;
+import lombok.extern.slf4j.Slf4j;
+import zy.cy6.zyxt.common.domain.model.AbstractEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity(name = "product")
 @Data
+@Slf4j
 public class ProductEntity extends AbstractEntity {
 
   @Column(name = "identifier")
@@ -20,5 +22,6 @@ public class ProductEntity extends AbstractEntity {
   private String size; // 规格
 
   public ProductEntity() {
+    log.info("新建：ProductEntity");
   }
 }

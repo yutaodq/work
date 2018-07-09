@@ -1,13 +1,10 @@
 package zy.cy6.zyxt.product.command;
 
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 import zy.cy6.zyxt.api.product.CreateProductCommand;
-import zy.cy6.zyxt.api.product.ProductCreateEvent;
+import zy.cy6.zyxt.api.product.ProductCreatedEvent;
 import zy.cy6.zyxt.api.product.ProductId;
 import zy.cy6.zyxt.api.product.ProductName;
 
@@ -19,22 +16,26 @@ import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 在使用过去的事件之前初始化它。没有提供这种构造函数加载聚合时将导致异常
  */
 @Aggregate
-@Slf4j
-@NoArgsConstructor
+//@Slf4j
+//@NoArgsConstructor
 public class Product {
     @AggregateIdentifier
     private ProductId productId;
     private ProductName productName;
 
-    @CommandHandler
+    public Product() {
+    }
+
+    //    @CommandHandler
     public Product(CreateProductCommand command) {
-        log.info("新建：Product");
-        apply(ProductCreateEvent.create(command.getProductId(), command.getProductName()));
+//        log.info("新建：Product");
+        apply(ProductCreatedEvent.create(command.getProductId(), command.getProductName()));
     }
 
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
-    public void handle(ProductCreateEvent event) {
+    public void handle(ProductCreatedEvent event) {
+//        log.info("在聚合Product中处理ProductCreatedEvent 事件");
         this.productId = event.getProductId();
         this.productName = event.getProductName();
     }

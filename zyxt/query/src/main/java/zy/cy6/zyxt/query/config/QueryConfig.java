@@ -16,14 +16,9 @@
 
 package zy.cy6.zyxt.query.config;
 
-import org.axonframework.eventhandling.EventProcessor;
-import org.axonframework.eventhandling.SimpleEventHandlerInvoker;
-import org.axonframework.eventhandling.SubscribingEventProcessor;
 import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import zy.cy6.zyxt.query.product.ProductListener;
 
 @Configuration
 //@ImportResource("classpath:META-INF/spring/query-context.xml")
@@ -32,14 +27,14 @@ public class QueryConfig {
     @Autowired
     private EventStore eventStore;
 
-    @Autowired
-    private ProductListener productListener;
+//    @Autowired
+//    private ProductListener productListener;
 
-    @Bean
-    public EventProcessor queryEventProcessor() {
-        SubscribingEventProcessor eventProcessor = new SubscribingEventProcessor("queryEventProcessor", new SimpleEventHandlerInvoker(productListener), eventStore);
-        eventProcessor.start();
-
-        return eventProcessor;
-    }
+//    @Bean
+//    public EventProcessor queryEventProcessor() {
+//        SubscribingEventProcessor eventProcessor = new SubscribingEventProcessor("queryEventProcessor", new SimpleEventHandlerInvoker(productListener), eventStore);
+//        eventProcessor.start();
+//
+//        return eventProcessor;
+//    }
 }

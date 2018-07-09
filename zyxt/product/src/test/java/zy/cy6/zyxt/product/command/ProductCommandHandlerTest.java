@@ -7,7 +7,7 @@ import org.axonframework.test.aggregate.FixtureConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 import zy.cy6.zyxt.api.product.CreateProductCommand;
-import zy.cy6.zyxt.api.product.ProductCreateEvent;
+import zy.cy6.zyxt.api.product.ProductCreatedEvent;
 import zy.cy6.zyxt.api.product.ProductId;
 import zy.cy6.zyxt.api.product.ProductName;
 
@@ -26,7 +26,7 @@ public class ProductCommandHandlerTest {
 
   @Test
   public void testCreateProduct() throws Exception {
-    testFixture.givenNoPriorActivity().when(new CreateProductCommand(id, productName)).expectEvents(ProductCreateEvent.create(id, productName));
+    testFixture.givenNoPriorActivity().when(new CreateProductCommand(id, productName)).expectEvents(ProductCreatedEvent.create(id, productName));
   }
 
   @Test(expected = JSR303ViolationException.class)

@@ -5,10 +5,10 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ProductCreateEventTest {
+public class ProductCreatedEventTest {
   ProductId productId;
   ProductName productName;
-  ProductCreateEvent productCreateEvent;
+  ProductCreatedEvent productCreatedEvent;
 
   @Before
   public void setUp() throws Exception {
@@ -18,20 +18,20 @@ public class ProductCreateEventTest {
 
   @Test
   public void createCreateProductCommandTest() {
-    productCreateEvent = ProductCreateEvent.create(productId, productName);
-    assertThat(productCreateEvent.getProductName()).as("工具名称不正确").isEqualTo(productName);
-    assertThat(productCreateEvent.getProductId()).as("工具标识不正确").isEqualTo(productId);
+    productCreatedEvent = ProductCreatedEvent.create(productId, productName);
+    assertThat(productCreatedEvent.getProductName()).as("工具名称不正确").isEqualTo(productName);
+    assertThat(productCreatedEvent.getProductId()).as("工具标识不正确").isEqualTo(productId);
 
   }
 
   @Test(expected = NullPointerException.class)
   public void testProductIdIsNull() {
-    productCreateEvent = ProductCreateEvent.create(null, productName);
+    productCreatedEvent = ProductCreatedEvent.create(null, productName);
   }
 
   @Test(expected = NullPointerException.class)
   public void testProductNameIdIsNull() {
-    productCreateEvent = ProductCreateEvent.create(productId, null);
+    productCreatedEvent = ProductCreatedEvent.create(productId, null);
   }
 
 }

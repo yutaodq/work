@@ -3,15 +3,16 @@ spring:
         active: dev
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:h2:file:c:/temp/zyglWeb
         #datasource 使用HikariDataSource 时，一定是 jdbc-url不能是url
         #加入AUTO_SERVER=TRUE 可以在web控制台中同时打开zygl,前题是当使用自动混合模式，所有客户端都需要使用同样的URL进行连接（不管它是一个本地还是一个远程连接。
-        jdbc-url: jdbc:h2:file:c:/temp/zyglWeb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
+#        jdbc-url: jdbc:h2:file:c:/temp/zyglWeb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
 #        jdbc-url: jdbc:h2:mem:zyglWeb
         driver-class-name: org.h2.Driver
         username: sa
         password:
-        schema: classpath:schema.sql
-        data: classpath:data.sql
+        schema: classpath:schema-yu.sql
+        data: classpath:data-yu.sql
     jpa:
         database-platform: org.hibernate.dialect.H2Dialect
         database: H2
@@ -26,6 +27,11 @@ spring:
     h2:
         console:
             enabled: true
-            path: /h2-console/c:/temp/zyglWeb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
+#            path: /c:/temp/zyglWeb
+
+#            path: /h2-console/c:/temp/zyglWeb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
 server:
     port: 8080
+logging:
+   level:
+      root: INFO

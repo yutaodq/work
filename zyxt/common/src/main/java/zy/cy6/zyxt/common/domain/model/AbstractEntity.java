@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.common.model;
+package zy.cy6.zyxt.common.domain.model;
 
 import org.springframework.hateoas.Identifiable;
 
@@ -15,6 +15,7 @@ public abstract class AbstractEntity implements Identifiable<Long> {
   public Long getId() {
     return id;
   }
+
 
   @Override
   public boolean equals(Object o) {

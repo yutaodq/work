@@ -16,72 +16,55 @@
 
 package zy.cy6.zyxt.infra.config;
 
-import org.axonframework.common.jpa.ContainerManagedEntityManagerProvider;
-import org.axonframework.common.jpa.EntityManagerProvider;
-import org.axonframework.common.transaction.NoTransactionManager;
-import org.axonframework.eventhandling.saga.repository.SagaStore;
-import org.axonframework.eventhandling.saga.repository.jdbc.HsqlSagaSqlSchema;
-import org.axonframework.eventhandling.saga.repository.jdbc.JdbcSagaStore;
-import org.axonframework.eventhandling.saga.repository.jdbc.SagaSqlSchema;
-import org.axonframework.eventsourcing.eventstore.EmbeddedEventStore;
-import org.axonframework.eventsourcing.eventstore.EventStore;
-import org.axonframework.eventsourcing.eventstore.jdbc.EventSchema;
-import org.axonframework.eventsourcing.eventstore.jdbc.EventTableFactory;
-import org.axonframework.eventsourcing.eventstore.jdbc.HsqlEventTableFactory;
-import org.axonframework.eventsourcing.eventstore.jpa.JpaEventStorageEngine;
-import org.axonframework.spring.jdbc.SpringDataSourceConnectionProvider;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.sql.DataSource;
 
 @Configuration
 public class CQRSInfrastructureHSQLDBConfig {
 
-    @Bean
-    public SpringDataSourceConnectionProvider springDataSourceConnectionProvider(DataSource dataSource) {
-        return new SpringDataSourceConnectionProvider(dataSource);
-    }
-
-
-    @Bean
-    public JpaEventStorageEngine eventStorageEngine(EntityManagerProvider entityManagerProvider) {
-
-        return new JpaEventStorageEngine(entityManagerProvider, NoTransactionManager.INSTANCE);
-    }
-
-    @Bean
-    public EntityManagerProvider entityManagerProvider() {
-        return new ContainerManagedEntityManagerProvider();
-    }
-
 //    @Bean
-//    public EventStore eventStore(EventStorageEngine eventStorageEngine) {
-//        return new EmbeddedEventStore(eventStorageEngine);
+//    public SpringDataSourceConnectionProvider springDataSourceConnectionProvider(DataSource dataSource) {
+//        return new SpringDataSourceConnectionProvider(dataSource);
 //    }
-
-    @Bean
-    public EventStore eventStore(EntityManagerProvider entityManagerProvider) {
-        return new EmbeddedEventStore(eventStorageEngine(entityManagerProvider));
-    }
-
-    @Bean
-    public EventTableFactory eventSchemaFactory() {
-        return HsqlEventTableFactory.INSTANCE;
-    }
-
-    @Bean
-    public EventSchema eventSchema() {
-        return new EventSchema();
-    }
-
-    @Bean
-    public SagaSqlSchema sagaSqlSchema() {
-        return new HsqlSagaSqlSchema();
-    }
-
-    @Bean
-    public SagaStore<Object> sagaRepository(DataSource dataSource) {
-        return new JdbcSagaStore(dataSource, sagaSqlSchema());
-    }
+//
+//
+//    @Bean
+//    public JpaEventStorageEngine eventStorageEngine(EntityManagerProvider entityManagerProvider) {
+//
+//        return new JpaEventStorageEngine(entityManagerProvider, NoTransactionManager.INSTANCE);
+//    }
+//
+//    @Bean
+//    public EntityManagerProvider entityManagerProvider() {
+//        return new ContainerManagedEntityManagerProvider();
+//    }
+//
+////    @Bean
+////    public EventStore eventStore(EventStorageEngine eventStorageEngine) {
+////        return new EmbeddedEventStore(eventStorageEngine);
+////    }
+//
+//    @Bean
+//    public EventStore eventStore(EntityManagerProvider entityManagerProvider) {
+//        return new EmbeddedEventStore(eventStorageEngine(entityManagerProvider));
+//    }
+//
+//    @Bean
+//    public EventTableFactory eventSchemaFactory() {
+//        return HsqlEventTableFactory.INSTANCE;
+//    }
+//
+//    @Bean
+//    public EventSchema eventSchema() {
+//        return new EventSchema();
+//    }
+//
+//    @Bean
+//    public SagaSqlSchema sagaSqlSchema() {
+//        return new HsqlSagaSqlSchema();
+//    }
+//
+//    @Bean
+//    public SagaStore<Object> sagaRepository(DataSource dataSource) {
+//        return new JdbcSagaStore(dataSource, sagaSqlSchema());
+//    }
 }

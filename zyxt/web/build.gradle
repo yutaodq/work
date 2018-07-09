@@ -9,6 +9,4 @@ dependencies {
     compile("com.zaxxer:HikariCP")
     compile "com.h2database:h2"
     compile "org.axonframework:axon-spring-boot-starter:${axon_version}"
-
-
 }
