@@ -40,6 +40,9 @@ public final class ProductName implements Serializable {
     return create(this.name, this.model, size);
   }
 
+  public ProductName changeProductName(String name, String model, String size) {
+    return create(name, model, size);
+  }
   public static ProductName create(String name, String model, String size) {
     return new ProductName(name, model, size);
   }

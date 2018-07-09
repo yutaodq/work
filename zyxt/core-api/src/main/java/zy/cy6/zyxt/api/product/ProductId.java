@@ -1,9 +1,12 @@
 package zy.cy6.zyxt.api.product;
 
+import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 import zy.cy6.zyxt.common.domain.AbstractAggregateIdentifier;
 
 @Slf4j
+@EqualsAndHashCode
+
 public final class ProductId extends AbstractAggregateIdentifier {
 
   private ProductId() {

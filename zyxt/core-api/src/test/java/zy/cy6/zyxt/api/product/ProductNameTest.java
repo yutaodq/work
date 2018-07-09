@@ -29,6 +29,14 @@ public class ProductNameTest {
   }
 
   @Test
+  public void changeProductNameTest() {
+    productName = ProductName.create(NAME, MODEL, SIZE).changeProductName(CHANGE_NAME, CHANGE_MODEL, CHANGE_SIZE);
+    assertThat(productName.getName()).as("修改工具名称不正确").isEqualTo(CHANGE_NAME);
+    assertThat(productName.getModel()).as("型号不正确").isEqualTo(CHANGE_MODEL);
+    assertThat(productName.getSize()).as("规格不正确").isEqualTo(CHANGE_SIZE);
+  }
+
+  @Test
   public void changeNameTest() {
     productName = ProductName.create(NAME, MODEL, SIZE).changeName(CHANGE_NAME);
     assertThat(productName.getName()).as("修改工具名称不正确").isEqualTo(CHANGE_NAME);

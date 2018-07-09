@@ -1,5 +1,7 @@
 package zy.cy6.zyxt.product.command;
 
+import lombok.extern.slf4j.Slf4j;
+import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.spring.stereotype.Aggregate;
@@ -16,7 +18,7 @@ import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 在使用过去的事件之前初始化它。没有提供这种构造函数加载聚合时将导致异常
  */
 @Aggregate
-//@Slf4j
+@Slf4j
 //@NoArgsConstructor
 public class Product {
     @AggregateIdentifier
@@ -26,16 +28,16 @@ public class Product {
     public Product() {
     }
 
-    //    @CommandHandler
+    @CommandHandler
     public Product(CreateProductCommand command) {
-//        log.info("新建：Product");
+        log.info("新建：Product");
         apply(ProductCreatedEvent.create(command.getProductId(), command.getProductName()));
     }
 
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     public void handle(ProductCreatedEvent event) {
-//        log.info("在聚合Product中处理ProductCreatedEvent 事件");
+        log.info("在聚合Product中处理ProductCreatedEvent 事件");
         this.productId = event.getProductId();
         this.productName = event.getProductName();
     }
