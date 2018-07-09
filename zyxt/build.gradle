@@ -43,6 +43,7 @@ subprojects {
         compile('org.springframework.boot:spring-boot-starter')
         compile('org.springframework.boot:spring-boot-starter-validation')
         compile "com.google.guava:guava:${guava_version}"
+        compile("org.springframework.boot:spring-boot-devtools")
         compileOnly "org.projectlombok:lombok"
 
 

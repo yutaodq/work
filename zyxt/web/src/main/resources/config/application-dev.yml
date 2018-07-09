@@ -11,8 +11,8 @@ spring:
         driver-class-name: org.h2.Driver
         username: sa
         password:
-        schema: classpath:schema-yu.sql
-        data: classpath:data-yu.sql
+        schema: classpath:/db/schema.sql
+        data: classpath:/db/data.sql
     jpa:
         database-platform: org.hibernate.dialect.H2Dialect
         database: H2
@@ -26,8 +26,10 @@ spring:
             hibernate.generate_statistics: true
     h2:
         console:
-            enabled: true
-#            path: /c:/temp/zyglWeb
+            enabled: true      # 开启 h2 web consloe，默认为 false
+            path: /h2-console   # h2 web consloe 路径
+            settings:
+                web-allow-others: true    #允许远程访问 h2 web consloe
 
 #            path: /h2-console/c:/temp/zyglWeb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
 server:
