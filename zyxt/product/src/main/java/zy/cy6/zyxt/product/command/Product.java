@@ -47,6 +47,4 @@ public class Product {
     public void on(ProductNameChangedEvent event) {
         this.productName = event.getProductName();
     }
-
-
 }
