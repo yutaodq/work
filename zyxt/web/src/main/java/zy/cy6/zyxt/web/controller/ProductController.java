@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import zy.cy6.zyxt.api.product.ChangeProductNameCommand;
 import zy.cy6.zyxt.api.product.CreateProductCommand;
 import zy.cy6.zyxt.api.product.ProductId;
 import zy.cy6.zyxt.api.product.ProductName;
@@ -49,6 +50,12 @@ public class ProductController {
 
     @GetMapping(value = "/products/{id}", produces = MediaTypes.HAL_JSON_VALUE)
     public ResponseEntity<Resource<ProductEntity>> findOne(@PathVariable Long id) {
-        return repository.findById(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+      ProductEntity entity = repository.findById(id).get();
+      ProductName name = ProductName.create("yu", "tao", "ddddddddd");
+      ProductId productId = ProductId.create(entity.getIdentifier());
+      ChangeProductNameCommand command = new ChangeProductNameCommand(productId, name);
+      commandBus.dispatch(asCommandMessage(command));
+
+      return repository.findById(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 }

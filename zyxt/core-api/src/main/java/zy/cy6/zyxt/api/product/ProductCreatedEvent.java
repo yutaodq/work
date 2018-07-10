@@ -2,6 +2,7 @@ package zy.cy6.zyxt.api.product;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.axonframework.commandhandling.TargetAggregateIdentifier;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -9,7 +10,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 @Slf4j
 public final class ProductCreatedEvent {
 
-    private  ProductId productId;
+  @TargetAggregateIdentifier
+  private ProductId productId;
     private  ProductName productName;
 
   public ProductCreatedEvent(ProductId productId, ProductName productName) {

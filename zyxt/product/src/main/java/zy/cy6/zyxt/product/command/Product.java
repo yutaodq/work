@@ -1,14 +1,12 @@
 package zy.cy6.zyxt.product.command;
 
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
-import org.axonframework.eventhandling.EventHandler;
+import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
-import zy.cy6.zyxt.api.product.CreateProductCommand;
-import zy.cy6.zyxt.api.product.ProductCreatedEvent;
-import zy.cy6.zyxt.api.product.ProductId;
-import zy.cy6.zyxt.api.product.ProductName;
+import zy.cy6.zyxt.api.product.*;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
@@ -19,14 +17,11 @@ import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
  */
 @Aggregate
 @Slf4j
-//@NoArgsConstructor
+@NoArgsConstructor
 public class Product {
     @AggregateIdentifier
     private ProductId productId;
     private ProductName productName;
-
-    public Product() {
-    }
 
     @CommandHandler
     public Product(CreateProductCommand command) {
@@ -35,11 +30,23 @@ public class Product {
     }
 
     @SuppressWarnings("UnusedDeclaration")
-    @EventHandler
+    @EventSourcingHandler
     public void handle(ProductCreatedEvent event) {
         log.info("在聚合Product中处理ProductCreatedEvent 事件");
         this.productId = event.getProductId();
         this.productName = event.getProductName();
     }
+
+    public void changeProductName(ProductName productName) {
+        log.info("改工具名称，并发布修改工具名称事件");
+        apply(new ProductNameChangedEvent(productId, productName));
+    }
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    public void on(ProductNameChangedEvent event) {
+        this.productName = event.getProductName();
+    }
+
 
 }

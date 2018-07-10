@@ -6,10 +6,7 @@ import org.axonframework.test.aggregate.AggregateTestFixture;
 import org.axonframework.test.aggregate.FixtureConfiguration;
 import org.junit.Before;
 import org.junit.Test;
-import zy.cy6.zyxt.api.product.CreateProductCommand;
-import zy.cy6.zyxt.api.product.ProductCreatedEvent;
-import zy.cy6.zyxt.api.product.ProductId;
-import zy.cy6.zyxt.api.product.ProductName;
+import zy.cy6.zyxt.api.product.*;
 
 public class ProductCommandHandlerTest {
   private FixtureConfiguration<Product> testFixture;
@@ -39,4 +36,9 @@ public class ProductCommandHandlerTest {
     testFixture.givenNoPriorActivity().when(new CreateProductCommand(null, productName));
   }
 
+  @Test
+  public void testChangeProductName() throws Exception {
+    ProductName changeProductName = ProductName.create("yyyyyyyyy", "tttt", "ooooo");
+    testFixture.given(ProductCreatedEvent.create(id, productName)).when(new ChangeProductNameCommand(id, changeProductName)).expectEvents(new ProductNameChangedEvent(id, changeProductName));
+  }
 }

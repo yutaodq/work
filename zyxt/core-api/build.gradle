@@ -1,3 +1,6 @@
 dependencies {
     compile project(':common')
+    compile "org.axonframework:axon-core:${axon_version}"
+    compile "org.axonframework:axon-spring:${axon_version}"
+
 }

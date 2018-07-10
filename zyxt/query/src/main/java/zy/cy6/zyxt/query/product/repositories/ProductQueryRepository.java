@@ -28,4 +28,6 @@ public interface ProductQueryRepository extends CrudRepository<ProductEntity, Lo
 
   Optional<ProductEntity> findById(Long id);
 
+  Optional<ProductEntity> findByIdentifier(String identifier);
+
 }

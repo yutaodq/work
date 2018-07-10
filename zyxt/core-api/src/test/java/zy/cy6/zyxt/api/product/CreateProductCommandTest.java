@@ -24,13 +24,15 @@ public class CreateProductCommandTest {
 
   }
 
-  @Test(expected = NullPointerException.class)
+  @Test
+//  @Test(expected = NullPointerException.class)
   public void testProductIdIsNull() {
     createProductCommand = new CreateProductCommand(null, productName);
   }
 
-  @Test(expected = NullPointerException.class)
-  public void testProductNameIdIsNull() {
+  @Test
+//  @Test(expected = NullPointerException.class)
+  public void testProductNameIsNull() {
     createProductCommand = new CreateProductCommand(productId, null);
   }
 
