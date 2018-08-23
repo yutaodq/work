@@ -6,7 +6,12 @@ import org.axonframework.commandhandling.model.Aggregate;
 import org.axonframework.commandhandling.model.AggregateNotFoundException;
 import org.axonframework.commandhandling.model.Repository;
 import org.axonframework.eventhandling.EventBus;
+import zy.cy6.zyxt.api.exception.DomainException;
+import zy.cy6.zyxt.api.exception.ErrorCode;
 import zy.cy6.zyxt.api.product.ChangeProductNameCommand;
+import zy.cy6.zyxt.api.product.CreateProductCommand;
+import zy.cy6.zyxt.api.product.ProductId;
+import zy.cy6.zyxt.query.product.ProductQueryService;
 
 @Slf4j
 
@@ -14,20 +19,21 @@ public class ProductCommandHandler {
 
     private Repository<Product> repository;
     private EventBus eventBus;
+    private ProductQueryService productQueryService;
 
-
-    public ProductCommandHandler(Repository<Product> repository, EventBus eventBus) {
+    public ProductCommandHandler(Repository<Product> repository, EventBus eventBus, ProductQueryService productQueryService) {
         this.repository = repository;
         this.eventBus = eventBus;
+        this.productQueryService = productQueryService;
     }
 
     @CommandHandler
     public void handleChangeProductName(ChangeProductNameCommand command) throws Exception {
         log.info("ChangeProductNameCommand 命令处理器，在handleChangeProductName中执行的");
         try {
-            Aggregate<Product> productAggregate = repository.load(command.getProductId().identifier());
+            Aggregate<Product> productAggregate = repository.load(command.getProductId().getIdentifier());
             productAggregate.execute(product -> product.changeProductName(command.getProductName()));
-            log.info("aaaaaaaaaaaaaaa:" + command.getProductId().identifier());
+            log.info("aaaaaaaaaaaaaaa:" + command.getProductId().getIdentifier());
         } catch (AggregateNotFoundException exception) {
             log.info("bbbbbbbbbbbbbbbbbbbbbbbb:" + command.getProductId().toString());
 
@@ -36,4 +42,16 @@ public class ProductCommandHandler {
 
         }
     }
+
+    @CommandHandler
+    public ProductId handleCreateProduct(CreateProductCommand command) throws Exception {
+        productQueryService.findByProductName(command.getProductName()).ifPresent(p -> {
+            throw new DomainException(ErrorCode.VIOLATION_CONSTRAINT, "com.believe.bike.error.user.NotFound", "aaa");
+        });
+
+        ProductId identifier = command.getProductId();
+        repository.newInstance(() -> new Product(command));
+        return identifier;
+    }
+
 }

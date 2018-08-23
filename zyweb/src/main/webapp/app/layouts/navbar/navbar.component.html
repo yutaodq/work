@@ -1,0 +1,81 @@
+<nav class="navbar navbar-dark navbar-expand-md jh-navbar">
+  <div class="jh-logo-container float-left">
+    <a class="jh-navbar-toggler d-lg-none float-right" href="javascript:void(0);" data-toggle="collapse"
+       data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+       aria-label="Toggle navigation" >
+      <fa-icon [icon]="'bars'"></fa-icon>
+    </a>
+    <a class="navbar-brand logo float-left" routerLink="/" >
+      <span class="logo-img"></span>
+      <span class="navbar-title">作业小程序</span> <span class="navbar-version">{{version}}</span>
+    </a>
+  </div>
+
+  <div class="navbar-collapse collapse" id="navbarResponsive">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/" >
+                    <span>
+                        <fa-icon [icon]="'home'"></fa-icon>
+                    </span>
+        </a>
+      </li>
+
+      <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
+      <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="zyxt-wz-menu">
+                    <span>
+                        <span>抽油管（杆）</span>
+                    </span>
+        </a>
+        <ul class="dropdown-menu" ngbDropdownMenu>
+          <li>
+            <a class="dropdown-item" routerLink="about" routerLinkActive="active">
+              <span>管（杆）列表</span>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" routerLink="/" routerLinkActive="active">
+              <span>库房名称</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="zyxt-jh-menu">
+                    <span>
+                        <span>计划</span>
+                    </span>
+        </a>
+        <ul class="dropdown-menu" ngbDropdownMenu>
+          <li>
+            <a class="dropdown-item" routerLink="about" routerLinkActive="active">
+              <span>施工井用料计划</span>
+            </a>
+          </li>
+         </ul>
+      </li>
+
+      <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="zyxt-xtwh-menu">
+                    <span>
+                        <span>系统维护</span>
+                    </span>
+        </a>
+        <ul class="dropdown-menu" ngbDropdownMenu>
+          <li>
+            <a class="dropdown-item" routerLink="product" routerLinkActive="active">
+              <span>工具列表</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+

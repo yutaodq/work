@@ -26,7 +26,7 @@ public abstract class AbstractAggregateIdentifier implements AggregateIdentifier
   }
 
   @Override
-  public String identifier() {
+  public String getIdentifier() {
     return identifier;
   }
 

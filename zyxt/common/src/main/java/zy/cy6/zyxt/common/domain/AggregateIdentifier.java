@@ -9,5 +9,5 @@ public interface AggregateIdentifier {
     return UUID.randomUUID().toString();
   }
 
-  String identifier();
+  String getIdentifier();
 }

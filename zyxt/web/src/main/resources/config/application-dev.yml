@@ -29,9 +29,12 @@ spring:
             enabled: true      # 开启 h2 web consloe，默认为 false
             path: /h2-console   # h2 web consloe 路径
             settings:
-                web-allow-others: true    #允许远程访问 h2 web consloe
+                web-allow-others: true
+    mvc:
+      throw-exception-if-no-handler-found: true   #允许远程访问 h2 web consloe
 
 #            path: /h2-console/c:/temp/zyglWeb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
+       #找不到处理器时抛出异常
 server:
     port: 8080
 logging:

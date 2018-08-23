@@ -18,33 +18,34 @@ import static zy.cy6.zyxt.common.util.StringUtil.notNullString;
 public final class ProductName implements Serializable {
 
   private String name;
-  private String model; // 型号
-  private String size; // 规格
+  private String gg; // 规格
+  private String xh; // 型号
 
-  private ProductName(String name, String model, String size) {
+  private ProductName(String name, String gg, String xh) {
     log.info("新建：ProductName");
     setName(name);
-    setSize(size);
-    setModel(model);
+    setGg(gg);
+    setXh(xh);
   }
 
   public ProductName changeName(String name) {
-    return create(name, this.model, this.size);
+    return create(name, this.gg, this.xh);
   }
 
-  public ProductName changeModel(String model) {
-    return create(this.name, model, this.size);
+  public ProductName changeGg(String gg) {
+    return create(this.name, gg, this.xh);
   }
 
-  public ProductName changeSize(String size) {
-    return create(this.name, this.model, size);
+  public ProductName changeXh(String xh) {
+    return create(this.name, this.gg, xh);
   }
 
-  public ProductName changeProductName(String name, String model, String size) {
-    return create(name, model, size);
+  public ProductName changeProductName(String name, String gg, String xh) {
+    return create(name, gg, xh);
   }
-  public static ProductName create(String name, String model, String size) {
-    return new ProductName(name, model, size);
+
+  public static ProductName create(String name, String gg, String xh) {
+    return new ProductName(name, gg, xh);
   }
 
   private void setName(String name) {
@@ -52,16 +53,16 @@ public final class ProductName implements Serializable {
     checkArgument(!this.name.trim().isEmpty(), "请您录入工具名称！");
   }
 
-  private void setModel(String model) {
-    this.model = notNullString(model);
+  private void setGg(String gg) {
+    this.gg = notNullString(gg);
   }
 
-  private void setSize(String size) {
-    this.size = notNullString(size);
+  private void setXh(String xh) {
+    this.xh = notNullString(xh);
   }
 
   @Override
   public String toString() {
-    return MoreObjects.toStringHelper(this).add("工具名称：", name).add("型号", model).add("规格：", size).toString();
+    return MoreObjects.toStringHelper(this).add("工具名称：", name).add("规格:", gg).add("型号：", xh).toString();
   }
 }

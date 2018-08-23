@@ -27,6 +27,6 @@ public final class OrderId extends AbstractAggregateIdentifier {
 
   @Override
   public String toString() {
-    return "OrderId{" + "identifier='" + identifier() + '\'' + '}';
+    return "OrderId{" + "identifier='" + getIdentifier() + '\'' + '}';
   }
 }

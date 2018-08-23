@@ -1,6 +1,8 @@
 dependencies {
     compile project(':common')
     compile project(':core-api')
+    compile project(':query')
+
     compile "org.axonframework:axon-spring-boot-starter:${axon_version}"
 //    compile "org.axonframework:axon-core:${axon_version}"
 //    compile "org.axonframework:axon-spring:${axon_version}"

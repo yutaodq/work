@@ -9,4 +9,7 @@ dependencies {
     compile("com.zaxxer:HikariCP")
     compile "com.h2database:h2"
     compile "org.axonframework:axon-spring-boot-starter:${axon_version}"
+    compile("org.springframework.boot:spring-boot-starter-web")
+//    compile "org.zalando:problem-spring-web"
+    compile 'org.zalando:problem-spring-web:0.23.0'
 }

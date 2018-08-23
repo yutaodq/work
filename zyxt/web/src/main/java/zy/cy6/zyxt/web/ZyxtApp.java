@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.hateoas.config.EnableHypermediaSupport;
 import org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import zy.cy6.zyxt.common.config.Constants;
 import zy.cy6.zyxt.common.config.DefaultProfileUtil;
 
@@ -22,7 +20,7 @@ import java.util.Collection;
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {"zy.cy6.zyxt"})
 @Configuration
-@RestController
+//@RestController
 
 @EnableHypermediaSupport(type= {HypermediaType.HAL})
 @Slf4j
@@ -32,10 +30,10 @@ public class ZyxtApp {
  * Environment 环境变量
  * Spring抽象了一个Environment来表示Spring应用程序环境配置，它整合了各种各样的外部环境，并且提供统一访问的方法
  */
-	@RequestMapping("/zygl")
-	String home() {
-		return "Hello World!";
-	}
+//	@RequestMapping("/zygl")
+//	String home() {
+//		return "Hello World!";
+//	}
 
 	private final Environment env;
 

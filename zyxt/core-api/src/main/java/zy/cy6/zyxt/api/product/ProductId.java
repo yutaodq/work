@@ -28,6 +28,6 @@ public final class ProductId extends AbstractAggregateIdentifier {
 
   @Override
   public String toString() {
-    return "ProductId{" + "identifier='" + identifier() + '\'' + '}';
+    return "ProductId{" + "identifier='" + getIdentifier() + '\'' + '}';
   }
 }

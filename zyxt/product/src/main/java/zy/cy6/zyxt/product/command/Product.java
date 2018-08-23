@@ -2,7 +2,6 @@ package zy.cy6.zyxt.product.command;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
@@ -23,22 +22,19 @@ public class Product {
     private ProductId productId;
     private ProductName productName;
 
-    @CommandHandler
+    //    @CommandHandler
     public Product(CreateProductCommand command) {
-        log.info("新建：Product");
         apply(ProductCreatedEvent.create(command.getProductId(), command.getProductName()));
     }
 
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     public void handle(ProductCreatedEvent event) {
-        log.info("在聚合Product中处理ProductCreatedEvent 事件");
         this.productId = event.getProductId();
         this.productName = event.getProductName();
     }
 
     public void changeProductName(ProductName productName) {
-        log.info("改工具名称，并发布修改工具名称事件");
         apply(new ProductNameChangedEvent(productId, productName));
     }
 

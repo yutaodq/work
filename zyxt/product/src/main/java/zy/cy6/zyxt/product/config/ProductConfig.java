@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import zy.cy6.zyxt.product.command.Product;
 import zy.cy6.zyxt.product.command.ProductCommandHandler;
+import zy.cy6.zyxt.query.product.ProductQueryService;
 
 @Configuration
 public class ProductConfig {
@@ -14,10 +15,11 @@ public class ProductConfig {
   private AxonConfiguration axonConfiguration;
   @Autowired
   private EventBus eventBus;
-
+  @Autowired
+  private ProductQueryService productQueryService;
   @Bean
   public ProductCommandHandler productCommandHandler() {
-    return new ProductCommandHandler(axonConfiguration.repository(Product.class), eventBus);
+    return new ProductCommandHandler(axonConfiguration.repository(Product.class), eventBus, productQueryService);
   }
 
   //  @Autowired

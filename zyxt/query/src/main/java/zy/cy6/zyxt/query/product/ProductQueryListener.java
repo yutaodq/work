@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import zy.cy6.zyxt.api.exception.DomainException;
 import zy.cy6.zyxt.api.product.ProductCreatedEvent;
 import zy.cy6.zyxt.api.product.ProductNameChangedEvent;
 import zy.cy6.zyxt.query.product.repositories.ProductQueryRepository;
@@ -17,24 +18,34 @@ public class ProductQueryListener {
   private ProductQueryRepository repository;
 
   @EventHandler
-  public void handleProductCreatedEvent(ProductCreatedEvent event) {
-    log.info("新建：productEntry实体");
-    ProductEntity productEntry = new ProductEntity();
-    productEntry.setIdentifier(event.getProductId().toString());
-    productEntry.setName(event.getProductName().getName());
-    productEntry.setSize(event.getProductName().getSize());
-    productEntry.setModel(event.getProductName().getModel());
-    repository.save(productEntry);
+//  public void handleProductCreatedEvent(ProductCreatedEvent event) throws ProductNameNotUniqueException {
+
+  public void handleProductCreatedEvent(ProductCreatedEvent event) throws DomainException {
+//    findProductName().ifPresent(p -> {
+//      throw new DomainException(ErrorCode.VIOLATION_CONSTRAINT, "com.believe.bike.error.user.NotFound", "aaa");
+//    });
+    create(event);
+
   }
 
+
+  private void create(ProductCreatedEvent event) {
+    ProductEntity productEntry = new ProductEntity();
+    productEntry.setIdentifier(event.getProductId().getIdentifier());
+    productEntry.setName(event.getProductName().getName());
+    productEntry.setXh(event.getProductName().getXh());
+    productEntry.setGg(event.getProductName().getGg());
+    repository.save(productEntry);
+  }
   @EventHandler
   public void changeProductName(ProductNameChangedEvent event) {
     log.info("修改：productEntry实体的名称、规格、型号");
-    Optional<ProductEntity> productEntry = repository.findByIdentifier(event.getProductId().toString());
+    Optional<ProductEntity> productEntry = repository.findByIdentifier(event.getProductId().getIdentifier());
     ProductEntity entity = productEntry.get();
     entity.setName(event.getProductName().getName());
-    entity.setSize(event.getProductName().getSize());
-    entity.setModel(event.getProductName().getModel());
+    entity.setXh(event.getProductName().getXh());
+    entity.setGg(event.getProductName().getGg());
+
     repository.save(entity);
   }
 
