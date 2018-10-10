@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ZyxtSharedModule } from 'app/shared';
 import {
     ProductComponent,
+  ProductNewComponent,
     ProductDetailComponent,
     ProductUpdateComponent,
     ProductDeletePopupComponent,
@@ -19,12 +20,13 @@ const PRODUCT_STATES = [...productRoute, ...productPopupRoute];
     imports: [ZyxtSharedModule, RouterModule.forChild(PRODUCT_STATES)],
     declarations: [
         ProductComponent,
-        ProductDetailComponent,
+      ProductNewComponent,
+      ProductDetailComponent,
         ProductUpdateComponent,
         ProductDeleteDialogComponent,
         ProductDeletePopupComponent
     ],
-  entryComponents: [ProductComponent, ProductUpdateComponent, ProductDeleteDialogComponent, ProductDeletePopupComponent],
+  entryComponents: [ProductComponent, ProductNewComponent, ProductUpdateComponent, ProductDeleteDialogComponent, ProductDeletePopupComponent],
     // entryComponents: [ProductComponent, ProductUpdateComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

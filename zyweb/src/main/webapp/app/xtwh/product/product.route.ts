@@ -10,6 +10,8 @@ import { ProductService } from './product.service';
 import { ProductComponent } from './product.component';
 import {ProductDetailComponent } from './product-detail.component';
 import {ProductUpdateComponent} from './product-update.component';
+import {ProductNewComponent} from './product-new.component';
+
 import { ProductDeletePopupComponent } from './product-delete-dialog.component';
 import { IProductEntity } from 'app/shared/model/product.model';
 
@@ -60,7 +62,7 @@ export const productRoute: Routes = [
   },
   {
     path: 'product/new',
-    component: ProductUpdateComponent,
+    component: ProductNewComponent,
     resolve: {
       product: ProductResolve
     },
