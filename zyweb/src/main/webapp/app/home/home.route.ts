@@ -6,4 +6,3 @@ export const HOME_ROUTE: Route = {
     path: '',
     component: HomeComponent
 };
-
