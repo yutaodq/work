@@ -39,6 +39,7 @@ public class DataSourceConfig {
 //    @Qualifier("dataSource")
   @ConfigurationProperties(prefix = "spring.datasource")
   public DataSource dataSource() {
+
     log.info("配制HikariDataSource数据源");
     return DataSourceBuilder.create().type(dataSourceType).build();
   }
