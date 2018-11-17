@@ -1,12 +1,10 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 import { ProductModule } from "./product/product.module";
+import { KufangModule } from "app/xtwh/kufang/kufang.module";
 
 @NgModule({
-  // prettier-ignore
-  imports: [
-    ProductModule
-  ],
+  imports: [ProductModule, KufangModule],
   declarations: [],
   entryComponents: [],
   providers: [],
