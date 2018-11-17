@@ -1,0 +1,46 @@
+package zy.cy6.zyxt.product.command;
+
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.axonframework.commandhandling.model.AggregateIdentifier;
+import org.axonframework.eventsourcing.EventSourcingHandler;
+import org.axonframework.spring.stereotype.Aggregate;
+import zy.cy6.zyxt.api.product.kuFang.*;
+
+import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
+
+/*
+事件溯源聚合的聚合根还必须包含一个无参的构造函数，用@NoArgsConstructor这个构造函数。
+，Axon Framework使用这个构造函数创建一个空的聚合实例，
+在使用过去的事件之前初始化它。没有提供这种构造函数加载聚合时将导致异常
+ */
+@Aggregate
+@Slf4j
+@NoArgsConstructor
+public class KuFang {
+    @AggregateIdentifier
+    private KuFangId kuFangId;
+    private KuFangName kuFangName;
+
+    //    @CommandHandler
+    public KuFang(CreateKuFangCommand command) {
+        apply(KuFangCreatedEvent.create(command.getKuFangId(), command.getKuFangName()));
+    }
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    public void handle(KuFangCreatedEvent event) {
+        this.kuFangId = event.getKuFangId();
+        this.kuFangName = event.getKuFangName();
+    }
+
+    public void changeKuFangName(KuFangName kuFangName) {
+        apply(new KuFangNameChangedEvent(kuFangId, kuFangName));
+    }
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    public void on(KuFangNameChangedEvent event) {
+        this.kuFangName = event.getKuFangName();
+    }
+}
