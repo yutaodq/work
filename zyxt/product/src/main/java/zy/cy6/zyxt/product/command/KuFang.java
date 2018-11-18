@@ -19,28 +19,28 @@ import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 @NoArgsConstructor
 public class KuFang {
     @AggregateIdentifier
-    private KuFangId kuFangId;
-    private KuFangName kuFangName;
+    private KufangId kuFangId;
+    private KufangName kuFangName;
 
     //    @CommandHandler
-    public KuFang(CreateKuFangCommand command) {
-        apply(KuFangCreatedEvent.create(command.getKuFangId(), command.getKuFangName()));
+    public KuFang(CreateKufangCommand command) {
+        apply(KufangCreatedEvent.create(command.getKufangId(), command.getKufangName()));
     }
 
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
-    public void handle(KuFangCreatedEvent event) {
+    public void handle(KufangCreatedEvent event) {
         this.kuFangId = event.getKuFangId();
         this.kuFangName = event.getKuFangName();
     }
 
-    public void changeKuFangName(KuFangName kuFangName) {
-        apply(new KuFangNameChangedEvent(kuFangId, kuFangName));
+    public void changeKuFangName(KufangName kuFangName) {
+        apply(new KufangNameChangedEvent(kuFangId, kuFangName));
     }
 
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
-    public void on(KuFangNameChangedEvent event) {
-        this.kuFangName = event.getKuFangName();
+    public void on(KufangNameChangedEvent event) {
+        this.kuFangName = event.getKufangName();
     }
 }

@@ -1,20 +1,20 @@
 package zy.cy6.zyxt.query.product.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import zy.cy6.zyxt.query.product.KuFangEntity;
+import zy.cy6.zyxt.query.product.KufangEntity;
 
 import java.util.Optional;
 
 /**
  * @author Jettro Coenradie
  */
-//public interface KuFangQueryRepository extends CrudRepository<KuFangEntity, Long> {
-public interface KuFangQueryRepository extends JpaRepository<KuFangEntity, Long> {
+//public interface KufangQueryRepository extends CrudRepository<KufangEntity, Long> {
+public interface KufangQueryRepository extends JpaRepository<KufangEntity, Long> {
 
-    Optional<KuFangEntity> findById(Long id);
+    Optional<KufangEntity> findById(Long id);
 
-    Optional<KuFangEntity> findByIdentifier(String identifier);
-//  KuFangEntity findByIdentifier(String identifier);
+    Optional<KufangEntity> findByIdentifier(String identifier);
+//  KufangEntity findByIdentifier(String identifier);
 
-    Optional<KuFangEntity> findByName(String name);
+    Optional<KufangEntity> findByName(String name);
 }

@@ -4,9 +4,9 @@ import lombok.Value;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
 
 @Value
-public class KuFangNameChangedEvent {
+public class KufangNameChangedEvent {
     @TargetAggregateIdentifier
-    private KuFangId kuFangId;
-    private KuFangName kuFangName;
+    private KufangId kufangId;
+    private KufangName kufangName;
 
 }

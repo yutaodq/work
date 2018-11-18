@@ -6,10 +6,10 @@ import org.axonframework.commandhandling.TargetAggregateIdentifier;
 import javax.validation.constraints.NotNull;
 
 @Value
-public class ChangeKuFangNameCommand {
+public class ChangeKufangNameCommand {
     @TargetAggregateIdentifier
-    private KuFangId kuFangId;
+    private KufangId kuFangId;
 
     @NotNull(message = "工具名称对象不能为空")
-    private KuFangName kuFangName;
+    private KufangName kuFangName;
 }

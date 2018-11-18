@@ -6,24 +6,24 @@ import zy.cy6.zyxt.common.domain.AbstractAggregateIdentifier;
 @Slf4j
 //@EqualsAndHashCode
 
-public final class KuFangId extends AbstractAggregateIdentifier {
+public final class KufangId extends AbstractAggregateIdentifier {
 
-    private KuFangId() {
+    private KufangId() {
         super();
-        log.info("新建：KuFangId");
+        log.info("新建：KufangId");
     }
 
-    private KuFangId(String identifier) {
+    private KufangId(String identifier) {
         super(identifier);
-        log.info("新建：KuFangId");
+        log.info("新建：KufangId");
     }
 
-    public static KuFangId create() {
-        return new KuFangId();
+    public static KufangId create() {
+        return new KufangId();
     }
 
-    public static KuFangId create(String identifier) {
-        return new KuFangId(identifier);
+    public static KufangId create(String identifier) {
+        return new KufangId(identifier);
     }
 
     @Override

@@ -4,12 +4,12 @@ import lombok.Value;
 
 @Value
 
-public class KuFangNameNotUniqueException extends RuntimeException {
+public class KufangNameNotUniqueException extends RuntimeException {
     //  private String errCode;
     private String errMsg;
 
     @SuppressWarnings("UnusedDeclaration")
-    public KuFangNameNotUniqueException(String errMsg) {
+    public KufangNameNotUniqueException(String errMsg) {
         super(errMsg);
         this.errMsg = errMsg;
     }

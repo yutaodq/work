@@ -1,7 +1,7 @@
 drop table if EXISTS product;
 drop table if EXISTS kuKang;
 
-create table kuFang(
+create table kufang(
 id  bigint PRIMARY KEY ,
 identifier varchar(255),
 name varchar(200)

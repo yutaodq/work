@@ -14,22 +14,22 @@ import static com.google.common.base.Preconditions.checkNotNull;
 @Getter
 @Slf4j
 @EqualsAndHashCode
-public final class KuFangName implements Serializable {
+public final class KufangName implements Serializable {
 
     private String name;
 
-    private KuFangName(String name) {
-        log.info("新建：KuFangName");
+    private KufangName(String name) {
+        log.info("新建：KufangName");
         setName(name);
     }
 
-    public KuFangName changeName(String name) {
+    public KufangName changeName(String name) {
         return create(name);
     }
 
 
-    public static KuFangName create(String name) {
-        return new KuFangName(name);
+    public static KufangName create(String name) {
+        return new KufangName(name);
     }
 
     private void setName(String name) {

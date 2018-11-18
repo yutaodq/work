@@ -8,10 +8,10 @@ import org.axonframework.commandhandling.model.Repository;
 import org.axonframework.eventhandling.EventBus;
 import zy.cy6.zyxt.api.exception.DomainException;
 import zy.cy6.zyxt.api.exception.ErrorCode;
-import zy.cy6.zyxt.api.product.kuFang.ChangeKuFangNameCommand;
-import zy.cy6.zyxt.api.product.kuFang.CreateKuFangCommand;
-import zy.cy6.zyxt.api.product.kuFang.KuFangId;
-import zy.cy6.zyxt.query.product.KuFangQueryService;
+import zy.cy6.zyxt.api.product.kuFang.ChangeKufangNameCommand;
+import zy.cy6.zyxt.api.product.kuFang.CreateKufangCommand;
+import zy.cy6.zyxt.api.product.kuFang.KufangId;
+import zy.cy6.zyxt.query.product.KufangQueryService;
 
 @Slf4j
 
@@ -19,17 +19,17 @@ public class KuFangCommandHandler {
 
     private Repository<KuFang> repository;
     private EventBus eventBus;
-    private KuFangQueryService kuFangQueryService;
+    private KufangQueryService kuFangQueryService;
 
-    public KuFangCommandHandler(Repository<KuFang> repository, EventBus eventBus, KuFangQueryService kuFangQueryService) {
+    public KuFangCommandHandler(Repository<KuFang> repository, EventBus eventBus, KufangQueryService kuFangQueryService) {
         this.repository = repository;
         this.eventBus = eventBus;
         this.kuFangQueryService = kuFangQueryService;
     }
 
     @CommandHandler
-    public void handleChangeKuFangName(ChangeKuFangNameCommand command) throws Exception {
-        log.info("ChangeKuFangNameCommand 命令处理器，在handleChangeKuFangName中执行的");
+    public void handleChangeKuFangName(ChangeKufangNameCommand command) throws Exception {
+        log.info("ChangeKufangNameCommand 命令处理器，在handleChangeKuFangName中执行的");
         try {
             Aggregate<KuFang> kuFangAggregate = repository.load(command.getKuFangId().getIdentifier());
             kuFangAggregate.execute(kuFang -> kuFang.changeKuFangName(command.getKuFangName()));
@@ -44,12 +44,12 @@ public class KuFangCommandHandler {
     }
 
     @CommandHandler
-    public KuFangId handleCreateKuFang(CreateKuFangCommand command) throws Exception {
-        kuFangQueryService.findByKuFangName(command.getKuFangName()).ifPresent(p -> {
+    public KufangId handleCreateKuFang(CreateKufangCommand command) throws Exception {
+        kuFangQueryService.findByKuFangName(command.getKufangName()).ifPresent(p -> {
             throw new DomainException(ErrorCode.VIOLATION_CONSTRAINT, "com.believe.bike.error.user.NotFound", "aaa");
         });
 
-        KuFangId identifier = command.getKuFangId();
+        KufangId identifier = command.getKufangId();
         repository.newInstance(() -> new KuFang(command));
         return identifier;
     }

@@ -8,25 +8,25 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.Objects;
 
-@Entity(name = "kuFang")
+@Entity(name = "kufang")
 @Data
 @Slf4j
-public class KuFangEntity extends AbstractEntity {
+public class KufangEntity extends AbstractEntity {
 
     @Column(name = "identifier")
     private String identifier;
     @Column(name = "name")
     private String name;  //库房名称
 
-    public KuFangEntity() {
-        log.info("新建：KuFangEntity");
+    public KufangEntity() {
+        log.info("新建：KufangEntity");
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof KuFangEntity)) return false;
-        AbstractEntity that = (KuFangEntity) o;
+        if (!(o instanceof KufangEntity)) return false;
+        AbstractEntity that = (KufangEntity) o;
         return Objects.equals(getId(), that.getId());
     }
 

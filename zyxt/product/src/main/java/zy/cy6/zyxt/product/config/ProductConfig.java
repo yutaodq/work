@@ -9,7 +9,7 @@ import zy.cy6.zyxt.product.command.KuFang;
 import zy.cy6.zyxt.product.command.KuFangCommandHandler;
 import zy.cy6.zyxt.product.command.Product;
 import zy.cy6.zyxt.product.command.ProductCommandHandler;
-import zy.cy6.zyxt.query.product.KuFangQueryService;
+import zy.cy6.zyxt.query.product.KufangQueryService;
 import zy.cy6.zyxt.query.product.ProductQueryService;
 
 @Configuration
@@ -26,7 +26,7 @@ public class ProductConfig {
   }
 
   @Autowired
-  private KuFangQueryService kuFangQueryService;
+  private KufangQueryService kuFangQueryService;
   @Bean
   public KuFangCommandHandler kuFangCommandHandler() {
     return new KuFangCommandHandler(axonConfiguration.repository(KuFang.class), eventBus, kuFangQueryService);

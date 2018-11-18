@@ -8,21 +8,21 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 @Getter
 @Slf4j
-public final class KuFangCreatedEvent {
+public final class KufangCreatedEvent {
 
     @TargetAggregateIdentifier
-    private KuFangId kuFangId;
-    private  KuFangName kuFangName;
+    private KufangId kuFangId;
+    private KufangName kuFangName;
 
-    public KuFangCreatedEvent(KuFangId kuFangId, KuFangName kuFangName) {
-        log.info("新建：KuFangCreatedEvent");
+    public KufangCreatedEvent(KufangId kuFangId, KufangName kuFangName) {
+        log.info("新建：KufangCreatedEvent");
 
         this.kuFangId = checkNotNull(kuFangId, "没有库房标识符！");
         this.kuFangName = checkNotNull(kuFangName, "没有库房名称！");
     }
 
-    public static KuFangCreatedEvent create(KuFangId kuFangId, KuFangName kuFangName) {
-        return new KuFangCreatedEvent(kuFangId, kuFangName);
+    public static KufangCreatedEvent create(KufangId kuFangId, KufangName kuFangName) {
+        return new KufangCreatedEvent(kuFangId, kuFangName);
     }
 }
 
