@@ -158,6 +158,11 @@
   resolved "http://registry.npm.taobao.org/@ng-bootstrap/ng-bootstrap/download/@ng-bootstrap/ng-bootstrap-2.0.0.tgz#65f78c7dd5a8ac424f44bb2050a9eab247cdeb0c"
   integrity sha1-ZfeMfdWorEJPRLsgUKnqskfN6ww=
 
+"@ngrx/db@2.1.0":
+  version "2.1.0"
+  resolved "http://registry.npm.taobao.org/@ngrx/db/download/@ngrx/db-2.1.0.tgz#dad736c86ea8f849a8fa0df3e506d7e7b9e2e930"
+  integrity sha1-2tc2yG6o+Emo+g3z5QbX57ni6TA=
+
 "@ngrx/effects@6.1.2":
   version "6.1.2"
   resolved "http://registry.npm.taobao.org/@ngrx/effects/download/@ngrx/effects-6.1.2.tgz#602f3ee9798e00179075ddef030ded88c28b1aa1"
