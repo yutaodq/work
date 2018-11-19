@@ -69,20 +69,6 @@ public class KufangServiceImpl implements KufangService {
         Optional<KufangEntity> kufangSave = repository.findByIdentifier(id.getIdentifier());
 
         return ResponseEntity.ok(assembler.toResource(kufangSave.get()));
-//    } catch (Exception e) {
-//      log.info(" System.exit(1); System.exit(1); System.exit(1);");
-//      return ResponseEntity.badRequest();
-//    }
-//    commandGateway.send(command, new CommandCallback<CreateKufangCommand, Object>() {
-//      @Override
-//      public void onSuccess(CommandMessage<? extends CreateKufangCommand> commandMessage, Object o) {
-//        return;
-//      }
-//      @Override
-//      public void onFailure(CommandMessage<? extends CreateKufangCommand> commandMessage, Throwable throwable) {
-//        return;
-//      }
-//    });
 
     }
 

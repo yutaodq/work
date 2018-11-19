@@ -45,14 +45,6 @@ public class KufangController {
         return kufangService.findAllKufang();
     }
 
-    /*参见 EmployeeController.java
-     * D:\yutao\源代码\spring-hateoas-examples\hypermedia\src\main\java\org\springframework\hateoas\examples\EmployeeController.java
-     */
-    //  @GetMapping(value = "/kufangEntities", produces = MediaTypes.HAL_JSON_VALUE)
-//  public ResponseEntity findAll() {
-//    return kufangService.findAll();
-//    //    return ResponseEntity.ok(assembler.toResources(repository.findAll()));
-//  }
 
 
     @GetMapping(value = "/kufangEntities/{id}", produces = MediaTypes.HAL_JSON_VALUE)
@@ -61,20 +53,6 @@ public class KufangController {
         return kufangService.findOne(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    /*
-     *spring官方案例 spring-hateoas-examples 中的
-     *D:\yutao\源代码\spring-hateoas-examples\api-evolution\new-server\src\main\java\org\springframework\hateoas\examples\EmployeeController.java
-     */
-    //  @PostMapping("/kufangs")
-    //  public ResponseEntity<Resource<KufangEntity>> newKufang(@RequestBody KufangEntity kufang)
-    // {
-    //
-    //    Optional<KufangEntity> savedKufang = Optional.of(repository.save(kufang));
-    //    return savedKufang.map(id ->
-    // ResponseEntity.created(linkTo(methodOn(KufangController.class).findOne(id)).toUri()).body(assembler.toResource(savedKufang))).orElse(ResponseEntity.notFound().build());
-    ////    return savedKufang.getId().map(id ->
-    // ResponseEntity.created(linkTo(methodOn(EmployeeController.class).findOne(id)).toUri()).body(assembler.toResource(savedKufang))).orElse(ResponseEntity.notFound().build());
-    //  }
 
     @DeleteMapping("/kufangEntities/{id}")
     public ResponseEntity<Void> deleteCountry(@PathVariable Long id) {
@@ -122,12 +100,5 @@ public class KufangController {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
 
-//  @PutMapping("/kufangEntities")
-//  @Timed
-//  public ResponseEntity<KufangEntity> updateKufangEntity(@RequestBody KufangEntity kufang)  {
-//    log.debug("REST request to update Country : {}", kufang);
-//    KufangEntity result = kufangService.save(country);
-//    return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, country.getId().toString())).body(result);
-//  }
 
 }
