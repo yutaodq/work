@@ -1,1 +1,1 @@
-// export * from './ngrx.store.freeze';
+export * from "./ngrx.store.freeze";

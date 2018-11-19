@@ -6,7 +6,7 @@ import {
   MetaReducer
 } from "@ngrx/store";
 
-import { environment } from "src/environments/environment";
+import { environment } from "../../../../environments/environment";
 
 import * as fromRouter from "@ngrx/router-store";
 
@@ -16,7 +16,7 @@ import * as fromRouter from "@ngrx/router-store";
  * ensure that none of the reducers accidentally mutates the state.
  */
 
-import { storeFreeze } from "zyweb-app/ngrx-store-freeze";
+import { storeFreeze } from "../ngrx-store-freeze";
 /**
  * Every reducer module's default export is the reducer function itself. In
  * addition, each module should export a type or interface that describes
@@ -24,7 +24,7 @@ import { storeFreeze } from "zyweb-app/ngrx-store-freeze";
  * notation packages up all of the exports into a single object.
  */
 
-import * as fromLayout from "zyweb-app/core/reducers/layout.reducer";
+import * as fromLayout from "../core/reducers/layout.reducer";
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means

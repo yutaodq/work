@@ -5,8 +5,8 @@
 //
 // },
 
-import { LayoutActions } from "zyweb-app/core/actions";
-
+// import { LayoutActions } from "../core/actions";
+import { LayoutActions } from "../actions";
 export interface State {
   showSidenav: boolean;
 }
