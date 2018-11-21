@@ -31,7 +31,6 @@ import {
   PageRibbonComponent
 } from "./layouts";
 import { ZyxtXtwhModule } from "app/xtwh/xtwh.module";
-
 @NgModule({
   imports: [
     BrowserModule,
