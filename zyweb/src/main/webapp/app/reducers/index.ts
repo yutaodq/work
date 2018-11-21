@@ -45,7 +45,10 @@ export const reducers: ActionReducerMap<State> = {
   router: fromRouter.routerReducer
 };
 
-// console.log all actions
+/*
+ActionReducer用来创建类似logger的reducer，使用MetaReducer对它进行配置.
+通过使用下面的代码，我们可以在控制台中获取每个action的状态和名称.
+*/
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
   return (state: State, action: any): any => {
     const result = reducer(state, action);
@@ -64,6 +67,12 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
  * the root meta-reducer. To add more meta-reducers, provide an array of meta-reducers
  * that will be composed to form the root meta-reducer.
  */
+
+/*
+MetaReducer由我们所创建的一系列ActionReducer所组成。
+在应用中使用StoreModule配置的MetaReducer构成了根meta-reducer。
+@ngrx/store默认使用 combineReducers在创建根meta-reducer。
+*/
 export const metaReducers: MetaReducer<State>[] = !environment.production
   ? [logger, storeFreeze]
   : [];
