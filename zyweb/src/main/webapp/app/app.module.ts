@@ -5,6 +5,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { Ng2Webstorage } from "ngx-webstorage";
 import { JhiEventManager } from "ng-jhipster";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { NbThemeModule } from "@nebular/theme";
 
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
@@ -13,7 +14,6 @@ import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
 import { environment } from "../../../environments/environment";
-// import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
 import { ErrorHandlerInterceptor } from "./blocks/interceptor/errorhandler.interceptor";
 import { NotificationInterceptor } from "./blocks/interceptor/notification.interceptor";
 import { reducers, metaReducers } from "./reducers";
@@ -21,7 +21,7 @@ import { reducers, metaReducers } from "./reducers";
 import { ZyxtAppRoutingModule } from "./app-routing.module";
 import { ZyxtHomeModule } from "./home/index";
 import { ZyxtAboutModule } from "./about/index";
-import { ZyxtCoreModule } from "app/core";
+import { ZyxtCoreModule } from "app/core/core.module";
 import { ZyxtSharedModule } from "app/shared";
 import {
   ZyxtMainComponent,
@@ -41,6 +41,8 @@ import { ZyxtXtwhModule } from "app/xtwh/xtwh.module";
     ZyxtAboutModule,
     ZyxtXtwhModule,
     ZyxtHomeModule,
+
+    NbThemeModule.forRoot(),
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer
      * function or object map of reducer functions. If passed an object of
@@ -87,15 +89,6 @@ import { ZyxtXtwhModule } from "app/xtwh/xtwh.module";
     PageRibbonComponent
   ],
   providers: [
-    // AuthExpiredInterceptor 的功能还没有实现
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthExpiredInterceptor,
-    //   multi: true,
-    //   deps: [
-    //     Injector
-    //   ]
-    // },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorHandlerInterceptor,
