@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { MENU_ITEMS } from "./app-menu";
 
 @Component({
   selector: "zy-app",
@@ -6,5 +7,5 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
   templateUrl: `./app.component.html`
 })
 export class AppComponent {
-  constructor() {}
+  menu = MENU_ITEMS;
 }

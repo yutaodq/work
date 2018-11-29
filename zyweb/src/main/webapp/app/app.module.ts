@@ -2,6 +2,8 @@ import "./vendor.ts";
 
 import { NgModule, Injector } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 import { Ng2Webstorage } from "ngx-webstorage";
 import { JhiEventManager } from "ng-jhipster";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -34,6 +36,7 @@ import { AppComponent } from "app/core/containers/app.component";
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ZyxtAppRoutingModule,
     Ng2Webstorage.forRoot({ prefix: "zy", separator: "-" }),
     ZyxtSharedModule,

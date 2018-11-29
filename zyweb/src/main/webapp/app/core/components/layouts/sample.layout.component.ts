@@ -1,13 +1,4 @@
 import { Component, OnDestroy } from "@angular/core";
-import { Router, ActivatedRouteSnapshot, NavigationEnd } from "@angular/router";
-
-import {
-  NbMediaBreakpointsService,
-  NbMenuService,
-  NbSidebarService,
-  NbThemeService
-} from "@nebular/theme";
-
 // TODO: move layouts into the framework
 @Component({
   selector: "zy-sample-layout",
