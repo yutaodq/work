@@ -13,9 +13,13 @@ import { AppComponent } from "./containers";
 
 const CONTAINERS = [AppComponent];
 
-import { SampleLayoutComponent, FooterComponent } from "./components";
+import {
+  SampleLayoutComponent,
+  FooterComponent,
+  HeaderComponent
+} from "./components";
 
-const COMPONENTS = [SampleLayoutComponent, FooterComponent];
+const COMPONENTS = [SampleLayoutComponent, FooterComponent, HeaderComponent];
 @NgModule({
   imports: [
     RouterModule,
