@@ -10,11 +10,12 @@ import {
 const NB_MODULES = [NbLayoutModule];
 
 import { AppComponent } from "./containers";
+
 const CONTAINERS = [AppComponent];
 
-import { SampleLayoutComponent } from "./components";
+import { SampleLayoutComponent, FooterComponent } from "./components";
 
-const COMPONENTS = [SampleLayoutComponent];
+const COMPONENTS = [SampleLayoutComponent, FooterComponent];
 @NgModule({
   imports: [
     RouterModule,

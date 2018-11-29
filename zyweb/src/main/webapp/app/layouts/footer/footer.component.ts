@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-    selector: 'zy-footer',
-    templateUrl: './footer.component.html'
+  selector: "zy-footer-lay",
+  templateUrl: "./footer.component.html"
 })
 export class FooterComponent {}
