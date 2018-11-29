@@ -5,11 +5,10 @@ import { BrowserModule } from "@angular/platform-browser";
 import { Ng2Webstorage } from "ngx-webstorage";
 import { JhiEventManager } from "ng-jhipster";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { NbThemeModule } from "@nebular/theme";
+// import { NbThemeModule } from "@nebular/theme";
 
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
-import { DBModule } from "@ngrx/db";
 import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
@@ -31,6 +30,7 @@ import {
   PageRibbonComponent
 } from "./layouts";
 import { ZyxtXtwhModule } from "app/xtwh/xtwh.module";
+import { AppComponent } from "app/core/containers/app.component";
 @NgModule({
   imports: [
     BrowserModule,
@@ -41,8 +41,7 @@ import { ZyxtXtwhModule } from "app/xtwh/xtwh.module";
     ZyxtAboutModule,
     ZyxtXtwhModule,
     ZyxtHomeModule,
-
-    NbThemeModule.forRoot(),
+    // NbThemeModule.forRoot(),
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer
      * function or object map of reducer functions. If passed an object of
@@ -102,6 +101,6 @@ import { ZyxtXtwhModule } from "app/xtwh/xtwh.module";
       deps: [Injector]
     }
   ],
-  bootstrap: [ZyxtMainComponent]
+  bootstrap: [AppComponent]
 })
 export class ZyxtAppModule {}

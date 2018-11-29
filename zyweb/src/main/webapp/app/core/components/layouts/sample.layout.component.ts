@@ -1,4 +1,6 @@
 import { Component, OnDestroy } from "@angular/core";
+import { Router, ActivatedRouteSnapshot, NavigationEnd } from "@angular/router";
+
 import {
   NbMediaBreakpointsService,
   NbMenuService,
@@ -10,7 +12,7 @@ import {
 @Component({
   selector: "zy-sample-layout",
   styleUrls: ["./sample.layout.component.scss"],
-  template: ` ./sample.layout.component.html `
+  templateUrl: `./sample.layout.component.html`
 })
 export class SampleLayoutComponent implements OnDestroy {
   layout: any = {};
@@ -20,12 +22,7 @@ export class SampleLayoutComponent implements OnDestroy {
 
   currentTheme: string;
 
-  constructor(
-    protected menuService: NbMenuService,
-    protected themeService: NbThemeService,
-    protected bpService: NbMediaBreakpointsService,
-    protected sidebarService: NbSidebarService
-  ) {}
+  constructor() {}
 
   ngOnDestroy() {
     this.alive = false;
