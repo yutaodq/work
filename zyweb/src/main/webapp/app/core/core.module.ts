@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import {
-  NbThemeModule,
   NbLayoutModule,
+  NbThemeModule,
   NbMenuModule,
   NbSidebarModule
 } from "@nebular/theme";
@@ -20,19 +20,22 @@ import {
 } from "./components";
 
 const COMPONENTS = [SampleLayoutComponent, FooterComponent, HeaderComponent];
+
+import { AnalyticsService, UserService, LayoutService } from "app/core/service";
+const SERVICE = [AnalyticsService, UserService, LayoutService];
 @NgModule({
   imports: [
     RouterModule,
     NbThemeModule.forRoot({
       name: "corporate"
     }),
-    ...NB_MODULES,
     NbMenuModule.forRoot(),
-    NbSidebarModule.forRoot()
+    NbSidebarModule.forRoot(),
+    ...NB_MODULES
   ],
   exports: [...COMPONENTS, ...NB_MODULES],
   declarations: [COMPONENTS, CONTAINERS],
-  providers: []
+  providers: [...SERVICE]
 })
 export class ZyxtCoreModule {
   constructor() {}

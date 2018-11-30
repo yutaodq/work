@@ -3,11 +3,11 @@ import "./vendor.ts";
 import { NgModule, Injector } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { Ng2Webstorage } from "ngx-webstorage";
 import { JhiEventManager } from "ng-jhipster";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
-// import { NbThemeModule } from "@nebular/theme";
 
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
@@ -44,7 +44,8 @@ import { AppComponent } from "app/core/containers/app.component";
     ZyxtAboutModule,
     ZyxtXtwhModule,
     ZyxtHomeModule,
-    // NbThemeModule.forRoot(),
+    NgbModule.forRoot(),
+
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer
      * function or object map of reducer functions. If passed an object of
