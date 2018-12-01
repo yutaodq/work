@@ -4,16 +4,22 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: "主页",
     icon: "nb-e-commerce",
-    link: "/home",
+    link: "home",
     home: true
   },
   {
-    title: "IoT Dashboard",
+    title: "关于",
     icon: "nb-home",
-    link: "/pages/iot-dashboard"
+    link: "about"
   },
   {
-    title: "FEATURES",
+    title: "关于2",
+    icon: "nb-home",
+    link: "/about"
+  },
+
+  {
+    title: "分组",
     group: true
   },
   {
