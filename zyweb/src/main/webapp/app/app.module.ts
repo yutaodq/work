@@ -19,8 +19,8 @@ import { NotificationInterceptor } from "./blocks/interceptor/notification.inter
 import { reducers, metaReducers } from "./reducers";
 
 import { ZyxtAppRoutingModule } from "./app-routing.module";
-import { ZyxtHomeModule } from "./home/index";
-import { ZyxtAboutModule } from "./about/index";
+import { ZyxtHomeModule } from "./home";
+import { ZyxtAboutModule } from "./about";
 import { CoreModule } from "app/core/core.module";
 import { ZyxtSharedModule } from "app/shared";
 import {

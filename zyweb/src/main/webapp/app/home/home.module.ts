@@ -1,14 +1,10 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { HOME_ROUTE, HomeComponent } from './index';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { HomeComponent } from "./home.component";
 
 @NgModule({
-  imports: [ RouterModule.forChild([HOME_ROUTE])],
-
+  imports: [],
   declarations: [HomeComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  exports: [HomeComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ZyxtHomeModule {}
-
-
-

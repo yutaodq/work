@@ -1,16 +1,16 @@
 import { NgModule } from "@angular/core";
-import { Route, RouterModule } from "@angular/router";
-import { navbarRoute, errorRoute } from "./layouts/index";
-const defRoute: Route = {
-  path: "",
-  redirectTo: "/home",
-  pathMatch: "prefix"
+import { Routes, RouterModule, ExtraOptions } from "@angular/router";
+import { HomeComponent } from "./home";
+const ROUTES: Routes = [
+  { path: "home", component: HomeComponent },
+  { path: "", redirectTo: "home", pathMatch: "full" },
+  { path: "**", redirectTo: "home" }
+];
+const CONFIG: ExtraOptions = {
+  useHash: true
 };
-
-const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
-
 @NgModule({
-  imports: [RouterModule.forRoot([...LAYOUT_ROUTES], { useHash: true })],
+  imports: [RouterModule.forRoot([...ROUTES], CONFIG)],
 
   exports: [RouterModule]
 })
