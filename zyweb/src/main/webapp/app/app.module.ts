@@ -33,6 +33,8 @@ import {
 } from "./layouts";
 import { ZyxtXtwhModule } from "app/xtwh/xtwh.module";
 import { AppComponent } from "app/core/containers/app.component";
+import { NbThemeModule, NbMenuModule } from "@nebular/theme";
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -44,8 +46,11 @@ import { AppComponent } from "app/core/containers/app.component";
     ZyxtAboutModule,
     ZyxtXtwhModule,
     ZyxtHomeModule,
-    NgbModule.forRoot(),
-
+    NgbModule,
+    NbThemeModule.forRoot({
+      name: "corporate"
+    }),
+    NbMenuModule.forRoot(),
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer
      * function or object map of reducer functions. If passed an object of
