@@ -1,12 +1,8 @@
-import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
-
-// import {
-//   NbLayoutModule,
-//   NbMenuModule,
-//   NbSidebarModule
-// } from "@nebular/theme";
-// const NB_MODULES = [NbLayoutModule];
+import { ModuleWithProviders, NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { ExtraOptions, RouterModule, Routes } from "@angular/router";
 
 import {
   NbActionsModule,
@@ -17,6 +13,7 @@ import {
   NbSearchModule,
   NbSidebarModule,
   NbTabsetModule,
+  NbThemeModule,
   NbUserModule,
   NbCheckboxModule,
   NbPopoverModule,
@@ -28,7 +25,6 @@ import {
   NbButtonModule,
   NbInputModule,
   NbAccordionModule,
-  NbDatepickerModule,
   NbDialogModule,
   NbWindowModule,
   NbListModule,
@@ -37,10 +33,28 @@ import {
   NbSpinnerModule,
   NbRadioModule,
   NbSelectModule,
-  NbChatModule,
-  NbTooltipModule,
-  NbCalendarKitModule
+  NbTooltipModule
 } from "@nebular/theme";
+
+import { NbSecurityModule } from "@nebular/security";
+
+import { AppComponent } from "./containers";
+
+import {
+  SampleLayoutComponent,
+  FooterComponent,
+  HeaderComponent
+} from "./components";
+
+const COMPONENTS = [
+  AppComponent,
+  SampleLayoutComponent,
+  FooterComponent,
+  HeaderComponent
+];
+
+const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
+
 const NB_MODULES = [
   NbCardModule,
   NbLayoutModule,
@@ -50,10 +64,12 @@ const NB_MODULES = [
   NbUserModule,
   NbActionsModule,
   NbSearchModule,
-  // NbSidebarModule,
+  NbSidebarModule,
   NbCheckboxModule,
   NbPopoverModule,
   NbContextMenuModule,
+  NgbModule,
+  NbSecurityModule, // *nbIsGranted directive,
   NbProgressBarModule,
   NbCalendarModule,
   NbCalendarRangeModule,
@@ -63,43 +79,39 @@ const NB_MODULES = [
   NbToastrModule,
   NbInputModule,
   NbAccordionModule,
-  NbDatepickerModule,
   NbDialogModule,
   NbWindowModule,
   NbAlertModule,
   NbSpinnerModule,
   NbRadioModule,
   NbSelectModule,
-  NbChatModule,
-  NbTooltipModule,
-  NbCalendarKitModule
+  NbTooltipModule
 ];
 
-import { AppComponent } from "./containers";
-
-const CONTAINERS = [AppComponent];
-
-import {
-  SampleLayoutComponent,
-  FooterComponent,
-  HeaderComponent
-} from "./components";
-
-const COMPONENTS = [SampleLayoutComponent, FooterComponent, HeaderComponent];
-
+const NB_THEME_PROVIDERS = [
+  ...NbThemeModule.forRoot({
+    name: "corporate"
+  }).providers,
+  ...NbSidebarModule.forRoot().providers,
+  ...NbMenuModule.forRoot().providers,
+  ...NbDialogModule.forRoot().providers,
+  ...NbWindowModule.forRoot().providers,
+  ...NbToastrModule.forRoot().providers
+];
 import { AnalyticsService, UserService, LayoutService } from "app/core/service";
 const SERVICE = [AnalyticsService, UserService, LayoutService];
+
 @NgModule({
-  imports: [
-    RouterModule,
-    // NbMenuModule.forRoot(),
-    NbSidebarModule.forRoot(),
-    ...NB_MODULES
-  ],
-  exports: [...COMPONENTS, ...NB_MODULES],
-  declarations: [COMPONENTS, CONTAINERS],
+  imports: [...BASE_MODULES, ...NB_MODULES, RouterModule],
+  exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS],
+  declarations: [...COMPONENTS],
   providers: [...SERVICE]
 })
-export class ZyxtCoreModule {
-  constructor() {}
+export class CoreModule {
+  static forRoot(): ModuleWithProviders {
+    return <ModuleWithProviders>{
+      ngModule: CoreModule,
+      providers: [...NB_THEME_PROVIDERS]
+    };
+  }
 }

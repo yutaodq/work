@@ -3,7 +3,6 @@ import "./vendor.ts";
 import { NgModule, Injector } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { Ng2Webstorage } from "ngx-webstorage";
 import { JhiEventManager } from "ng-jhipster";
@@ -22,7 +21,7 @@ import { reducers, metaReducers } from "./reducers";
 import { ZyxtAppRoutingModule } from "./app-routing.module";
 import { ZyxtHomeModule } from "./home/index";
 import { ZyxtAboutModule } from "./about/index";
-import { ZyxtCoreModule } from "app/core/core.module";
+import { CoreModule } from "app/core/core.module";
 import { ZyxtSharedModule } from "app/shared";
 import {
   ZyxtMainComponent,
@@ -33,7 +32,6 @@ import {
 } from "./layouts";
 import { ZyxtXtwhModule } from "app/xtwh/xtwh.module";
 import { AppComponent } from "app/core/containers/app.component";
-import { NbThemeModule, NbMenuModule } from "@nebular/theme";
 
 @NgModule({
   imports: [
@@ -42,15 +40,10 @@ import { NbThemeModule, NbMenuModule } from "@nebular/theme";
     ZyxtAppRoutingModule,
     Ng2Webstorage.forRoot({ prefix: "zy", separator: "-" }),
     ZyxtSharedModule,
-    ZyxtCoreModule,
     ZyxtAboutModule,
     ZyxtXtwhModule,
     ZyxtHomeModule,
-    NgbModule,
-    NbThemeModule.forRoot({
-      name: "corporate"
-    }),
-    NbMenuModule.forRoot(),
+    CoreModule.forRoot(),
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer
      * function or object map of reducer functions. If passed an object of
