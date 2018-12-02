@@ -116,7 +116,6 @@ public class SimpleIdentifiableResourceAssembler<T extends Identifiable<?>> exte
   }
 
   private String getPrefix() {
-
     return getBasePath().isEmpty() ? "" : getBasePath() + "/";
   }
 }

@@ -3,6 +3,9 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ExtraOptions, RouterModule, Routes } from "@angular/router";
+import { CORPORATE_THEME } from "./styles/theme-corporate";
+import { COSMIC_THEME } from "./styles/theme-cosmic";
+import { DEFAULT_THEME } from "./styles/theme-default";
 
 import {
   NbActionsModule,
@@ -92,6 +95,7 @@ const NB_THEME_PROVIDERS = [
   ...NbThemeModule.forRoot({
     name: "corporate"
   }).providers,
+
   ...NbSidebarModule.forRoot().providers,
   ...NbMenuModule.forRoot().providers,
   ...NbDialogModule.forRoot().providers,
@@ -99,6 +103,7 @@ const NB_THEME_PROVIDERS = [
   ...NbToastrModule.forRoot().providers
 ];
 import { AnalyticsService, UserService, LayoutService } from "app/core/service";
+
 const SERVICE = [AnalyticsService, UserService, LayoutService];
 
 @NgModule({

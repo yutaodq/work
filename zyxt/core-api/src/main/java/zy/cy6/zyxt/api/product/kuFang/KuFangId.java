@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.api.product.kuFang;
+package zy.cy6.zyxt.api.product.kufang;
 
 import lombok.extern.slf4j.Slf4j;
 import zy.cy6.zyxt.common.domain.AbstractAggregateIdentifier;

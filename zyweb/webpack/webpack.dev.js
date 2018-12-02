@@ -41,8 +41,6 @@ module.exports = (options) => webpackMerge(commonConfig({env: ENV}), {
   entry: {
     polyfills: './src/main/webapp/app/polyfills',
     global: './src/main/webapp/content/scss/global.scss',
-    // vendor: [ 'popper.js', 'bootstrap'],
-
     main: './src/main/webapp/app/app.main'
   },
   output: {

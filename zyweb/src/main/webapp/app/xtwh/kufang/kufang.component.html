@@ -1,72 +1,74 @@
-<div>
-    <h2 id="page-heading">
-        <span>{{pageTitle}}</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-kufang" [routerLink]="['/kufang/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span class="hidden-sm-down" >
-            增加新库房
-            </span>
-        </button>
-    </h2>
-    <jhi-alert></jhi-alert>
+dsdsffsddsffsdsdfsdf
+<!--<div>-->
+    <!--<h2 id="page-heading">-->
+        <!--<span>{{pageTitle}}</span>-->
 
-    <div class="row">
-        <div class="col-sm-12">
-            <form name="searchForm" class="form-inline">
-                <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="请输入要查看的内容">
-                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
-                        <fa-icon [icon]="'search'"></fa-icon>
-                    </button>
-                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
-                        <fa-icon [icon]="'trash-alt'"></fa-icon>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <br/>
-    <div class="table-responsive" *ngIf="kufangs">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th><span>ID</span></th>
-                <th><span>identifier</span></th>
+        <!--<button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-kufang" [routerLink]="['/kufang/new']">-->
+            <!--<fa-icon [icon]="'plus'"></fa-icon>-->
+            <!--<span class="hidden-sm-down" >-->
+            <!--增加新库房-->
+            <!--</span>-->
+        <!--</button>-->
+    <!--</h2>-->
+    <!--<jhi-alert></jhi-alert>-->
 
-                <th><span>库房名称</span></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let kufang of kufangs ">
-                <td><a [routerLink]="['/kufang', kufang.id, 'view' ]">{{kufang.id}}</a></td>
+    <!--<div class="row">-->
+        <!--<div class="col-sm-12">-->
+            <!--<form name="searchForm" class="form-inline">-->
+                <!--<div class="input-group w-100 mt-3">-->
+                    <!--<input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="请输入要查看的内容">-->
+                    <!--<button class="input-group-append btn btn-info" (click)="search(currentSearch)">-->
+                        <!--<fa-icon [icon]="'search'"></fa-icon>-->
+                    <!--</button>-->
+                    <!--<button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">-->
+                        <!--<fa-icon [icon]="'trash-alt'"></fa-icon>-->
+                    <!--</button>-->
+                <!--</div>-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<br/>-->
+    <!--<div class="table-responsive" *ngIf="kufangs">-->
+        <!--<table class="table table-striped">-->
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th><span>ID</span></th>-->
+                <!--<th><span>identifier</span></th>-->
 
-                <td>{{kufang.identifier}}</a></td>
+                <!--<th><span>库房名称</span></th>-->
+                <!--<th></th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr *ngFor="let kufang of kufangs ">-->
+                <!--<td><a [routerLink]="['/kufang', kufang.id, 'view' ]">{{kufang.id}}</a></td>-->
 
-                <td>{{kufang.name}}</td>
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['/kufang', kufang.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline">查看</span>
-                        </button>
+                <!--<td>{{kufang.identifier}}</a></td>-->
 
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'kufang/'+ kufang.id + '/delete'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline">删除</span>
-                        </button>
+                <!--<td>{{kufang.name}}</td>-->
+                <!--<td class="text-right">-->
+                    <!--<div class="btn-group flex-btn-group-container">-->
+                        <!--<button type="submit"-->
+                                <!--[routerLink]="['/kufang', kufang.id, 'view' ]"-->
+                                <!--class="btn btn-info btn-sm">-->
+                            <!--<fa-icon [icon]="'eye'"></fa-icon>-->
+                            <!--<span class="d-none d-md-inline">查看</span>-->
+                        <!--</button>-->
 
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                        <!--<button type="submit"-->
+                                <!--[routerLink]="['/', { outlets: { popup: 'kufang/'+ kufang.id + '/delete'} }]"-->
+                                <!--replaceUrl="true"-->
+                                <!--queryParamsHandling="merge"-->
+                                <!--class="btn btn-danger btn-sm">-->
+                            <!--<fa-icon [icon]="'times'"></fa-icon>-->
+                            <!--<span class="d-none d-md-inline">删除</span>-->
+                        <!--</button>-->
+
+                    <!--</div>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+    <!--</div>-->
+<!--</div>-->

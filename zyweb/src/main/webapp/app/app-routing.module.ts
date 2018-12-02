@@ -3,8 +3,7 @@ import { Routes, RouterModule, ExtraOptions } from "@angular/router";
 import { HomeComponent } from "./home";
 const ROUTES: Routes = [
   { path: "home", component: HomeComponent },
-  { path: "", redirectTo: "home", pathMatch: "full" },
-  { path: "**", redirectTo: "home" }
+  { path: "", redirectTo: "home", pathMatch: "full" }
 ];
 const CONFIG: ExtraOptions = {
   useHash: true

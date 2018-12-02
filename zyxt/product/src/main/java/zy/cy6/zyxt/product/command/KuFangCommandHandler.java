@@ -8,9 +8,9 @@ import org.axonframework.commandhandling.model.Repository;
 import org.axonframework.eventhandling.EventBus;
 import zy.cy6.zyxt.api.exception.DomainException;
 import zy.cy6.zyxt.api.exception.ErrorCode;
-import zy.cy6.zyxt.api.product.kuFang.ChangeKufangNameCommand;
-import zy.cy6.zyxt.api.product.kuFang.CreateKufangCommand;
-import zy.cy6.zyxt.api.product.kuFang.KufangId;
+import zy.cy6.zyxt.api.product.kufang.ChangeKufangNameCommand;
+import zy.cy6.zyxt.api.product.kufang.CreateKufangCommand;
+import zy.cy6.zyxt.api.product.kufang.KufangId;
 import zy.cy6.zyxt.query.product.KufangQueryService;
 
 @Slf4j

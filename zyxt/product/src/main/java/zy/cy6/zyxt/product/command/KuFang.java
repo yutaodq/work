@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
-import zy.cy6.zyxt.api.product.kuFang.*;
+import zy.cy6.zyxt.api.product.kufang.*;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
