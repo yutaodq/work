@@ -13,22 +13,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: "about"
   },
   {
-    title: "关于2",
-    icon: "nb-home",
-    link: "/about"
-  },
-
-  {
     title: "分组",
     group: true
   },
   {
-    title: "Extra Components",
+    title: "系统维护",
     icon: "nb-star",
     children: [
       {
-        title: "Calendar",
-        link: "/pages/extra-components/calendar"
+        title: "库房名称",
+        link: "kufang"
       },
       {
         title: "Stepper",
