@@ -3,23 +3,42 @@ import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { JhiEventManager, JhiAlertService } from "ng-jhipster";
+import { LocalDataSource } from "ng2-smart-table";
 
 import { IKufangEntity } from "app/shared/model/kufang.model";
 import { Principal } from "app/core";
 import { KufangService } from "./kufang.service";
 
 @Component({
-  selector: "jhi-kufang",
+  selector: "zy-kufang",
   templateUrl: "./kufang.component.html"
 })
 export class KufangComponent implements OnInit, OnDestroy {
-  kufangs: IKufangEntity[];
+  source: LocalDataSource = new LocalDataSource();
 
+  // kufangs: IKufangEntity[];
+  // kufangs = [];
   currentAccount: any;
   eventSubscriber: Subscription;
   currentSearch: string;
   pageTitle: string;
 
+  settings = {
+    columns: {
+      id: {
+        title: "序号",
+        type: "number"
+      },
+      identifier: {
+        title: "标识",
+        type: "string"
+      },
+      name: {
+        title: "库房名称",
+        type: "string"
+      }
+    }
+  };
   constructor(
     private kufangService: KufangService,
     private jhiAlertService: JhiAlertService,
@@ -44,16 +63,17 @@ export class KufangComponent implements OnInit, OnDestroy {
           query: this.currentSearch
         })
         .subscribe(
-          (res: HttpResponse<IKufangEntity[]>) => (this.kufangs = res.body),
+          (res: HttpResponse<IKufangEntity[]>) => {
+            this.source = new LocalDataSource(res.body);
+          },
           (res: HttpErrorResponse) => this.onError(res.message)
         );
       return;
     }
     this.kufangService.query().subscribe(
       (res: HttpResponse<IKufangEntity[]>) => {
-        // this.products = res.body;
         console.log("yyuuuuuuuu" + res.body);
-        this.kufangs = res.body;
+        this.source = new LocalDataSource(res.body);
 
         this.currentSearch = "";
       },
