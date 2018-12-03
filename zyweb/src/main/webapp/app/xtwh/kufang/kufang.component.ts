@@ -24,21 +24,39 @@ export class KufangComponent implements OnInit, OnDestroy {
   pageTitle: string;
 
   settings = {
+    add: {
+      addButtonContent: '<i class="nb-plus"></i>',
+      createButtonContent: '<i class="nb-checkmark"></i>',
+      cancelButtonContent: '<i class="nb-close"></i>'
+    },
+    edit: {
+      editButtonContent: '<i class="nb-edit"></i>',
+      saveButtonContent: '<i class="nb-checkmark"></i>',
+      cancelButtonContent: '<i class="nb-close"></i>'
+    },
+    delete: {
+      deleteButtonContent: '<i class="nb-trash"></i>',
+      confirmDelete: true
+    },
     columns: {
       id: {
         title: "序号",
-        type: "number"
+        type: "number",
+        filter: false
       },
       identifier: {
         title: "标识",
+        filter: false,
         type: "string"
       },
       name: {
         title: "库房名称",
-        type: "string"
+        type: "string",
+        filter: false
       }
     }
   };
+
   constructor(
     private kufangService: KufangService,
     private jhiAlertService: JhiAlertService,
@@ -119,5 +137,21 @@ export class KufangComponent implements OnInit, OnDestroy {
 
   private onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
+  }
+
+  onSearch(query: String = "") {
+    this.source.setFilter(
+      [
+        {
+          field: "id",
+          search: query
+        },
+        {
+          field: "name",
+          search: query
+        }
+      ],
+      false
+    );
   }
 }

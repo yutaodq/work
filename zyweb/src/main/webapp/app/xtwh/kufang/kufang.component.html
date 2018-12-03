@@ -5,8 +5,19 @@
     </nb-card-header>
 
     <nb-card-body>
-        <ng2-smart-table [settings]="settings" [source]="source" >
-        </ng2-smart-table>
+        <nb-layout>
+            <!--<nb-layout-header >-->
+                <!--&lt;!&ndash;<nb-search #search type="rotate-layout placeholder="Search..." (keydown.enter)="onSearch(search.value)""></nb-search>&ndash;&gt;-->
+            <!--</nb-layout-header>-->
+             <nb-layout-column>
+                 <nb-search  ></nb-search>
+                 <input nbInput></input>
+
+                <ng2-smart-table [settings]="settings" [source]="source" >
+                </ng2-smart-table>
+
+            </nb-layout-column>
+        </nb-layout>
     </nb-card-body>
 </nb-card>
 

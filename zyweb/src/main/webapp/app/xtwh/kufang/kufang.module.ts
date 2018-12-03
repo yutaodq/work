@@ -1,18 +1,18 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
-import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { Ng2SmartTableModule } from "ng2-smart-table";
 import { ZyxtSharedModule } from "app/shared";
 import { KufangComponent, kufangRoute } from "./";
 import { CoreModule } from "app/core";
+import { NebularModule } from "app/core";
 
 const ROUTE = [...kufangRoute];
 const IMPORTS_MODULES = [
   HttpClientModule,
   ZyxtSharedModule,
   CoreModule,
-  NgxDatatableModule,
+  NebularModule,
   Ng2SmartTableModule
 ];
 const COMPONENT = [KufangComponent];
