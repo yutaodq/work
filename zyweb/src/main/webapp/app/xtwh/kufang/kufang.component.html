@@ -13,8 +13,16 @@
                  <nb-search  ></nb-search>
                  <!--<input nbInput></input>-->
 
-                <ng2-smart-table [settings]="settings" [source]="source" >
-                </ng2-smart-table>
+                <!--<ng2-smart-table [settings]="settings" [source]="source" >-->
+                <!--</ng2-smart-table>-->
+
+                 <ngx-datatable
+                         [rowHeight]="'auto'"
+                         [columnMode]="'force'"
+                 [reorderable]= true
+                 [rows]="source"
+                 [columns]="columns">
+                 </ngx-datatable>
 
             </nb-layout-column>
         </nb-layout>

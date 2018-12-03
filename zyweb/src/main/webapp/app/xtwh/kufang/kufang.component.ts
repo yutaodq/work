@@ -15,9 +15,7 @@ import { KufangService } from "./kufang.service";
 })
 export class KufangComponent implements OnInit, OnDestroy {
   source: LocalDataSource = new LocalDataSource();
-
-  // kufangs: IKufangEntity[];
-  // kufangs = [];
+  rows: IKufangEntity[];
   currentAccount: any;
   eventSubscriber: Subscription;
   currentSearch: string;
@@ -56,7 +54,11 @@ export class KufangComponent implements OnInit, OnDestroy {
       }
     }
   };
-
+  columns = [
+    { name: "序号", prop: "id" },
+    { name: "标识", prop: "identifier" },
+    { name: "库房名称", prop: "name" }
+  ];
   constructor(
     private kufangService: KufangService,
     private jhiAlertService: JhiAlertService,
@@ -82,10 +84,10 @@ export class KufangComponent implements OnInit, OnDestroy {
         })
         .subscribe(
           (res: HttpResponse<IKufangEntity[]>) => {
-            this.source = new LocalDataSource();
-            this.source.load(res.body.values());
-            this.source;
-            this.source = new LocalDataSource(res.body);
+            // this.source = new LocalDataSource();
+            // this.source.load(res.body);
+            // this.source = new LocalDataSource(res.body);
+            this.rows = res.body;
           },
           (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -94,7 +96,8 @@ export class KufangComponent implements OnInit, OnDestroy {
     this.kufangService.query().subscribe(
       (res: HttpResponse<IKufangEntity[]>) => {
         console.log("yyuuuuuuuu" + res.body);
-        this.source = new LocalDataSource(res.body);
+        // this.source = new LocalDataSource(res.body);
+        this.rows = res.body;
 
         this.currentSearch = "";
       },
