@@ -7,7 +7,6 @@ import org.axonframework.spring.stereotype.Aggregate;
 import zy.cy6.zyxt.api.product.kufang.*;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
-
 /*
 事件溯源聚合的聚合根还必须包含一个无参的构造函数，用@NoArgsConstructor这个构造函数。
 ，Axon Framework使用这个构造函数创建一个空的聚合实例，
