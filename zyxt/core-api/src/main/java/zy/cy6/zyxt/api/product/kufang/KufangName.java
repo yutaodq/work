@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.api.product.ku;
+package zy.cy6.zyxt.api.product.kufang;
 
 import com.google.common.base.MoreObjects;
 import lombok.EqualsAndHashCode;
