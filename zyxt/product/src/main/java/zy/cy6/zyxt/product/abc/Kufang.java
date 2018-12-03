@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.product.command;
+package zy.cy6.zyxt.product.abc;
 
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
