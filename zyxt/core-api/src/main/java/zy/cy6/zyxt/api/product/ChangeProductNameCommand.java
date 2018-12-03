@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 public class ChangeProductNameCommand {
   @TargetAggregateIdentifier
   private ProductId productId;
-
   @NotNull(message = "工具名称对象不能为空")
   private ProductName productName;
 }

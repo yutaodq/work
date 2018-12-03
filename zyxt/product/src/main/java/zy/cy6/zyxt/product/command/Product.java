@@ -1,6 +1,5 @@
 package zy.cy6.zyxt.product.command;
 
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -16,7 +15,6 @@ import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
  */
 @Aggregate
 @Slf4j
-@NoArgsConstructor
 public class Product {
     @AggregateIdentifier
     private ProductId productId;

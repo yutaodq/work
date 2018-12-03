@@ -14,7 +14,6 @@ import zy.cy6.zyxt.api.product.ProductId;
 import zy.cy6.zyxt.query.product.ProductQueryService;
 
 @Slf4j
-
 public class ProductCommandHandler {
 
     private Repository<Product> repository;
@@ -33,10 +32,7 @@ public class ProductCommandHandler {
         try {
             Aggregate<Product> productAggregate = repository.load(command.getProductId().getIdentifier());
             productAggregate.execute(product -> product.changeProductName(command.getProductName()));
-            log.info("aaaaaaaaaaaaaaa:" + command.getProductId().getIdentifier());
         } catch (AggregateNotFoundException exception) {
-            log.info("bbbbbbbbbbbbbbbbbbbbbbbb:" + command.getProductId().toString());
-
             //        eventBus.publish(asEventMessage(new
             // SourceBankAccountNotFoundEvent(command.getBankTransferId())));
 

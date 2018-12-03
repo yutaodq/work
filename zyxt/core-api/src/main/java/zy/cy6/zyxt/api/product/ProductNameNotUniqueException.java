@@ -1,9 +1,10 @@
 package zy.cy6.zyxt.api.product;
 
 
-//@Value
-//public class ProductNameNotUniqueException extends RuntimeException {
+import lombok.NoArgsConstructor;
 
+//@Value
+@NoArgsConstructor
 public class ProductNameNotUniqueException extends RuntimeException {
   //  private String errCode;
   private String errMsg;

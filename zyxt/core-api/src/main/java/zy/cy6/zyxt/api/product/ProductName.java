@@ -3,6 +3,7 @@ package zy.cy6.zyxt.api.product;
 import com.google.common.base.MoreObjects;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
@@ -10,11 +11,11 @@ import java.io.Serializable;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static zy.cy6.zyxt.common.util.StringUtil.notNullString;
-
 // @Value
 @Getter
 @Slf4j
 @EqualsAndHashCode
+@NoArgsConstructor
 public final class ProductName implements Serializable {
 
   private String name;

@@ -23,5 +23,4 @@ public final class ErrorCode {
 
   public static final int VIOLATION_CONSTRAINT = 0XFFFE;
   public static final int UNKNOWN_ERROR = 0XFFFF;
-
 }

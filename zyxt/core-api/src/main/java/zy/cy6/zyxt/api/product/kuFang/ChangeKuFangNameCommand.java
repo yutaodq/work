@@ -8,8 +8,8 @@ import javax.validation.constraints.NotNull;
 @Value
 public class ChangeKufangNameCommand {
     @TargetAggregateIdentifier
-    private KufangId kuFangId;
+    private KufangId kufangId;
 
     @NotNull(message = "工具名称对象不能为空")
-    private KufangName kuFangName;
+    private KufangName kufangName;
 }

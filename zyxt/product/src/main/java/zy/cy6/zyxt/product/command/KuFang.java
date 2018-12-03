@@ -1,6 +1,5 @@
 package zy.cy6.zyxt.product.command;
 
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -16,14 +15,13 @@ import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
  */
 @Aggregate
 @Slf4j
-@NoArgsConstructor
-public class KuFang {
+public class Kufang {
     @AggregateIdentifier
     private KufangId kuFangId;
     private KufangName kuFangName;
 
     //    @CommandHandler
-    public KuFang(CreateKufangCommand command) {
+    public Kufang(CreateKufangCommand command) {
         apply(KufangCreatedEvent.create(command.getKufangId(), command.getKufangName()));
     }
 
@@ -34,7 +32,7 @@ public class KuFang {
         this.kuFangName = event.getKuFangName();
     }
 
-    public void changeKuFangName(KufangName kuFangName) {
+    public void changeKufangName(KufangName kuFangName) {
         apply(new KufangNameChangedEvent(kuFangId, kuFangName));
     }
 

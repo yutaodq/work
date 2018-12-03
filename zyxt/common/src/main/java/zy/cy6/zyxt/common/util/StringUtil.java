@@ -10,7 +10,7 @@ public class StringUtil {
     return isNullOrEmpty(s) || isWhitespace(s);
 
   }
-
+  public StringUtil(){}
   private static boolean isWhitespace(String s) {
     return s.trim().length() == 0 ? true : false;
   }

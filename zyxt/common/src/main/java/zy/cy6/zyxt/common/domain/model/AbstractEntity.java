@@ -17,6 +17,8 @@ public abstract class AbstractEntity implements Identifiable<Long> {
     return id;
   }
 
+  public AbstractEntity(){}
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
