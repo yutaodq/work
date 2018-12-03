@@ -1,5 +1,4 @@
 package zy.cy6.zyxt.api.product.kufang;
-
 import lombok.Value;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
 

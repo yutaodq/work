@@ -82,6 +82,9 @@ export class KufangComponent implements OnInit, OnDestroy {
         })
         .subscribe(
           (res: HttpResponse<IKufangEntity[]>) => {
+            this.source = new LocalDataSource();
+            this.source.load(res.body.values());
+            this.source;
             this.source = new LocalDataSource(res.body);
           },
           (res: HttpErrorResponse) => this.onError(res.message)
