@@ -5,8 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import zy.cy6.zyxt.api.product.kufang.KufangCreatedEvent;
-import zy.cy6.zyxt.api.product.kufang.KufangNameChangedEvent;
+import zy.cy6.zyxt.api.product.ku.KufangCreatedEvent;
+import zy.cy6.zyxt.api.product.ku.KufangNameChangedEvent;
 import zy.cy6.zyxt.query.product.repositories.KufangQueryRepository;
 
 import java.util.Optional;

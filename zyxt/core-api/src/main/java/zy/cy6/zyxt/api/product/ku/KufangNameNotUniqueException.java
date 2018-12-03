@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.api.product.kufang;
+package zy.cy6.zyxt.api.product.ku;
 
 import lombok.Value;
 
