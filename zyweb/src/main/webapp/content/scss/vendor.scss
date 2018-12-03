@@ -1,3 +1,4 @@
+@import "bootstrap-variables";
 @import "~bootstrap/scss/bootstrap";
 
 /*
@@ -6,9 +7,12 @@
  */
 
 @import "~@nebular/theme/styles/prebuilt/corporate.css";
+$nebular-icons-font-path: "~nebular-icons/fonts";
+@import "~nebular-icons/scss/nebular-icons";
+
 /*
 *加入ngx-datatable样式
+*@import "~@swimlane/ngx-datatable/release/index.css";
+*@import "~@swimlane/ngx-datatable/release/themes/material.css";
+*@import "~@swimlane/ngx-datatable/release/assets/icons.css";
  */
-@import "~@swimlane/ngx-datatable/release/index.css";
-@import "~@swimlane/ngx-datatable/release/themes/material.css";
-@import "~@swimlane/ngx-datatable/release/assets/icons.css";
