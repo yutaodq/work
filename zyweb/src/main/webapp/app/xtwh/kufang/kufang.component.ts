@@ -8,57 +8,21 @@ import { LocalDataSource } from "ng2-smart-table";
 import { IKufangEntity } from "app/shared/model/kufang.model";
 import { Principal } from "app/core";
 import { KufangService } from "./kufang.service";
+import { Page } from "app/xtwh/kufang/page";
 
 @Component({
   selector: "zy-kufang",
   templateUrl: "./kufang.component.html"
 })
 export class KufangComponent implements OnInit, OnDestroy {
-  source: LocalDataSource = new LocalDataSource();
-  rows: IKufangEntity[];
+  page = new Page();
+  rows = new Array<IKufangEntity>();
+
   currentAccount: any;
   eventSubscriber: Subscription;
   currentSearch: string;
   pageTitle: string;
 
-  settings = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>'
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>'
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true
-    },
-    columns: {
-      id: {
-        title: "序号",
-        type: "number",
-        filter: false
-      },
-      identifier: {
-        title: "标识",
-        filter: false,
-        type: "string"
-      },
-      name: {
-        title: "库房名称",
-        type: "string",
-        filter: false
-      }
-    }
-  };
-  columns = [
-    { name: "序号", prop: "id" },
-    { name: "标识", prop: "identifier" },
-    { name: "库房名称", prop: "name" }
-  ];
   constructor(
     private kufangService: KufangService,
     private jhiAlertService: JhiAlertService,
@@ -66,6 +30,9 @@ export class KufangComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private principal: Principal
   ) {
+    this.page.pageNumber = 0;
+    this.page.size = 20;
+
     this.currentSearch =
       this.activatedRoute.snapshot &&
       this.activatedRoute.snapshot.params["search"]
@@ -84,9 +51,6 @@ export class KufangComponent implements OnInit, OnDestroy {
         })
         .subscribe(
           (res: HttpResponse<IKufangEntity[]>) => {
-            // this.source = new LocalDataSource();
-            // this.source.load(res.body);
-            // this.source = new LocalDataSource(res.body);
             this.rows = res.body;
           },
           (res: HttpErrorResponse) => this.onError(res.message)
@@ -96,7 +60,6 @@ export class KufangComponent implements OnInit, OnDestroy {
     this.kufangService.query().subscribe(
       (res: HttpResponse<IKufangEntity[]>) => {
         console.log("yyuuuuuuuu" + res.body);
-        // this.source = new LocalDataSource(res.body);
         this.rows = res.body;
 
         this.currentSearch = "";
@@ -119,10 +82,9 @@ export class KufangComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // this.setPage({ offset: 0 });
+
     this.loadAll();
-    // this.principal.identity().then(account => {
-    //   this.currentAccount = account;
-    // });
     this.registerChangeInKufangs();
   }
 
@@ -143,21 +105,5 @@ export class KufangComponent implements OnInit, OnDestroy {
 
   private onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
-  }
-
-  onSearch(query: String = "") {
-    this.source.setFilter(
-      [
-        {
-          field: "id",
-          search: query
-        },
-        {
-          field: "name",
-          search: query
-        }
-      ],
-      false
-    );
   }
 }
