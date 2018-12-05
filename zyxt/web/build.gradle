@@ -11,14 +11,16 @@ dependencies {
     compile "org.axonframework:axon-spring-boot-starter:${axon_version}"
     compile("org.springframework.boot:spring-boot-starter-web")
 
-    compile "org.springframework.boot:spring-boot-starter-cache"
-    compile "io.dropwizard.metrics:metrics-core"
-    compile "io.dropwizard.metrics:metrics-jcache:${dropwizard_metrics_version}"
-    compile "io.dropwizard.metrics:metrics-json:${dropwizard_metrics_version}"
-    compile "io.dropwizard.metrics:metrics-jvm:${dropwizard_metrics_version}"
-    compile "io.dropwizard.metrics:metrics-servlet:${dropwizard_metrics_version}"
-    compile "io.dropwizard.metrics:metrics-servlets:${dropwizard_metrics_version}"
+//    compile "org.springframework.boot:spring-boot-starter-cache"
+//    compile "io.dropwizard.metrics:metrics-core"
+//    compile "io.dropwizard.metrics:metrics-jcache:${dropwizard_metrics_version}"
+//    compile "io.dropwizard.metrics:metrics-json:${dropwizard_metrics_version}"
+//    compile "io.dropwizard.metrics:metrics-jvm:${dropwizard_metrics_version}"
+//    compile "io.dropwizard.metrics:metrics-servlet:${dropwizard_metrics_version}"
+//    compile "io.dropwizard.metrics:metrics-servlets:${dropwizard_metrics_version}"
+
     compile "com.ryantenney.metrics:metrics-spring:${metrics_spring_version}"
-//    compile "org.zalando:problem-spring-web"
+
     compile 'org.zalando:problem-spring-web:0.23.0'
+
 }

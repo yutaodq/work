@@ -3,8 +3,6 @@ package zy.cy6.zyxt.web.controller;
 /*
  *参见 spring官方案例 spring-hateoas-examples
  */
-
-
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +10,7 @@ import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.codahale.metrics.annotation.Timed;
 import zy.cy6.zyxt.api.product.kufang.CreateKufangCommand;
 import zy.cy6.zyxt.api.product.kufang.KufangId;
 import zy.cy6.zyxt.api.product.kufang.KufangName;
@@ -22,6 +21,9 @@ import zy.cy6.zyxt.web.product.KufangResourceAssembler;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 
 @RestController
 @Slf4j
@@ -40,27 +42,28 @@ public class KufangController {
     }
 
     @GetMapping(value = "/kufangEntities", produces = MediaTypes.HAL_JSON_VALUE)
+    @Timed
     public List<KufangEntity> getAllKufangs() {
         log.info("所有的工具记录");
         return kufangService.findAllKufang();
     }
-
-//    @GetMapping("/kufangEntities")
-//    public ResponseEntity<List<KufangEntity>> getAllEmployes(Pageable pageable) {
-//        log.debug("REST request to get a page of Employes");
-//        Page<KufangEntity> page = kufangService.findAll(pageable);
-//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/employes");
-//        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-//    }
-
-
+    /**
+     * org.exampleapps.greatbig.web.rest.MessageResource
+     * @param query the query of the contact search
+     * @return the result of the search
+     */
+    @GetMapping("/_search/kufangEntities")
+    @Timed
+    public List<KufangEntity> searchContacts(@RequestParam String query) {
+        log.debug("REST request to search Contacts for query {}", query);
+        return kufangService.search(query);
+    }
 
     @GetMapping(value = "/kufangEntities/{id}", produces = MediaTypes.HAL_JSON_VALUE)
     public ResponseEntity<Resource<KufangEntity>> findOne(@PathVariable Long id) {
         log.info("查找一个记录");
         return kufangService.findOne(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
-
 
     @DeleteMapping("/kufangEntities/{id}")
     public ResponseEntity<Void> deleteCountry(@PathVariable Long id) {
@@ -70,8 +73,6 @@ public class KufangController {
         // id.toString())).build();
         return null;
     }
-
-
     /**
      * POST /countries : Create a new kufang.
      * 创建新记录
@@ -98,15 +99,6 @@ public class KufangController {
         return Optional.of(KufangName.create(name));
     }
 
-    /**
-     * PUT  /countries : Updates an existing country.
-     *
-     * @param country the country to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated country,
-     * or with status 400 (Bad Request) if the country is not valid,
-     * or with status 500 (Internal Server Error) if the country couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
 
 
 }

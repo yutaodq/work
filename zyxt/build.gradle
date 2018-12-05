@@ -20,8 +20,9 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${spring_boot_version}")
     }
 }
-
-
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
 allprojects {
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/repositories/jcenter" }
