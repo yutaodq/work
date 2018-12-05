@@ -3,6 +3,7 @@ import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { JhiEventManager, JhiAlertService } from "ng-jhipster";
+import { Observable } from "rxjs/Observable";
 import { LocalDataSource } from "ng2-smart-table";
 
 import { IKufangEntity } from "app/shared/model/kufang.model";
@@ -16,7 +17,8 @@ import { Page } from "app/xtwh/kufang/page";
 })
 export class KufangComponent implements OnInit, OnDestroy {
   page = new Page();
-  rows = new Array<IKufangEntity>();
+  // rows$: Observable<Array<IKufangEntity>>;
+  rows$: Array<IKufangEntity>;
 
   currentAccount: any;
   eventSubscriber: Subscription;
@@ -51,7 +53,7 @@ export class KufangComponent implements OnInit, OnDestroy {
         })
         .subscribe(
           (res: HttpResponse<IKufangEntity[]>) => {
-            this.rows = res.body;
+            this.rows$ = res.body;
           },
           (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -60,7 +62,7 @@ export class KufangComponent implements OnInit, OnDestroy {
     this.kufangService.query().subscribe(
       (res: HttpResponse<IKufangEntity[]>) => {
         console.log("yyuuuuuuuu" + res.body);
-        this.rows = res.body;
+        this.rows$ = res.body;
 
         this.currentSearch = "";
       },

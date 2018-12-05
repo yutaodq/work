@@ -45,6 +45,14 @@ public class KufangController {
         return kufangService.findAllKufang();
     }
 
+//    @GetMapping("/kufangEntities")
+//    public ResponseEntity<List<KufangEntity>> getAllEmployes(Pageable pageable) {
+//        log.debug("REST request to get a page of Employes");
+//        Page<KufangEntity> page = kufangService.findAll(pageable);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/employes");
+//        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+//    }
+
 
 
     @GetMapping(value = "/kufangEntities/{id}", produces = MediaTypes.HAL_JSON_VALUE)
