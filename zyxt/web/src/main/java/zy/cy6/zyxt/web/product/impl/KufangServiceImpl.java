@@ -16,7 +16,7 @@ import zy.cy6.zyxt.api.product.kufang.CreateKufangCommand;
 import zy.cy6.zyxt.api.product.kufang.KufangId;
 import zy.cy6.zyxt.api.product.kufang.KufangName;
 import zy.cy6.zyxt.query.product.KufangEntity;
-import zy.cy6.zyxt.query.product.KufangQueryRepository;
+import zy.cy6.zyxt.query.product.repositories.KufangQueryRepository;
 import zy.cy6.zyxt.web.product.KufangResourceAssembler;
 import zy.cy6.zyxt.web.product.KufangService;
 
