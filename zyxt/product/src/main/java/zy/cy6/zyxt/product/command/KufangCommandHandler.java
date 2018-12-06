@@ -11,7 +11,7 @@ import zy.cy6.zyxt.api.exception.ErrorCode;
 import zy.cy6.zyxt.api.product.kufang.ChangeKufangNameCommand;
 import zy.cy6.zyxt.api.product.kufang.CreateKufangCommand;
 import zy.cy6.zyxt.api.product.kufang.KufangId;
-import zy.cy6.zyxt.query.config.KufangQueryService;
+import zy.cy6.zyxt.query.product.KufangQueryService;
 @Slf4j
 public class KufangCommandHandler {
 

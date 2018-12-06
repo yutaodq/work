@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.query.config;
+package zy.cy6.zyxt.query.product;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import lombok.Data;

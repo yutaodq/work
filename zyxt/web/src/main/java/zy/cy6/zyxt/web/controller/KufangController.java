@@ -14,8 +14,8 @@ import com.codahale.metrics.annotation.Timed;
 import zy.cy6.zyxt.api.product.kufang.CreateKufangCommand;
 import zy.cy6.zyxt.api.product.kufang.KufangId;
 import zy.cy6.zyxt.api.product.kufang.KufangName;
-import zy.cy6.zyxt.query.config.KufangEntity;
-import zy.cy6.zyxt.query.config.KufangQueryService;
+import zy.cy6.zyxt.query.product.KufangEntity;
+import zy.cy6.zyxt.query.product.KufangQueryService;
 import zy.cy6.zyxt.web.product.KufangResourceAssembler;
 
 import java.net.URISyntaxException;

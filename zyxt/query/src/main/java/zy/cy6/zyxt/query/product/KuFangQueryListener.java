@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import zy.cy6.zyxt.api.product.kufang.KufangCreatedEvent;
 import zy.cy6.zyxt.api.product.kufang.KufangNameChangedEvent;
-import zy.cy6.zyxt.query.config.KufangEntity;
 import zy.cy6.zyxt.query.product.repositories.KufangQueryRepository;
 
 import java.util.Optional;
@@ -18,6 +17,7 @@ import java.util.Optional;
 public class KufangQueryListener {
     private KufangQueryRepository repository;
 
+    
     @EventHandler
   public void handleKuFangCreatedEvent(KufangCreatedEvent event)  {
         create(event);

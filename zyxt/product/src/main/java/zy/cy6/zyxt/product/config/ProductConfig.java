@@ -10,7 +10,7 @@ import zy.cy6.zyxt.product.command.Kufang;
 import zy.cy6.zyxt.product.command.KufangCommandHandler;
 import zy.cy6.zyxt.product.command.Product;
 import zy.cy6.zyxt.product.command.ProductCommandHandler;
-import zy.cy6.zyxt.query.config.KufangQueryService;
+import zy.cy6.zyxt.query.product.KufangQueryService;
 import zy.cy6.zyxt.query.product.ProductQueryService;
 
 @Configuration
