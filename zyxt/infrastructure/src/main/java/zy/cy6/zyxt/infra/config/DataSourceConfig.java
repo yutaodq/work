@@ -2,8 +2,8 @@ package zy.cy6.zyxt.infra.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -39,7 +39,6 @@ public class DataSourceConfig {
 //    @Qualifier("dataSource")
   @ConfigurationProperties(prefix = "spring.datasource")
   public DataSource dataSource() {
-
     log.info("配制HikariDataSource数据源");
     return DataSourceBuilder.create().type(dataSourceType).build();
   }

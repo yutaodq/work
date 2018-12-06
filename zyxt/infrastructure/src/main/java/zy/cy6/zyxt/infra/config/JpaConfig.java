@@ -2,6 +2,7 @@ package zy.cy6.zyxt.infra.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -33,15 +34,14 @@ public class JpaConfig {
 
   @Bean(name = "entityManagerFactory")
   public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
-    return builder.dataSource(dataSource).properties(getVendorProperties(dataSource)).packages("zy.cy6.zyxt", "org.axonframework.eventsourcing.eventstore.jpa", "org.axonframework.eventhandling.tokenstore", "org.axonframework.eventhandling.saga.repository.jpa") // 设置实体类所在位置
+    return builder.dataSource(dataSource).properties(getVendorProperties()).packages("zy.cy6.zyxt", "org.axonframework.eventsourcing.eventstore.jpa", "org.axonframework.eventhandling.tokenstore", "org.axonframework.eventhandling.saga.repository.jpa") // 设置实体类所在位置
             .persistenceUnit("persistenceUnit").build();
   }
 
   @Autowired
   private JpaProperties jpaProperties;
-
-  private Map<String, String> getVendorProperties(DataSource dataSource) {
-    return jpaProperties.getHibernateProperties(dataSource);
+  private Map<String, Object> getVendorProperties() {
+    return jpaProperties.getHibernateProperties(new HibernateSettings());
   }
 
   @Bean(name = "transactionManager")
