@@ -4,8 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zy.cy6.zyxt.api.product.kufang.KufangName;
-import zy.cy6.zyxt.query.product.KufangEntity;
-import zy.cy6.zyxt.query.product.repositories.KufangQueryRepository;
 import zy.cy6.zyxt.query.product.repositories.search.KufangSearchRepository;
 
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 @Service
 @Slf4j
