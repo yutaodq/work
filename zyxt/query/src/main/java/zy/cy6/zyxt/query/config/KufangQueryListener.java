@@ -17,7 +17,7 @@ import java.util.Optional;
 public class KufangQueryListener {
     private KufangQueryRepository repository;
 
-    
+
     @EventHandler
   public void handleKuFangCreatedEvent(KufangCreatedEvent event)  {
         create(event);
