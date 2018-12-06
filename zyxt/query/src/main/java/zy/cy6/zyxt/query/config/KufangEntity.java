@@ -1,11 +1,9 @@
-package zy.cy6.zyxt.query.product;
+package zy.cy6.zyxt.query.config;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import zy.cy6.zyxt.common.domain.model.AbstractEntity;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.util.Objects;
 import javax.persistence.*;
