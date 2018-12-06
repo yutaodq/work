@@ -1,6 +1,5 @@
 package zy.cy6.zyxt.query.product;
 
-import org.springframework.data.elasticsearch.annotations.Document;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import zy.cy6.zyxt.common.domain.model.AbstractEntity;
@@ -13,7 +12,7 @@ import javax.persistence.*;
 //@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Data
 @Slf4j
-@Document(indexName = "KufangEntity")
+//@Document(indexName = "KufangEntity")
 public class KufangEntity extends AbstractEntity {
 
     @Column(name = "identifier")

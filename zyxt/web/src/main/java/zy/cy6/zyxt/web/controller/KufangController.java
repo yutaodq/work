@@ -50,12 +50,13 @@ public class KufangController {
      * @param query the query of the contact search
      * @return the result of the search
      */
-    @GetMapping("/_search/kufangEntities")
-    @Timed
-    public List<KufangEntity> searchContacts(@RequestParam String query) {
-        log.debug("REST request to search Contacts for query {}", query);
-        return kufangService.search(query);
-    }
+
+//    @GetMapping("/_search/kufangEntities")
+//    @Timed
+//    public List<KufangEntity> searchContacts(@RequestParam String query) {
+//        log.debug("REST request to search Contacts for query {}", query);
+//        return kufangService.search(query);
+//    }
 
     @GetMapping(value = "/kufangEntities/{id}", produces = MediaTypes.HAL_JSON_VALUE)
     public ResponseEntity<Resource<KufangEntity>> findOne(@PathVariable Long id) {
