@@ -13,21 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package zy.cy6.zyxt.query.product.repositories;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import zy.cy6.zyxt.query.product.ProductEntity;
+
 import java.util.Optional;
 /**
  * @author Jettro Coenradie
  */
-//public interface ProductQueryRepository extends CrudRepository<ProductEntity, Long> {
 public interface ProductQueryRepository extends JpaRepository<ProductEntity, Long> {
 
   Optional<ProductEntity> findById(Long id);
 
   Optional<ProductEntity> findByIdentifier(String identifier);
-//  ProductEntity findByIdentifier(String identifier);
 
   Optional<ProductEntity> findByNameAndGgAndXh(String name, String gg, String xh);
 }

@@ -26,25 +26,8 @@ public abstract class AbstractEntity implements Identifiable<Long> {
     AbstractEntity that = (AbstractEntity) o;
     return Objects.equals(getId(), that.getId());
   }
-
   @Override
   public int hashCode() {
     return Objects.hash(getId());
   }
-//  @Override
-//  public boolean equals(Object o) {
-//    if (this == o) return true;
-//    if (o == null || getClass() != o.getClass()) return false;
-//
-//    AbstractEntity that = (AbstractEntity) o;
-//
-//    if (id != null ? !id.equals(that.id) : that.id != null) return false;
-//
-//    return true;
-//  }
-//
-//  @Override
-//  public int hashCode() {
-//    return id != null ? id.hashCode() : 0;
-//  }
 }
