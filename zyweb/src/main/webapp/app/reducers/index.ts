@@ -46,7 +46,7 @@ export const reducers: ActionReducerMap<State> = {
 };
 
 /*
-ActionReducer用来创建类似logger的reducer，使用MetaReducer对它进行配置.
+ActionReducer用来创建reducer，使用MetaReducer对它进行配置.
 通过使用下面的代码，我们可以在控制台中获取每个action的状态和名称.
 */
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
