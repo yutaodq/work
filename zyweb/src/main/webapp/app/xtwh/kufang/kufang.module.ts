@@ -6,7 +6,12 @@ import { ZyxtSharedModule } from "app/shared";
 import { CoreModule } from "app/core";
 import { NebularModule } from "app/core";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
-import { KufangComponent, KufangDetailComponent, kufangRoute } from "./";
+import {
+  kufangRoute,
+  KufangComponent,
+  KufangDetailComponent,
+  KufangNewComponent
+} from "./";
 
 const ROUTE = [...kufangRoute];
 
@@ -18,7 +23,7 @@ const IMPORTS_MODULES = [
   NgxDatatableModule,
   Ng2SmartTableModule
 ];
-const COMPONENT = [KufangComponent, KufangDetailComponent];
+const COMPONENT = [KufangComponent, KufangDetailComponent, KufangNewComponent];
 const ENTRY_COMPONENTS = [KufangComponent, KufangDetailComponent];
 
 @NgModule({

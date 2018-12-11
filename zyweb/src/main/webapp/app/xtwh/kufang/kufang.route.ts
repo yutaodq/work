@@ -10,10 +10,13 @@ import { of } from "rxjs";
 import { map } from "rxjs/operators";
 import { KufangEntity } from "app/shared/model/kufang.model";
 import { UserRouteAccessService } from "app/core";
+import { IKufangEntity } from "app/shared/model/kufang.model";
 import { KufangService } from "./kufang.service";
 import { KufangComponent } from "./kufang.component";
 import { KufangDetailComponent } from "./kufang-detail.component";
-import { IKufangEntity } from "app/shared/model/kufang.model";
+import { KufangNewComponent } from "./kufang-new.component";
+import { ProductResolve } from "app/xtwh/product/product.route";
+import { ProductNewComponent } from "app/xtwh/product/product-new.component";
 
 @Injectable({ providedIn: "root" })
 export class KufangResolve implements Resolve<IKufangEntity> {
@@ -46,6 +49,18 @@ export const kufangRoute: Routes = [
     data: {
       authorities: ["ROLE_USER"],
       pageTitle: "工具-查看表单"
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: "kufang/new",
+    component: KufangNewComponent,
+    resolve: {
+      product: KufangResolve
+    },
+    data: {
+      authorities: ["ROLE_USER"],
+      pageTitle: "工具-添加新记录表单"
     },
     canActivate: [UserRouteAccessService]
   }
