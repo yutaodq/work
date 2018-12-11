@@ -4,19 +4,16 @@ import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { JhiEventManager, JhiAlertService } from "ng-jhipster";
 import { Observable } from "rxjs/Observable";
-import { LocalDataSource } from "ng2-smart-table";
 
 import { IKufangEntity } from "app/shared/model/kufang.model";
 import { Principal } from "app/core";
 import { KufangService } from "./kufang.service";
-import { Page } from "app/xtwh/kufang/page";
 
 @Component({
   selector: "zy-kufang",
   templateUrl: "./kufang.component.html"
 })
 export class KufangComponent implements OnInit, OnDestroy {
-  page = new Page();
   // rows$: Observable<Array<IKufangEntity>>;
   rows$: Array<IKufangEntity>;
 
@@ -32,9 +29,6 @@ export class KufangComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private principal: Principal
   ) {
-    this.page.pageNumber = 0;
-    this.page.size = 20;
-
     this.currentSearch =
       this.activatedRoute.snapshot &&
       this.activatedRoute.snapshot.params["search"]

@@ -11,11 +11,10 @@ import { environment } from "../../../../environments/environment";
 import * as fromRouter from "@ngrx/router-store";
 
 /**
- * storeFreeze prevents state from being mutated. When mutation occurs, an
- * exception will be thrown. This is useful during development mode to
- * ensure that none of the reducers accidentally mutates the state.
+ * storeFreeze防止状态发生突变
+ * 当发生突变时，将引发异常
+ * 这在开发模式中非常有用，可以确保所有的reducers accidentally不会意外地改变状态
  */
-
 import { storeFreeze } from "../ngrx-store-freeze";
 /**
  * Every reducer module's default export is the reducer function itself. In

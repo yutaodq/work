@@ -1,11 +1,3 @@
-//from 'zyweb-app/core/actions' ;  中的 zyweb-app 是在tsconfig.json中
-// "paths": {
-//   "app/*": ["src/main/webapp/app/*"],
-//     "zyweb-app/*": ["src/main/webapp/app/*"]
-//
-// },
-
-// import { LayoutActions } from "../core/actions";
 import { LayoutActions } from "../actions";
 export interface State {
   showSidenav: boolean;
