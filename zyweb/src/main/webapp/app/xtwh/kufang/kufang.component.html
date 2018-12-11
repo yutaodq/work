@@ -6,20 +6,20 @@
     <nb-card-body>
         <nb-layout>
             <nb-layout-column>
-                <!--<div class="row">-->
-                    <!--<div class="col-sm-12">-->
-                        <!--<label class="dt-cust-search f-right">-->
-                            <!--<div class="form-group">-->
-                                <!--<label>Search: </label>-->
-                                <!--<input type='text'-->
-                                       <!--class="form-control input-sm m-l-10"-->
-                                       <!--placeholder='Search Name'-->
-                                       <!--(keyup)='search($event)'-->
-                                <!--/>-->
-                            <!--</div>-->
-                        <!--</label>-->
-                    <!--</div>-->
-                <!--</div>-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label class="dt-cust-search f-right">
+                            <div class="form-group">
+                                <label>Search: </label>
+                                <input type='text'
+                                       class="form-control input-sm m-l-10"
+                                       placeholder='Search Name'
+                                       (keyup)='search($event)'
+                                />
+                            </div>
+                        </label>
+                    </div>
+                </div>
 
                 <ngx-datatable
                         class="material"
@@ -33,9 +33,7 @@
                 >
                     <ngx-datatable-column name="操作" prop="id">
                         <ng-template let-value="value" ngx-datatable-cell-template>
-                            <a routerLink="/kufang/{{value}}/view">查看</a>
-                            <!--<td><a [routerLink]="['/kufang', {{value}}, 'view' ]">{{product.id}}</a></td>-->
-
+                            <a routerLink="/kufang/{{value}}/view" class="nb-home">查看</a>
                         </ng-template>
                     </ngx-datatable-column>
 
