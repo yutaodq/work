@@ -13,5 +13,6 @@ public class CreateKufangCommand {
 
     @NotNull(message = "库房名称对象不能为空")
     private KufangName kufangName;
+    private String bz;
 
 }

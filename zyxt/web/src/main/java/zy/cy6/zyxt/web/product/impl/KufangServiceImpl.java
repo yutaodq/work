@@ -64,7 +64,8 @@ public class KufangServiceImpl implements KufangService {
         KufangName name = KufangName.create(kufang.getName());
         log.info("KufangName name = KufangName.create(kufang.getName());");
         KufangId id = KufangId.create();
-        CreateKufangCommand command = new CreateKufangCommand(id, name);
+        String bz = kufang.getBz();
+        CreateKufangCommand command = new CreateKufangCommand(id, name, bz);
         commandGateway.send(command);
         Optional<KufangEntity> kufangSave = repository.findByIdentifier(id.getIdentifier());
 

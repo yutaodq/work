@@ -87,7 +87,8 @@ public class KufangController {
         kufang.getName();
         Optional<KufangName> name = createKufangName(kufang.getName());
         KufangId id = KufangId.create();
-        CreateKufangCommand command = new CreateKufangCommand(id, name.get());
+        String bz = kufang.getBz();
+        CreateKufangCommand command = new CreateKufangCommand(id, name.get(), bz);
         commandGateway.sendAndWait(command);
 
         return ResponseEntity.ok(assembler.toResource(kufangService.findByIdentifier(command.getKufangId().getIdentifier()).get()));

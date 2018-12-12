@@ -21,6 +21,8 @@ public class KufangEntity extends AbstractEntity {
     private String identifier;
     @Column(name = "name")
     private String name;  //库房名称
+    @Column(name = "bz")
+    private String bz;  //库房名称备注
 
     public KufangEntity() {
         log.info("新建：KufangEntity");

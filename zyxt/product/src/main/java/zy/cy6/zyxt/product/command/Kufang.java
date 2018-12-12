@@ -18,10 +18,10 @@ public class Kufang {
     @AggregateIdentifier
     private KufangId kuFangId;
     private KufangName kuFangName;
-
+private String bz;
     //    @CommandHandler
     public Kufang(CreateKufangCommand command) {
-        apply(KufangCreatedEvent.create(command.getKufangId(), command.getKufangName()));
+        apply(KufangCreatedEvent.create(command.getKufangId(), command.getKufangName(), command.getBz()));
     }
 
     @SuppressWarnings("UnusedDeclaration")
@@ -29,6 +29,7 @@ public class Kufang {
     public void handle(KufangCreatedEvent event) {
         this.kuFangId = event.getKuFangId();
         this.kuFangName = event.getKuFangName();
+        this.bz = event.getBz();
     }
 
     public void changeKufangName(KufangName kuFangName) {

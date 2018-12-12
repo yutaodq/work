@@ -4,7 +4,8 @@ drop table if EXISTS kuKang;
 create table kufang(
 id  bigint PRIMARY KEY ,
 identifier varchar(255),
-name varchar(200)
+name varchar(200),
+bz varchar(2000)
 );
 
 create table product(
