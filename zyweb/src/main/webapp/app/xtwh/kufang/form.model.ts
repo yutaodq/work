@@ -45,7 +45,7 @@ export class KufangFormControl extends FormControl {
   }
 }
 
-export class KufangFormGroup extends FormGroup {
+export class FormModel extends FormGroup {
   constructor() {
     super({
       name: new KufangFormControl(

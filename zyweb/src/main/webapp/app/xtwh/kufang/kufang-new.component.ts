@@ -7,7 +7,7 @@ import { JhiAlertService } from "ng-jhipster";
 import { IKufangEntity } from "app/shared/model/kufang.model";
 import { KufangService } from "./kufang.service";
 
-// import {KufangFormGroup} from './kufang-form-group';
+import { FormModel } from "./form.model";
 
 @Component({
   selector: "zy-kufang-new",
@@ -17,7 +17,7 @@ export class KufangNewComponent implements OnInit {
   private _kufang: IKufangEntity;
   isSaving: boolean;
   pageTitle: string;
-  // form: KufangFormGroup = new KufangFormGroup();
+  form: FormModel = new FormModel();
 
   constructor(
     private jhiAlertService: JhiAlertService,
