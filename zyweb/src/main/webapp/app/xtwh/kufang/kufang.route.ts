@@ -15,8 +15,6 @@ import { KufangService } from "./kufang.service";
 import { KufangComponent } from "./kufang.component";
 import { KufangDetailComponent } from "./kufang-detail.component";
 import { KufangNewComponent } from "./kufang-new.component";
-import { ProductResolve } from "app/xtwh/product/product.route";
-import { ProductNewComponent } from "app/xtwh/product/product-new.component";
 
 @Injectable({ providedIn: "root" })
 export class KufangResolve implements Resolve<IKufangEntity> {
@@ -56,7 +54,7 @@ export const kufangRoute: Routes = [
     path: "kufang/new",
     component: KufangNewComponent,
     resolve: {
-      product: KufangResolve
+      kufang: KufangResolve
     },
     data: {
       authorities: ["ROLE_USER"],

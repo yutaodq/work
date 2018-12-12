@@ -25,8 +25,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: "kufang"
       },
       {
-        title: "Stepper",
-        link: "/pages/extra-components/stepper"
+        title: "工具名称",
+        link: "product"
       },
       {
         title: "List",

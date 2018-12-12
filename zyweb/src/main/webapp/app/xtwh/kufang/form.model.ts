@@ -45,7 +45,7 @@ export class KufangFormControl extends FormControl {
   }
 }
 
-export class FormModel extends FormGroup {
+export class KufangFormModel extends FormGroup {
   constructor() {
     super({
       name: new KufangFormControl(
@@ -53,9 +53,7 @@ export class FormModel extends FormGroup {
         "name",
         "",
         Validators.compose([Validators.required, Validators.minLength(3)])
-      ),
-      gg: new KufangFormControl("序号", "id", "", Validators.required),
-      xh: new KufangFormControl("标识", "identifier", "", Validators.required)
+      )
     });
   }
 

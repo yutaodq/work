@@ -1,17 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {JhiAlertService} from 'ng-jhipster';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { HttpResponse, HttpErrorResponse } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { JhiAlertService } from "ng-jhipster";
 
-import {IProductEntity} from 'app/shared/model/product.model';
-import {ProductService} from './product.service';
+import { IProductEntity } from "app/shared/model/product.model";
+import { ProductService } from "./product.service";
 
-import {ProductFormGroup} from './product-form-group';
+import { ProductFormGroup } from "./product-form-group";
 
 @Component({
-  selector: 'jhi-product-new',
-  templateUrl: './product-new.component.html'
+  selector: "zy-product-new",
+  templateUrl: "./product-new.component.html"
 })
 export class ProductNewComponent implements OnInit {
   private _product: IProductEntity;
@@ -25,17 +25,15 @@ export class ProductNewComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.data.subscribe(data => {
-        this.pageTitle = data.pageTitle;
-      }
-    );
+      this.pageTitle = data.pageTitle;
+    });
   }
 
   ngOnInit() {
     this.isSaving = false;
-    this.activatedRoute.data.subscribe(({product}) => {
+    this.activatedRoute.data.subscribe(({ product }) => {
       this.product = product;
     });
-
   }
 
   previousState() {
@@ -43,7 +41,6 @@ export class ProductNewComponent implements OnInit {
   }
 
   save() {
-
     this.isSaving = true;
     if (this.product.id !== undefined) {
       this.subscribeToSaveResponse(this.productService.update(this.product));
@@ -52,8 +49,13 @@ export class ProductNewComponent implements OnInit {
     }
   }
 
-  private subscribeToSaveResponse(result: Observable<HttpResponse<IProductEntity>>) {
-    result.subscribe((res: HttpResponse<IProductEntity>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+  private subscribeToSaveResponse(
+    result: Observable<HttpResponse<IProductEntity>>
+  ) {
+    result.subscribe(
+      (res: HttpResponse<IProductEntity>) => this.onSaveSuccess(),
+      (res: HttpErrorResponse) => this.onSaveError()
+    );
   }
 
   private onSaveSuccess() {

@@ -34,16 +34,16 @@
 
 
       </div>
-      <div>
-        <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-          <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>取消</span>
-        </button>
-        <button type="submit" id="save-entity" [disabled]="form.invalid || isSaving" class="btn btn-primary">
-          <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>保存</span>
-        </button>
+        <div>
+          <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>取消</span>
+          </button>
+          <button type="submit" id="save-entity" [disabled]="form.invalid || isSaving" class="btn btn-primary">
+            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>保存</span>
+          </button>
 
 
-      </div>
-    </form>
+        </div>
+      </form>
   </div>
 </div>
