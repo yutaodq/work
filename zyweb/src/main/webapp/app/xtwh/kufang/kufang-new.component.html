@@ -16,23 +16,14 @@
                             {{error}}
                         </li>
                     </ul>
-
                 </div>
 
-                <!--<div class="form-group">-->
-                    <!--<label class="form-control-label" for="field_kufangBz">{{form.get('bz').label}}</label>-->
-                    <!--<textarea class="form-control" name="kufangBz" id="field_kufangBz"-->
-                              <!--formControlName="bz"-->
-                              <!--[(ngModel)]="kufang.bz"/>-->
-
-                    <!--<ul class="text-danger list-unstyled"-->
-                        <!--*ngIf="(formSubmitted || form.get('name').dirty) && form.get('name').invalid">-->
-                        <!--<li *ngFor="let error of form.get('name').getValidationMessages()">-->
-                            <!--{{error}}-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-
+                <div class="form-group">
+                    <label class="form-control-label" for="field_kufangBz">{{form.get('bz').label}}</label>
+                    <input type="text" class="form-control" name="kufangBz" id="field_kufangBz"
+                              formControlName="bz"
+                              [(ngModel)]="kufang.bz"/>
+                </div>
 
                 <div>
                     <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
@@ -43,9 +34,7 @@
                         <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>保存</span>
                     </button>
                 </div>
-
             </form>
-
         </nb-card-body>
     </nb-card>
 </div>

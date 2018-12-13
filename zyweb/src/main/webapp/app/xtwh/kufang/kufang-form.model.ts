@@ -19,25 +19,24 @@ export class KufangFormControl extends FormControl {
     for (const errorName of Object.keys(this.errors)) {
       switch (errorName) {
         case "required":
-          messages.push(`You must enter a ${this.label}`);
+          messages.push(`您必须填写： ${this.label}`);
           break;
         case "minlength":
-          messages.push(`A ${this.label} must be at least
+          messages.push(` ${this.label} 至少填写
                             ${this.errors["minlength"].requiredLength}
-                            characters`);
+                            字符`);
           break;
         case "maxlength":
-          messages.push(`A ${this.label} must be no more than
+          messages.push(` ${this.label} 不能超过
                             ${this.errors["maxlength"].requiredLength}
-                            characters`);
+                            字符`);
           break;
         case "limit":
-          messages.push(`A ${this.label} cannot be more
+          messages.push(` ${this.label} cannot be more
                                 than ${this.errors["limit"].limit}`);
           break;
         case "pattern":
-          messages.push(`The ${this.label} contains
-                             illegal characters`);
+          messages.push(`The ${this.label} 不符合格式要求`);
           break;
       }
     }
@@ -53,7 +52,8 @@ export class KufangFormModel extends FormGroup {
         "name",
         "",
         Validators.compose([Validators.required, Validators.minLength(3)])
-      )
+      ),
+      bz: new KufangFormControl("库房记录说明", "bz", "", "")
     });
   }
 
@@ -62,6 +62,7 @@ export class KufangFormModel extends FormGroup {
       k => this.controls[k] as KufangFormControl
     );
   }
+
   getFormValidationMessages(form: any): string[] {
     const messages: string[] = [];
     this.kufangControls.forEach(c =>

@@ -17,6 +17,7 @@ import zy.cy6.zyxt.api.product.kufang.KufangName;
 import zy.cy6.zyxt.query.product.KufangEntity;
 import zy.cy6.zyxt.query.product.KufangQueryService;
 import zy.cy6.zyxt.web.product.KufangResourceAssembler;
+import zy.cy6.zyxt.web.product.KufangService;
 
 import java.net.URISyntaxException;
 import java.util.List;
@@ -27,13 +28,16 @@ import java.util.Optional;
 @Slf4j
 @RequestMapping("/api")
 public class KufangController {
-    private final KufangQueryService kufangService;
+    private final KufangService kufangService;
+    private final KufangQueryService kufangQueryService;
+
     private final KufangResourceAssembler assembler;
     private final CommandGateway commandGateway;
     private static final String ENTITY_NAME = "KufangEntity";
 
     @Autowired
-    public KufangController(KufangResourceAssembler assembler, CommandGateway commandGateway, KufangQueryService kufangService) {
+    public KufangController(KufangResourceAssembler assembler, CommandGateway commandGateway, KufangService kufangService,
+                            KufangQueryService kufangQueryService) {
         this.assembler = assembler;
         this.commandGateway = commandGateway;
         this.kufangService = kufangService;
@@ -45,18 +49,6 @@ public class KufangController {
         log.info("所有的工具记录");
         return kufangService.findAllKufang();
     }
-    /**
-     * org.exampleapps.greatbig.web.rest.MessageResource
-     * @param query the query of the contact search
-     * @return the result of the search
-     */
-
-//    @GetMapping("/_search/kufangEntities")
-//    @Timed
-//    public List<KufangEntity> searchContacts(@RequestParam String query) {
-//        log.debug("REST request to search Contacts for query {}", query);
-//        return kufangService.search(query);
-//    }
 
     @GetMapping(value = "/kufangEntities/{id}", produces = MediaTypes.HAL_JSON_VALUE)
     public ResponseEntity<Resource<KufangEntity>> findOne(@PathVariable Long id) {
@@ -84,15 +76,14 @@ public class KufangController {
 
     @PostMapping("/kufangEntities")
     public ResponseEntity createKufang(@RequestBody KufangEntity kufang) {
-        kufang.getName();
         Optional<KufangName> name = createKufangName(kufang.getName());
         KufangId id = KufangId.create();
         String bz = kufang.getBz();
         CreateKufangCommand command = new CreateKufangCommand(id, name.get(), bz);
         commandGateway.sendAndWait(command);
 
-        return ResponseEntity.ok(assembler.toResource(kufangService.findByIdentifier(command.getKufangId().getIdentifier()).get()));
-
+        return ResponseEntity.ok(assembler.toResource(kufangQueryService.findByIdentifier(command.getKufangId().getIdentifier()).get()));
+//return kufangService.create(kufang);
     }
 
     private Optional<KufangName> createKufangName(String name) {
