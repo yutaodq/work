@@ -9,14 +9,16 @@ import { AppComponent } from "./containers";
 import {
   SampleLayoutComponent,
   FooterComponent,
-  HeaderComponent
+  HeaderComponent,
+  ZyCardHeaderComponent
 } from "./components";
 
 const COMPONENTS = [
   AppComponent,
   SampleLayoutComponent,
   FooterComponent,
-  HeaderComponent
+  HeaderComponent,
+  ZyCardHeaderComponent
 ];
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];

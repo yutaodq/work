@@ -8,6 +8,7 @@ import { Observable } from "rxjs/Observable";
 import { IKufangEntity } from "app/shared/model/kufang.model";
 import { Principal } from "app/core";
 import { KufangService } from "./kufang.service";
+import { ZyCardHeaderComponent } from "app/core/components";
 
 @Component({
   selector: "zy-kufang",

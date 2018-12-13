@@ -35,7 +35,7 @@ export const kufangRoute: Routes = [
   {
     path: "kufang",
     component: KufangComponent,
-    data: { pageTitle: "库房名称列表：" },
+    data: { pageTitle: "库房名称列表" },
     canActivate: [UserRouteAccessService]
   },
   {
