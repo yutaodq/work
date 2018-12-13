@@ -8,8 +8,8 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="pull-left">
-                            <button  nbButton [routerLink]="['/kufang/new']">
-                                增加新记录
+                            <button  type="button" nbButton [routerLink]="['/kufang/new']">
+                                <fa-icon [icon]="'plus'"></fa-icon>&nbsp;<span>增加新记录</span>
                             </button>
                         </div>
                     </div>
@@ -32,7 +32,9 @@
                 >
                     <ngx-datatable-column name="操作" prop="id">
                         <ng-template let-value="value" ngx-datatable-cell-template>
-                            <a routerLink="/kufang/{{value}}/view" class="nb-home">查看</a>
+                            <a routerLink="/kufang/{{value}}/view" >
+                                <fa-icon [icon]="'eye'"></fa-icon>&nbsp;<span>查看</span>
+                            </a>
                         </ng-template>
                     </ngx-datatable-column>
 
@@ -56,7 +58,10 @@
             <p></p>
             <div class="row">
                 <div class="col-sm-6 pull-left">
-                    <button class="btn" nbButton>增加新记录</button>
+
+                    <button class="btn" nbButton type="button">
+                        <span>增加新记录</span>
+                    </button>
                 </div>
                 <div class="col-sm-6">
                     <label class="dt-cust-search f-right">
