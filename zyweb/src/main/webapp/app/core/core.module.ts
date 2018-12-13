@@ -1,4 +1,8 @@
-import { ModuleWithProviders, NgModule } from "@angular/core";
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  ModuleWithProviders,
+  NgModule
+} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ExtraOptions, RouterModule, Routes } from "@angular/router";
@@ -31,6 +35,7 @@ const SERVICE = [AnalyticsService, UserService, LayoutService];
   imports: [...BASE_MODULES, RouterModule, NebularModule.forRoot()],
   exports: [...BASE_MODULES, ...COMPONENTS, NebularModule],
   declarations: [...COMPONENTS],
-  providers: [...SERVICE]
+  providers: [...SERVICE],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CoreModule {}

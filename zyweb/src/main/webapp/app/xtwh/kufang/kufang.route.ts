@@ -15,7 +15,7 @@ import { KufangService } from "./kufang.service";
 import { KufangComponent } from "./kufang.component";
 import { KufangDetailComponent } from "./kufang-detail.component";
 import { KufangNewComponent } from "./kufang-new.component";
-
+import * as path from "./kufang.constants";
 @Injectable({ providedIn: "root" })
 export class KufangResolve implements Resolve<IKufangEntity> {
   constructor(private service: KufangService) {}
@@ -33,7 +33,7 @@ export class KufangResolve implements Resolve<IKufangEntity> {
 
 export const kufangRoute: Routes = [
   {
-    path: "kufang",
+    path: path.ROUTE_KUFANG,
     component: KufangComponent,
     data: { pageTitle: "库房名称列表" },
     canActivate: [UserRouteAccessService]
@@ -51,7 +51,7 @@ export const kufangRoute: Routes = [
     canActivate: [UserRouteAccessService]
   },
   {
-    path: "kufang/new",
+    path: path.ROUTE_KUFANG_NEW,
     component: KufangNewComponent,
     resolve: {
       kufang: KufangResolve

@@ -1,14 +1,15 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { JhiEventManager, JhiAlertService } from "ng-jhipster";
-import { Observable } from "rxjs/Observable";
+// import { Observable } from "rxjs/Observable";
 
 import { IKufangEntity } from "app/shared/model/kufang.model";
 import { Principal } from "app/core";
 import { KufangService } from "./kufang.service";
-import { ZyCardHeaderComponent } from "app/core/components";
+// import { ZyCardHeaderComponent } from "app/core/components";
+import * as path from "./kufang.constants";
 
 @Component({
   selector: "zy-kufang",
@@ -28,7 +29,8 @@ export class KufangComponent implements OnInit, OnDestroy {
     private jhiAlertService: JhiAlertService,
     private eventManager: JhiEventManager,
     private activatedRoute: ActivatedRoute,
-    private principal: Principal
+    private principal: Principal,
+    private _router: Router
   ) {
     this.currentSearch =
       this.activatedRoute.snapshot &&
@@ -56,7 +58,6 @@ export class KufangComponent implements OnInit, OnDestroy {
     }
     this.kufangService.query().subscribe(
       (res: HttpResponse<IKufangEntity[]>) => {
-        console.log("yyuuuuuuuu" + res.body);
         this.rows$ = res.body;
 
         this.currentSearch = "";
@@ -73,6 +74,11 @@ export class KufangComponent implements OnInit, OnDestroy {
     this.loadAll();
   }
 
+  // create(lx: string) {
+  created(lx: string) {
+    console.log("父组件 ");
+    this._router.navigate([path.ROUTE_KUFANG_NEW]);
+  }
   clear() {
     this.currentSearch = "";
     this.loadAll();

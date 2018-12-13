@@ -41,6 +41,8 @@ public class KufangController {
         this.assembler = assembler;
         this.commandGateway = commandGateway;
         this.kufangService = kufangService;
+        this.kufangQueryService = kufangQueryService;
+
     }
 
     @GetMapping(value = "/kufangEntities", produces = MediaTypes.HAL_JSON_VALUE)
@@ -53,7 +55,7 @@ public class KufangController {
     @GetMapping(value = "/kufangEntities/{id}", produces = MediaTypes.HAL_JSON_VALUE)
     public ResponseEntity<Resource<KufangEntity>> findOne(@PathVariable Long id) {
         log.info("查找一个记录");
-        return kufangService.findOne(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        return kufangQueryService.findOne(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/kufangEntities/{id}")
