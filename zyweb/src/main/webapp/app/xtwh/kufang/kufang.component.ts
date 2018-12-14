@@ -8,8 +8,7 @@ import { JhiEventManager, JhiAlertService } from "ng-jhipster";
 import { IKufangEntity } from "app/shared/model/kufang.model";
 import { Principal } from "app/core";
 import { KufangService } from "./kufang.service";
-// import { ZyCardTableComponent } from "app/core/components";
-import * as path from "./kufang.constants";
+import * as link from "./kufang.constants";
 
 @Component({
   selector: "zy-kufang",
@@ -75,11 +74,12 @@ export class KufangComponent implements OnInit, OnDestroy {
   }
 
   onCreate(lx: string) {
-    this._router.navigate([path.ROUTE_KUFANG_NEW]);
+    this._router.navigate([link.ROUTE_KUFANG_NEW]);
   }
-  onLook(lx: string) {
-    console.log("父组件 ");
-    this._router.navigate([path.ROUTE_KUFANG_NEW]);
+  onLook(recordID: number) {
+    console.log("父组件 " + recordID);
+    const routerLink = link.ROUTE_KUFANG + "/" + recordID + "/view";
+    this._router.navigate([routerLink]);
   }
 
   clear() {
@@ -88,8 +88,6 @@ export class KufangComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.setPage({ offset: 0 });
-
     this.loadAll();
     this.registerChangeInKufangs();
   }

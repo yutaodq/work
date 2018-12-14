@@ -17,7 +17,10 @@
 
             <ngx-datatable-column name="操作" prop="id">
                 <ng-template let-value="value" ngx-datatable-cell-template>
-                <zy-table-column-action (lookRecord)="onLook($event)"></zy-table-column-action>
+                    <zy-table-column-action [recordID]="value" (lookRecord)="onLook($event)">
+
+                    </zy-table-column-action>
+
                 </ng-template>
             </ngx-datatable-column>
 

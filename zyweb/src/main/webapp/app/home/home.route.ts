@@ -3,6 +3,6 @@
 // import { HomeComponent } from './index';
 //
 // export const HOME_ROUTE: Route = {
-//     path: '',
+//     link: '',
 //     component: HomeComponent
 // };

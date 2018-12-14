@@ -8,7 +8,7 @@
 //
 // export const adminState: Routes = [
 //     {
-//         path: '',
+//         link: '',
 //         data: {
 //             authorities: ['ROLE_ADMIN']
 //         },

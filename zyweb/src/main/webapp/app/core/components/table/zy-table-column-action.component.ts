@@ -5,19 +5,19 @@ import { Component, Input, EventEmitter, Output } from "@angular/core";
   templateUrl: "./zy-table-column-action.component.html"
 })
 export class ZyTableColumnActionComponent {
-  private _caption = "操作";
-  @Output() lookRecord = new EventEmitter<string>();
-
+  // private _caption = "操作";
+  @Output() lookRecord = new EventEmitter<number>();
+  @Input() private _recordID: number;
   onLookRecord(): void {
     console.log("The child speak status is ");
-    this.lookRecord.emit("abc");
+    this.lookRecord.emit(this._recordID);
   }
   @Input()
-  set caption(value: string) {
-    this._caption = value;
+  set recordID(value: number) {
+    this._recordID = value;
   }
 
-  get caption(): string {
-    return this._caption;
+  get recordID(): number {
+    return this._recordID;
   }
 }
