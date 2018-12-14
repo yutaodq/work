@@ -75,6 +75,9 @@ export class KufangComponent implements OnInit, OnDestroy {
   }
 
   onCreate(lx: string) {
+    this._router.navigate([path.ROUTE_KUFANG_NEW]);
+  }
+  onLook(lx: string) {
     console.log("父组件 ");
     this._router.navigate([path.ROUTE_KUFANG_NEW]);
   }

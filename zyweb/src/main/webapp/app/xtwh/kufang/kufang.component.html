@@ -1,3 +1,4 @@
+
 <zy-card-table
         [title]="pageTitle"
         (createRecord)="onCreate($event)"
@@ -13,11 +14,10 @@
                 [rows]="rows$ "
                 [limit]="10"
         >
+
             <ngx-datatable-column name="操作" prop="id">
                 <ng-template let-value="value" ngx-datatable-cell-template>
-                    <a routerLink="/kufang/{{value}}/view">
-                        <fa-icon [icon]="'eye'"></fa-icon>&nbsp;<span>查看</span>
-                    </a>
+                <zy-table-column-action (lookRecord)="onLook($event)"></zy-table-column-action>
                 </ng-template>
             </ngx-datatable-column>
 
