@@ -1,69 +1,63 @@
-<button  type="button" nbButton (click)="created($event)">
-    <fa-icon [icon]="'plus'"></fa-icon>&nbsp;<span>增加新记录ddd</span>
-</button>
-
-<zy-card-header
+<zy-card-table
         [title]="pageTitle"
-        (createRrecord)="created($event)"
+        (createRecord)="onCreate($event)"
 >
+    <div name="datatable">
+        <ngx-datatable
+                class="material nb-tables"
+                [headerHeight]="50"
+                [footerHeight]="50"
+                [rowHeight]="'auto'"
+                [columnMode]="'force'"
+                [reorderable]=true
+                [rows]="rows$ "
+                [limit]="10"
+        >
+            <ngx-datatable-column name="操作" prop="id">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <a routerLink="/kufang/{{value}}/view">
+                        <fa-icon [icon]="'eye'"></fa-icon>&nbsp;<span>查看</span>
+                    </a>
+                </ng-template>
+            </ngx-datatable-column>
 
+            <ngx-datatable-column name="序号" prop="id">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="标识" prop="identifier">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="库房名称" prop="name">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
 
-    <!--<div name="datatable">-->
-    <!--<ngx-datatable-->
-    <!--class="material nb-tables"-->
-    <!--[headerHeight]="50"-->
-    <!--[footerHeight]="50"-->
-    <!--[rowHeight]="'auto'"-->
-    <!--[columnMode]="'force'"-->
-    <!--[reorderable]=true-->
-    <!--[rows]="rows$ "-->
-    <!--[limit]="10"-->
-    <!--&gt;-->
-    <!--<ngx-datatable-column name="操作" prop="id">-->
-    <!--<ng-template let-value="value" ngx-datatable-cell-template>-->
-    <!--<a routerLink="/kufang/{{value}}/view" >-->
-    <!--<fa-icon [icon]="'eye'"></fa-icon>&nbsp;<span>查看</span>-->
-    <!--</a>-->
-    <!--</ng-template>-->
-    <!--</ngx-datatable-column>-->
+        </ngx-datatable>
+        <p></p>
+        <div class="row">
+            <div class="col-sm-6 pull-left">
 
-    <!--<ngx-datatable-column name="序号" prop="id">-->
-    <!--<ng-template let-value="value" ngx-datatable-cell-template>-->
-    <!--{{value}}-->
-    <!--</ng-template>-->
-    <!--</ngx-datatable-column>-->
-    <!--<ngx-datatable-column name="标识" prop="identifier">-->
-    <!--<ng-template let-value="value" ngx-datatable-cell-template>-->
-    <!--{{value}}-->
-    <!--</ng-template>-->
-    <!--</ngx-datatable-column>-->
-    <!--<ngx-datatable-column name="库房名称" prop="name">-->
-    <!--<ng-template let-value="value" ngx-datatable-cell-template>-->
-    <!--{{value}}-->
-    <!--</ng-template>-->
-    <!--</ngx-datatable-column>-->
-
-    <!--</ngx-datatable>-->
-    <!--<p></p>-->
-    <!--<div class="row">-->
-    <!--<div class="col-sm-6 pull-left">-->
-
-    <!--<button class="btn" nbButton type="button">-->
-    <!--<span>增加新记录</span>-->
-    <!--</button>-->
-    <!--</div>-->
-    <!--<div class="col-sm-6">-->
-    <!--<label class="dt-cust-search f-right">-->
-    <!--<div class="form-group">-->
-    <!--<label>Search: </label>-->
-    <!--<input type='text'-->
-    <!--class="form-control input-sm m-l-10"-->
-    <!--placeholder='Search Name'-->
-    <!--(keyup)='search($event)'-->
-    <!--/>-->
-    <!--</div>-->
-    <!--</label>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-</zy-card-header>
+                <button class="btn" nbButton type="button">
+                    <span>增加新记录</span>
+                </button>
+            </div>
+            <div class="col-sm-6">
+                <label class="dt-cust-search f-right">
+                    <div class="form-group">
+                        <label>Search: </label>
+                        <input type='text'
+                               class="form-control input-sm m-l-10"
+                               placeholder='Search Name'
+                               (keyup)='search($event)'
+                        />
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+</zy-card-table>

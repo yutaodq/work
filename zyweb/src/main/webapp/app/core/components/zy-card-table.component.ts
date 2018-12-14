@@ -1,10 +1,10 @@
 import { Component, Input, EventEmitter, Output } from "@angular/core";
 
 @Component({
-  selector: "zy-card-header",
-  templateUrl: "./zy-card-header.component.html"
+  selector: "zy-card-table",
+  templateUrl: "./zy-card-table.component.html"
 })
-export class ZyCardHeaderComponent {
+export class ZyCardTableComponent {
   private _title: string;
   @Output() createRecord = new EventEmitter<string>();
 

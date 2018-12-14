@@ -16,7 +16,7 @@ import {
   SampleLayoutComponent,
   FooterComponent,
   HeaderComponent,
-  ZyCardHeaderComponent
+  ZyCardTableComponent
 } from "./components";
 
 const COMPONENTS = [
@@ -24,7 +24,7 @@ const COMPONENTS = [
   SampleLayoutComponent,
   FooterComponent,
   HeaderComponent,
-  ZyCardHeaderComponent
+  ZyCardTableComponent
 ];
 
 const BASE_MODULES = [
