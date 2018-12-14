@@ -7,6 +7,8 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ExtraOptions, RouterModule, Routes } from "@angular/router";
 import { NebularModule } from "app/core/nebular.module";
+// 不加"FontAwesomeModule" core模块中的组件不显示图标
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import { AppComponent } from "./containers";
 
@@ -25,7 +27,12 @@ const COMPONENTS = [
   ZyCardHeaderComponent
 ];
 
-const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
+const BASE_MODULES = [
+  CommonModule,
+  FormsModule,
+  ReactiveFormsModule,
+  FontAwesomeModule
+];
 
 import { AnalyticsService, UserService, LayoutService } from "app/core/service";
 

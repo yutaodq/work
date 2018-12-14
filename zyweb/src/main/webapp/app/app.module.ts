@@ -12,6 +12,8 @@ import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+// 一个开源的图标库
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import { environment } from "../../../environments/environment";
 import { ErrorHandlerInterceptor } from "./blocks/interceptor/errorhandler.interceptor";
@@ -37,6 +39,7 @@ import { AppComponent } from "app/core/containers/app.component";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FontAwesomeModule,
     ZyxtAppRoutingModule,
     Ng2Webstorage.forRoot({ prefix: "zy", separator: "-" }),
     ZyxtSharedModule,

@@ -1,3 +1,7 @@
+<button  type="button" nbButton (click)="created($event)">
+    <fa-icon [icon]="'plus'"></fa-icon>&nbsp;<span>增加新记录ddd</span>
+</button>
+
 <zy-card-header
         [title]="pageTitle"
         (createRrecord)="created($event)"

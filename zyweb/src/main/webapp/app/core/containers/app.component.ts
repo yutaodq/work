@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { MENU_ITEMS } from "./app-menu";
 
 @Component({
