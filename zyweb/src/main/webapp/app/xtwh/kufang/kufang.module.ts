@@ -10,7 +10,8 @@ import {
   kufangRoute,
   KufangComponent,
   KufangDetailComponent,
-  KufangNewComponent
+  KufangNewComponent,
+  KufangFormModel
 } from "./";
 
 const ROUTE = [...kufangRoute];
@@ -30,6 +31,7 @@ const ENTRY_COMPONENTS = [KufangComponent, KufangDetailComponent];
   imports: [...IMPORTS_MODULES, RouterModule.forChild(ROUTE)],
   declarations: [COMPONENT],
   entryComponents: [ENTRY_COMPONENTS],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [KufangFormModel]
 })
 export class KufangModule {}

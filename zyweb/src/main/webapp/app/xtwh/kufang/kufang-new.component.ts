@@ -7,23 +7,27 @@ import { JhiAlertService } from "ng-jhipster";
 import { IKufangEntity } from "app/shared/model/kufang.model";
 import { KufangService } from "./kufang.service";
 
-import { KufangFormModel } from "./kufang-form.model";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { UniqueNameValidator } from "app/xtwh/kufang/kufang-form.validator";
 
 @Component({
   selector: "zy-kufang-new",
   templateUrl: "./kufang-new.component.html"
 })
 export class KufangNewComponent implements OnInit {
-  private _kufang: IKufangEntity;
+  private kufang: IKufangEntity;
   isSaving: boolean;
   pageTitle: string;
-  form: KufangFormModel = new KufangFormModel();
+  // form: KufangFormModel = new KufangFormModel();
+  _form: FormGroup;
 
   constructor(
     private jhiAlertService: JhiAlertService,
     private kufangService: KufangService,
-    private activatedRoute: ActivatedRoute
-  ) {
+    private activatedRoute: ActivatedRoute,
+    private uniqueNameValidator: UniqueNameValidator
+  ) // private  formModel: KufangFormModel
+  {
     this.activatedRoute.data.subscribe(data => {
       this.pageTitle = data.pageTitle;
     });
@@ -33,6 +37,27 @@ export class KufangNewComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ kufang }) => {
       this.kufang = kufang;
+    });
+    this.formInit();
+    // this.form = this.formModel.form;
+  }
+
+  formInit(): void {
+    this._form = new FormGroup({
+      name: new FormControl("", {
+        validators: [Validators.required, Validators.minLength(3)],
+        asyncValidators: [
+          this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
+        ],
+        updateOn: "blur"
+      }),
+      bz: new FormControl("", {
+        validators: [Validators.required, Validators.minLength(3)],
+        asyncValidators: [
+          this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
+        ],
+        updateOn: "blur"
+      })
     });
   }
 
@@ -71,11 +96,14 @@ export class KufangNewComponent implements OnInit {
     this.jhiAlertService.error(errorMessage, null, null);
   }
 
-  get kufang() {
-    return this._kufang;
-  }
-
-  set kufang(kufang: IKufangEntity) {
-    this._kufang = kufang;
+  // get kufang() {
+  //   return this.kufang;
+  // }
+  //
+  // set kufang(kufang: IKufangEntity) {
+  //   this.kufang = kufang;
+  // }
+  get form() {
+    return this._form;
   }
 }

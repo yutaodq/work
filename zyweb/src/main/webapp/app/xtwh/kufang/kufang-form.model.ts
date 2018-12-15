@@ -1,11 +1,34 @@
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {
+  AsyncValidator,
+  FormControl,
+  FormGroup,
+  Validators
+} from "@angular/forms";
+import { AbstractControlOptions } from "@angular/forms/src/model";
+import {
+  AsyncValidatorFn,
+  ValidatorFn
+} from "@angular/forms/src/directives/validators";
+import { UniqueNameValidator } from "app/xtwh/kufang/kufang-form.validator";
+import { Injectable, OnInit } from "@angular/core";
 
 export class KufangFormControl extends FormControl {
   label: string;
   modelProperty: string;
 
-  constructor(label: string, property: string, value: any, validator: any) {
-    super(value, validator);
+  constructor(
+    label: string,
+    property: string,
+    value?: any,
+    validator?: any,
+    asyncValidator?: any
+  ) {
+    // constructor(label: string,
+    //             property: string,
+    //             value?: any,
+    //             validator?: ValidatorFn | ValidatorFn[] | AbstractControlOptions | null,
+    //             asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[] | null) {
+    super(value, validator, asyncValidator);
     this.label = label;
     this.modelProperty = property;
   }
@@ -44,30 +67,54 @@ export class KufangFormControl extends FormControl {
   }
 }
 
-export class KufangFormModel extends FormGroup {
-  constructor() {
-    super({
-      name: new KufangFormControl(
-        "库房名称",
-        "name",
+@Injectable()
+export class KufangFormModel implements OnInit {
+  private _form: FormGroup;
+
+  constructor(private uniqueNameValidator: UniqueNameValidator) {}
+
+  ngOnInit(): void {
+    this._form = new FormGroup({
+      name: new FormControl(
         "",
         Validators.compose([Validators.required, Validators.minLength(3)])
       ),
-      bz: new KufangFormControl("库房记录说明", "bz", "", "")
+      bz: new FormControl("")
     });
   }
 
-  get kufangControls(): KufangFormControl[] {
-    return Object.keys(this.controls).map(
-      k => this.controls[k] as KufangFormControl
-    );
-  }
-
-  getFormValidationMessages(form: any): string[] {
-    const messages: string[] = [];
-    this.kufangControls.forEach(c =>
-      c.getValidationMessages().forEach(m => messages.push(m))
-    );
-    return messages;
+  get form(): FormGroup {
+    return this._form;
   }
 }
+
+// export class KufangFormModel extends FormGroup {
+//
+// constructor(private uniqueNameValidator: UniqueNameValidator) {
+//     super({
+//       name: new KufangFormControl(
+//         "库房名称",
+//         "name",
+//         "",
+//         Validators.compose([Validators.required, Validators.minLength(3)]),
+//         { [uniqueNameValidator.validate.bind(uniqueNameValidator)], updateOn: 'blur'}
+//       ),
+//       // bz: new KufangFormControl("库房记录说明", "bz", "", "")
+//     });
+//   }
+//   name=  new FormControl('aaa', {asyncValidators: [this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)], updateOn: 'blur'});
+//
+//   get kufangControls(): KufangFormControl[] {
+//     return Object.keys(this.controls).map(
+//       k => this.controls[k] as KufangFormControl
+//     );
+//   }
+//
+//   getFormValidationMessages(form: any): string[] {
+//     const messages: string[] = [];
+//     this.kufangControls.forEach(c =>
+//       c.getValidationMessages().forEach(m => messages.push(m))
+//     );
+//     return messages;
+//   }
+// }

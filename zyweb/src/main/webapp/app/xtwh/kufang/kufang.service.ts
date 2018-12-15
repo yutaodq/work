@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpResponse } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
+import { delay } from "rxjs/operators";
 
 import { SERVER_API_URL } from "app/app.constants";
 import { createRequestOption } from "app/shared";
@@ -9,6 +10,8 @@ import { IKufangEntity } from "app/shared/model/kufang.model";
 type EntityResponseType = HttpResponse<IKufangEntity>;
 type EntityArrayResponseType = HttpResponse<IKufangEntity[]>;
 
+const ALTER_EGOS = ["Eric"];
+
 @Injectable({ providedIn: "root" })
 export class KufangService {
   private resourceUrl = SERVER_API_URL + "api/kufangEntities";
@@ -16,6 +19,11 @@ export class KufangService {
 
   constructor(private http: HttpClient) {}
 
+  isNameTaken(alterEgo: string): Observable<boolean> {
+    const isTaken = ALTER_EGOS.includes(alterEgo);
+
+    return of(isTaken).pipe(delay(400));
+  }
   create(product: IKufangEntity): Observable<EntityResponseType> {
     return this.http.post<IKufangEntity>(this.resourceUrl, product, {
       observe: "response"
