@@ -9,7 +9,7 @@ import { KufangService } from "./kufang.service";
 
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { UniqueNameValidator } from "app/xtwh/kufang/kufang-form.validator";
-
+import { KufangFormModel } from "./kufang-form.model";
 @Component({
   selector: "zy-kufang-new",
   templateUrl: "./kufang-new.component.html"
@@ -25,9 +25,9 @@ export class KufangNewComponent implements OnInit {
     private jhiAlertService: JhiAlertService,
     private kufangService: KufangService,
     private activatedRoute: ActivatedRoute,
-    private uniqueNameValidator: UniqueNameValidator
-  ) // private  formModel: KufangFormModel
-  {
+    private uniqueNameValidator: UniqueNameValidator,
+    private formModel: KufangFormModel
+  ) {
     this.activatedRoute.data.subscribe(data => {
       this.pageTitle = data.pageTitle;
     });
@@ -38,13 +38,13 @@ export class KufangNewComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ kufang }) => {
       this.kufang = kufang;
     });
-    this.formInit();
-    // this.form = this.formModel.form;
+    this._form = this.formModel.formDefault;
+    // this.formInit();
   }
 
   formInit(): void {
     this._form = new FormGroup({
-      name: new FormControl("", {
+      name: new FormControl("lllll", {
         validators: [Validators.required, Validators.minLength(3)],
         asyncValidators: [
           this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)

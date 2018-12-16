@@ -4,11 +4,7 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
-import { AbstractControlOptions } from "@angular/forms/src/model";
-import {
-  AsyncValidatorFn,
-  ValidatorFn
-} from "@angular/forms/src/directives/validators";
+
 import { UniqueNameValidator } from "app/xtwh/kufang/kufang-form.validator";
 import { Injectable, OnInit } from "@angular/core";
 
@@ -74,12 +70,43 @@ export class KufangFormModel implements OnInit {
   constructor(private uniqueNameValidator: UniqueNameValidator) {}
 
   ngOnInit(): void {
+    this.formInit();
+  }
+  formInit(): void {
     this._form = new FormGroup({
-      name: new FormControl(
-        "",
-        Validators.compose([Validators.required, Validators.minLength(3)])
-      ),
-      bz: new FormControl("")
+      name: new FormControl("kkkkk", {
+        validators: [Validators.required, Validators.minLength(3)],
+        asyncValidators: [
+          this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
+        ],
+        updateOn: "blur"
+      }),
+      bz: new FormControl("", {
+        validators: [Validators.required, Validators.minLength(3)],
+        asyncValidators: [
+          this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
+        ],
+        updateOn: "blur"
+      })
+    });
+  }
+
+  formDefault(): FormGroup {
+    return new FormGroup({
+      name: new FormControl("kkkkk", {
+        validators: [Validators.required, Validators.minLength(3)],
+        asyncValidators: [
+          this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
+        ],
+        updateOn: "blur"
+      }),
+      bz: new FormControl("", {
+        validators: [Validators.required, Validators.minLength(3)],
+        asyncValidators: [
+          this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
+        ],
+        updateOn: "blur"
+      })
     });
   }
 
