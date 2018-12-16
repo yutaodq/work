@@ -2,7 +2,8 @@ import {
   AsyncValidator,
   FormControl,
   FormGroup,
-  Validators
+  Validators,
+  FormBuilder
 } from "@angular/forms";
 
 import { UniqueNameValidator } from "app/xtwh/kufang/kufang-form.validator";
@@ -67,7 +68,10 @@ export class KufangFormControl extends FormControl {
 export class KufangFormModel implements OnInit {
   private _form: FormGroup;
 
-  constructor(private uniqueNameValidator: UniqueNameValidator) {}
+  constructor(
+    private uniqueNameValidator: UniqueNameValidator,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.formInit();
@@ -90,7 +94,23 @@ export class KufangFormModel implements OnInit {
       })
     });
   }
-
+  formConfig(): { [name: string]: any } {
+    return {
+      name: [
+        "jjjjjj",
+        [Validators.required, Validators.minLength(3)],
+        [this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)]
+      ],
+      bz: [
+        "",
+        [Validators.required, Validators.minLength(3)],
+        [this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)]
+      ]
+    };
+  }
+  createForm(): FormGroup {
+    return this.fb.group(this.formConfig());
+  }
   formDefault(): FormGroup {
     return new FormGroup({
       name: new FormControl("kkkkk", {

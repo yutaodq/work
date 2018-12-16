@@ -7,9 +7,15 @@ import { JhiAlertService } from "ng-jhipster";
 import { IKufangEntity } from "app/shared/model/kufang.model";
 import { KufangService } from "./kufang.service";
 
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  FormBuilder
+} from "@angular/forms";
 import { UniqueNameValidator } from "app/xtwh/kufang/kufang-form.validator";
 import { KufangFormModel } from "./kufang-form.model";
+
 @Component({
   selector: "zy-kufang-new",
   templateUrl: "./kufang-new.component.html"
@@ -26,7 +32,8 @@ export class KufangNewComponent implements OnInit {
     private kufangService: KufangService,
     private activatedRoute: ActivatedRoute,
     private uniqueNameValidator: UniqueNameValidator,
-    private formModel: KufangFormModel
+    private formModel: KufangFormModel,
+    private fb: FormBuilder
   ) {
     this.activatedRoute.data.subscribe(data => {
       this.pageTitle = data.pageTitle;
@@ -38,27 +45,31 @@ export class KufangNewComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ kufang }) => {
       this.kufang = kufang;
     });
-    this._form = this.formModel.formDefault;
-    // this.formInit();
+    // this.form = new GroupKufangForm().formInit();
+    // this.form = this.formModel.formDefault;
+    this.formInit();
   }
 
   formInit(): void {
-    this._form = new FormGroup({
-      name: new FormControl("lllll", {
-        validators: [Validators.required, Validators.minLength(3)],
-        asyncValidators: [
-          this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
-        ],
-        updateOn: "blur"
-      }),
-      bz: new FormControl("", {
-        validators: [Validators.required, Validators.minLength(3)],
-        asyncValidators: [
-          this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
-        ],
-        updateOn: "blur"
-      })
-    });
+    // this._form = this.fb.group(this.formModel.formConfig());
+    this._form = this.formModel.createForm();
+
+    //   this._form = new FormGroup({
+    //     name: new FormControl("lllll", {
+    //       validators: [Validators.required, Validators.minLength(3)],
+    //       asyncValidators: [
+    //         this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
+    //       ],
+    //       updateOn: "blur"
+    //     }),
+    //     bz: new FormControl("", {
+    //       validators: [Validators.required, Validators.minLength(3)],
+    //       asyncValidators: [
+    //         this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
+    //       ],
+    //       updateOn: "blur"
+    //     })
+    //   });
   }
 
   previousState() {
@@ -105,5 +116,26 @@ export class KufangNewComponent implements OnInit {
   // }
   get form() {
     return this._form;
+  }
+}
+
+export class GroupKufangForm {
+  formInit(): FormGroup {
+    return new FormGroup({
+      name: new FormControl("lllll", {
+        validators: [Validators.required, Validators.minLength(3)],
+        asyncValidators: [
+          this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
+        ],
+        updateOn: "blur"
+      }),
+      bz: new FormControl("", {
+        validators: [Validators.required, Validators.minLength(3)],
+        asyncValidators: [
+          this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
+        ],
+        updateOn: "blur"
+      })
+    });
   }
 }
