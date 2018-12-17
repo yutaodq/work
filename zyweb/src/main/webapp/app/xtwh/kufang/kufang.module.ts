@@ -11,7 +11,8 @@ import {
   KufangComponent,
   KufangDetailComponent,
   KufangNewComponent,
-  KufangFormModel
+  KufangService,
+  KufangFormService
 } from "./";
 
 const ROUTE = [...kufangRoute];
@@ -26,12 +27,12 @@ const IMPORTS_MODULES = [
 ];
 const COMPONENT = [KufangComponent, KufangDetailComponent, KufangNewComponent];
 const ENTRY_COMPONENTS = [KufangComponent, KufangDetailComponent];
-
+const SERVICE = [KufangFormService, KufangService];
 @NgModule({
   imports: [...IMPORTS_MODULES, RouterModule.forChild(ROUTE)],
   declarations: [COMPONENT],
   entryComponents: [ENTRY_COMPONENTS],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [KufangFormModel]
+  providers: [...SERVICE]
 })
 export class KufangModule {}

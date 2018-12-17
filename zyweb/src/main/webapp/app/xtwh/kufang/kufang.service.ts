@@ -12,7 +12,8 @@ type EntityArrayResponseType = HttpResponse<IKufangEntity[]>;
 
 const ALTER_EGOS = ["Eric"];
 
-@Injectable({ providedIn: "root" })
+// @Injectable({ providedIn: "root" })
+@Injectable()
 export class KufangService {
   private resourceUrl = SERVER_API_URL + "api/kufangEntities";
   private resourceSearchUrl = SERVER_API_URL + "api/kufangEntities";

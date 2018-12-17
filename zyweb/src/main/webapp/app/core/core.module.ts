@@ -20,6 +20,8 @@ import {
   ZyTableColumnActionComponent
 } from "./components";
 
+import { AnalyticsService, UserService, LayoutService } from "app/core/service";
+
 const COMPONENTS = [
   AppComponent,
   SampleLayoutComponent,
@@ -35,8 +37,6 @@ const BASE_MODULES = [
   ReactiveFormsModule,
   FontAwesomeModule
 ];
-
-import { AnalyticsService, UserService, LayoutService } from "app/core/service";
 
 const SERVICE = [AnalyticsService, UserService, LayoutService];
 

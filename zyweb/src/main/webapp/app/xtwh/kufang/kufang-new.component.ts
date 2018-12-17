@@ -2,38 +2,26 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { HttpResponse, HttpErrorResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { JhiAlertService } from "ng-jhipster";
 
-import { IKufangEntity } from "app/shared/model/kufang.model";
-import { KufangService } from "./kufang.service";
-
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-  FormBuilder
-} from "@angular/forms";
-import { UniqueNameValidator } from "app/xtwh/kufang/kufang-form.validator";
-import { KufangFormModel } from "./kufang-form.model";
+import { IKufangEntity } from "app/shared";
+import { KufangService } from "./";
+import { FormGroup } from "@angular/forms";
+import { KufangFormService } from "./kufang-form.service";
 
 @Component({
   selector: "zy-kufang-new",
   templateUrl: "./kufang-new.component.html"
 })
 export class KufangNewComponent implements OnInit {
-  private kufang: IKufangEntity;
+  kufang: IKufangEntity;
   isSaving: boolean;
   pageTitle: string;
-  // form: KufangFormModel = new KufangFormModel();
   _form: FormGroup;
 
   constructor(
-    private jhiAlertService: JhiAlertService,
     private kufangService: KufangService,
     private activatedRoute: ActivatedRoute,
-    private uniqueNameValidator: UniqueNameValidator,
-    private formModel: KufangFormModel,
-    private fb: FormBuilder
+    private formService: KufangFormService
   ) {
     this.activatedRoute.data.subscribe(data => {
       this.pageTitle = data.pageTitle;
@@ -44,32 +32,13 @@ export class KufangNewComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ kufang }) => {
       this.kufang = kufang;
+      this._form = this.itemCreateForm(kufang);
     });
-    // this.form = new GroupKufangForm().formInit();
-    // this.form = this.formModel.formDefault;
-    this.formInit();
   }
 
-  formInit(): void {
-    // this._form = this.fb.group(this.formModel.formConfig());
-    this._form = this.formModel.createForm();
-
-    //   this._form = new FormGroup({
-    //     name: new FormControl("lllll", {
-    //       validators: [Validators.required, Validators.minLength(3)],
-    //       asyncValidators: [
-    //         this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
-    //       ],
-    //       updateOn: "blur"
-    //     }),
-    //     bz: new FormControl("", {
-    //       validators: [Validators.required, Validators.minLength(3)],
-    //       asyncValidators: [
-    //         this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
-    //       ],
-    //       updateOn: "blur"
-    //     })
-    //   });
+  itemCreateForm(item: IKufangEntity) {
+    const form = this.formService.formCreate(item);
+    return form;
   }
 
   previousState() {
@@ -103,9 +72,9 @@ export class KufangNewComponent implements OnInit {
     this.isSaving = false;
   }
 
-  private onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
-  }
+  // private onError(errorMessage: string) {
+  //   this.jhiAlertService.error(errorMessage, null, null);
+  // }
 
   // get kufang() {
   //   return this.kufang;
@@ -116,26 +85,5 @@ export class KufangNewComponent implements OnInit {
   // }
   get form() {
     return this._form;
-  }
-}
-
-export class GroupKufangForm {
-  formInit(): FormGroup {
-    return new FormGroup({
-      name: new FormControl("lllll", {
-        validators: [Validators.required, Validators.minLength(3)],
-        asyncValidators: [
-          this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
-        ],
-        updateOn: "blur"
-      }),
-      bz: new FormControl("", {
-        validators: [Validators.required, Validators.minLength(3)],
-        asyncValidators: [
-          this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)
-        ],
-        updateOn: "blur"
-      })
-    });
   }
 }
