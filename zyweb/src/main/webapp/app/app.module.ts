@@ -14,7 +14,8 @@ import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 // 一个开源的图标库
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-
+import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
+import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
 import { environment } from "../../../environments/environment";
 import { ErrorHandlerInterceptor } from "./blocks/interceptor/errorhandler.interceptor";
 import { NotificationInterceptor } from "./blocks/interceptor/notification.interceptor";
@@ -40,6 +41,9 @@ import { AppComponent } from "app/core/containers/app.component";
     BrowserModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    DynamicFormsCoreModule,
+    DynamicFormsNGBootstrapUIModule,
+
     ZyxtAppRoutingModule,
     Ng2Webstorage.forRoot({ prefix: "zy", separator: "-" }),
     ZyxtSharedModule,
