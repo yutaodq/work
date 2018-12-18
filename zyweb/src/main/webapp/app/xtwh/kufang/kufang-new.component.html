@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-<div class="overflow-hidden content-margin container-fluid" style="width: 50%;">
+    <nb-card>
+        <nb-card-header>库房名称记录</nb-card-header>
+        <nb-card-body>
 
     <form class="form-horizontal" [formGroup]="formGroup">
 
@@ -14,12 +14,9 @@
                                    (ngbEvent)="onNgbEvent($event)"></dynamic-ng-bootstrap-form>
 
     </form>
+        </nb-card-body>
+    </nb-card>
 
-    <!--button (click)="test()" type="button">Test</button-->
-
-    <pre>{{formGroup.value | json}}</pre>
-
-</div>
 
 <!--<form [formGroup]="form" #formDir="ngForm">-->
         <!--<div class="form-group">-->
@@ -90,52 +87,52 @@
 
 
 <!--<div>-->
-<!--<nb-card>-->
-<!--<nb-card-header>库房名称记录</nb-card-header>-->
-<!--<nb-card-body>-->
-<!--<form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="form">-->
-<!--<div class="form-group">-->
+    <!--<nb-card>-->
+        <!--<nb-card-header>库房名称记录</nb-card-header>-->
+        <!--<nb-card-body>-->
+            <!--<form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="form">-->
+                <!--<div class="form-group">-->
 
-<!--&lt;!&ndash;<label class="form-control-label" for="field_kufangName">{{form.get('name').label}}</label>&ndash;&gt;-->
-<!--&lt;!&ndash;<input type="text" class="form-control" name="kufangName" id="field_kufangName"&ndash;&gt;-->
-<!--&lt;!&ndash;formControlName="name"&ndash;&gt;-->
-<!--&lt;!&ndash;[(ngModel)]="kufang.name"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<label class="form-control-label" for="field_kufangName">{{form.get('name').label}}</label>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<input type="text" class="form-control" name="kufangName" id="field_kufangName"&ndash;&gt;-->
+                    <!--&lt;!&ndash;formControlName="name"&ndash;&gt;-->
+                    <!--&lt;!&ndash;[(ngModel)]="kufang.name"/>&ndash;&gt;-->
 
-<!--<input id="name" class="form-control"-->
-<!--formControlName="name" required >-->
+                    <!--<input id="name" class="form-control"-->
+                           <!--formControlName="name" required>-->
 
-<!--<div *ngIf="name.dirty || name.touched"-->
-<!--class="alert alert-danger">-->
-<!--&lt;!&ndash;<div *ngIf="name.errors.required">&ndash;&gt;-->
-<!--&lt;!&ndash;Name is required.&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--&lt;!&ndash;<div *ngIf="name.errors.minlength">&ndash;&gt;-->
-<!--&lt;!&ndash;Name must be at least 4 characters long.&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--&lt;!&ndash;<div *ngIf="name.errors.forbiddenName">&ndash;&gt;-->
-<!--&lt;!&ndash;Name cannot be Bob.&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--</div>-->
+                    <!--<div *ngIf="name.dirty || name.touched"-->
+                         <!--class="alert alert-danger">-->
+                        <!--&lt;!&ndash;<div *ngIf="name.errors.required">&ndash;&gt;-->
+                        <!--&lt;!&ndash;Name is required.&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div *ngIf="name.errors.minlength">&ndash;&gt;-->
+                        <!--&lt;!&ndash;Name must be at least 4 characters long.&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div *ngIf="name.errors.forbiddenName">&ndash;&gt;-->
+                        <!--&lt;!&ndash;Name cannot be Bob.&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--</div>-->
 
-<!--</div>-->
+                <!--</div>-->
 
-<!--<div class="form-group">-->
-<!--&lt;!&ndash;<label class="form-control-label" for="field_kufangBz">{{form.get('bz').label}}</label>&ndash;&gt;-->
-<!--<input type="text" class="form-control" name="kufangBz" id="field_kufangBz"-->
-<!--formControlName="bz"-->
-<!--[(ngModel)]="kufang.bz"/>-->
-<!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--&lt;!&ndash;<label class="form-control-label" for="field_kufangBz">{{form.get('bz').label}}</label>&ndash;&gt;-->
+                    <!--<input type="text" class="form-control" name="kufangBz" id="field_kufangBz"-->
+                           <!--formControlName="bz"-->
+                           <!--[(ngModel)]="kufang.bz"/>-->
+                <!--</div>-->
 
-<!--<div>-->
-<!--<button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">-->
-<!--<fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>取消</span>-->
-<!--</button>-->
-<!--<button type="submit" id="save-entity" [disabled]="form.invalid || isSaving"-->
-<!--class="btn btn-primary">-->
-<!--<fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>保存</span>-->
-<!--</button>-->
-<!--</div>-->
-<!--</form>-->
-<!--</nb-card-body>-->
-<!--</nb-card>-->
+                <!--<div>-->
+                    <!--<button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">-->
+                        <!--<fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>取消</span>-->
+                    <!--</button>-->
+                    <!--<button type="submit" id="save-entity" [disabled]="form.invalid || isSaving"-->
+                            <!--class="btn btn-primary">-->
+                        <!--<fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>保存</span>-->
+                    <!--</button>-->
+                <!--</div>-->
+            <!--</form>-->
+        <!--</nb-card-body>-->
+    <!--</nb-card>-->
 <!--</div>-->
