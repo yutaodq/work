@@ -5,6 +5,14 @@ import { ZyxtSharedModule } from "app/shared";
 import { CoreModule } from "app/core";
 import { NebularModule } from "app/core";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+import { NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
+import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
+import {
+  DYNAMIC_VALIDATORS,
+  Validator,
+  ValidatorFactory
+} from "@ng-dynamic-forms/core";
+
 import {
   kufangRoute,
   KufangComponent,
@@ -13,8 +21,7 @@ import {
   KufangService,
   KufangFormService
 } from "./";
-
-import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
+import { myCustomValidator } from "./kufang-form.validator";
 
 const ROUTE = [...kufangRoute];
 
@@ -34,6 +41,19 @@ const SERVICE = [KufangFormService, KufangService];
   declarations: [COMPONENT],
   entryComponents: [ENTRY_COMPONENTS],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [...SERVICE]
+  providers: [
+    ...SERVICE,
+    {
+      provide: NG_VALIDATORS,
+      useValue: myCustomValidator,
+      multi: true
+    },
+    {
+      provide: DYNAMIC_VALIDATORS,
+      useValue: new Map<string, Validator | ValidatorFactory>([
+        ["myCustomValidator", myCustomValidator]
+      ])
+    }
+  ]
 })
 export class KufangModule {}

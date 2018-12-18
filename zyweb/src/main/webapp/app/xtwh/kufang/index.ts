@@ -5,3 +5,4 @@ export * from "./kufang.component";
 export * from "./kufang-detail.component";
 export * from "./kufang-new.component";
 export * from "./kufang-form.service";
+export * from "./kufang-form.validator";

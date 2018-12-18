@@ -11,23 +11,31 @@ import {
   DynamicTextAreaModel,
   DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
+import { myCustomValidator } from "./kufang-form.validator";
 
 export const KUFANG_FORM_MODEL: DynamicFormControlModel[] = [
   new DynamicInputModel({
     id: "name",
     label: "库房名称",
-    placeholder: "Last Name",
+    placeholder: "库房名称",
     validators: {
-      required: null
+      required: null,
+      minLength: 3,
+      myValidator: {
+        name: myCustomValidator.name,
+        args: null
+      }
     },
     errorMessages: {
-      required: "{{ label }} is required"
+      required: "请您填写：{{ label }} ",
+      minLength: "库房名称不能少于三个字",
+      myCustomValidator: "{{label}} cannot start with abc"
     }
   }),
   new DynamicTextAreaModel({
     id: "bz",
     label: "库房说明",
-    placeholder: "请在此处赶写该库房的信息",
+    placeholder: "请在此处填写该库房的信息",
     rows: 5
   })
 ];

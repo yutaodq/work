@@ -34,10 +34,10 @@ export class KufangFormService extends FormService<KufangEntity> {
   }
 
   formAssignChanges(formGroup: FormGroup): FormGroup {
-    // this.accountFormService.formAssignChanges(formGroup);
+    // this.accountFormService.formAssignChanges(_formGroup);
     //
-    // formGroup.get('individual').valueChanges.subscribe((value) => {
-    //   formGroup.get('name').setValue(value && value.name);
+    // _formGroup.get('individual').valueChanges.subscribe((value) => {
+    //   _formGroup.get('name').setValue(value && value.name);
     // });
 
     return formGroup;
