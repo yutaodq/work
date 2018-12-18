@@ -1,7 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
-import { Ng2SmartTableModule } from "ng2-smart-table";
 import { ZyxtSharedModule } from "app/shared";
 import { CoreModule } from "app/core";
 import { NebularModule } from "app/core";
@@ -15,6 +14,8 @@ import {
   KufangFormService
 } from "./";
 
+import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
+
 const ROUTE = [...kufangRoute];
 
 const IMPORTS_MODULES = [
@@ -23,7 +24,7 @@ const IMPORTS_MODULES = [
   CoreModule,
   NebularModule,
   NgxDatatableModule,
-  Ng2SmartTableModule
+  DynamicFormsNGBootstrapUIModule
 ];
 const COMPONENT = [KufangComponent, KufangDetailComponent, KufangNewComponent];
 const ENTRY_COMPONENTS = [KufangComponent, KufangDetailComponent];

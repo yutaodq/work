@@ -1,49 +1,74 @@
-<form [formGroup]="form" #formDir="ngForm">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input id="name" class="form-control"
-                   formControlName="name" required>
-            <div *ngIf="form.get('name').invalid && (form.get('name').dirty || form.get('name').touched)"
-                 class="alert alert-danger">
-                <div *ngIf="form.get('name').errors.required">
-                    Name is required.
-                </div>
-                <div *ngIf="form.get('name').errors.minlength">
-                    Name must be at least 4 characters long.
-                </div>
-            </div>
-            <div *ngIf="form.get('name').pending">Validating...</div>
-            <div *ngIf="form.get('name').invalid" class="alert alert-danger alter-ego-errors">
-                <div *ngIf="form.get('name').errors?.uniqueName">
-                    Alter ego is already taken.
-                </div>
-            </div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-        </div>
-    <div class="form-group">
-        <label for="bz">bz</label>
-        <input id="bz" class="form-control" formControlName="bz" >
+<div class="overflow-hidden content-margin container-fluid" style="width: 50%;">
 
-        <div *ngIf="form.get('bz').invalid && (form.get('bz').dirty || form.get('bz').touched)"
-             class="alert alert-danger">
-            <div *ngIf="form.get('bz').errors.required">
-                Name is required.
-            </div>
-            <div *ngIf="form.get('bz').errors.minlength">
-                Name must be at least 4 characters long.
-            </div>
-        </div>
+    <form class="form-horizontal" [formGroup]="formGroup">
+
+        <dynamic-ng-bootstrap-form [group]="formGroup"
+                                   [layout]="formLayout"
+                                   [model]="formModel"
+                                   (blur)="onBlur($event)"
+                                   (change)="onChange($event)"
+                                   (focus)="onFocus($event)"
+                                   (ngbEvent)="onNgbEvent($event)"></dynamic-ng-bootstrap-form>
+
+    </form>
+
+    <!--button (click)="test()" type="button">Test</button-->
+
+    <pre>{{formGroup.value | json}}</pre>
+
+</div>
+
+<!--<form [formGroup]="form" #formDir="ngForm">-->
+        <!--<div class="form-group">-->
+            <!--<label for="name">Name</label>-->
+            <!--<input id="name" class="form-control"-->
+                   <!--formControlName="name" required>-->
+            <!--<div *ngIf="form.get('name').invalid && (form.get('name').dirty || form.get('name').touched)"-->
+                 <!--class="alert alert-danger">-->
+                <!--<div *ngIf="form.get('name').errors.required">-->
+                    <!--Name is required.-->
+                <!--</div>-->
+                <!--<div *ngIf="form.get('name').errors.minlength">-->
+                    <!--Name must be at least 4 characters long.-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div *ngIf="form.get('name').pending">Validating...</div>-->
+            <!--<div *ngIf="form.get('name').invalid" class="alert alert-danger alter-ego-errors">-->
+                <!--<div *ngIf="form.get('name').errors?.uniqueName">-->
+                    <!--Alter ego is already taken.-->
+                <!--</div>-->
+            <!--</div>-->
+
+        <!--</div>-->
+    <!--<div class="form-group">-->
+        <!--<label for="bz">bz</label>-->
+        <!--<input id="bz" class="form-control" formControlName="bz" >-->
+
+        <!--<div *ngIf="form.get('bz').invalid && (form.get('bz').dirty || form.get('bz').touched)"-->
+             <!--class="alert alert-danger">-->
+            <!--<div *ngIf="form.get('bz').errors.required">-->
+                <!--Name is required.-->
+            <!--</div>-->
+            <!--<div *ngIf="form.get('bz').errors.minlength">-->
+                <!--Name must be at least 4 characters long.-->
+            <!--</div>-->
+        <!--</div>-->
 
 
-        <div *ngIf="form.get('bz').pending">Validating...</div>
-        <div *ngIf="form.get('bz').invalid" class="alert alert-danger alter-ego-errors">
-            <div *ngIf="form.get('bz').errors?.uniqueName">
-                Alter ego is already taken.
-            </div>
-        </div>
+        <!--<div *ngIf="form.get('bz').pending">Validating...</div>-->
+        <!--<div *ngIf="form.get('bz').invalid" class="alert alert-danger alter-ego-errors">-->
+            <!--<div *ngIf="form.get('bz').errors?.uniqueName">-->
+                <!--Alter ego is already taken.-->
+            <!--</div>-->
+        <!--</div>-->
 
-    </div>
-</form>
+    <!--</div>-->
+<!--</form>-->
+
+
 
 <!--<div class="form-group">-->
 <!--&lt;!&ndash;<label class="form-control-label" for="field_kufangBz">{{form.get('bz').label}}</label>&ndash;&gt;-->

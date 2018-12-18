@@ -3,6 +3,7 @@ import "./vendor.ts";
 import { NgModule, Injector } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { Ng2Webstorage } from "ngx-webstorage";
 import { JhiEventManager } from "ng-jhipster";
@@ -15,7 +16,6 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 // 一个开源的图标库
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
-import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
 import { environment } from "../../../environments/environment";
 import { ErrorHandlerInterceptor } from "./blocks/interceptor/errorhandler.interceptor";
 import { NotificationInterceptor } from "./blocks/interceptor/notification.interceptor";
@@ -41,8 +41,8 @@ import { AppComponent } from "app/core/containers/app.component";
     BrowserModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    ReactiveFormsModule,
     DynamicFormsCoreModule,
-    DynamicFormsNGBootstrapUIModule,
 
     ZyxtAppRoutingModule,
     Ng2Webstorage.forRoot({ prefix: "zy", separator: "-" }),
