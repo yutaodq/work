@@ -11,7 +11,11 @@ import {
   DynamicTextAreaModel,
   DynamicTimePickerModel
 } from "@ng-dynamic-forms/core";
-import { myCustomValidator } from "./kufang-form.validator";
+import {
+  myCustomValidator,
+  UniqueNameValidator,
+  kufangNameValidator
+} from "./kufang-form.validator";
 
 export const KUFANG_FORM_MODEL: DynamicFormControlModel[] = [
   new DynamicInputModel({
@@ -21,8 +25,12 @@ export const KUFANG_FORM_MODEL: DynamicFormControlModel[] = [
     validators: {
       required: null,
       minLength: 3,
-      myValidator: {
+      validator: {
         name: myCustomValidator.name,
+        args: null
+      },
+      asyncValidators: {
+        name: kufangNameValidator,
         args: null
       }
     },

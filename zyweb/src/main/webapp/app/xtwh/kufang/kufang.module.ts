@@ -21,7 +21,11 @@ import {
   KufangService,
   KufangFormService
 } from "./";
-import { myCustomValidator } from "./kufang-form.validator";
+import {
+  myCustomValidator,
+  UniqueNameValidator,
+  kufangNameValidator
+} from "./kufang-form.validator";
 
 const ROUTE = [...kufangRoute];
 
@@ -49,9 +53,20 @@ const SERVICE = [KufangFormService, KufangService];
       multi: true
     },
     {
+      provide: NG_ASYNC_VALIDATORS,
+      useValue: UniqueNameValidator,
+      multi: true
+    },
+    {
+      provide: NG_ASYNC_VALIDATORS,
+      useValue: kufangNameValidator,
+      multi: true
+    },
+    {
       provide: DYNAMIC_VALIDATORS,
       useValue: new Map<string, Validator | ValidatorFactory>([
-        ["myCustomValidator", myCustomValidator]
+        ["myCustomValidator", myCustomValidator],
+        ["kufangNameValidator", kufangNameValidator]
       ])
     }
   ]
