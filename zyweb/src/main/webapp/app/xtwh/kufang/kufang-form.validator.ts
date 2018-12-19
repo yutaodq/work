@@ -10,13 +10,13 @@ import { KufangService } from "./kufang.service";
 import { Observable } from "rxjs";
 import "rxjs/add/operator/map";
 
-export function kufangNameValidator(): any {
-  return (control: AbstractControl): any => {
-    return console.log(`应用程序启动成功`);
-  };
+export function kufangNameValidator(): AsyncValidatorFn {
+  console.log(`异步验证`);
+  return null;
 }
 
-// export function kufangNameValidator(kufangService: KufangService): AsyncValidatorFn {
+// export function kufangNameValidator( kufangService: KufangService): AsyncValidatorFn {
+//   console.log(`异步验证`);
 //   return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
 //     return kufangService
 //       .isNameTaken(control.value)
@@ -28,7 +28,7 @@ export function kufangNameValidator(): any {
 // }
 
 // #start async-validator
-// @Injectable({ providedIn: "root" })
+@Injectable({ providedIn: "root" })
 export class UniqueNameValidator implements AsyncValidator {
   constructor(private kufangService: KufangService) {}
 

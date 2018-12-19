@@ -52,11 +52,12 @@ const SERVICE = [KufangFormService, KufangService];
       useValue: myCustomValidator,
       multi: true
     },
-    {
-      provide: NG_ASYNC_VALIDATORS,
-      useValue: UniqueNameValidator,
-      multi: true
-    },
+    // {
+    //   provide: NG_ASYNC_VALIDATORS,
+    //   useValue: UniqueNameValidator,
+    //   multi: true
+    // },
+
     {
       provide: NG_ASYNC_VALIDATORS,
       useValue: kufangNameValidator,

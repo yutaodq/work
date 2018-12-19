@@ -22,6 +22,7 @@ export class KufangService {
 
   isNameTaken(alterEgo: string): Observable<boolean> {
     const isTaken = ALTER_EGOS.includes(alterEgo);
+    console.log(`异步验证KufangService`);
 
     return of(isTaken).pipe(delay(400));
   }

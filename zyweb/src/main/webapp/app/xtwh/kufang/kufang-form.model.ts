@@ -16,6 +16,7 @@ import {
   UniqueNameValidator,
   kufangNameValidator
 } from "./kufang-form.validator";
+import { KufangService } from "./kufang.service";
 
 export const KUFANG_FORM_MODEL: DynamicFormControlModel[] = [
   new DynamicInputModel({
@@ -29,15 +30,20 @@ export const KUFANG_FORM_MODEL: DynamicFormControlModel[] = [
         name: myCustomValidator.name,
         args: null
       },
+      // asyncValidators: {
+      //   name: UniqueNameValidator,
+      //   args: null
+      // }
       asyncValidators: {
-        name: kufangNameValidator,
+        name: kufangNameValidator.name,
         args: null
       }
     },
     errorMessages: {
       required: "请您填写：{{ label }} ",
       minLength: "库房名称不能少于三个字",
-      myCustomValidator: "{{label}} cannot start with abc"
+      myCustomValidator: "{{label}} cannot start with abc",
+      kufangNameValidator: "addfdsfdfsdsf"
     }
   }),
   new DynamicTextAreaModel({
