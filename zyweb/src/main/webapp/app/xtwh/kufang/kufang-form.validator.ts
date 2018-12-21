@@ -7,12 +7,38 @@ import {
 } from "@angular/forms";
 import { catchError, map } from "rxjs/operators";
 import { KufangService } from "./kufang.service";
-import { Observable } from "rxjs";
+import { of } from "rxjs";
+import { Observable } from "rxjs/Observable";
+
 import "rxjs/add/operator/map";
+
+// export function blackListedMobileNumberValidator(userService: UserService): AsyncValidatorFn {
+//   return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+//     return userService.getBlackListedMobNumMobileNumberDetail(control.value).map(
+//       users => {
+//         return (users && users.length > 0) ? {"blackListedMobNum": true} : null;
+//       }
+//     );
+//   };
+// }
+
+// export function kufangNameValidator(): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
+//   console.log(`异步验证ddd`);
+//   return of(null);
+// }
 
 export function kufangNameValidator(): AsyncValidatorFn {
   console.log(`异步验证`);
-  return null;
+  return (
+    control: AbstractControl
+  ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+    console.log(`异步验证dddddddddddddddddddd`);
+    return of({ aaaaa: true });
+    // return new Promise((resolve, reject) => {
+    //   console.log("async validation");
+    //   resolve(null);
+    // });
+  };
 }
 
 // export function kufangNameValidator( kufangService: KufangService): AsyncValidatorFn {
