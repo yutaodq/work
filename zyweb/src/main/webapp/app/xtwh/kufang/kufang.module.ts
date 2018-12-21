@@ -7,12 +7,12 @@ import { NebularModule } from "app/core";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
 import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
-import {
-  DYNAMIC_VALIDATORS,
-  Validator,
-  ValidatorFactory
-} from "@ng-dynamic-forms/core";
 
+import {
+  Validator,
+  ValidatorFactory,
+  DYNAMIC_VALIDATORS
+} from "@ng-dynamic-forms/core";
 import {
   kufangRoute,
   KufangComponent,
@@ -40,6 +40,7 @@ const IMPORTS_MODULES = [
 const COMPONENT = [KufangComponent, KufangDetailComponent, KufangNewComponent];
 const ENTRY_COMPONENTS = [KufangComponent, KufangDetailComponent];
 const SERVICE = [KufangFormService, KufangService];
+
 @NgModule({
   imports: [...IMPORTS_MODULES, RouterModule.forChild(ROUTE)],
   declarations: [COMPONENT],
@@ -52,11 +53,11 @@ const SERVICE = [KufangFormService, KufangService];
       useValue: myCustomValidator,
       multi: true
     },
-    // {
-    //   provide: NG_ASYNC_VALIDATORS,
-    //   useValue: UniqueNameValidator,
-    //   multi: true
-    // },
+    {
+      provide: NG_ASYNC_VALIDATORS,
+      useValue: UniqueNameValidator,
+      multi: true
+    },
 
     {
       provide: NG_ASYNC_VALIDATORS,
