@@ -28,21 +28,24 @@ export const KUFANG_FORM_MODEL: DynamicFormControlModel[] = [
       minLength: 3,
       validator: {
         name: myCustomValidator.name,
-        args: null
+        args: "aaa"
       }
       // asyncValidators: {
       //   name: UniqueNameValidator,
       //   args: null
       // }
     },
-    // asyncValidators: {kufangNameValidator},
-
     asyncValidators: [
       {
         name: kufangNameValidator.name,
         args: null
       }
+      // {
+      //   name: UniqueNameValidator.name,
+      //   args: null
+      // }
     ],
+
     errorMessages: {
       required: "请您填写：{{ label }} ",
       minLength: "库房名称不能少于三个字",
