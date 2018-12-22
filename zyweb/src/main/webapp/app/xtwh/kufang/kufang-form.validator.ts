@@ -110,10 +110,9 @@ export function kufangNameValidator(): AsyncValidatorFn {
 
 // #start async-validator
 // @Injectable({ providedIn: "root" })
-
+@Injectable()
 export class UniqueNameValidator implements AsyncValidator {
   constructor(private kufangService: KufangService) {}
-
   validate(
     ctrl: AbstractControl
   ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {

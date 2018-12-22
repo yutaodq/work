@@ -13,6 +13,7 @@ import {
   ValidatorFactory,
   DYNAMIC_VALIDATORS
 } from "@ng-dynamic-forms/core";
+
 import {
   kufangRoute,
   KufangComponent,
@@ -39,7 +40,7 @@ const IMPORTS_MODULES = [
 ];
 const COMPONENT = [KufangComponent, KufangDetailComponent, KufangNewComponent];
 const ENTRY_COMPONENTS = [KufangComponent, KufangDetailComponent];
-const SERVICE = [KufangFormService, KufangService];
+const SERVICE = [KufangFormService, KufangService, UniqueNameValidator];
 
 @NgModule({
   imports: [...IMPORTS_MODULES, RouterModule.forChild(ROUTE)],
@@ -53,24 +54,12 @@ const SERVICE = [KufangFormService, KufangService];
       useValue: myCustomValidator,
       multi: true
     },
-    {
-      provide: NG_ASYNC_VALIDATORS,
-      useValue: UniqueNameValidator,
-      multi: true
-    },
 
     {
       provide: NG_ASYNC_VALIDATORS,
       useValue: kufangNameValidator,
       multi: true
     }
-    // {
-    //   provide: DYNAMIC_VALIDATORS,
-    //   useValue: new Map<string, Validator | ValidatorFactory>([
-    //     ["myCustomValidator", myCustomValidator],
-    //     ["kufangNameValidator", kufangNameValidator]
-    //   ])
-    // }
   ]
 })
 export class KufangModule {}

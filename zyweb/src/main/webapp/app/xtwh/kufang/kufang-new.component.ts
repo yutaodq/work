@@ -10,9 +10,11 @@ import {
 
 import { IKufangEntity } from "app/shared";
 import { KufangService } from "./";
+
 import { FormGroup } from "@angular/forms";
 import { KUFANG_FORM_MODEL } from "./kufang-form.model";
 import { KUFANG_FORM_LAYOUT } from "./kufang-form.layout";
+import { KufangFormService } from "app/xtwh/kufang/kufang-form.service";
 
 @Component({
   selector: "zy-kufang-new",
@@ -29,7 +31,7 @@ export class KufangNewComponent implements OnInit {
   constructor(
     private kufangService: KufangService,
     private activatedRoute: ActivatedRoute,
-    private formService: DynamicFormService
+    private formService: KufangFormService
   ) {
     this.activatedRoute.data.subscribe(data => {
       this.pageTitle = data.pageTitle;
@@ -42,15 +44,16 @@ export class KufangNewComponent implements OnInit {
       this.kufang = kufang;
       // this._form = this.itemCreateForm(kufang);
     });
-    this._formGroup = this.initForm();
+    this._formGroup = this.initForm(this.kufang);
   }
-  private initForm(): FormGroup {
-    return this.formService.createFormGroup(this.formModel);
-  }
-  // itemCreateForm(item: IKufangEntity) {
-  //   const form = this.formService.formCreate(item);
-  //   return form;
+  // private initForm(): FormGroup {
+  //   return this.formService.createFormGroup(this.formModel);
   // }
+
+  private initForm(item: IKufangEntity) {
+    const form = this.formService.formCreate(item);
+    return form;
+  }
 
   previousState() {
     window.history.back();
