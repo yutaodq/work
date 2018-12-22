@@ -18,6 +18,8 @@ import {
 } from "./kufang-form.validator";
 import { KufangService } from "./kufang.service";
 
+// const kufangService: KufangService = new KufangService();
+
 export const KUFANG_FORM_MODEL: DynamicFormControlModel[] = [
   new DynamicInputModel({
     id: "name",
@@ -35,16 +37,23 @@ export const KUFANG_FORM_MODEL: DynamicFormControlModel[] = [
       //   args: null
       // }
     },
-    asyncValidators: [
-      {
+    asyncValidators: {
+      validator: {
         name: kufangNameValidator.name,
         args: null
       }
-      // {
-      //   name: UniqueNameValidator.name,
-      //   args: null
-      // }
-    ],
+    },
+
+    // asyncValidators: [
+    //   {
+    //     name: kufangNameValidator.name,
+    //     args: null
+    //   }
+    //   // {
+    //   //   name: UniqueNameValidator.name,
+    //   //   args: null
+    //   // }
+    // ],
 
     errorMessages: {
       required: "请您填写：{{ label }} ",

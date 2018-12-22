@@ -14,42 +14,55 @@ import { Observable } from "rxjs/Observable";
 
 import "rxjs/add/operator/map";
 
-// export function blackListedMobileNumberValidator(userService: UserService): AsyncValidatorFn {
-//   return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
-//     return userService.getBlackListedMobNumMobileNumberDetail(control.value).map(
-//       users => {
-//         return (users && users.length > 0) ? {"blackListedMobNum": true} : null;
-//       }
-//     );
-//   };
-// }
+export function kufangNameValidator(): AsyncValidatorFn {
+  return (control: AbstractControl) => {
+    return new Promise(resolve => {
+      resolve({ forbiddenName: "jhhh" });
+    });
+    // new Promise((resolve, reject) => {
+    //   console.log("async validation");
+    //   resolve(null);
+    // });
+  };
+}
 
 // export function kufangNameValidator(): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
 //   console.log(`异步验证ddd`);
 //   return of(null);
 // }
-export function customAsyncFormGroupValidator(
-  formGroup: FormGroup
-): Promise<ValidationErrors | null> {
-  return new Promise((resolve, reject) => {
-    console.log("async validation");
-    resolve(null);
-  });
-}
+// formGroup: FormGroup,
 
-export function kufangNameValidator(): AsyncValidatorFn {
-  console.log(`异步验证`);
-  return (
-    control: AbstractControl
-  ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
-    console.log(`异步验证dddddddddddddddddddd`);
-    // return of({ aaaaa: true });
-    return new Promise((resolve, reject) => {
-      console.log("async validation");
-      resolve(null);
-    });
-  };
-}
+// export function kufangNameValidator(name: string): Promise<ValidationErrors | null> {
+//
+//   return new Promise((resolve, reject) => {
+//     console.log("async validation");
+//     resolve(null);
+//   });
+// }
+
+// export function kufangNameValidator(
+//   formGroup: String
+// ): Promise<ValidationErrors | null> {
+//   return new Promise((resolve, reject) => {
+//     console.log("async validation:" + formGroup);
+//     resolve(null);
+//   });
+// }
+
+// export function kufangNameValidator(kufangService: KufangService): AsyncValidatorFn {
+//   console.log(`异步验证`);
+//   return (
+//     control: AbstractControl
+//   ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+//     console.log(`异步验证dddddddddddddddddddd`);
+//     return this.kufangService
+//       .isNameTaken(control.value)
+//       .pipe(
+//         map(isTaken => (isTaken ? { kufangNameValidator: true } : null)),
+//         catchError(() => null)
+//       );
+//   };
+// }
 
 // export function kufangNameValidator( ): AsyncValidatorFn {
 //   console.log(`异步验证` );
