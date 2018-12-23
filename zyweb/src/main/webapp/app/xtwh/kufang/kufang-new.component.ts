@@ -44,15 +44,14 @@ export class KufangNewComponent implements OnInit {
       this.kufang = kufang;
       // this._form = this.itemCreateForm(kufang);
     });
-    this._formGroup = this.initForm(this.kufang);
+    this._formGroup = this.initForm();
   }
   // private initForm(): FormGroup {
   //   return this.formService.createFormGroup(this.formModel);
   // }
 
-  private initForm(item: IKufangEntity) {
-    const form = this.formService.formCreate(item);
-    return form;
+  private initForm() {
+    return this.formService.formCreate();
   }
 
   previousState() {
@@ -86,17 +85,6 @@ export class KufangNewComponent implements OnInit {
     this.isSaving = false;
   }
 
-  // private onError(errorMessage: string) {
-  //   this.jhiAlertService.error(errorMessage, null, null);
-  // }
-
-  // get kufang() {
-  //   return this.kufang;
-  // }
-  //
-  // set kufang(kufang: IKufangEntity) {
-  //   this.kufang = kufang;
-  // }
   get formGroup() {
     return this._formGroup;
   }

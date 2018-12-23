@@ -22,9 +22,9 @@ export class KufangService {
 
   isNameTaken(alterEgo: string): Observable<boolean> {
     const isTaken = ALTER_EGOS.includes(alterEgo);
-    console.log(`异步验证KufangService`);
+    console.log(`异步验证KufangService:` + isTaken);
 
-    return of(isTaken).pipe(delay(400));
+    return of(isTaken).pipe(delay(100));
   }
   create(product: IKufangEntity): Observable<EntityResponseType> {
     return this.http.post<IKufangEntity>(this.resourceUrl, product, {

@@ -2,34 +2,58 @@ import {
   FormControl,
   FormGroup,
   Validators,
-  FormBuilder
+  FormBuilder,
+  AsyncValidatorFn
 } from "@angular/forms";
 
 import { UniqueNameValidator } from "app/xtwh/kufang/kufang-form.validator";
 import { Injectable } from "@angular/core";
 import { FormService, KufangEntity } from "app/shared";
+import { KufangService } from "app/xtwh/kufang/kufang.service";
+import {
+  kufangNameValidator,
+  myCustomValidator
+} from "./kufang-form.validator";
 
 @Injectable()
-export class KufangFormService extends FormService<KufangEntity> {
+// export class KufangFormService extends FormService<KufangEntity> {
+export class KufangFormService {
   constructor(
     private uniqueNameValidator: UniqueNameValidator,
-    fb: FormBuilder
-  ) {
-    super(fb);
+    private kufangService: KufangService,
+    private fb: FormBuilder
+  ) {}
+
+  formCreate(): FormGroup {
+    return this.fb.group({
+      name: [
+        "",
+        {
+          validators: [
+            Validators.required,
+            Validators.minLength(3),
+            myCustomValidator("abc")
+          ],
+          asyncValidators: kufangNameValidator(this.kufangService),
+          updateOn: "blur"
+        }
+      ],
+      bz: [""]
+    });
   }
 
   formConfig(item?: KufangEntity): { [name: string]: any } {
     return {
       name: [
-        "jjjjjj",
-        [Validators.required, Validators.minLength(3)],
-        [this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)]
-      ],
-      bz: [
         "",
-        [Validators.required, Validators.minLength(3)],
-        [this.uniqueNameValidator.validate.bind(this.uniqueNameValidator)]
-      ]
+        [
+          Validators.required,
+          Validators.minLength(3),
+          myCustomValidator("abc")
+        ],
+        [kufangNameValidator(this.kufangService)]
+      ],
+      bz: ["", [Validators.required, Validators.minLength(3)], []]
     };
   }
 

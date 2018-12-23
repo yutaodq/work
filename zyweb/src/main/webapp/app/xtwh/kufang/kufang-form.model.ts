@@ -17,6 +17,7 @@ import {
   kufangNameValidator
 } from "./kufang-form.validator";
 import { KufangService } from "./kufang.service";
+import { Validators } from "@angular/forms";
 
 // const kufangService: KufangService = new KufangService();
 
@@ -43,7 +44,6 @@ export const KUFANG_FORM_MODEL: DynamicFormControlModel[] = [
         args: null
       }
     },
-
     // asyncValidators: [
     //   {
     //     name: kufangNameValidator.name,

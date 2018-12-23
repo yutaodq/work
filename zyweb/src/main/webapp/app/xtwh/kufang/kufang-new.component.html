@@ -1,4 +1,3 @@
-dsfasdfsdffdff
 
 <!--<nb-card>-->
 <!--使用ng-dynamic-forms库时需要用到的-->
@@ -33,6 +32,7 @@ dsfasdfsdffdff
         <label for="name">Name</label>
         <input id="name" class="form-control"
                formControlName="name" required>
+
         <div *ngIf="formGroup.get('name').invalid && (formGroup.get('name').dirty || formGroup.get('name').touched)"
              class="alert alert-danger">
             <div *ngIf="formGroup.get('name').errors.required">
@@ -41,10 +41,21 @@ dsfasdfsdffdff
             <div *ngIf="formGroup.get('name').errors.minlength">
                 Name must be at least 4 characters long.
             </div>
+            <div *ngIf="formGroup.get('name').errors.myCustomValidator">
+                myCustomValidator myCustomValidator.
+            </div>
+            <!--<div *ngIf="formGroup.get('name').errors?.kufangNameValidator">-->
+                <!--Alter ego is already taken.-->
+            <!--</div>-->
+
         </div>
-        <div *ngIf="formGroup.get('name').pending">Validating...</div>
+
+        <div *ngIf="formGroup.get('name').status === 'PENDING'">
+            正在验证...
+        </div>
         <div *ngIf="formGroup.get('name').invalid" class="alert alert-danger alter-ego-errors">
-            <div *ngIf="formGroup.get('name').errors?.uniqueName">
+            <!--dddddddd-->
+            <div *ngIf="formGroup.get('name').errors.kufangNameValidator">
                 Alter ego is already taken.
             </div>
         </div>
