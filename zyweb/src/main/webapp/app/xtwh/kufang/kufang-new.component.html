@@ -1,168 +1,95 @@
 
-<!--<nb-card>-->
-<!--使用ng-dynamic-forms库时需要用到的-->
-    <!--<nb-card-header>库房名称记录</nb-card-header>-->
-    <!--<nb-card-body>-->
+<nb-card>
+使用ng-dynamic-forms库时需要用到的
+    <nb-card-header>库房名称记录</nb-card-header>
+    <nb-card-body>
 
-        <!--<form class="form-horizontal" [formGroup]="formGroup">-->
+        <form class="form-horizontal" [formGroup]="formGroup">
 
-            <!--<dynamic-ng-bootstrap-form [group]="formGroup"-->
-                                       <!--[model]="formModel"-->
-                                       <!--[layout]="formLayout"-->
+            <dynamic-ng-bootstrap-form [group]="formGroup"
+                                       [model]="formModel"
+                                       [layout]="formLayout"
 
-            <!--&gt;-->
+            >
 
-            <!--</dynamic-ng-bootstrap-form>-->
+            </dynamic-ng-bootstrap-form>
 
-            <!--<button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">-->
-                <!--<fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>取消</span>-->
-            <!--</button>-->
-            <!--<button type="submit" id="save-entity" [disabled]="formGroup.invalid || isSaving"-->
-                    <!--class="btn btn-primary">-->
-                <!--<fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>保存</span>-->
-            <!--</button>-->
+            <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>取消</span>
+            </button>
+            <button type="submit" id="save-entity" [disabled]="formGroup.invalid || isSaving"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>保存</span>
+            </button>
 
-        <!--</form>-->
-    <!--</nb-card-body>-->
-<!--</nb-card>-->
+        </form>
+    </nb-card-body>
+</nb-card>
 
 
-<form [formGroup]="formGroup" #formDir="ngForm">
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input id="name" class="form-control"
-               formControlName="name" required>
+<!--<form [formGroup]="formGroup" #formDir="ngForm">-->
+    <!--<div class="form-group">-->
+        <!--<label for="name">Name</label>-->
+        <!--<input id="name" class="form-control"-->
+               <!--formControlName="name" required>-->
 
-        <div *ngIf="formGroup.get('name').invalid && (formGroup.get('name').dirty || formGroup.get('name').touched)"
-             class="alert alert-danger">
-            <div *ngIf="formGroup.get('name').errors.required">
-                Name is required.
-            </div>
-            <div *ngIf="formGroup.get('name').errors.minlength">
-                Name must be at least 4 characters long.
-            </div>
-            <div *ngIf="formGroup.get('name').errors.myCustomValidator">
-                myCustomValidator myCustomValidator.
-            </div>
-            <!--<div *ngIf="formGroup.get('name').errors?.kufangNameValidator">-->
+        <!--<div *ngIf="formGroup.get('name').invalid && (formGroup.get('name').dirty || formGroup.get('name').touched)"-->
+             <!--class="alert alert-danger">-->
+            <!--<div *ngIf="formGroup.get('name').errors.required">-->
+                <!--Name is required.-->
+            <!--</div>-->
+            <!--<div *ngIf="formGroup.get('name').errors.minlength">-->
+                <!--Name must be at least 4 characters long.-->
+            <!--</div>-->
+            <!--<div *ngIf="formGroup.get('name').errors.myCustomValidator">-->
+                <!--myCustomValidator myCustomValidator.-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div *ngIf="formGroup.get('name').status === 'PENDING'">-->
+            <!--正在验证...-->
+        <!--</div>-->
+        <!--<div *ngIf="formGroup.get('name').invalid" class="alert alert-danger alter-ego-errors">-->
+            <!--&lt;!&ndash;dddddddd&ndash;&gt;-->
+            <!--<div *ngIf="formGroup.get('name').errors.kufangNameValidator">-->
                 <!--Alter ego is already taken.-->
             <!--</div>-->
+        <!--</div>-->
 
-        </div>
+    <!--</div>-->
+    <!--<div class="form-group">-->
+        <!--<label for="bz">bz</label>-->
+        <!--<input id="bz" class="form-control" formControlName="bz">-->
 
-        <div *ngIf="formGroup.get('name').status === 'PENDING'">
-            正在验证...
-        </div>
-        <div *ngIf="formGroup.get('name').invalid" class="alert alert-danger alter-ego-errors">
-            <!--dddddddd-->
-            <div *ngIf="formGroup.get('name').errors.kufangNameValidator">
-                Alter ego is already taken.
-            </div>
-        </div>
-
-    </div>
-    <div class="form-group">
-        <label for="bz">bz</label>
-        <input id="bz" class="form-control" formControlName="bz">
-
-        <div *ngIf="formGroup.get('bz').invalid && (formGroup.get('bz').dirty || formGroup.get('bz').touched)"
-             class="alert alert-danger">
-            <div *ngIf="formGroup.get('bz').errors.required">
-                Name is required.
-            </div>
-            <div *ngIf="formGroup.get('bz').errors.minlength">
-                Name must be at least 4 characters long.
-            </div>
-        </div>
+        <!--<div *ngIf="formGroup.get('bz').invalid && (formGroup.get('bz').dirty || formGroup.get('bz').touched)"-->
+             <!--class="alert alert-danger">-->
+            <!--<div *ngIf="formGroup.get('bz').errors.required">-->
+                <!--Name is required.-->
+            <!--</div>-->
+            <!--<div *ngIf="formGroup.get('bz').errors.minlength">-->
+                <!--Name must be at least 4 characters long.-->
+            <!--</div>-->
+        <!--</div>-->
 
 
-        <div *ngIf="formGroup.get('bz').pending">Validating...</div>
-        <div *ngIf="formGroup.get('bz').invalid" class="alert alert-danger alter-ego-errors">
-            <div *ngIf="formGroup.get('bz').errors?.uniqueName">
-                Alter ego is already taken.
-            </div>
-        </div>
+        <!--<div *ngIf="formGroup.get('bz').pending">Validating...</div>-->
+        <!--<div *ngIf="formGroup.get('bz').invalid" class="alert alert-danger alter-ego-errors">-->
+            <!--<div *ngIf="formGroup.get('bz').errors?.uniqueName">-->
+                <!--Alter ego is already taken.-->
+            <!--</div>-->
+        <!--</div>-->
 
-    </div>
-    <div>
-        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-        <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>取消</span>
-        </button>
-        <button type="submit" id="save-entity" [disabled]="formGroup.invalid || isSaving"
-        class="btn btn-primary">
-        <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>保存</span>
-        </button>
+    <!--</div>-->
+    <!--<div>-->
+        <!--<button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">-->
+        <!--<fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>取消</span>-->
+        <!--</button>-->
+        <!--<button type="submit" id="save-entity" [disabled]="formGroup.invalid || isSaving"-->
+        <!--class="btn btn-primary">-->
+        <!--<fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>保存</span>-->
+        <!--</button>-->
 
-    </div>
-</form>
-
-
-<!--<div class="form-group">-->
-<!--&lt;!&ndash;<label class="form-control-label" for="field_kufangBz">{{form.get('bz').label}}</label>&ndash;&gt;-->
-<!--<input type="text" class="form-control" id="field_kufangBz"-->
-<!--formControlName="bz"-->
-<!--/>-->
-<!--</div>-->
-
-<!--<div>-->
-<!--<button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">-->
-<!--<fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>取消</span>-->
-<!--</button>-->
-<!--<button type="submit" id="save-entity" [disabled]="form.invalid || isSaving"-->
-<!--class="btn btn-primary">-->
-<!--<fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>保存</span>-->
-<!--</button>-->
-<!--</div>-->
-<!---->
-
-
-<!--<div>-->
-<!--<nb-card>-->
-<!--<nb-card-header>库房名称记录</nb-card-header>-->
-<!--<nb-card-body>-->
-<!--<form name="editForm" role="form" novalidate (ngSubmit)="save()" [_formGroup]="form">-->
-<!--<div class="form-group">-->
-
-<!--&lt;!&ndash;<label class="form-control-label" for="field_kufangName">{{form.get('name').label}}</label>&ndash;&gt;-->
-<!--&lt;!&ndash;<input type="text" class="form-control" name="kufangName" id="field_kufangName"&ndash;&gt;-->
-<!--&lt;!&ndash;formControlName="name"&ndash;&gt;-->
-<!--&lt;!&ndash;[(ngModel)]="kufang.name"/>&ndash;&gt;-->
-
-<!--<input id="name" class="form-control"-->
-<!--formControlName="name" required>-->
-
-<!--<div *ngIf="name.dirty || name.touched"-->
-<!--class="alert alert-danger">-->
-<!--&lt;!&ndash;<div *ngIf="name.errors.required">&ndash;&gt;-->
-<!--&lt;!&ndash;Name is required.&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--&lt;!&ndash;<div *ngIf="name.errors.minlength">&ndash;&gt;-->
-<!--&lt;!&ndash;Name must be at least 4 characters long.&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--&lt;!&ndash;<div *ngIf="name.errors.forbiddenName">&ndash;&gt;-->
-<!--&lt;!&ndash;Name cannot be Bob.&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--</div>-->
-
-<!--</div>-->
-
-<!--<div class="form-group">-->
-<!--&lt;!&ndash;<label class="form-control-label" for="field_kufangBz">{{form.get('bz').label}}</label>&ndash;&gt;-->
-<!--<input type="text" class="form-control" name="kufangBz" id="field_kufangBz"-->
-<!--formControlName="bz"-->
-<!--[(ngModel)]="kufang.bz"/>-->
-<!--</div>-->
-
-<!--<div>-->
-<!--<button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">-->
-<!--<fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>取消</span>-->
-<!--</button>-->
-<!--<button type="submit" id="save-entity" [disabled]="form.invalid || isSaving"-->
-<!--class="btn btn-primary">-->
-<!--<fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>保存</span>-->
-<!--</button>-->
-<!--</div>-->
+    <!--</div>-->
 <!--</form>-->
-<!--</nb-card-body>-->
-<!--</nb-card>-->
-<!--</div>-->
+
+
