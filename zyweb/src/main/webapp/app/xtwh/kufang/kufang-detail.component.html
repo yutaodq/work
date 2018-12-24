@@ -1,23 +1,45 @@
-<div>
-    <nb-card>
-        <nb-card-header>
-            <zy-form-header [title]="pageTitle">  </zy-form-header>
-        </nb-card-header>
+<zy-form>
+    <div name="header">
+        <zy-form-header [title]="pageTitle"></zy-form-header>
+    </div>
+    <div name="form">
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">库房名称</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email"
+                       [ngModel]="kufang.name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">备注</label>
+                <textarea class="form-control" id="exampleInputPassword1" placeholder="Message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-danger">Submit</button>
+        </form>
 
-        <nb-card-body>
-            <form>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">库房名称</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email"
-                           [ngModel]="kufang.name" name="name">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">备注</label>
-                    <textarea class="form-control" id="exampleInputPassword1" placeholder="Message"></textarea>
-                </div>
-                <button type="submit" class="btn btn-danger">Submit</button>
-            </form>
+    </div>
+</zy-form>
 
-        </nb-card-body>
-    </nb-card>
-</div>
+
+<!--<div>-->
+<!--<nb-card>-->
+<!--<nb-card-header >-->
+<!--<zy-form-header [title]="pageTitle">  </zy-form-header>-->
+<!--</nb-card-header>-->
+
+<!--<nb-card-body>-->
+<!--<form>-->
+<!--<div class="form-group">-->
+<!--<label for="exampleInputEmail1">库房名称</label>-->
+<!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email"-->
+<!--[ngModel]="kufang.name" name="name">-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<label for="exampleInputPassword1">备注</label>-->
+<!--<textarea class="form-control" id="exampleInputPassword1" placeholder="Message"></textarea>-->
+<!--</div>-->
+<!--<button type="submit" class="btn btn-danger">Submit</button>-->
+<!--</form>-->
+
+<!--</nb-card-body>-->
+<!--</nb-card>-->
+<!--</div>-->

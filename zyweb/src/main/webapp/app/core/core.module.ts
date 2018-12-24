@@ -19,7 +19,8 @@ import {
   ZyCardTableComponent,
   ZyTableColumnActionComponent,
   ZyTableButtonComponent,
-  ZyFormHeaderComponent
+  ZyFormHeaderComponent,
+  ZyFormComponent
 } from "./components";
 
 import { AnalyticsService, UserService, LayoutService } from "app/core/service";
@@ -32,7 +33,8 @@ const COMPONENTS = [
   ZyCardTableComponent,
   ZyTableColumnActionComponent,
   ZyTableButtonComponent,
-  ZyFormHeaderComponent
+  ZyFormHeaderComponent,
+  ZyFormComponent
 ];
 
 const BASE_MODULES = [
