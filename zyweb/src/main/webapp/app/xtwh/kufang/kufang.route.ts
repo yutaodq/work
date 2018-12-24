@@ -46,7 +46,7 @@ export const kufangRoute: Routes = [
     },
     data: {
       authorities: ["ROLE_USER"],
-      pageTitle: "工具-查看表单"
+      pageTitle: "库房名称-查看表单"
     },
     canActivate: [UserRouteAccessService]
   },
