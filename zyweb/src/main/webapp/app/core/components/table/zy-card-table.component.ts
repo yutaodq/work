@@ -6,12 +6,6 @@ import { Component, Input, EventEmitter, Output } from "@angular/core";
 })
 export class ZyCardTableComponent {
   private _title: string;
-  @Output() createRecord = new EventEmitter<string>();
-
-  create(): void {
-    console.log("The child speak status is ");
-    this.createRecord.emit("abc");
-  }
 
   @Input()
   set title(value: string) {

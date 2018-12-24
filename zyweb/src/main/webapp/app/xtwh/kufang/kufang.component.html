@@ -1,10 +1,7 @@
 
-<zy-card-table
-        [title]="pageTitle"
-        (createRecord)="onCreate($event)"
->
+<zy-card-table  [title]="pageTitle">
     <div name="button-top">
-    <zy-table-button> </zy-table-button>
+    <zy-table-button (createButtonClick) = "onCreate($event)"> </zy-table-button>
     </div>
 
     <div name="datatable">
@@ -33,6 +30,7 @@
                     {{value}}
                 </ng-template>
             </ngx-datatable-column>
+
             <ngx-datatable-column name="标识" prop="identifier">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                     {{value}}
