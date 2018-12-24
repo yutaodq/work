@@ -21,10 +21,10 @@ import { KUFANG_FORM_LAYOUT } from "./kufang-form.layout";
 })
 export class KufangNewComponent implements OnInit {
   kufang: IKufangEntity;
-  isSaving: boolean;
-  pageTitle: string;
+  _isSaving: boolean;
+  _pageTitle: string;
   _formGroup: FormGroup;
-  formModel: DynamicFormControlModel[];
+  _formModel: DynamicFormControlModel[];
 
   formLayout: DynamicFormLayout = KUFANG_FORM_LAYOUT;
   constructor(
@@ -32,24 +32,22 @@ export class KufangNewComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private formService: DynamicFormService,
     private kufangFormModel: KufangFormModel
-  ) {
-    this.activatedRoute.data.subscribe(data => {
-      this.pageTitle = data.pageTitle;
-      // this.formModel = this.kufangFormModel.formModel;
-    });
-  }
+  ) {}
 
   ngOnInit() {
-    this.isSaving = false;
+    this.activatedRoute.data.subscribe(data => {
+      this._pageTitle = data.pageTitle;
+    });
     this.activatedRoute.data.subscribe(({ kufang }) => {
       this.kufang = kufang;
+      this.initForm();
     });
-    this._formGroup = this.initForm();
+    this._isSaving = false;
   }
 
-  private initForm(): FormGroup {
-    this.formModel = this.kufangFormModel.formModel;
-    return this.formService.createFormGroup(this.formModel);
+  private initForm() {
+    this._formModel = this.kufangFormModel.createFormModel(this.kufang);
+    this._formGroup = this.formService.createFormGroup(this._formModel);
   }
 
   previousState() {
@@ -57,7 +55,7 @@ export class KufangNewComponent implements OnInit {
   }
 
   save() {
-    this.isSaving = true;
+    this._isSaving = true;
     if (this.kufang.id !== undefined) {
       this.subscribeToSaveResponse(this.kufangService.update(this.kufang));
     } else {
@@ -75,15 +73,21 @@ export class KufangNewComponent implements OnInit {
   }
 
   private onSaveSuccess() {
-    this.isSaving = false;
+    this._isSaving = false;
     this.previousState();
   }
 
   private onSaveError() {
-    this.isSaving = false;
+    this._isSaving = false;
   }
 
   get formGroup() {
     return this._formGroup;
+  }
+  get pageTitle() {
+    return this._pageTitle;
+  }
+  get isSaving() {
+    return this._isSaving;
   }
 }

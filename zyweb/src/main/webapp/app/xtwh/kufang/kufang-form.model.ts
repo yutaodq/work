@@ -17,13 +17,14 @@ import {
 } from "./kufang-form.validator";
 import { Injectable, OnInit } from "@angular/core";
 import { KufangService } from "app/xtwh/kufang/index";
+import { IKufangEntity } from "app/shared";
 
 @Injectable()
 export class KufangFormModel implements OnInit {
   constructor(private kufangService: KufangService) {}
   ngOnInit() {}
 
-  get formModel() {
+  createFormModel(kufang: IKufangEntity): DynamicFormControlModel[] {
     return [
       new DynamicInputModel({
         id: "name",
