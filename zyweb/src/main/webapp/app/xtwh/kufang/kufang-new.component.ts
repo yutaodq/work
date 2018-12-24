@@ -35,7 +35,7 @@ export class KufangNewComponent implements OnInit {
   ) {
     this.activatedRoute.data.subscribe(data => {
       this.pageTitle = data.pageTitle;
-      this.formModel = this.kufangFormModel.formModel;
+      // this.formModel = this.kufangFormModel.formModel;
     });
   }
 
@@ -48,6 +48,7 @@ export class KufangNewComponent implements OnInit {
   }
 
   private initForm(): FormGroup {
+    this.formModel = this.kufangFormModel.formModel;
     return this.formService.createFormGroup(this.formModel);
   }
 
