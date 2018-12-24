@@ -29,6 +29,7 @@ export class KufangFormModel implements OnInit {
       new DynamicInputModel({
         id: "name",
         label: "库房名称",
+        value: kufang.name,
         placeholder: "库房名称",
         validators: {
           required: null,
@@ -54,6 +55,7 @@ export class KufangFormModel implements OnInit {
       new DynamicTextAreaModel({
         id: "bz",
         label: "库房说明",
+        value: kufang.bz,
         placeholder: "请在此处填写该库房的信息",
         rows: 5
       })
