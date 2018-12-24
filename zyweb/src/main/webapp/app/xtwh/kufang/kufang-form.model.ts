@@ -8,19 +8,14 @@ import {
   DynamicRadioGroupModel,
   DynamicRatingModel,
   DynamicSelectModel,
-  DynamicTextAreaModel,
-  DynamicTimePickerModel,
-  DynamicFormService
+  DynamicTextAreaModel
 } from "@ng-dynamic-forms/core";
 
 import {
   myCustomValidator,
-  UniqueNameValidator,
   kufangNameValidator
 } from "./kufang-form.validator";
 import { Injectable, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { FormGroup } from "@angular/forms";
 import { KufangService } from "app/xtwh/kufang/index";
 
 @Injectable()
@@ -48,12 +43,11 @@ export class KufangFormModel implements OnInit {
             args: this.kufangService
           }
         },
-
         errorMessages: {
           required: "请您填写：{{ label }} ",
-          minLength: "库房名称不能少于三个字",
+          minLength: "{{ label }}不能少于三个字",
           myCustomValidator: "{{label}} cannot start with abc",
-          kufangNameValidator: "您录入的库房名称已经使用"
+          kufangNameValidator: "您录入的{{ label }}已经使用"
         }
       }),
       new DynamicTextAreaModel({
