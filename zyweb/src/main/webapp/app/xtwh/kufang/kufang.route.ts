@@ -27,7 +27,7 @@ export class KufangResolve implements Resolve<IKufangEntity> {
         .find(id)
         .pipe(map((kufang: HttpResponse<KufangEntity>) => kufang.body));
     }
-    return of(new KufangEntity("", "", "yu", "记录库房-于"));
+    return of(new KufangEntity());
   }
 }
 

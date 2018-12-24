@@ -42,6 +42,12 @@
                 </ng-template>
             </ngx-datatable-column>
 
+            <ngx-datatable-column name="备注" prop="bz">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
+
         </ngx-datatable>
 
     </div>

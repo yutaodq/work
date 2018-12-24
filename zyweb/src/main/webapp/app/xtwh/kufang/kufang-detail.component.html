@@ -2,13 +2,15 @@
     <div name="form">
         <form>
             <div class="form-group">
-                <label for="exampleInputEmail1">库房名称</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email"
+                <label for="exampleInputName">库房名称</label>
+                <input type="text" class="form-control" id="exampleInputName" placeholder="Email"
                        [ngModel]="kufang.name" name="name">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">备注</label>
-                <textarea class="form-control" id="exampleInputPassword1" placeholder="Message"></textarea>
+                <label for="exampleInputBz">备注</label>
+                <textarea class="form-control" id="exampleInputBz" placeholder="Message"
+                          [ngModel]="kufang.bz" name="bz">
+                </textarea>
             </div>
 
             <button type="button" class="btn btn-primary" (click)="previousState()">

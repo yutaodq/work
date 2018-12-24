@@ -56,6 +56,9 @@ export class KufangNewComponent implements OnInit {
 
   save() {
     this._isSaving = true;
+    this.kufang.name = this.formGroup.value["name"];
+    this.kufang.bz = this.formGroup.value["bz"];
+    console.warn(this.formGroup.value);
     if (this.kufang.id !== undefined) {
       this.subscribeToSaveResponse(this.kufangService.update(this.kufang));
     } else {

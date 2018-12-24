@@ -3,7 +3,7 @@
     <nb-card-header>库房名称记录</nb-card-header>
     <nb-card-body>
 
-        <form class="form-horizontal" [formGroup]="formGroup">
+        <form class="form-horizontal" [formGroup]="formGroup"  (ngSubmit)="save()">
 
             <dynamic-ng-bootstrap-form [group]="formGroup"
                                        [model]="_formModel"

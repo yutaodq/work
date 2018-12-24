@@ -3,6 +3,7 @@ package zy.cy6.zyxt.web.controller;
 /*
  *参见 spring官方案例 spring-hateoas-examples
  */
+
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,70 +29,69 @@ import java.util.Optional;
 @Slf4j
 @RequestMapping("/api")
 public class KufangController {
-    private final KufangService kufangService;
-    private final KufangQueryService kufangQueryService;
+  private final KufangService kufangService;
+  private final KufangQueryService kufangQueryService;
 
-    private final KufangResourceAssembler assembler;
-    private final CommandGateway commandGateway;
-    private static final String ENTITY_NAME = "KufangEntity";
+  private final KufangResourceAssembler assembler;
+  private final CommandGateway commandGateway;
+  private static final String ENTITY_NAME = "KufangEntity";
 
-    @Autowired
-    public KufangController(KufangResourceAssembler assembler, CommandGateway commandGateway, KufangService kufangService,
-                            KufangQueryService kufangQueryService) {
-        this.assembler = assembler;
-        this.commandGateway = commandGateway;
-        this.kufangService = kufangService;
-        this.kufangQueryService = kufangQueryService;
+  @Autowired
+  public KufangController(KufangResourceAssembler assembler, CommandGateway commandGateway, KufangService kufangService, KufangQueryService kufangQueryService) {
+    this.assembler = assembler;
+    this.commandGateway = commandGateway;
+    this.kufangService = kufangService;
+    this.kufangQueryService = kufangQueryService;
 
-    }
+  }
 
-    @GetMapping(value = "/kufangEntities", produces = MediaTypes.HAL_JSON_VALUE)
-    @Timed
-    public List<KufangEntity> getAllKufangs() {
-        log.info("所有的工具记录");
-        return kufangService.findAllKufang();
-    }
+  @GetMapping(value = "/kufangEntities", produces = MediaTypes.HAL_JSON_VALUE)
+  @Timed
+  public List<KufangEntity> getAllKufangs() {
+    log.info("所有的工具记录");
+    return kufangService.findAllKufang();
+  }
 
-    @GetMapping(value = "/kufangEntities/{id}", produces = MediaTypes.HAL_JSON_VALUE)
-    public ResponseEntity<Resource<KufangEntity>> findOne(@PathVariable Long id) {
-        log.info("查找一个记录");
-        return kufangQueryService.findOne(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-    }
+  @GetMapping(value = "/kufangEntities/{id}", produces = MediaTypes.HAL_JSON_VALUE)
+  public ResponseEntity<Resource<KufangEntity>> findOne(@PathVariable Long id) {
+    log.info("查找一个记录");
+    return kufangQueryService.findOne(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+  }
 
-    @DeleteMapping("/kufangEntities/{id}")
-    public ResponseEntity<Void> deleteCountry(@PathVariable Long id) {
-        log.info("删除工具记录 : {}", id);
-        //    countryService.delete(id);
-        //    return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME,
-        // id.toString())).build();
-        return null;
-    }
-    /**
-     * POST /countries : Create a new kufang.
-     * 创建新记录
-     *
-     * @param kufang the country to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new country, or with
-     * status 400 (Bad Request) if the country has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
+  @DeleteMapping("/kufangEntities/{id}")
+  public ResponseEntity<Void> deleteCountry(@PathVariable Long id) {
+    log.info("删除工具记录 : {}", id);
+    //    countryService.delete(id);
+    //    return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME,
+    // id.toString())).build();
+    return null;
+  }
 
-    @PostMapping("/kufangEntities")
-    public ResponseEntity createKufang(@RequestBody KufangEntity kufang) {
-        Optional<KufangName> name = createKufangName(kufang.getName());
-        KufangId id = KufangId.create();
-        String bz = kufang.getBz();
-        CreateKufangCommand command = new CreateKufangCommand(id, name.get(), bz);
-        commandGateway.sendAndWait(command);
+  /**
+   * POST /countries : Create a new kufang.
+   * 创建新记录
+   *
+   * @param kufang the country to create
+   * @return the ResponseEntity with status 201 (Created) and with body the new country, or with
+   * status 400 (Bad Request) if the country has already an ID
+   * @throws URISyntaxException if the Location URI syntax is incorrect
+   */
 
-        return ResponseEntity.ok(assembler.toResource(kufangQueryService.findByIdentifier(command.getKufangId().getIdentifier()).get()));
+  @PostMapping("/kufangEntities")
+  public ResponseEntity createKufang(@RequestBody KufangEntity kufang) {
+    Optional<KufangName> name = createKufangName(kufang.getName());
+    KufangId id = KufangId.create();
+    String bz = kufang.getBz();
+    CreateKufangCommand command = new CreateKufangCommand(id, name.get(), bz);
+    commandGateway.sendAndWait(command);
+
+    return ResponseEntity.ok(assembler.toResource(kufangQueryService.findByIdentifier(command.getKufangId().getIdentifier()).get()));
 //return kufangService.create(kufang);
-    }
+  }
 
-    private Optional<KufangName> createKufangName(String name) {
-        return Optional.of(KufangName.create(name));
-    }
-
+  private Optional<KufangName> createKufangName(String name) {
+    return Optional.of(KufangName.create(name));
+  }
 
 
 }
