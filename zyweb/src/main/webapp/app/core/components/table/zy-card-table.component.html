@@ -3,24 +3,8 @@
         <nb-card-header class="text-center">
             <h3> {{title}} </h3>
         </nb-card-header>
-
         <nb-card-body>
-            <div class="row" name="button">
-                <div class="col-lg-6">
-                    <div class="pull-left">
-                        <button  type="button" nbButton (click)="create($event)">
-                            <fa-icon [icon]="'plus'"></fa-icon>&nbsp;<span>增加新记录</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="pull-right">
-                        ddddd
-                    </div>
-                </div>
-            </div>
-
-            <ng-content select="[name=button]"></ng-content>
+            <ng-content select="[name=button-top]"></ng-content>
             <p></p>
             <ng-content select="[name=datatable]"></ng-content>
         </nb-card-body>
