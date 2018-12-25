@@ -22,7 +22,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: "库房名称",
-        link: "kufang"
+        link: "_entity"
       },
       {
         title: "工具名称",

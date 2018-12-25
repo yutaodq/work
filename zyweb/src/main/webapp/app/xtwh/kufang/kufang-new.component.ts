@@ -12,7 +12,7 @@ import { IKufangEntity } from "app/shared";
 import { KufangService } from "./";
 
 import { FormGroup } from "@angular/forms";
-import { KufangFormModel } from "./kufang-form.model";
+import { KufangFormModelService } from "./kufang-form-model.service";
 import { KUFANG_FORM_LAYOUT } from "./kufang-form.layout";
 
 @Component({
@@ -20,7 +20,7 @@ import { KUFANG_FORM_LAYOUT } from "./kufang-form.layout";
   templateUrl: "./kufang-new.component.html"
 })
 export class KufangNewComponent implements OnInit {
-  kufang: IKufangEntity;
+  _entity: IKufangEntity;
   _isSaving: boolean;
   _pageTitle: string;
   _formGroup: FormGroup;
@@ -31,7 +31,7 @@ export class KufangNewComponent implements OnInit {
     private kufangService: KufangService,
     private activatedRoute: ActivatedRoute,
     private formService: DynamicFormService,
-    private kufangFormModel: KufangFormModel
+    private formModelService: KufangFormModelService
   ) {}
 
   ngOnInit() {
@@ -39,14 +39,14 @@ export class KufangNewComponent implements OnInit {
       this._pageTitle = data.pageTitle;
     });
     this.activatedRoute.data.subscribe(({ kufang }) => {
-      this.kufang = kufang;
+      this._entity = kufang;
       this.initForm();
     });
     this._isSaving = false;
   }
 
   private initForm() {
-    this._formModel = this.kufangFormModel.createFormModel(this.kufang);
+    this._formModel = this.formModelService.createFormModel(this._entity);
     this._formGroup = this.formService.createFormGroup(this._formModel);
   }
 
@@ -56,13 +56,13 @@ export class KufangNewComponent implements OnInit {
 
   save() {
     this._isSaving = true;
-    this.kufang.name = this.formGroup.value["name"];
-    this.kufang.bz = this.formGroup.value["bz"];
+    this._entity.name = this.formGroup.value["name"];
+    this._entity.bz = this.formGroup.value["bz"];
     console.warn(this.formGroup.value);
-    if (this.kufang.id !== undefined) {
-      this.subscribeToSaveResponse(this.kufangService.update(this.kufang));
+    if (this._entity.id !== undefined) {
+      this.subscribeToSaveResponse(this.kufangService.update(this._entity));
     } else {
-      this.subscribeToSaveResponse(this.kufangService.create(this.kufang));
+      this.subscribeToSaveResponse(this.kufangService.create(this._entity));
     }
   }
 
@@ -92,5 +92,8 @@ export class KufangNewComponent implements OnInit {
   }
   get isSaving() {
     return this._isSaving;
+  }
+  get entity() {
+    return this._entity;
   }
 }

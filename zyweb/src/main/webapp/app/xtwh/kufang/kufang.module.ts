@@ -21,7 +21,7 @@ import {
   KufangNewComponent,
   KufangService,
   KufangFormService,
-  KufangFormModel
+  KufangFormModelService
 } from "./";
 
 import {
@@ -46,7 +46,7 @@ const SERVICE = [
   KufangFormService,
   KufangService,
   UniqueNameValidator,
-  KufangFormModel
+  KufangFormModelService
 ];
 
 @NgModule({

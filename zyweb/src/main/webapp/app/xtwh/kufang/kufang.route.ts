@@ -39,7 +39,7 @@ export const kufangRoute: Routes = [
     canActivate: [UserRouteAccessService]
   },
   {
-    path: "kufang/:id/view",
+    path: "_entity/:id/view",
     component: KufangDetailComponent,
     resolve: {
       kufang: KufangResolve

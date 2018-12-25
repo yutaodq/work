@@ -2,9 +2,9 @@ import { Component, Input, EventEmitter, Output } from "@angular/core";
 
 @Component({
   selector: "zy-form",
-  templateUrl: "./zy-form.component.html"
+  templateUrl: "./zy-form-layouts.component.html"
 })
-export class ZyFormComponent {
+export class ZyFormLayoutsComponent {
   private _title: string;
 
   @Input()
