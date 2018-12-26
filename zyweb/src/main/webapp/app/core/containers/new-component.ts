@@ -51,6 +51,9 @@ export abstract class NewComponent<T> {
   get isSaving() {
     return this._isSaving;
   }
+  set isSaving(isSaving) {
+    this._isSaving = isSaving;
+  }
 
   set entity(entity: T) {
     this._entity = entity;

@@ -8,7 +8,7 @@ import {
   DynamicFormLayout
 } from "@ng-dynamic-forms/core";
 
-import { IKufangEntity } from "app/shared";
+import { IKufangEntity, KufangEntity } from "app/shared";
 import { KufangService } from "./";
 
 import { FormGroup } from "@angular/forms";
@@ -19,14 +19,64 @@ import { NewComponent } from "app/core/containers/new-component";
   selector: "zy-kufang-new",
   templateUrl: "./kufang-new.component.html"
 })
-export class KufangNewComponent extends NewComponent implements OnInit {
+export class KufangNewComponent extends NewComponent<IKufangEntity>
+  implements OnInit {
   constructor(
     private kufangService: KufangService,
-    private activatedRoute: ActivatedRoute,
-    private formService: DynamicFormService,
-    private formModelService: KufangFormModelService
+    activatedRoute: ActivatedRoute,
+    formService: DynamicFormService,
+    formModelService: KufangFormModelService
   ) {
     super(activatedRoute, formService, formModelService);
+  }
+
+  ngOnInit() {
+    this.activatedRoute.data.subscribe(data => {
+      this.pageTitle = data.pageTitle;
+    });
+    this.activatedRoute.data.subscribe(({ kufang }) => {
+      this.entity = kufang;
+      this.initForm();
+    });
+    this.isSaving = false;
+  }
+
+  // private initForm() {
+  //   this._formModel = this.formModelService.createFormModel(this._entity);
+  //   this._formGroup = this.formService.createFormGroup(this._formModel);
+  // }
+  previousState() {
+    window.history.back();
+  }
+
+  save() {
+    this.isSaving = true;
+    this.entity.name = this.formGroup.value["name"];
+    this.entity.bz = this.formGroup.value["bz"];
+    console.warn(this.formGroup.value);
+    if (this.entity.id !== undefined) {
+      this.subscribeToSaveResponse(this.kufangService.update(this.entity));
+    } else {
+      this.subscribeToSaveResponse(this.kufangService.create(this.entity));
+    }
+  }
+
+  private subscribeToSaveResponse(
+    result: Observable<HttpResponse<IKufangEntity>>
+  ) {
+    result.subscribe(
+      (res: HttpResponse<IKufangEntity>) => this.onSaveSuccess(),
+      (res: HttpErrorResponse) => this.onSaveError()
+    );
+  }
+
+  private onSaveSuccess() {
+    this.isSaving = false;
+    this.previousState();
+  }
+
+  private onSaveError() {
+    this.isSaving = false;
   }
 }
 
