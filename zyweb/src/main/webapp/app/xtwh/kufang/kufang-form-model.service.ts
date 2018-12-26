@@ -38,6 +38,7 @@ export class KufangFormModelService implements IZyFormModel<IKufangEntity> {
             args: this.kufangService
           }
         },
+        updateOn: "blur",
         errorMessages: {
           required: "请您填写：{{ label }} ",
           minLength: "{{ label }}不能少于三个字",

@@ -28,7 +28,6 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
     return of(isTaken).pipe(delay(100));
   }
   create(product: IKufangEntity): Observable<EntityResponseType> {
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     return this.http.post<IKufangEntity>(this.resourceUrl, product, {
       observe: "response"
     });

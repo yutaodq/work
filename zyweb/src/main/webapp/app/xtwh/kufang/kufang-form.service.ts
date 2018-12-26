@@ -14,7 +14,9 @@ import {
   kufangNameValidator,
   myCustomValidator
 } from "./kufang-form.validator";
-
+/*保留这个文件，不要删除
+使用 angular自身提供的响应式表单模型
+ */
 @Injectable()
 // export class KufangFormService extends FormService<KufangEntity> {
 export class KufangFormService {
