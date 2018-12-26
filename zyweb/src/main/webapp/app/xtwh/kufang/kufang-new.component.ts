@@ -2,19 +2,15 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { HttpResponse, HttpErrorResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
-import {
-  DynamicFormControlModel,
-  DynamicFormService,
-  DynamicFormLayout
-} from "@ng-dynamic-forms/core";
+import { DynamicFormService } from "@ng-dynamic-forms/core";
 
-import { IKufangEntity, KufangEntity } from "app/shared";
+import { IKufangEntity } from "app/shared";
 import { KufangService } from "./";
 
-import { FormGroup } from "@angular/forms";
 import { KufangFormModelService } from "./kufang-form-model.service";
 import { KUFANG_FORM_LAYOUT } from "./kufang-form.layout";
 import { NewComponent } from "app/core/containers/new-component";
+
 @Component({
   selector: "zy-kufang-new",
   templateUrl: "./kufang-new.component.html"
@@ -31,55 +27,28 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
   }
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe(data => {
-      this.pageTitle = data.pageTitle;
-    });
-    this.activatedRoute.data.subscribe(({ kufang }) => {
-      this.entity = kufang;
-      this.initForm();
-    });
-    this.isSaving = false;
+    console.log(`KufangNewComponent - ngOnInit`);
+    super.ngOnInit();
   }
 
-  // private initForm() {
-  //   this._formModel = this.formModelService.createFormModel(this._entity);
-  //   this._formGroup = this.formService.createFormGroup(this._formModel);
+  // save() {
+  //   this.isSaving = true;
+  //   this.entity.name = this.formGroup.value["name"];
+  //   this.entity.bz = this.formGroup.value["bz"];
+  //   if (this.entity.id !== undefined) {
+  //     this.subscribeToSaveResponse(this.kufangService.update(this.entity));
+  //   } else {
+  //     this.subscribeToSaveResponse(this.kufangService.create(this.entity));
+  //   }
   // }
-  previousState() {
-    window.history.back();
-  }
-
-  save() {
-    this.isSaving = true;
+  formModeltoEntity() {
     this.entity.name = this.formGroup.value["name"];
     this.entity.bz = this.formGroup.value["bz"];
-    console.warn(this.formGroup.value);
-    if (this.entity.id !== undefined) {
-      this.subscribeToSaveResponse(this.kufangService.update(this.entity));
-    } else {
-      this.subscribeToSaveResponse(this.kufangService.create(this.entity));
-    }
-  }
-
-  private subscribeToSaveResponse(
-    result: Observable<HttpResponse<IKufangEntity>>
-  ) {
-    result.subscribe(
-      (res: HttpResponse<IKufangEntity>) => this.onSaveSuccess(),
-      (res: HttpErrorResponse) => this.onSaveError()
-    );
-  }
-
-  private onSaveSuccess() {
-    this.isSaving = false;
-    this.previousState();
-  }
-
-  private onSaveError() {
-    this.isSaving = false;
+    this.subscribeToSaveResponse(this.kufangService.create(this.entity));
   }
 }
 
+//原始代码
 // export class KufangNewComponent implements OnInit {
 //   _entity: IKufangEntity;
 //   _isSaving: boolean;

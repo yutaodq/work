@@ -42,7 +42,7 @@ export const kufangRoute: Routes = [
     path: "_entity/:id/view",
     component: KufangDetailComponent,
     resolve: {
-      kufang: KufangResolve
+      entity: KufangResolve
     },
     data: {
       authorities: ["ROLE_USER"],
@@ -54,7 +54,7 @@ export const kufangRoute: Routes = [
     path: path.ROUTE_KUFANG_NEW,
     component: KufangNewComponent,
     resolve: {
-      kufang: KufangResolve
+      entity: KufangResolve
     },
     data: {
       authorities: ["ROLE_USER"],

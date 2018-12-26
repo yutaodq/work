@@ -17,8 +17,8 @@ export class KufangDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe(({ kufang }) => {
-      this.kufang = kufang;
+    this.activatedRoute.data.subscribe(({ entity }) => {
+      this.kufang = entity;
     });
   }
 
