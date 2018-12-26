@@ -6,6 +6,7 @@ import { delay } from "rxjs/operators";
 import { SERVER_API_URL } from "app/app.constants";
 import { createRequestOption } from "app/shared";
 import { IKufangEntity } from "app/shared/model/kufang.model";
+import { IZyEntityService } from "app/core/service";
 
 type EntityResponseType = HttpResponse<IKufangEntity>;
 type EntityArrayResponseType = HttpResponse<IKufangEntity[]>;
@@ -14,7 +15,7 @@ const ALTER_EGOS = ["Eric"];
 
 // @Injectable({ providedIn: "root" })
 @Injectable()
-export class KufangService {
+export class KufangService implements IZyEntityService<IKufangEntity> {
   private resourceUrl = SERVER_API_URL + "api/kufangEntities";
   private resourceSearchUrl = SERVER_API_URL + "api/kufangEntities";
 
@@ -27,6 +28,7 @@ export class KufangService {
     return of(isTaken).pipe(delay(100));
   }
   create(product: IKufangEntity): Observable<EntityResponseType> {
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     return this.http.post<IKufangEntity>(this.resourceUrl, product, {
       observe: "response"
     });

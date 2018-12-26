@@ -9,18 +9,19 @@ import { OnInit } from "@angular/core";
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs/index";
 import { IKufangEntity } from "app/shared";
-// implements OnInit
+import { IZyEntityService } from "app/core/service";
+
 export abstract class NewComponent<T> implements OnInit {
   _entity: T;
   _isSaving: boolean;
   _pageTitle: string;
   _formGroup: FormGroup;
   _formModel: DynamicFormControlModel[];
-
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _formService: DynamicFormService,
-    private _formModelService: IZyFormModel<T>
+    private _formModelService: IZyFormModel<T>,
+    private _entityService: IZyEntityService<T>
   ) {}
 
   ngOnInit() {
@@ -34,24 +35,28 @@ export abstract class NewComponent<T> implements OnInit {
     });
     this.isSaving = false;
   }
+
   /*
  * 通用方法
  */
+
   protected initForm() {
-    this._formModel = this.formModelService.createFormModel(this._entity);
-    this._formGroup = this.formService.createFormGroup(this._formModel);
+    this.formModel = this.formModelService.createFormModel(this.entity);
+    this.formGroup = this.formService.createFormGroup(this.formModel);
   }
-  //以前的状态 在表单中按返回键时调用的方法
+
+  // 以前的状态 在表单中按返回键时调用的方法
+
   previousState() {
     window.history.back();
   }
   save() {
     this.isSaving = true;
-    this.formModeltoEntity();
-    // this.subscribeToSaveResponse(this.kufangService.create(this.entity));
+    this.formModelToEntity();
+    this.subscribeToSaveResponse(this.entityService.create(this.entity));
   }
 
-  protected subscribeToSaveResponse(
+  private subscribeToSaveResponse(
     result: Observable<HttpResponse<IKufangEntity>>
   ) {
     result.subscribe(
@@ -72,7 +77,7 @@ export abstract class NewComponent<T> implements OnInit {
   /*
    * 抽象方法
    */
-  abstract formModeltoEntity();
+  abstract formModelToEntity();
 
   /*
    * 对象的访问器和设置器
@@ -88,11 +93,22 @@ export abstract class NewComponent<T> implements OnInit {
     return this._formService;
   }
 
+  protected get entityService() {
+    return this._entityService;
+  }
+
   set formGroup(formGroup: FormGroup) {
     this._formGroup = formGroup;
   }
   get formGroup() {
     return this._formGroup;
+  }
+
+  set formModel(formModel: DynamicFormControlModel[]) {
+    this._formModel = formModel;
+  }
+  get formModel() {
+    return this._formModel;
   }
 
   set pageTitle(pageTitle: string) {

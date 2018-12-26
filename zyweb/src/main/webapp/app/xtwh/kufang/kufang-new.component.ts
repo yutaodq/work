@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { HttpResponse, HttpErrorResponse } from "@angular/common/http";
-import { Observable } from "rxjs";
 import { DynamicFormService } from "@ng-dynamic-forms/core";
 
 import { IKufangEntity } from "app/shared";
@@ -18,12 +16,12 @@ import { NewComponent } from "app/core/containers/new-component";
 export class KufangNewComponent extends NewComponent<IKufangEntity>
   implements OnInit {
   constructor(
-    private kufangService: KufangService,
     activatedRoute: ActivatedRoute,
     formService: DynamicFormService,
-    formModelService: KufangFormModelService
+    formModelService: KufangFormModelService,
+    kufangService: KufangService
   ) {
-    super(activatedRoute, formService, formModelService);
+    super(activatedRoute, formService, formModelService, kufangService);
   }
 
   ngOnInit() {
@@ -31,20 +29,9 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
     super.ngOnInit();
   }
 
-  // save() {
-  //   this.isSaving = true;
-  //   this.entity.name = this.formGroup.value["name"];
-  //   this.entity.bz = this.formGroup.value["bz"];
-  //   if (this.entity.id !== undefined) {
-  //     this.subscribeToSaveResponse(this.kufangService.update(this.entity));
-  //   } else {
-  //     this.subscribeToSaveResponse(this.kufangService.create(this.entity));
-  //   }
-  // }
-  formModeltoEntity() {
+  formModelToEntity() {
     this.entity.name = this.formGroup.value["name"];
     this.entity.bz = this.formGroup.value["bz"];
-    this.subscribeToSaveResponse(this.kufangService.create(this.entity));
   }
 }
 
