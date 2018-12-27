@@ -1,12 +1,14 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
+import { NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
+
+import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
+
 import { ZyxtSharedModule } from "app/shared";
 import { CoreModule } from "app/core";
 import { NebularModule } from "app/core";
-import { NgxDatatableModule } from "@swimlane/ngx-datatable";
-import { NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
-import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
 
 import {
   Validator,
