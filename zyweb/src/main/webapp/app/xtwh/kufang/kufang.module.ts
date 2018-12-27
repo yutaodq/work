@@ -6,6 +6,11 @@ import { NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstrap";
 
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
+
+import { reducers } from "app/xtwh/kufang/reducers";
+
 import { ZyxtSharedModule } from "app/shared";
 import { CoreModule } from "app/core";
 import { NebularModule } from "app/core";
@@ -40,7 +45,8 @@ const IMPORTS_MODULES = [
   CoreModule,
   NebularModule,
   NgxDatatableModule,
-  DynamicFormsNGBootstrapUIModule
+  DynamicFormsNGBootstrapUIModule,
+  StoreModule.forFeature("kufangs", reducers)
 ];
 const COMPONENT = [KufangComponent, KufangDetailComponent, KufangNewComponent];
 const ENTRY_COMPONENTS = [KufangComponent, KufangDetailComponent];
