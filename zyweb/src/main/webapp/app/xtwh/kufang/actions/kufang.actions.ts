@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { KufangEntity } from "app/xtwh/kufang/models/kufang.model";
+import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 
 export enum KufangActionTypes {
   LoadKufang = "[Kufang Exists Guard] Load Kufang"
@@ -9,7 +9,7 @@ export enum KufangActionTypes {
 export class LoadKufang implements Action {
   readonly type = KufangActionTypes.LoadKufang;
 
-  constructor(public payload: KufangEntity) {}
+  constructor(public payload: IKufangEntity) {}
 }
 
 export type KufangActionsUnion = LoadKufang;
