@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { DynamicFormService } from "@ng-dynamic-forms/core";
 
-import { IKufangEntity } from "app/shared";
+import { IKufangEntity } from "app/xtwh/kufang/";
 import { KufangService } from "./";
 
 import { KufangFormModelService } from "./kufang-form-model.service";
@@ -35,7 +35,7 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
   }
 }
 
-//原始代码
+// 原始代码
 // export class KufangNewComponent implements OnInit {
 //   _entity: IKufangEntity;
 //   _isSaving: boolean;

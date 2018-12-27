@@ -8,7 +8,9 @@ import {
 
 import { UniqueNameValidator } from "app/xtwh/kufang/kufang-form.validator";
 import { Injectable } from "@angular/core";
-import { FormService, KufangEntity } from "app/shared";
+import { FormService } from "app/shared";
+import { IKufangEntity, KufangEntity } from "app/xtwh/kufang/";
+
 import { KufangService } from "app/xtwh/kufang/kufang.service";
 import {
   kufangNameValidator,

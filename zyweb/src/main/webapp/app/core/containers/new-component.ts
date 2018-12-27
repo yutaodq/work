@@ -8,7 +8,7 @@ import { IZyFormModel } from "app/core/service/form/zy-form.model";
 import { OnInit } from "@angular/core";
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs/index";
-import { IKufangEntity } from "app/shared";
+// import { IKufangEntity } from "app/shared";
 import { IZyEntityService } from "app/core/service";
 
 export abstract class NewComponent<T> implements OnInit {
@@ -56,11 +56,9 @@ export abstract class NewComponent<T> implements OnInit {
     this.subscribeToSaveResponse(this.entityService.create(this.entity));
   }
 
-  private subscribeToSaveResponse(
-    result: Observable<HttpResponse<IKufangEntity>>
-  ) {
+  private subscribeToSaveResponse(result: Observable<HttpResponse<T>>) {
     result.subscribe(
-      (res: HttpResponse<IKufangEntity>) => this.onSaveSuccess(),
+      (res: HttpResponse<T>) => this.onSaveSuccess(),
       (res: HttpErrorResponse) => this.onSaveError()
     );
   }
