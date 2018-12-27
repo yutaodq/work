@@ -5,7 +5,7 @@ import { delay } from "rxjs/operators";
 
 import { SERVER_API_URL } from "app/app.constants";
 import { createRequestOption } from "app/shared";
-import { IKufangEntity } from "app/shared/model/kufang.model";
+import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { IZyEntityService } from "app/core/service";
 
 type EntityResponseType = HttpResponse<IKufangEntity>;

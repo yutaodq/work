@@ -8,9 +8,9 @@ import {
 } from "@angular/router";
 import { of } from "rxjs";
 import { map } from "rxjs/operators";
-import { KufangEntity } from "app/shared/model/kufang.model";
+import { KufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { UserRouteAccessService } from "app/core";
-import { IKufangEntity } from "app/shared/model/kufang.model";
+import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { KufangService } from "./kufang.service";
 import { KufangComponent } from "./kufang.component";
 import { KufangDetailComponent } from "./kufang-detail.component";

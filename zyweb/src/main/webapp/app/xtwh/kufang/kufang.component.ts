@@ -5,7 +5,7 @@ import { Subscription } from "rxjs";
 import { JhiEventManager, JhiAlertService } from "ng-jhipster";
 // import { Observable } from "rxjs/Observable";
 
-import { IKufangEntity } from "app/shared/model/kufang.model";
+import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { Principal } from "app/core";
 import { KufangService } from "./kufang.service";
 import * as link from "./kufang.constants";
