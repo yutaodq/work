@@ -5,9 +5,9 @@ export enum CollectionApiActionTypes {
   AddKufangSuccess = "[Collection/API] Add Kufang Success",
   AddKufangFailure = "[Collection/API] Add Kufang Failure",
   RemoveKufangSuccess = "[Collection/API] Remove Kufang Success",
-  RemoveBookFailure = "[Collection/API] Remove Kufang Failure",
-  LoadBooksSuccess = "[Collection/API] Load Kufangs Success",
-  LoadBooksFailure = "[Collection/API] Load Kufangs Failure"
+  RemoveKufangFailure = "[Collection/API] Remove Kufang Failure",
+  LoadKufangsSuccess = "[Collection/API] Load Kufangs Success",
+  LoadKufangsFailure = "[Collection/API] Load Kufangs Failure"
 }
 
 /**
@@ -35,8 +35,8 @@ export class RemoveKufangSuccess implements Action {
   constructor(public payload: IKufangEntity) {}
 }
 
-export class RemoveBookFailure implements Action {
-  readonly type = CollectionApiActionTypes.RemoveBookFailure;
+export class RemoveKufangFailure implements Action {
+  readonly type = CollectionApiActionTypes.RemoveKufangFailure;
 
   constructor(public payload: IKufangEntity) {}
 }
@@ -44,14 +44,14 @@ export class RemoveBookFailure implements Action {
 /**
  * Load Collection Actions
  */
-export class LoadBooksSuccess implements Action {
-  readonly type = CollectionApiActionTypes.LoadBooksSuccess;
+export class LoadKufangsSuccess implements Action {
+  readonly type = CollectionApiActionTypes.LoadKufangsSuccess;
 
   constructor(public payload: IKufangEntity[]) {}
 }
 
-export class LoadBooksFailure implements Action {
-  readonly type = CollectionApiActionTypes.LoadBooksFailure;
+export class LoadKufangsFailure implements Action {
+  readonly type = CollectionApiActionTypes.LoadKufangsFailure;
 
   constructor(public payload: any) {}
 }
@@ -60,6 +60,6 @@ export type CollectionApiActionsUnion =
   | AddKufangSuccess
   | AddKufangFailure
   | RemoveKufangSuccess
-  | RemoveBookFailure
-  | LoadBooksSuccess
-  | LoadBooksFailure;
+  | RemoveKufangFailure
+  | LoadKufangsSuccess
+  | LoadKufangsFailure;
