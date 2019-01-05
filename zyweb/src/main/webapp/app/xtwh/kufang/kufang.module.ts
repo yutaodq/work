@@ -58,7 +58,11 @@ const SERVICE = [
 ];
 
 @NgModule({
-  imports: [...IMPORTS_MODULES, RouterModule.forChild(ROUTE)],
+  imports: [
+    ...IMPORTS_MODULES,
+    RouterModule.forChild(ROUTE),
+    StoreModule.forFeature("kufangs", reducers)
+  ],
   declarations: [COMPONENT],
   entryComponents: [ENTRY_COMPONENTS],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
