@@ -3,6 +3,9 @@ import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { delay } from "rxjs/operators";
 
+import { Store } from "@ngrx/store";
+import * as fromKufangs from "app/xtwh/kufang/reducers";
+
 import { SERVER_API_URL } from "app/app.constants";
 import { createRequestOption } from "app/shared";
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
@@ -18,8 +21,12 @@ const ALTER_EGOS = ["Eric"];
 export class KufangService implements IZyEntityService<IKufangEntity> {
   private resourceUrl = SERVER_API_URL + "api/kufangEntities";
   private resourceSearchUrl = SERVER_API_URL + "api/kufangEntities";
+  kufangs$: Observable<Array<IKufangEntity>>;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private store: Store<fromKufangs.State>
+  ) {}
 
   isNameTaken(alterEgo: string): Observable<boolean> {
     const isTaken = ALTER_EGOS.includes(alterEgo);
@@ -51,6 +58,13 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
       params: options,
       observe: "response"
     });
+  }
+  loadKufangs() {
+    this.http
+      .get(this.resourceUrl)
+      .map(res => res.json())
+      .map(payload => ({ type: "ADD_ITEMS", payload }))
+      .subscribe(action => this.store.dispatch(action));
   }
 
   delete(id: number): Observable<HttpResponse<any>> {
