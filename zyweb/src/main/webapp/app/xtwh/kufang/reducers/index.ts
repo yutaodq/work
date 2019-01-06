@@ -127,11 +127,11 @@ export const {
 //   }
 // );
 //
-// export const getCollectionState = createSelector(
-//   getBooksState,
-//   (state: BooksState) => state.collection
-// );
-//
+export const getCollectionState = createSelector(
+  getKufangsState,
+  (state: KufangsState) => state.collection
+);
+
 // export const getCollectionLoaded = createSelector(
 //   getCollectionState,
 //   fromCollection.getLoaded
@@ -140,19 +140,19 @@ export const {
 //   getCollectionState,
 //   fromCollection.getLoading
 // );
-// export const getCollectionBookIds = createSelector(
-//   getCollectionState,
-//   fromCollection.getIds
-// );
-//
-// export const getBookCollection = createSelector(
-//   getBookEntities,
-//   getCollectionBookIds,
-//   (entities, ids) => {
-//     return ids.map(id => entities[id]);
-//   }
-// );
-//
+export const getCollectionKufangIds = createSelector(
+  getCollectionState,
+  fromCollection.getIds
+);
+
+export const getKufangCollection = createSelector(
+  getKufangEntities,
+  getCollectionKufangIds,
+  (entities, ids) => {
+    return ids.map(id => entities[id]);
+  }
+);
+
 // export const isSelectedBookInCollection = createSelector(
 //   getCollectionBookIds,
 //   getSelectedBookId,
