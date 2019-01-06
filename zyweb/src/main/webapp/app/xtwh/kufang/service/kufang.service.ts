@@ -8,7 +8,10 @@ import * as fromKufangs from "app/xtwh/kufang/reducers";
 
 import { SERVER_API_URL } from "app/app.constants";
 import { createRequestOption } from "app/shared";
-import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
+import {
+  IKufangEntity,
+  KufangEntity
+} from "app/xtwh/kufang/models/kufang.model";
 import { IZyEntityService } from "app/core/service/";
 import { CollectionPageActions } from "app/xtwh/kufang/actions";
 
@@ -23,18 +26,6 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
   private resourceUrl = SERVER_API_URL + "api/kufangEntities";
   private resourceSearchUrl = SERVER_API_URL + "api/kufangEntities";
   kufangs: Observable<IKufangEntity[]>;
-
-  // export class CollectionPageComponent implements OnInit {
-  // books$: Observable<Book[]>;
-  //
-  // constructor(private store: Store<fromBooks.State>) {
-  //   this.books$ = store.pipe(select(fromBooks.getBookCollection));
-  // }
-  //
-  // ngOnInit() {
-  //   this.store.dispatch(new CollectionPageActions.LoadCollection());
-  // }
-  // }
 
   constructor(
     private http: HttpClient,
@@ -76,8 +67,9 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
       observe: "response"
     });
   }
-  queryyu(): Observable<IKufangEntity[]> {
-    return this.http.get<IKufangEntity[]>(this.resourceUrl);
+
+  queryyu(): Observable<KufangEntity[]> {
+    return this.http.get<KufangEntity[]>(this.resourceUrl);
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {

@@ -4,11 +4,14 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { JhiEventManager, JhiAlertService } from "ng-jhipster";
 import { Observable } from "rxjs/Observable";
+import { select, Store } from "@ngrx/store";
 
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { Principal } from "app/core";
 import { KufangService } from "./service/kufang.service";
 import * as link from "./kufang.constants";
+import * as fromKufangs from "app/xtwh/kufang/reducers";
+import { CollectionPageActions } from "app/xtwh/kufang/actions";
 
 @Component({
   selector: "zy-kufang",
@@ -24,14 +27,14 @@ export class KufangComponent implements OnInit, OnDestroy {
   eventSubscriber: Subscription;
   currentSearch: string;
   pageTitle: string;
-
   constructor(
     private kufangService: KufangService,
     private jhiAlertService: JhiAlertService,
     private eventManager: JhiEventManager,
     private activatedRoute: ActivatedRoute,
     private principal: Principal,
-    private _router: Router
+    private _router: Router,
+    private store: Store<fromKufangs.State>
   ) {
     this.currentSearch =
       this.activatedRoute.snapshot &&
@@ -41,24 +44,24 @@ export class KufangComponent implements OnInit, OnDestroy {
     this.activatedRoute.data.subscribe(data => {
       this.pageTitle = data.pageTitle;
     });
-    this.kufangs$ = this.kufangService.kufangs;
-    this.kufangService.loadKufangs();
+    this.kufangs$ = store.pipe(select(fromKufangs.getKufangCollection));
   }
 
   loadAll() {
-    if (this.currentSearch) {
-      this.kufangService
-        .search({
-          query: this.currentSearch
-        })
-        .subscribe(
-          (res: HttpResponse<IKufangEntity[]>) => {
-            this.rows$ = res.body;
-          },
-          (res: HttpErrorResponse) => this.onError(res.message)
-        );
-      return;
-    }
+    // this.store.dispatch(new CollectionPageActions.LoadCollection());
+    // if (this.currentSearch) {
+    //   this.kufangService
+    //     .search({
+    //       query: this.currentSearch
+    //     })
+    //     .subscribe(
+    //       (res: HttpResponse<IKufangEntity[]>) => {
+    //         this.rows$ = res.body;
+    //       },
+    //       (res: HttpErrorResponse) => this.onError(res.message)
+    //     );
+    //   return;
+    // }
     this.kufangService.query().subscribe(
       (res: HttpResponse<IKufangEntity[]>) => {
         this.rows$ = res.body;
