@@ -1,10 +1,10 @@
 <!--[rows]="rows$ "-->
-<div *ngFor="let item of kufangs$ | async"
-     class="fem-card mdl-card mdl-shadow--2dp">
-    <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text">{{item.name}}</h2>
-    </div>
-</div>
+<!--<div *ngFor="let item of kufangs$ | async"-->
+     <!--class="fem-card mdl-card mdl-shadow&#45;&#45;2dp">-->
+    <!--<div class="mdl-card__title">-->
+        <!--<h2 class="mdl-card__title-text">{{item.name}}</h2>-->
+    <!--</div>-->
+<!--</div>-->
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 <zy-card-table  [title]="pageTitle">
@@ -20,7 +20,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                 [rowHeight]="'auto'"
                 [columnMode]="'force'"
                 [reorderable]=true
-                [rows]="kufangs$ | async "
+                [rows]="rows$ "
                 [limit]="10"
         >
 

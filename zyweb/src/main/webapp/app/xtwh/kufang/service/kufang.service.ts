@@ -76,6 +76,9 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
       observe: "response"
     });
   }
+  queryyu(): Observable<IKufangEntity[]> {
+    return this.http.get<IKufangEntity[]>(this.resourceUrl);
+  }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);

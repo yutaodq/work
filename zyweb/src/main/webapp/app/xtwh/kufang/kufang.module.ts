@@ -10,6 +10,7 @@ import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 
 import { reducers } from "app/xtwh/kufang/reducers";
+import { CollectionEffects } from "app/xtwh/kufang/effects/collection.effects";
 
 import { ZyxtSharedModule } from "app/shared";
 import { CoreModule } from "app/core";
@@ -61,7 +62,8 @@ const SERVICE = [
   imports: [
     ...IMPORTS_MODULES,
     RouterModule.forChild(ROUTE),
-    StoreModule.forFeature("kufangs", reducers)
+    StoreModule.forFeature("kufangs", reducers),
+    EffectsModule.forFeature([CollectionEffects])
   ],
   declarations: [COMPONENT],
   entryComponents: [ENTRY_COMPONENTS],
