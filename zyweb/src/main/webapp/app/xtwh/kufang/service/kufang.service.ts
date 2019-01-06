@@ -9,7 +9,8 @@ import * as fromKufangs from "app/xtwh/kufang/reducers";
 import { SERVER_API_URL } from "app/app.constants";
 import { createRequestOption } from "app/shared";
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
-import { IZyEntityService } from "app/core/service";
+import { IZyEntityService } from "app/core/service/";
+import { CollectionPageActions } from "app/xtwh/kufang/actions";
 
 type EntityResponseType = HttpResponse<IKufangEntity>;
 type EntityArrayResponseType = HttpResponse<IKufangEntity[]>;
@@ -45,7 +46,10 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
     this.http
       .get(this.resourceUrl)
       // .map(res => res.json())
-      .map(payload => ({ type: "ADD_ITEMS", payload }))
+      .map(payload => ({
+        type: CollectionPageActions.CollectionPageActionTypes.LoadCollection,
+        payload
+      }))
       .subscribe(action => this.store.dispatch(action));
   }
 

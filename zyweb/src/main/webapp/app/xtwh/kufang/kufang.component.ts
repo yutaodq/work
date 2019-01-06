@@ -3,11 +3,11 @@ import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { JhiEventManager, JhiAlertService } from "ng-jhipster";
-// import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs/Observable";
 
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { Principal } from "app/core";
-import { KufangService } from "./kufang.service";
+import { KufangService } from "./service/kufang.service";
 import * as link from "./kufang.constants";
 
 @Component({
@@ -17,6 +17,8 @@ import * as link from "./kufang.constants";
 export class KufangComponent implements OnInit, OnDestroy {
   // rows$: Observable<Array<IKufangEntity>>;
   rows$: Array<IKufangEntity>;
+
+  kufangs$: Observable<IKufangEntity[]>;
 
   currentAccount: any;
   eventSubscriber: Subscription;
@@ -39,6 +41,8 @@ export class KufangComponent implements OnInit, OnDestroy {
     this.activatedRoute.data.subscribe(data => {
       this.pageTitle = data.pageTitle;
     });
+    this.kufangs$ = this.kufangService.kufangs;
+    this.kufangService.loadKufangs();
   }
 
   loadAll() {

@@ -11,7 +11,7 @@ import { Injectable } from "@angular/core";
 import { FormService } from "app/shared";
 import { IKufangEntity, KufangEntity } from "app/xtwh/kufang/";
 
-import { KufangService } from "app/xtwh/kufang/kufang.service";
+import { KufangService } from "app/xtwh/kufang/service/kufang.service";
 import {
   kufangNameValidator,
   myCustomValidator
