@@ -68,8 +68,8 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
     });
   }
 
-  queryyu(): Observable<KufangEntity[]> {
-    return this.http.get<KufangEntity[]>(this.resourceUrl);
+  queryyu(): Observable<IKufangEntity[]> {
+    return this.http.get<IKufangEntity[]>(this.resourceUrl);
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {

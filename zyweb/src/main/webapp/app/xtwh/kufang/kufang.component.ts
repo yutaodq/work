@@ -48,7 +48,7 @@ export class KufangComponent implements OnInit, OnDestroy {
   }
 
   loadAll() {
-    // this.store.dispatch(new CollectionPageActions.LoadCollection());
+    this.store.dispatch(new CollectionPageActions.LoadCollection());
     // if (this.currentSearch) {
     //   this.kufangService
     //     .search({

@@ -39,6 +39,24 @@ export class CollectionEffects {
   // openDB$: Observable<any> = defer(() => {
   //   return this.db.open('books_app');
   // });
+  // @Effect()
+  // loadCollection$: Observable<Action> = this.actions$.pipe(
+  //   ofType(CollectionPageActions.CollectionPageActionTypes.LoadCollection),
+  //   switchMap(() =>
+  //     this.kufangService.queryyu().pipe(
+  //       toArray(),
+  //       map(
+  //         (kufangs: IKufangEntity[]) => new CollectionApiActions.LoadKufangsSuccess(kufangs)
+  //       ),
+  //       catchError(error =>
+  //         of(new CollectionApiActions.LoadKufangsFailure(error))
+  //       )
+  //     )
+  //   )
+  // );
+  /*
+     * rxjs写法。loadCollection$ 是effect名，在外部没有用到，可以随便起。
+     */
   @Effect()
   loadCollection$: Observable<Action> = this.actions$.pipe(
     ofType(
