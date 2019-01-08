@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 import { KufangEntity } from "app/xtwh/kufang/models/kufang.model";
-import { KufangActions } from "app/xtwh/kufang/actions";
+import { KufangActions, CollectionApiActions } from "app/xtwh/kufang/actions";
 
 /**
  * @ngrx/entity provides a predefined interface for handling
@@ -39,9 +39,22 @@ export const initialState: State = adapter.getInitialState({
 
 export function reducer(
   state = initialState,
-  action: KufangActions.KufangActionsUnion
+  action:
+    | KufangActions.KufangActionsUnion
+    | CollectionApiActions.CollectionApiActionsUnion
 ): State {
   switch (action.type) {
+    case CollectionApiActions.CollectionApiActionTypes.LoadKufangsSuccess: {
+      /**
+       * The addMany function provided by the created adapter
+       * adds many records to the entity dictionary
+       * and returns a new state including those records. If
+       * the collection is to be sorted, the adapter will
+       * sort each record upon entry into the sorted array.
+       */
+      return adapter.addMany(action.payload, state);
+    }
+
     case KufangActions.KufangActionTypes.LoadKufang: {
       /**
        * The addOne function provided by the created adapter
