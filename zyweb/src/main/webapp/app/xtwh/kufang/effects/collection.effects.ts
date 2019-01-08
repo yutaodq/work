@@ -35,44 +35,39 @@ export class CollectionEffects {
    * Wrapping the database open call in `defer` makes
    * effect easier to test.
    */
-  // @Effect({ dispatch: false })
-  // openDB$: Observable<any> = defer(() => {
-  //   return this.db.open('books_app');
-  // });
-  // @Effect()
-  // loadCollection$: Observable<Action> = this.actions$.pipe(
-  //   ofType(CollectionPageActions.CollectionPageActionTypes.LoadCollection),
-  //   switchMap(() =>
-  //     this.kufangService.queryyu().pipe(
-  //       toArray(),
-  //       map(
-  //         (kufangs: IKufangEntity[]) => new CollectionApiActions.LoadKufangsSuccess(kufangs)
-  //       ),
-  //       catchError(error =>
-  //         of(new CollectionApiActions.LoadKufangsFailure(error))
-  //       )
-  //     )
-  //   )
-  // );
+  @Effect()
+  yuloadCollection$: Observable<Action> = this.actions$.pipe(
+    ofType(CollectionPageActions.CollectionPageActionTypes.LoadCollection),
+    switchMap(() =>
+      this.kufangService.queryyu().pipe(
+        // toArray(),
+        map(
+          (kufangs: IKufangEntity[]) =>
+            new CollectionApiActions.LoadKufangsSuccess(kufangs)
+        ),
+        catchError(error =>
+          of(new CollectionApiActions.LoadKufangsFailure(error))
+        )
+      )
+    )
+  );
   /*
      * rxjs写法。loadCollection$ 是effect名，在外部没有用到，可以随便起。
      */
-  @Effect()
-  loadCollection$: Observable<Action> = this.actions$.pipe(
-    ofType(
-      CollectionPageActions.CollectionPageActionTypes.LoadCollection
-    ) /* When [Contacts] LOAD ALL action is dispatched */,
-    startWith(new CollectionPageActions.LoadCollection()),
-    switchMap(() =>
-      this.kufangService.queryyu()
-    ) /* Hit the Contacts Index endpoint of our REST API */,
-    /* Dispatch LoadAllSuccess action to the central store with id list returned by the backend as id*/
-    /* 'Contacts Reducers' will take care of the rest */
-    map(
-      (kufangs: KufangEntity[]) =>
-        new CollectionApiActions.LoadKufangsSuccess(kufangs)
-    )
-  );
+  // @Effect()
+  // loadCollection$: Observable<Action> = this.actions$.pipe(
+  //   ofType( CollectionPageActions.CollectionPageActionTypes.LoadCollection ),
+  //   /* When [Contacts] LOAD ALL action is dispatched */
+  //   startWith(new CollectionPageActions.LoadCollection()),
+  //   switchMap(() => this.kufangService.queryyu()),
+  //   /* Hit the Contacts Index endpoint of our REST API */
+  //   /* Dispatch LoadAllSuccess action to the central store with id list returned by the backend as id*/
+  //   /* 'Contacts Reducers' will take care of the rest */
+  //   map(
+  //     (kufangs: KufangEntity[]) =>
+  //       new CollectionApiActions.LoadKufangsSuccess(kufangs)
+  //   )
+  // );
   // @Effect()
   // loadAll$: Observable<Action> = this.actions$.pipe(
   //   ofType(ContactsActionTypes.LOAD_ALL), /* When [Contacts] LOAD ALL action is dispatched */

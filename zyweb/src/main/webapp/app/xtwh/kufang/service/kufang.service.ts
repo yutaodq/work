@@ -25,24 +25,24 @@ const ALTER_EGOS = ["Eric"];
 export class KufangService implements IZyEntityService<IKufangEntity> {
   private resourceUrl = SERVER_API_URL + "api/kufangEntities";
   private resourceSearchUrl = SERVER_API_URL + "api/kufangEntities";
-  kufangs: Observable<IKufangEntity[]>;
+  // kufangs: Observable<IKufangEntity[]>;
 
   constructor(
     private http: HttpClient,
     private store: Store<fromKufangs.State>
   ) {
-    this.kufangs = store.pipe(select(fromKufangs.getKufangCollection));
+    // this.kufangs = store.pipe(select(fromKufangs.getKufangCollection));
   }
-  loadKufangs() {
-    this.http
-      .get(this.resourceUrl)
-      // .map(res => res.json())
-      .map(payload => ({
-        type: CollectionPageActions.CollectionPageActionTypes.LoadCollection,
-        payload
-      }))
-      .subscribe(action => this.store.dispatch(action));
-  }
+  // loadKufangs() {
+  //   this.http
+  //     .get(this.resourceUrl)
+  //     // .map(res => res.json())
+  //     .map(payload => ({
+  //       type: CollectionPageActions.CollectionPageActionTypes.LoadCollection,
+  //       payload
+  //     }))
+  //     .subscribe(action => this.store.dispatch(action));
+  // }
 
   isNameTaken(alterEgo: string): Observable<boolean> {
     const isTaken = ALTER_EGOS.includes(alterEgo);
