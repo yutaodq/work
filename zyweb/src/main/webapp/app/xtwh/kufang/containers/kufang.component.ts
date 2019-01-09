@@ -6,10 +6,10 @@ import { JhiEventManager, JhiAlertService } from "ng-jhipster";
 import { Observable } from "rxjs/Observable";
 import { select, Store } from "@ngrx/store";
 
-import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
+import { IKufangEntity } from "app/xtwh/kufang/models";
 import { Principal } from "app/core";
-import { KufangService } from "./service/kufang.service";
-import * as link from "./kufang.constants";
+import { KufangService } from "../service";
+import * as link from "../kufang.constants";
 import * as fromKufangs from "app/xtwh/kufang/reducers";
 import { CollectionPageActions } from "app/xtwh/kufang/actions";
 
