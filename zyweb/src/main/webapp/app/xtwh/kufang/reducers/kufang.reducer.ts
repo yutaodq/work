@@ -1,6 +1,10 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 import { KufangEntity } from "app/xtwh/kufang/models/kufang.model";
-import { KufangActions, CollectionApiActions } from "app/xtwh/kufang/actions";
+import {
+  KufangActions,
+  CollectionApiActions,
+  ViewKufangPageActions
+} from "app/xtwh/kufang/actions";
 
 /**
  * @ngrx/entity provides a predefined interface for handling
@@ -10,7 +14,7 @@ import { KufangActions, CollectionApiActions } from "app/xtwh/kufang/actions";
  * any additional interface properties.
  */
 export interface State extends EntityState<KufangEntity> {
-  selectedKufangId: string | null;
+  selectedKufangId: number | null;
 }
 
 /**
@@ -42,6 +46,7 @@ export function reducer(
   action:
     | KufangActions.KufangActionsUnion
     | CollectionApiActions.CollectionApiActionsUnion
+    | ViewKufangPageActions.ViewKufangPageActionsUnion
 ): State {
   switch (action.type) {
     case CollectionApiActions.CollectionApiActionTypes.LoadKufangsSuccess: {
@@ -64,6 +69,13 @@ export function reducer(
        * insert the new record into the sorted array.
        */
       return adapter.addOne(action.payload, state);
+    }
+
+    case ViewKufangPageActions.ViewKufangPageActionTypes.SelectKufang: {
+      return {
+        ...state,
+        selectedKufangId: action.payload
+      };
     }
 
     default: {

@@ -36,7 +36,7 @@ export class CollectionEffects {
    * effect easier to test.
    */
   @Effect()
-  yuloadCollection$: Observable<Action> = this.actions$.pipe(
+  loadCollection$: Observable<Action> = this.actions$.pipe(
     ofType(CollectionPageActions.CollectionPageActionTypes.LoadCollection),
     switchMap(() =>
       this.kufangService.queryyu().pipe(

@@ -9,17 +9,6 @@
         [limit]="10"
 >
 
-    <ngx-datatable-column name="操作" prop="id">
-
-        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <!--<zy-table-column-action [recordID]="value" (lookRecord)="onLook($event)">-->
-            <!--</zy-table-column-action>-->
-            <button (click)="showDetails(row)" class="btn btn-outline-primary mb-1 btn-sm">
-                <fa-icon [icon]="'eye'"></fa-icon>&nbsp;<span>查看</span>
-            </button>
-
-        </ng-template>
-    </ngx-datatable-column>
 
     <ngx-datatable-column name="序号" prop="id">
         <ng-template let-value="value" ngx-datatable-cell-template>
@@ -41,6 +30,18 @@
     <ngx-datatable-column name="备注" prop="bz">
         <ng-template let-value="value" ngx-datatable-cell-template>
             {{value}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="操作" prop="id">
+
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <!--<zy-table-column-action [recordID]="value" (lookRecord)="onLook($event)">-->
+            <!--</zy-table-column-action>-->
+            <button (click)="showDetails(row)" class="btn btn-outline-primary mb-1 btn-sm">
+                <fa-icon [icon]="'eye'"></fa-icon>&nbsp;<span>查看</span>
+            </button>
+
         </ng-template>
     </ngx-datatable-column>
 
