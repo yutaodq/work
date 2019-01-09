@@ -18,15 +18,13 @@ import { CollectionPageActions } from "app/xtwh/kufang/actions";
   templateUrl: "./kufang.component.html"
 })
 export class KufangComponent implements OnInit, OnDestroy {
-  // rows$: Observable<Array<IKufangEntity>>;
-  rows$: Array<IKufangEntity>;
-
-  kufangs$: Observable<IKufangEntity[]>;
+  // kufangs$: Observable<Array<IKufangEntity>>;
+  private _kufangs$: Observable<IKufangEntity[]>;
 
   currentAccount: any;
   eventSubscriber: Subscription;
   currentSearch: string;
-  pageTitle: string;
+  private _pageTitle: string;
   constructor(
     private kufangService: KufangService,
     private jhiAlertService: JhiAlertService,
@@ -42,9 +40,9 @@ export class KufangComponent implements OnInit, OnDestroy {
         ? this.activatedRoute.snapshot.params["search"]
         : "";
     this.activatedRoute.data.subscribe(data => {
-      this.pageTitle = data.pageTitle;
+      this._pageTitle = data.pageTitle;
     });
-    this.kufangs$ = store.pipe(select(fromKufangs.getKufangCollection));
+    this._kufangs$ = store.pipe(select(fromKufangs.getKufangCollection));
   }
 
   loadAll() {
@@ -64,8 +62,6 @@ export class KufangComponent implements OnInit, OnDestroy {
     // }
     this.kufangService.query().subscribe(
       (res: HttpResponse<IKufangEntity[]>) => {
-        this.rows$ = res.body;
-
         this.currentSearch = "";
       },
       (res: HttpErrorResponse) => this.onError(res.message)
@@ -87,7 +83,10 @@ export class KufangComponent implements OnInit, OnDestroy {
     const routerLink = link.ROUTE_KUFANG + "/" + recordID + "/view";
     this._router.navigate([routerLink]);
   }
-
+  showEntity(kufang: IKufangEntity) {
+    const routerLink = link.ROUTE_KUFANG + "/" + kufang.id + "/view";
+    this._router.navigate([routerLink]);
+  }
   clear() {
     this.currentSearch = "";
     this.loadAll();
@@ -112,7 +111,12 @@ export class KufangComponent implements OnInit, OnDestroy {
       response => this.loadAll()
     );
   }
-
+  get kufangs$(): Observable<IKufangEntity[]> {
+    return this._kufangs$;
+  }
+  get pageTitle(): string {
+    return this._pageTitle;
+  }
   private onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
   }
