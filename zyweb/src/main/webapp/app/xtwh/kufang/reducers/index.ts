@@ -81,14 +81,14 @@ export const {
   selectTotal: getTotalKufangs
 } = fromKufangs.adapter.getSelectors(getKufangEntitiesState);
 
-// export const getSelectedBook = createSelector(
-//   getBookEntities,
-//   getSelectedBookId,
-//   (entities, selectedId) => {
-//     return selectedId && entities[selectedId];
-//   }
-// );
-//
+export const getSelectedKufang = createSelector(
+  getKufangEntities,
+  getSelectedKufangId,
+  (entities, selectedId) => {
+    return selectedId && entities[selectedId];
+  }
+);
+
 // /**
 //  * Just like with the books selectors, we also have to compose the search
 //  * reducer's and collection reducer's selectors.
