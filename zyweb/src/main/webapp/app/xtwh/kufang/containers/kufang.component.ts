@@ -11,7 +11,10 @@ import { Principal } from "app/core";
 import { KufangService } from "../service";
 import * as link from "../kufang.constants";
 import * as fromKufangs from "app/xtwh/kufang/reducers";
-import { CollectionPageActions } from "app/xtwh/kufang/actions";
+import {
+  CollectionPageActions,
+  ViewKufangPageActions
+} from "app/xtwh/kufang/actions";
 
 @Component({
   selector: "zy-kufang",
@@ -84,8 +87,9 @@ export class KufangComponent implements OnInit, OnDestroy {
     this._router.navigate([routerLink]);
   }
   showEntity(kufang: IKufangEntity) {
-    const routerLink = link.ROUTE_KUFANG + "/" + kufang.id + "/view";
-    this._router.navigate([routerLink]);
+    const id = kufang.id;
+    this.store.dispatch(new ViewKufangPageActions.SelectKufang(id));
+    this._router.navigate([link.ROUTE_KUFANG + "/" + id + "/view"]);
   }
   clear() {
     this.currentSearch = "";

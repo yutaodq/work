@@ -7,7 +7,7 @@ export enum ViewKufangPageActionTypes {
 export class SelectKufang implements Action {
   readonly type = ViewKufangPageActionTypes.SelectKufang;
 
-  constructor(public payload: string) {}
+  constructor(public payload: number) {}
 }
 
 export type ViewKufangPageActionsUnion = SelectKufang;
