@@ -32,6 +32,7 @@ import {
   KufangFormModelService
 } from "./";
 
+import { KufangListComponent } from "./components";
 import {
   myCustomValidator,
   UniqueNameValidator,
@@ -46,10 +47,15 @@ const IMPORTS_MODULES = [
   CoreModule,
   NebularModule,
   NgxDatatableModule,
-  DynamicFormsNGBootstrapUIModule,
-  StoreModule.forFeature("kufangs", reducers)
+  DynamicFormsNGBootstrapUIModule
+  // StoreModule.forFeature("kufangs", reducers)
 ];
-const COMPONENT = [KufangComponent, KufangDetailComponent, KufangNewComponent];
+const COMPONENT = [
+  KufangComponent,
+  KufangDetailComponent,
+  KufangNewComponent,
+  KufangListComponent
+];
 const ENTRY_COMPONENTS = [KufangComponent, KufangDetailComponent];
 const SERVICE = [
   KufangFormService,

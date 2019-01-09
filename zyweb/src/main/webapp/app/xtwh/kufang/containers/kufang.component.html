@@ -1,60 +1,8 @@
-<!--[rows]="rows$ "-->
-<!--<div *ngFor="let item of kufangs$ | async">-->
-    <!--<div class="mdl-card__title">-->
-        <!--<h2 class="mdl-card__title-text">{{item.id}}</h2>-->
-    <!--</div>-->
-<!--</div>-->
-{{kufangs$[1] | async}}
 <zy-card-table  [title]="pageTitle">
     <div name="button-top">
     <zy-table-button (createButtonClick) = "onCreate($event)"> </zy-table-button>
     </div>
-
     <div name="datatable">
-        <ngx-datatable
-                class="material nb-tables"
-                [headerHeight]="50"
-                [footerHeight]="50"
-                [rowHeight]="'auto'"
-                [columnMode]="'force'"
-                [reorderable]=true
-                [rows]="kufangs$ | async"
-                [limit]="10"
-        >
-
-            <ngx-datatable-column name="操作" prop="id">
-                <ng-template let-value="value" ngx-datatable-cell-template>
-                    <zy-table-column-action [recordID]="value" (lookRecord)="onLook($event)">
-
-                    </zy-table-column-action>
-
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="序号" prop="id">
-                <ng-template let-value="value" ngx-datatable-cell-template>
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="标识" prop="identifier">
-                <ng-template let-value="value" ngx-datatable-cell-template>
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="库房名称" prop="name">
-                <ng-template let-value="value" ngx-datatable-cell-template>
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="备注" prop="bz">
-                <ng-template let-value="value" ngx-datatable-cell-template>
-                    {{value}}
-                </ng-template>
-            </ngx-datatable-column>
-
-        </ngx-datatable>
-
+        <zy-kufang-list [kufangs] = "kufangs$ | async"></zy-kufang-list>
     </div>
 </zy-card-table>

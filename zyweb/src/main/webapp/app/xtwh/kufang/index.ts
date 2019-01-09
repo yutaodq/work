@@ -8,3 +8,4 @@ export * from "./kufang-form.validator";
 export * from "./kufang-form-model.service";
 export * from "./models/kufang.model";
 export * from "./containers/kufang.component";
+export * from "./components/kufang-list.component";
