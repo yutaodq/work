@@ -1,45 +1,24 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { Store, select } from "@ngrx/store";
-import { Observable } from "rxjs";
+import { Component, Input, OnInit } from "@angular/core";
 
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
-import * as fromKufangs from "../reducers/index";
 
 @Component({
   selector: "zy-kufang-detail",
   templateUrl: "./kufang-detail.component.html"
 })
 export class KufangDetailComponent implements OnInit {
-  kufang: IKufangEntity;
-  private _pageTitle: string;
-  private _entity$: Observable<IKufangEntity>;
+  @Input() kufang: IKufangEntity;
 
-  constructor(
-    private store: Store<fromKufangs.State>,
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.activatedRoute.data.subscribe(data => {
-      this._pageTitle = data.pageTitle;
-    });
-    this._entity$ = store.pipe(
-      select(fromKufangs.getSelectedKufang)
-    ) as Observable<IKufangEntity>;
-  }
+  constructor() {}
 
-  ngOnInit() {
-    this.activatedRoute.data.subscribe(({ entity }) => {
-      this.kufang = entity;
-    });
+  ngOnInit() {}
+  /*
+   * 获取表属性
+   */
+  get name() {
+    return this.kufang.name;
   }
-
-  previousState() {
-    window.history.back();
-  }
-  get entity$(): Observable<IKufangEntity> {
-    return this._entity$;
-  }
-  get pageTitle(): string {
-    return this._pageTitle;
+  get bz() {
+    return this.kufang.bz;
   }
 }

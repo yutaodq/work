@@ -1,10 +1,10 @@
 
 <nb-card>
-    <nb-card-header>库房名称记录</nb-card-header>
+    <nb-card-header>{{pageTitle}}</nb-card-header>
     <nb-card-body>
 <form>
         <!--<form class="form-horizontal" [formGroup]="formGroup"  (ngSubmit)="save()">-->
-            <zy-kufang-detail></zy-kufang-detail>
+            <zy-kufang-detail [kufang]="entity$ | async"></zy-kufang-detail>
 
             <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
                 <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>取消</span>
