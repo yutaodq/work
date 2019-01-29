@@ -3,10 +3,10 @@ import { ActivatedRoute } from "@angular/router";
 import { DynamicFormService } from "@ng-dynamic-forms/core";
 
 import { IKufangEntity } from "app/xtwh/kufang/";
-import { KufangService } from "./";
+import { KufangService } from "../";
 
-import { KufangFormModelService } from "./kufang-form-model.service";
-import { KUFANG_FORM_LAYOUT } from "./kufang-form.layout";
+import { KufangFormModelService } from "../kufang-form-model.service";
+import { KUFANG_FORM_LAYOUT } from "../kufang-form.layout";
 import { NewComponent } from "app/core/containers/new-component";
 
 @Component({

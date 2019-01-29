@@ -88,7 +88,7 @@ export class KufangComponent implements OnInit, OnDestroy {
   }
   showEntity(kufang: IKufangEntity) {
     const id = kufang.id;
-    this.store.dispatch(new ViewKufangPageActions.SelectKufang(id));
+    // this.store.dispatch(new ViewKufangPageActions.SelectKufang(id));
     this._router.navigate([link.ROUTE_KUFANG + "/" + id + "/view"]);
   }
   clear() {

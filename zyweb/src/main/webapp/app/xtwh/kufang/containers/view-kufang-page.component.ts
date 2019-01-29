@@ -21,12 +21,11 @@ import { ViewKufangPageActions } from "../actions";
   selector: "zy-view-kufang-page",
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-     bc-selected-book-page /bc-selected-book-page
+     <zy-selected-kufang-page></zy-selected-kufang-page>
   `
 })
 export class ViewKufangPageComponent implements OnDestroy {
   actionsSubscription: Subscription;
-
   constructor(store: Store<fromBooks.State>, route: ActivatedRoute) {
     this.actionsSubscription = route.params
       .pipe(map(params => new ViewKufangPageActions.SelectKufang(params.id)))

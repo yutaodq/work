@@ -12,14 +12,12 @@ import { KufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { UserRouteAccessService } from "app/core";
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { KufangService } from "./service/kufang.service";
-// import { KufangComponent } from "./containers/kufang.component";
-import { KufangDetailComponent } from "./components/kufang-detail.component";
-import { KufangNewComponent } from "./kufang-new.component";
 import * as path from "./kufang.constants";
 import {
   KufangComponent,
   SelectedKufangPageComponent,
-  ViewKufangPageComponent
+  ViewKufangPageComponent,
+  NewKufangPageComponent
 } from "./containers";
 
 @Injectable({ providedIn: "root" })
@@ -60,7 +58,7 @@ export const kufangRoute: Routes = [
   },
   {
     path: path.ROUTE_KUFANG_NEW,
-    component: KufangNewComponent,
+    component: NewKufangPageComponent,
     resolve: {
       entity: KufangResolve
     },
