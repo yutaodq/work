@@ -31,7 +31,12 @@ import {
 } from "./";
 
 import { KufangListComponent, KufangDetailComponent } from "./components";
-import { KufangComponent, SelectedKufangPageComponent } from "./containers";
+import {
+  KufangComponent,
+  SelectedKufangPageComponent,
+  ViewKufangPageComponent
+} from "./containers";
+
 import {
   myCustomValidator,
   UniqueNameValidator,
@@ -54,7 +59,8 @@ const COMPONENT = [
   KufangDetailComponent,
   KufangNewComponent,
   KufangListComponent,
-  SelectedKufangPageComponent
+  SelectedKufangPageComponent,
+  ViewKufangPageComponent
 ];
 const ENTRY_COMPONENTS = [KufangComponent, KufangDetailComponent];
 const SERVICE = [

@@ -12,11 +12,16 @@ import { KufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { UserRouteAccessService } from "app/core";
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { KufangService } from "./service/kufang.service";
-import { KufangComponent } from "./containers/kufang.component";
+// import { KufangComponent } from "./containers/kufang.component";
 import { KufangDetailComponent } from "./components/kufang-detail.component";
 import { KufangNewComponent } from "./kufang-new.component";
 import * as path from "./kufang.constants";
-import { SelectedKufangPageComponent } from "app/xtwh/kufang/containers/selected-kufang-page.component";
+import {
+  KufangComponent,
+  SelectedKufangPageComponent,
+  ViewKufangPageComponent
+} from "./containers";
+
 @Injectable({ providedIn: "root" })
 export class KufangResolve implements Resolve<IKufangEntity> {
   constructor(private service: KufangService) {}
@@ -42,7 +47,8 @@ export const kufangRoute: Routes = [
   {
     path: "_entity/:id/view",
     // component: KufangDetailComponent,
-    component: SelectedKufangPageComponent,
+    // component: SelectedKufangPageComponent,
+    component: ViewKufangPageComponent,
     resolve: {
       entity: KufangResolve
     },
