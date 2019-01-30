@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
 import { map } from "rxjs/operators";
 
-import * as fromBooks from "../reducers";
+import * as fromKufangs from "../reducers";
 import { ViewKufangPageActions } from "../actions";
 
 /**
@@ -26,7 +26,7 @@ import { ViewKufangPageActions } from "../actions";
 })
 export class ViewKufangPageComponent implements OnDestroy {
   actionsSubscription: Subscription;
-  constructor(store: Store<fromBooks.State>, route: ActivatedRoute) {
+  constructor(store: Store<fromKufangs.State>, route: ActivatedRoute) {
     this.actionsSubscription = route.params
       .pipe(map(params => new ViewKufangPageActions.SelectKufang(params.id)))
       .subscribe(store);

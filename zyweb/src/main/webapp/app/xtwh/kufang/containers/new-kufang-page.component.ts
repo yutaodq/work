@@ -8,6 +8,9 @@ import { IKufangEntity, KufangEntity } from "../models";
 import { ActionsSubject, Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
 import { Router } from "@angular/router";
+import * as fromKufangs from "../reducers";
+// import { Create } from "../actions";
+import { NewKufangPageActions } from "../actions";
 
 // import * as fromRoot from '@app-root-store';
 // import {ContactsActionTypes, Create, CreateSuccess} from '@app-contacts-store/actions/contacts-actions';
@@ -21,10 +24,10 @@ import { ofType } from "@ngrx/effects";
 export class NewKufangPageComponent implements OnInit, OnDestroy {
   redirectSub: Subscription;
 
-  constructor() // private store: Store<fromRoot.State>,
+  constructor() {}
+  // private store: Store<fromRoot.State>,
   // private router: Router,
   // private actionsSubject: ActionsSubject
-  {}
 
   ngOnInit() {
     // this.redirectSub = this.actionsSubject.asObservable().pipe(

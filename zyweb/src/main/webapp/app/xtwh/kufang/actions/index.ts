@@ -5,6 +5,8 @@ import * as CollectionPageActions from "./collection-page.actions";
 import * as FindKufangPageActions from "./find-kufang-page.actions";
 import * as SelectedKufangPageActions from "./selected-kufang-page.actions";
 import * as ViewKufangPageActions from "./view-kufang-page.actions";
+import * as NewKufangPageActions from "./view-kufang-page.actions";
+
 export {
   KufangActions,
   KufangsApiActions,
@@ -12,5 +14,6 @@ export {
   CollectionPageActions,
   FindKufangPageActions,
   SelectedKufangPageActions,
-  ViewKufangPageActions
+  ViewKufangPageActions,
+  NewKufangPageActions
 };
