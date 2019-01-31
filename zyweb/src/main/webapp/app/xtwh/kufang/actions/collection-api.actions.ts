@@ -57,8 +57,6 @@ export class LoadKufangsFailure implements Action {
 }
 
 export type CollectionApiActionsUnion =
-  | CreateKufangSuccess
-  | CreateKufangFailure
   | RemoveKufangSuccess
   | RemoveKufangFailure
   | LoadKufangsSuccess

@@ -3,7 +3,8 @@ import { KufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import {
   KufangActions,
   CollectionApiActions,
-  ViewKufangPageActions
+  ViewKufangPageActions,
+  NewKufangPageActions
 } from "app/xtwh/kufang/actions";
 
 /**
@@ -47,6 +48,7 @@ export function reducer(
     | KufangActions.KufangActionsUnion
     | CollectionApiActions.CollectionApiActionsUnion
     | ViewKufangPageActions.ViewKufangPageActionsUnion
+    | NewKufangPageActions.NewKufangPageActionsUnion
 ): State {
   switch (action.type) {
     case CollectionApiActions.CollectionApiActionTypes.LoadKufangsSuccess: {
@@ -76,6 +78,11 @@ export function reducer(
         ...state,
         selectedKufangId: action.payload
       };
+    }
+    case NewKufangPageActions.NewKufangPageActionTypes.CreateKufangSuccess: {
+      return adapter.addOne(action.payload, {
+        ...state
+      });
     }
 
     default: {

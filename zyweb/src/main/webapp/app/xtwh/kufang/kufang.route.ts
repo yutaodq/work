@@ -12,7 +12,9 @@ import { KufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { UserRouteAccessService } from "app/core";
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { KufangService } from "./service/kufang.service";
-import * as path from "./kufang.constants";
+// import * as path from "./kufang.constants";
+import * as path from "app/app.constants";
+
 import {
   KufangComponent,
   SelectedKufangPageComponent,
@@ -43,7 +45,8 @@ export const kufangRoute: Routes = [
     canActivate: [UserRouteAccessService]
   },
   {
-    path: "_entity/:id/view",
+    path: path.ROUTE_KUFANG_VIEW,
+    // path: "kufang/:id/view",
     // component: KufangDetailComponent,
     // component: SelectedKufangPageComponent,
     component: ViewKufangPageComponent,
