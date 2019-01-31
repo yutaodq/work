@@ -1,23 +1,23 @@
-ddddd
-<!--<form class="form-horizontal" [formGroup]="formGroup"  (ngSubmit)="save()">-->
 
-<!--<dynamic-ng-bootstrap-form [group]="formGroup"-->
-<!--[model]="_formModel"-->
-<!--[layout]="formLayout"-->
+<form class="form-horizontal" [formGroup]="formGroup" (ngSubmit)="save()">
 
-<!--&gt;-->
+    <dynamic-ng-bootstrap-form [group]="formGroup"
+                               [model]="_formModel"
+                               [layout]="formLayout"
 
-<!--</dynamic-ng-bootstrap-form>-->
+    >
 
-<!--<button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">-->
-<!--<fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>取消</span>-->
-<!--</button>-->
-<!--<button type="submit" id="save-entity" [disabled]="formGroup.invalid || isSaving"-->
-<!--class="btn btn-primary">-->
-<!--<fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>保存</span>-->
-<!--</button>-->
+    </dynamic-ng-bootstrap-form>
 
-<!--</form>-->
+    <button type="button" id="cancel-save" class="btn btn-secondary" (click)="onCancel()">
+        <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>取消</span>
+    </button>
+    <!--<button type="submit" id="save-entity" [disabled]="formGroup.invalid || isSaving"-->
+            <!--class="btn btn-primary">-->
+        <!--<fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>保存</span>-->
+    <!--</button>-->
+
+</form>
 
 
 

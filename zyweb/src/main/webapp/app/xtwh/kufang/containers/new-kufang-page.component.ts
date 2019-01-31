@@ -36,9 +36,16 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
     //   (action: CreateSuccess) => this.router.navigate(['/contacts', action.payload.id])
     // );
   }
+  cancelCreate(kufang: IKufangEntity) {
+    this.previousState();
+  }
+  // 以前的状态 在表单中按返回键时调用的方法
+  previousState() {
+    window.history.back();
+  }
 
   ngOnDestroy() {
-    this.redirectSub.unsubscribe();
+    // this.redirectSub.unsubscribe();
   }
 
   submitted(kufang: IKufangEntity) {

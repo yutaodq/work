@@ -1,4 +1,11 @@
-import { Component, OnInit, OnChanges, Input, Output } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  Input,
+  Output,
+  EventEmitter
+} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { DynamicFormService } from "@ng-dynamic-forms/core";
 
@@ -22,6 +29,7 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
     name: "",
     bz: ""
   };
+  @Output() cancel = new EventEmitter<IKufangEntity>();
 
   constructor(
     activatedRoute: ActivatedRoute,
@@ -41,6 +49,9 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
     // if (this.contact) {
     //   this.form.patchValue({...this.contact});
     // }
+  }
+  onCancel() {
+    this.cancel.emit(this.kufangEntity);
   }
 
   formModelToEntity() {

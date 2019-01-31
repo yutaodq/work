@@ -48,10 +48,10 @@ export abstract class NewComponent<T> implements OnInit {
   }
 
   // 以前的状态 在表单中按返回键时调用的方法
-
   previousState() {
     window.history.back();
   }
+
   save() {
     this.isSaving = true;
     this.formModelToEntity();
