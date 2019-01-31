@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-// import { Database } from '@ngrx/db';
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Action } from "@ngrx/store";
 import { defer, Observable, of } from "rxjs";
@@ -19,9 +18,10 @@ import {
 import {
   SelectedKufangPageActions,
   CollectionPageActions,
-  CollectionApiActions
-} from "app/xtwh/kufang/actions";
-import { KufangService } from "app/xtwh/kufang/service/kufang.service";
+  CollectionApiActions,
+  NewKufangPageActions
+} from "../actions";
+import { KufangService } from "../service";
 
 @Injectable()
 export class CollectionEffects {
@@ -35,6 +35,9 @@ export class CollectionEffects {
    * Wrapping the database open call in `defer` makes
    * effect easier to test.
    */
+  /*
+     * rxjs写法。loadCollection$ 是effect名，在外部没有用到，可以随便起。
+     */
   @Effect()
   loadCollection$: Observable<Action> = this.actions$.pipe(
     ofType(CollectionPageActions.CollectionPageActionTypes.LoadCollection),
@@ -52,91 +55,29 @@ export class CollectionEffects {
     )
   );
   /*
-     * rxjs写法。loadCollection$ 是effect名，在外部没有用到，可以随便起。
-     */
-  // @Effect()
-  // loadCollection$: Observable<Action> = this.actions$.pipe(
-  //   ofType( CollectionPageActions.CollectionPageActionTypes.LoadCollection ),
-  //   /* When [Contacts] LOAD ALL action is dispatched */
-  //   startWith(new CollectionPageActions.LoadCollection()),
-  //   switchMap(() => this.kufangService.queryyu()),
-  //   /* Hit the Contacts Index endpoint of our REST API */
-  //   /* Dispatch LoadAllSuccess action to the central store with id list returned by the backend as id*/
-  //   /* 'Contacts Reducers' will take care of the rest */
-  //   map(
-  //     (kufangs: KufangEntity[]) =>
-  //       new CollectionApiActions.LoadKufangsSuccess(kufangs)
-  //   )
-  // );
-  // @Effect()
-  // loadAll$: Observable<Action> = this.actions$.pipe(
-  //   ofType(ContactsActionTypes.LOAD_ALL), /* When [Contacts] LOAD ALL action is dispatched */
-  //   startWith(new LoadAll()),
-  //   switchMap(() => this.contactsService.index()), /* Hit the Contacts Index endpoint of our REST API */
-  //   /* Dispatch LoadAllSuccess action to the central store with id list returned by the backend as id*/
-  //   /* 'Contacts Reducers' will take care of the rest */
-  //   map((contacts: Contact[]) => new LoadAllSuccess(contacts))
-  // );
+ * 创建新库房记录
+ */
 
-  // @Effect()
-  // loadCollection$: Observable<Action> = this.actions$.pipe(
-  //   ofType(CollectionPageActions.CollectionPageActionTypes.LoadCollection),
-  //   switchMap(() =>
-  //     this.kufangService.queryyu().pipe(
-  //       toArray(),
-  //       map(
-  //         (kufangs: IKufangEntity[]) => new CollectionApiActions.LoadKufangsSuccess(kufangs)
-  //       ),
-  //       catchError(error =>
-  //         of(new CollectionApiActions.LoadKufangsFailure(error))
-  //       )
-  //     )
-  //   )
-  // );
-
-  // @Effect()
-  // loadCollection$: Observable<Action> = this.actions$.pipe(
-  //   ofType(
-  //     CollectionPageActions.CollectionPageActionTypes.LoadCollection
-  //   ) /* When [Contacts] LOAD ALL action is dispatched */,
-  //   switchMap(() =>
-  //     this.kufangService.queryyu()
-  //   ) /* Hit the Contacts Index endpoint of our REST API */,
-  //   /* Dispatch LoadAllSuccess action to the central store with id list returned by the backend as id*/
-  //   /* 'Contacts Reducers' will take care of the rest */
-  //   map(
-  //     (kufangs: IKufangEntity[]) =>
-  //       new CollectionApiActions.LoadKufangsSuccess(kufangs)
-  //   )
-  // );
-
-  // @Effect()
-  // addBookToCollection$: Observable<Action> = this.actions$.pipe(
-  //   ofType<SelectedBookPageActions.AddBook>(
-  //     SelectedBookPageActions.SelectedBookPageActionTypes.AddBook
-  //   ),
-  //   map(action => action.payload),
-  //   mergeMap(book =>
-  //     this.db.insert('books', [book]).pipe(
-  //       map(() => new CollectionApiActions.AddBookSuccess(book)),
-  //       catchError(() => of(new CollectionApiActions.AddBookFailure(book)))
-  //     )
-  //   )
-  // );
-  //
-  // @Effect()
-  // removeBookFromCollection$: Observable<Action> = this.actions$.pipe(
-  //   ofType<SelectedBookPageActions.RemoveBook>(
-  //     SelectedBookPageActions.SelectedBookPageActionTypes.RemoveBook
-  //   ),
-  //   map(action => action.payload),
-  //   mergeMap(book =>
-  //     this.db.executeWrite('books', 'delete', [book.id]).pipe(
-  //       map(() => new CollectionApiActions.RemoveBookSuccess(book)),
-  //       catchError(() => of(new CollectionApiActions.RemoveBookFailure(book)))
-  //     )
-  //   )
-  // );
+  @Effect()
+  createKufangToCollection$: Observable<Action> = this.actions$.pipe(
+    ofType<NewKufangPageActions.CreateKufang>(
+      NewKufangPageActions.NewKufangPageActionTypes.CreateKufang
+    ),
+    map(action => action.payload),
+    mergeMap(kufang =>
+      this.kufangService
+        .create(kufang)
+        .pipe(
+          map(
+            createdKufang =>
+              new NewKufangPageActions.CreateKufangSuccess(createdKufang)
+          ),
+          catchError(() =>
+            of(new CollectionApiActions.CreateKufangFailure(createdKufang))
+          )
+        )
+    )
+  );
 
   constructor(
     private actions$: Actions,

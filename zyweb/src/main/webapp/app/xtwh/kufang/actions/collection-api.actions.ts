@@ -2,8 +2,8 @@ import { Action } from "@ngrx/store";
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 
 export enum CollectionApiActionTypes {
-  AddKufangSuccess = "[Collection/API] Add Kufang Success",
-  AddKufangFailure = "[Collection/API] Add Kufang Failure",
+  // CreateKufangSuccess = "[Collection/API] Create Kufang Success",
+  // CreateKufangFailure = "[Collection/API] Create Kufang Failure",
   RemoveKufangSuccess = "[Collection/API] Remove Kufang Success",
   RemoveKufangFailure = "[Collection/API] Remove Kufang Failure",
   LoadKufangsSuccess = "[Collection/API] Load Kufangs Success",
@@ -14,17 +14,17 @@ export enum CollectionApiActionTypes {
  * Add Book to Collection Actions
  */
 
-export class AddKufangSuccess implements Action {
-  readonly type = CollectionApiActionTypes.AddKufangSuccess;
-
-  constructor(public payload: IKufangEntity) {}
-}
-
-export class AddKufangFailure implements Action {
-  readonly type = CollectionApiActionTypes.AddKufangFailure;
-
-  constructor(public payload: IKufangEntity) {}
-}
+// export class CreateKufangSuccess implements Action {
+//   readonly type = CollectionApiActionTypes.CreateKufangSuccess;
+//
+//   constructor(public payload: IKufangEntity) {}
+// }
+//
+// export class CreateKufangFailure implements Action {
+//   readonly type = CollectionApiActionTypes.CreateKufangFailure;
+//
+//   constructor(public payload: IKufangEntity) {}
+// }
 
 /**
  * Remove Book from Collection Actions
@@ -57,8 +57,8 @@ export class LoadKufangsFailure implements Action {
 }
 
 export type CollectionApiActionsUnion =
-  | AddKufangSuccess
-  | AddKufangFailure
+  | CreateKufangSuccess
+  | CreateKufangFailure
   | RemoveKufangSuccess
   | RemoveKufangFailure
   | LoadKufangsSuccess

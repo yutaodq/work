@@ -33,16 +33,6 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
   ) {
     // this.kufangs = store.pipe(select(fromKufangs.getKufangCollection));
   }
-  // loadKufangs() {
-  //   this.http
-  //     .get(this.resourceUrl)
-  //     // .map(res => res.json())
-  //     .map(payload => ({
-  //       type: CollectionPageActions.CollectionPageActionTypes.LoadCollection,
-  //       payload
-  //     }))
-  //     .subscribe(action => this.store.dispatch(action));
-  // }
 
   isNameTaken(alterEgo: string): Observable<boolean> {
     const isTaken = ALTER_EGOS.includes(alterEgo);
@@ -50,13 +40,20 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
 
     return of(isTaken).pipe(delay(100));
   }
-  create(product: IKufangEntity): Observable<EntityResponseType> {
-    return this.http.post<IKufangEntity>(this.resourceUrl, product, {
-      observe: "response"
-    });
+
+  // create(kufang: IKufangEntity): Observable<EntityResponseType> {
+  //   return this.http.post<IKufangEntity>(this.resourceUrl, kufang, {
+  //     observe: "response"
+  //   });
+  // }
+
+  create(kufang: IKufangEntity): Observable<IKufangEntity> {
+    console.log(`以前的状态: KufangService`);
+    return this.http.post<IKufangEntity>(this.resourceUrl, kufang);
   }
 
   update(product: IKufangEntity): Observable<EntityResponseType> {
+    // update(product: IKufangEntity): Observable<EntityResponseType> {
     return this.http.put<IKufangEntity>(this.resourceUrl, product, {
       observe: "response"
     });

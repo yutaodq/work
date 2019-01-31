@@ -76,17 +76,27 @@ public class KufangController {
    * status 400 (Bad Request) if the country has already an ID
    * @throws URISyntaxException if the Location URI syntax is incorrect
    */
+//  @PostMapping("/kufangEntities")
+//  public ResponseEntity createKufang(@RequestBody KufangEntity kufang) {
+//    Optional<KufangName> name = createKufangName(kufang.getName());
+//    KufangId id = KufangId.create();
+//    String bz = kufang.getBz();
+//    CreateKufangCommand command = new CreateKufangCommand(id, name.get(), bz);
+//    commandGateway.sendAndWait(command);
+//
+//    return ResponseEntity.ok(assembler.toResource(kufangQueryService.findByIdentifier(command.getKufangId().getIdentifier()).get()));
+////return kufangService.create(kufang);
+//  }
 
   @PostMapping("/kufangEntities")
-  public ResponseEntity createKufang(@RequestBody KufangEntity kufang) {
+  public Optional<KufangEntity> createKufang(@RequestBody KufangEntity kufang) {
+    log.info("新建库房记录 : {}", kufang.getName());
     Optional<KufangName> name = createKufangName(kufang.getName());
     KufangId id = KufangId.create();
     String bz = kufang.getBz();
     CreateKufangCommand command = new CreateKufangCommand(id, name.get(), bz);
     commandGateway.sendAndWait(command);
-
-    return ResponseEntity.ok(assembler.toResource(kufangQueryService.findByIdentifier(command.getKufangId().getIdentifier()).get()));
-//return kufangService.create(kufang);
+    return kufangQueryService.findByIdentifier(command.getKufangId().getIdentifier());
   }
 
   private Optional<KufangName> createKufangName(String name) {

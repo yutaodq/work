@@ -52,7 +52,7 @@ export abstract class NewComponent<T> implements OnInit {
     window.history.back();
   }
 
-  save() {
+  saveY() {
     this.isSaving = true;
     this.formModelToEntity();
     this.subscribeToSaveResponse(this.entityService.create(this.entity));

@@ -9,12 +9,15 @@ import { ActionsSubject, Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
 import { Router } from "@angular/router";
 import * as fromKufangs from "../reducers";
-// import { Create } from "../actions";
 import { NewKufangPageActions } from "../actions";
 
 // import * as fromRoot from '@app-root-store';
 // import {ContactsActionTypes, Create, CreateSuccess} from '@app-contacts-store/actions/contacts-actions';
 import { ofType } from "@ngrx/effects";
+import {
+  CreateKufang,
+  NewKufangPageActionsUnion
+} from "app/xtwh/kufang/actions/new-kufang-page.actions";
 
 @Component({
   selector: "zy-new-kufang-page",
@@ -24,7 +27,7 @@ import { ofType } from "@ngrx/effects";
 export class NewKufangPageComponent implements OnInit, OnDestroy {
   redirectSub: Subscription;
 
-  constructor() {}
+  constructor(private store: Store<fromKufangs.State>) {}
   // private store: Store<fromRoot.State>,
   // private router: Router,
   // private actionsSubject: ActionsSubject
@@ -38,6 +41,9 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
   }
   cancelCreate(kufang: IKufangEntity) {
     this.previousState();
+  }
+  saveCreate(kufang: IKufangEntity) {
+    this.store.dispatch(new NewKufangPageActions.CreateKufang(kufang));
   }
   // 以前的状态 在表单中按返回键时调用的方法
   previousState() {

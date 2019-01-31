@@ -1,8 +1,9 @@
 import {
   SelectedKufangPageActions,
   CollectionPageActions,
-  CollectionApiActions
-} from "app/xtwh/kufang/actions";
+  CollectionApiActions,
+  NewKufangPageActions
+} from "../actions";
 
 export interface State {
   loaded: boolean;
@@ -22,6 +23,7 @@ export function reducer(
     | SelectedKufangPageActions.SelectedKufangPageActionsUnion
     | CollectionPageActions.CollectionPageActionsUnion
     | CollectionApiActions.CollectionApiActionsUnion
+    | NewKufangPageActions.NewKufangPageActionsUnion
 ): State {
   switch (action.type) {
     case CollectionPageActions.CollectionPageActionTypes.LoadCollection: {
@@ -39,7 +41,7 @@ export function reducer(
       };
     }
 
-    case CollectionApiActions.CollectionApiActionTypes.AddKufangSuccess:
+    case NewKufangPageActions.NewKufangPageActionTypes.CreateKufangSuccess:
     case CollectionApiActions.CollectionApiActionTypes.RemoveKufangFailure: {
       if (state.ids.indexOf(action.payload.id) > -1) {
         return state;
@@ -52,7 +54,7 @@ export function reducer(
     }
 
     case CollectionApiActions.CollectionApiActionTypes.RemoveKufangSuccess:
-    case CollectionApiActions.CollectionApiActionTypes.AddKufangFailure: {
+    case NewKufangPageActions.NewKufangPageActionTypes.CreateKufangFailure: {
       return {
         ...state,
         ids: state.ids.filter(id => id !== action.payload.id)

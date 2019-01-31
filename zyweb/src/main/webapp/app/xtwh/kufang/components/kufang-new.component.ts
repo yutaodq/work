@@ -30,6 +30,7 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
     bz: ""
   };
   @Output() cancel = new EventEmitter<IKufangEntity>();
+  @Output() save = new EventEmitter<IKufangEntity>();
 
   constructor(
     activatedRoute: ActivatedRoute,
@@ -42,7 +43,6 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
   }
 
   ngOnInit() {
-    console.log(`KufangNewComponent - ngOnInit`);
     super.ngOnInit();
   }
   ngOnChanges() {
@@ -52,6 +52,12 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
   }
   onCancel() {
     this.cancel.emit(this.kufangEntity);
+  }
+
+  onSave() {
+    // this.entity.name = this.formGroup.value["name"];
+    this.kufangEntity = this.formGroup.value;
+    this.save.emit(this.kufangEntity);
   }
 
   formModelToEntity() {
