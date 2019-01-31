@@ -17,6 +17,7 @@ export abstract class NewComponent<T> implements OnInit {
   _pageTitle: string;
   _formGroup: FormGroup;
   _formModel: DynamicFormControlModel[];
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _formService: DynamicFormService,
@@ -25,14 +26,15 @@ export abstract class NewComponent<T> implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(`NewComponent - ngOnInit`);
-    this.activatedRoute.data.subscribe(data => {
-      this.pageTitle = data.pageTitle;
-    });
-    this.activatedRoute.data.subscribe(({ entity }) => {
-      this.entity = entity;
-      this.initForm();
-    });
+    // this.activatedRoute.data.subscribe(data => {
+    //   this.pageTitle = data.pageTitle;
+    // });
+    //
+    // this.activatedRoute.data.subscribe(({ entity }) => {
+    //   this.entity = entity;
+    //   this.initForm();
+    // });
+    this.initForm();
     this.isSaving = false;
   }
 

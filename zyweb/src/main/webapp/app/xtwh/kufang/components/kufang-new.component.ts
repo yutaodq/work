@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnChanges, Input, Output } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { DynamicFormService } from "@ng-dynamic-forms/core";
 
@@ -14,7 +14,15 @@ import { NewComponent } from "app/core/containers/new-component";
   templateUrl: "./kufang-new.component.html"
 })
 export class KufangNewComponent extends NewComponent<IKufangEntity>
-  implements OnInit {
+  implements OnInit, OnChanges {
+  @Input()
+  kufangEntity: IKufangEntity = {
+    id: undefined,
+    identifier: "",
+    name: "",
+    bz: ""
+  };
+
   constructor(
     activatedRoute: ActivatedRoute,
     formService: DynamicFormService,
@@ -22,11 +30,17 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
     kufangService: KufangService
   ) {
     super(activatedRoute, formService, formModelService, kufangService);
+    this._entity = this.kufangEntity;
   }
 
   ngOnInit() {
     console.log(`KufangNewComponent - ngOnInit`);
     super.ngOnInit();
+  }
+  ngOnChanges() {
+    // if (this.contact) {
+    //   this.form.patchValue({...this.contact});
+    // }
   }
 
   formModelToEntity() {
@@ -34,6 +48,40 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
     this.entity.bz = this.formGroup.value["bz"];
   }
 }
+
+// 可以使用
+// import { Component, OnInit } from "@angular/core";
+// import { ActivatedRoute } from "@angular/router";
+// import { DynamicFormService } from "@ng-dynamic-forms/core";
+//
+// import { IKufangEntity } from "app/xtwh/kufang/";
+// import { KufangService } from "../";
+//
+// import { KufangFormModelService } from "../kufang-form-model.service";
+// import { KUFANG_FORM_LAYOUT } from "../kufang-form.layout";
+// import { NewComponent } from "app/core/containers/new-component";
+//
+// export class KufangNewComponent extends NewComponent<IKufangEntity>
+//   implements OnInit {
+//   constructor(
+//     activatedRoute: ActivatedRoute,
+//     formService: DynamicFormService,
+//     formModelService: KufangFormModelService,
+//     kufangService: KufangService
+//   ) {
+//     super(activatedRoute, formService, formModelService, kufangService);
+//   }
+//
+//   ngOnInit() {
+//     console.log(`KufangNewComponent - ngOnInit`);
+//     super.ngOnInit();
+//   }
+//
+//   formModelToEntity() {
+//     this.entity.name = this.formGroup.value["name"];
+//     this.entity.bz = this.formGroup.value["bz"];
+//   }
+// }
 
 // 原始代码
 // export class KufangNewComponent implements OnInit {
