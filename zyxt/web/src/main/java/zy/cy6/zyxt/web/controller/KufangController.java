@@ -4,6 +4,7 @@ package zy.cy6.zyxt.web.controller;
  *参见 spring官方案例 spring-hateoas-examples
  */
 
+import com.codahale.metrics.annotation.Timed;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,10 @@ import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.codahale.metrics.annotation.Timed;
 import zy.cy6.zyxt.api.product.kufang.CreateKufangCommand;
 import zy.cy6.zyxt.api.product.kufang.KufangId;
 import zy.cy6.zyxt.api.product.kufang.KufangName;
+import zy.cy6.zyxt.api.product.kufang.RemoveKufangCommand;
 import zy.cy6.zyxt.query.product.KufangEntity;
 import zy.cy6.zyxt.query.product.KufangQueryService;
 import zy.cy6.zyxt.web.product.KufangResourceAssembler;
@@ -23,6 +24,9 @@ import zy.cy6.zyxt.web.product.KufangService;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+
+
 
 
 @RestController
@@ -58,13 +62,23 @@ public class KufangController {
     return kufangQueryService.findOne(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
   }
 
+//  @DeleteMapping("/kufangEntities/{id}")
+//  public ResponseEntity<Void> deleteKufang(@PathVariable Long id) {
+//    log.info("删除工具记录 : {}", id);
+//    CreateKufangCommand command = new CreateKufangCommand(id, name.get(), bz);
+//    commandGateway.sendAndWait(command);
+//    //    countryService.delete(id);
+//    //    return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME,
+//    // id.toString())).build();
+//    return null;
+//  }
   @DeleteMapping("/kufangEntities/{id}")
-  public ResponseEntity<Void> deleteCountry(@PathVariable Long id) {
-    log.info("删除工具记录 : {}", id);
-    //    countryService.delete(id);
-    //    return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME,
-    // id.toString())).build();
-    return null;
+  public CompletableFuture<String> remove(@PathVariable String id) {
+    KufangId kufangId = KufangId.create(id);
+    RemoveKufangCommand command = new RemoveKufangCommand(kufangId);
+
+    log.info("Executing command: kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+    return commandGateway.send(command);
   }
 
   /**

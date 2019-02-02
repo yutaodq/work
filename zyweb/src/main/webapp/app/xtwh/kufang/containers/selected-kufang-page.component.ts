@@ -1,34 +1,87 @@
-import { Component, OnInit } from "@angular/core";
-import { Store, select } from "@ngrx/store";
-import { Observable } from "rxjs";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Store, ActionsSubject, select } from "@ngrx/store";
+import { Observable, Subscription } from "rxjs";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ofType } from "@ngrx/effects";
+import { filter } from "rxjs/operators";
+
+import * as link from "app/app.constants";
 
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import * as fromKufangs from "../reducers";
+import { SelectedKufangPageActions, CollectionApiActions } from "../actions";
 
 @Component({
   selector: "zy-selected-kufang-page",
   templateUrl: "./selected-kufang-page.component.html"
 })
-export class SelectedKufangPageComponent implements OnInit {
+export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   private _pageTitle: string;
   private _entity$: Observable<IKufangEntity>;
+  redirectSub: Subscription;
 
-  constructor(private store: Store<fromKufangs.State>) {
-    this._entity$ = store.pipe(
+  constructor(
+    private _store: Store<fromKufangs.State>,
+    private activatedRoute: ActivatedRoute,
+    private _router: Router,
+    private actionsSubject: ActionsSubject
+  ) {
+    this._entity$ = this._store.pipe(
       select(fromKufangs.getSelectedKufang)
     ) as Observable<IKufangEntity>;
+
+    // If the destroy effect fires, we check if the current id is the one being viewed, and redirect to index
+    this.redirectSub = this.actionsSubject
+      .pipe(
+        ofType(
+          CollectionApiActions.CollectionApiActionTypes.RemoveKufangSuccess
+        ),
+        filter(
+          (action: CollectionApiActions.RemoveKufangSuccess) =>
+            action.payload.id ===
+            +this.activatedRoute.snapshot.params["contactId"]
+        )
+      )
+      .subscribe(_ => this._router.navigate(["/contacts"]));
+
+    this.redirectSub = this.actionsSubject
+      .pipe(
+        filter(
+          action =>
+            action.type ===
+            CollectionApiActions.CollectionApiActionTypes.RemoveKufangSuccess
+        )
+      )
+      .subscribe(_ => this._router.navigate(["/kufang"]));
   }
 
   ngOnInit() {
     this._pageTitle = "库房";
   }
 
+  onKufangList(kufang: IKufangEntity) {
+    this._router.navigate([link.ROUTE_KUFANG]);
+  }
+
+  onKufangDelete(kufang: IKufangEntity) {
+    const r = confirm("Are you sure?");
+    if (r) {
+      this._store.dispatch(new SelectedKufangPageActions.RemoveKufang(kufang));
+    }
+  }
+
   previousState() {
     window.history.back();
   }
+
+  ngOnDestroy() {
+    this.redirectSub.unsubscribe();
+  }
+
   get entity$(): Observable<IKufangEntity> {
     return this._entity$;
   }
+
   get pageTitle(): string {
     return this._pageTitle;
   }

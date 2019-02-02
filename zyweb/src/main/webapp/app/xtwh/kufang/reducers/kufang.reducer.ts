@@ -84,6 +84,9 @@ export function reducer(
         ...state
       });
     }
+    case CollectionApiActions.CollectionApiActionTypes.RemoveKufangSuccess: {
+      return adapter.removeOne(action.payload.id, state);
+    }
 
     default: {
       return state;

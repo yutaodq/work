@@ -48,7 +48,6 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
   // }
 
   create(kufang: IKufangEntity): Observable<IKufangEntity> {
-    console.log(`以前的状态: KufangService`);
     return this.http.post<IKufangEntity>(this.resourceUrl, kufang);
   }
 
@@ -77,10 +76,9 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
     });
   }
 
-  delete(id: number): Observable<HttpResponse<any>> {
-    return this.http.delete<any>(`${this.resourceUrl}/${id}`, {
-      observe: "response"
-    });
+  delete(id: string): Observable<IKufangEntity> {
+    console.log(`以前的状态: KufangService`);
+    return this.http.delete<any>(`${this.resourceUrl}/${id}`);
   }
 
   search(req?: any): Observable<EntityArrayResponseType> {

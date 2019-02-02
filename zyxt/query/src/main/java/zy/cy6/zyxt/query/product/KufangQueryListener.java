@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import zy.cy6.zyxt.api.product.kufang.KufangCreatedEvent;
 import zy.cy6.zyxt.api.product.kufang.KufangNameChangedEvent;
+import zy.cy6.zyxt.api.product.kufang.KufangRemovedEvent;
 import zy.cy6.zyxt.query.product.repositories.KufangQueryRepository;
 
 import java.util.Optional;
@@ -40,6 +41,13 @@ public class KufangQueryListener {
     KufangEntity entity = kuFangEntry.get();
     entity.setName(event.getKufangName().getName());
     repository.save(entity);
+  }
+  @EventHandler
+  public void removedKufang(KufangRemovedEvent event) {
+//    long id = repository.findByIdentifier(event.getKufangId().getIdentifier()).get().getId();
+    log.info("KufangQueryListener: kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+//    repository.deleteById(event.getKufangId());
+
   }
 
   @Autowired

@@ -55,7 +55,7 @@ export abstract class NewComponent<T> implements OnInit {
   saveY() {
     this.isSaving = true;
     this.formModelToEntity();
-    this.subscribeToSaveResponse(this.entityService.create(this.entity));
+    // this.subscribeToSaveResponse(this.entityService.create(this.entity));
   }
 
   private subscribeToSaveResponse(result: Observable<HttpResponse<T>>) {

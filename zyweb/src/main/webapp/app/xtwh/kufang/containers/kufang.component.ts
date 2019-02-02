@@ -10,7 +10,6 @@ import { IKufangEntity } from "app/xtwh/kufang/models";
 import { Principal } from "app/core";
 import { KufangService } from "../service";
 
-// import * as link from "../kufang.constants";
 import * as link from "app/app.constants";
 
 import * as fromKufangs from "app/xtwh/kufang/reducers";

@@ -72,8 +72,39 @@ export class CollectionEffects {
             createdKufang =>
               new NewKufangPageActions.CreateKufangSuccess(createdKufang)
           ),
+          catchError(createdKufang =>
+            of(new NewKufangPageActions.CreateKufangFailure(createdKufang))
+          )
+        )
+    )
+  );
+  /*
+   * 删除记录
+   */
+  // @Effect()
+  // destroy$: Observable<Action> = this.actions$.pipe(
+  //   ofType(SelectedKufangPageActions.SelectedKufangPageActionTypes.RemoveKufang),
+  //   map((action: SelectedKufangPageActions.RemoveKufang) => action.payload),
+  //   switchMap(
+  //     (kufang: IKufangEntity) => this.kufangService.delete(kufang.id).pipe(
+  //       map(() => new CollectionApiActions.RemoveKufangSuccess(kufang))
+  //     )
+  //   )
+  // );
+
+  @Effect()
+  removeBookFromCollection$: Observable<Action> = this.actions$.pipe(
+    ofType<SelectedKufangPageActions.RemoveKufang>(
+      SelectedKufangPageActions.SelectedKufangPageActionTypes.RemoveKufang
+    ),
+    map(action => action.payload),
+    mergeMap(kufang =>
+      this.kufangService
+        .delete(kufang.identifier)
+        .pipe(
+          map(() => new CollectionApiActions.RemoveKufangSuccess(kufang)),
           catchError(() =>
-            of(new CollectionApiActions.CreateKufangFailure(createdKufang))
+            of(new CollectionApiActions.RemoveKufangFailure(kufang))
           )
         )
     )
