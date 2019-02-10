@@ -3,7 +3,7 @@ package zy.cy6.zyxt.web.product;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
-import zy.cy6.zyxt.query.product.KufangEntity;
+import zy.cy6.zyxt.query.kufang.KufangEntity;
 
 import java.util.List;
 import java.util.Optional;

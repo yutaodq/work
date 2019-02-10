@@ -1,6 +1,7 @@
 package zy.cy6.zyxt.product.command;
 
 import lombok.extern.slf4j.Slf4j;
+import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
@@ -20,7 +21,12 @@ public class Product {
     private ProductId productId;
     private ProductName productName;
 
-    //    @CommandHandler
+    @SuppressWarnings("UnusedDeclaration")
+    public Product() {
+        //Axon Framework 要求聚合根必需有无参数的构造函数
+    }
+
+    @CommandHandler
     public Product(CreateProductCommand command) {
         apply(ProductCreatedEvent.create(command.getProductId(), command.getProductName()));
     }

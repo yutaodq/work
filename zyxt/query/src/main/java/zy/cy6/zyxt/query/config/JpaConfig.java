@@ -1,4 +1,8 @@
-package zy.cy6.zyxt.infra.config;
+package zy.cy6.zyxt.query.config;
+/*
+ * 和QueryConfig的功能是一样的。
+ * QueryConfig.java好用后，可删除这个文件
+ */
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,13 +23,17 @@ import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager", basePackages = {"zy.cy6.zyxt"})
+@EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory",
+        transactionManagerRef = "transactionManager",
+        basePackages = {"zy.cy6.zyxt.query"})
 // 设置Repository所在位置
 public class JpaConfig {
 
   @Autowired
   @Qualifier("dataSource")
   private DataSource dataSource;
+
+
 
   @Bean(name = "entityManager")
   public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
@@ -34,7 +42,12 @@ public class JpaConfig {
 
   @Bean(name = "entityManagerFactory")
   public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
-    return builder.dataSource(dataSource).properties(getVendorProperties()).packages("zy.cy6.zyxt", "org.axonframework.eventsourcing.eventstore.jpa", "org.axonframework.eventhandling.tokenstore", "org.axonframework.eventhandling.saga.repository.jpa") // 设置实体类所在位置
+    return builder.dataSource(dataSource).properties(getVendorProperties())
+            .packages("zy.cy6.zyxt.query"
+//                    "org.axonframework.eventsourcing.eventstore.jpa",
+//                    "org.axonframework.eventhandling.tokenstore",
+//                    "org.axonframework.eventhandling.saga.repository.jpa"
+            ) // 设置实体类所在位置
             .persistenceUnit("persistenceUnit").build();
   }
 

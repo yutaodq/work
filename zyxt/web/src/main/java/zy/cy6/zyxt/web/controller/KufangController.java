@@ -6,6 +6,8 @@ package zy.cy6.zyxt.web.controller;
 
 import com.codahale.metrics.annotation.Timed;
 import lombok.extern.slf4j.Slf4j;
+import org.axonframework.commandhandling.CommandBus;
+import org.axonframework.commandhandling.GenericCommandMessage;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.MediaTypes;
@@ -16,15 +18,14 @@ import zy.cy6.zyxt.api.product.kufang.CreateKufangCommand;
 import zy.cy6.zyxt.api.product.kufang.KufangId;
 import zy.cy6.zyxt.api.product.kufang.KufangName;
 import zy.cy6.zyxt.api.product.kufang.RemoveKufangCommand;
-import zy.cy6.zyxt.query.product.KufangEntity;
-import zy.cy6.zyxt.query.product.KufangQueryService;
+import zy.cy6.zyxt.query.kufang.KufangEntity;
+import zy.cy6.zyxt.query.kufang.KufangQueryService;
 import zy.cy6.zyxt.web.product.KufangResourceAssembler;
 import zy.cy6.zyxt.web.product.KufangService;
 
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 
 
 
@@ -35,13 +36,19 @@ import java.util.concurrent.CompletableFuture;
 public class KufangController {
   private final KufangService kufangService;
   private final KufangQueryService kufangQueryService;
+  private final CommandBus commandBus;
 
   private final KufangResourceAssembler assembler;
   private final CommandGateway commandGateway;
   private static final String ENTITY_NAME = "KufangEntity";
 
   @Autowired
-  public KufangController(KufangResourceAssembler assembler, CommandGateway commandGateway, KufangService kufangService, KufangQueryService kufangQueryService) {
+  public KufangController(CommandBus commandBus,
+                          KufangResourceAssembler assembler,
+                          CommandGateway commandGateway,
+                          KufangService kufangService,
+                          KufangQueryService kufangQueryService) {
+    this.commandBus = commandBus;
     this.assembler = assembler;
     this.commandGateway = commandGateway;
     this.kufangService = kufangService;
@@ -73,12 +80,14 @@ public class KufangController {
 //    return null;
 //  }
   @DeleteMapping("/kufangEntities/{id}")
-  public CompletableFuture<String> remove(@PathVariable String id) {
+//  public CompletableFuture<String> remove(@PathVariable String id) {
+  public void remove(@PathVariable String id) {
     KufangId kufangId = KufangId.create(id);
     RemoveKufangCommand command = new RemoveKufangCommand(kufangId);
 
-    log.info("Executing command: kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-    return commandGateway.send(command);
+    log.info("Executing command: kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk:{}", command.getKufangId());
+     commandBus.dispatch(new GenericCommandMessage<>(command));
+//    return commandGateway.send(command);
   }
 
   /**
@@ -110,6 +119,7 @@ public class KufangController {
     String bz = kufang.getBz();
     CreateKufangCommand command = new CreateKufangCommand(id, name.get(), bz);
     commandGateway.sendAndWait(command);
+//    commandBus.dispatch(new GenericCommandMessage<>(command));
     return kufangQueryService.findByIdentifier(command.getKufangId().getIdentifier());
   }
 

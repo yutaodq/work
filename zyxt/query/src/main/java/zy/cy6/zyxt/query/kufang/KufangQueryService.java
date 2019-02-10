@@ -1,10 +1,10 @@
-package zy.cy6.zyxt.query.product;
+package zy.cy6.zyxt.query.kufang;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zy.cy6.zyxt.api.product.kufang.KufangName;
-import zy.cy6.zyxt.query.product.repositories.KufangQueryRepository;
+import zy.cy6.zyxt.query.kufang.repositories.KufangQueryRepository;
 
 import java.util.List;
 import java.util.Optional;

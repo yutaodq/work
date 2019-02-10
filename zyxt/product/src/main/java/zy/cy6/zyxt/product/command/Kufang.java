@@ -5,7 +5,6 @@ import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
-import org.springframework.util.Assert;
 import zy.cy6.zyxt.api.product.kufang.*;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
@@ -21,9 +20,14 @@ public class Kufang {
   @AggregateIdentifier
   private KufangId kuFangId;
   private KufangName kuFangName;
-  private String bz;
+//  private String bz;
 
-  //    @CommandHandler
+  @SuppressWarnings("UnusedDeclaration")
+  public Kufang() {
+    //Axon Framework 要求聚合根必需有无参数的构造函数
+  }
+
+  @CommandHandler
   public Kufang(CreateKufangCommand command) {
     apply(KufangCreatedEvent.create(command.getKufangId(), command.getKufangName(), command.getBz()));
   }
@@ -36,10 +40,10 @@ public class Kufang {
 
   @SuppressWarnings("UnusedDeclaration")
   @EventSourcingHandler
-  public void handle(KufangCreatedEvent event) {
+  public void on(KufangCreatedEvent event) {
     this.kuFangId = event.getKuFangId();
-    this.kuFangName = event.getKuFangName();
-    this.bz = event.getBz();
+//    this.kuFangName = event.getKuFangName();
+//    this.bz = event.getBz();
   }
   @EventSourcingHandler
   public void on(KufangRemovedEvent event) {
