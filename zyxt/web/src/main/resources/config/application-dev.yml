@@ -9,8 +9,8 @@ spring:
        schema: classpath:/db/schema.sql
        data: classpath:/db/data.sql
        hikari:
-        jdbc-url: jdbc:h2:mem:zyglWeb
-#         jdbc-url: jdbc:h2:file:c:/temp/zyglWeb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
+#        jdbc-url: jdbc:h2:mem:zyglWeb
+         jdbc-url: jdbc:h2:file:c:/temp/zyglWeb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
 #        datasource 使用HikariDataSource 时，一定是 jdbc-url不能是url
         #加入AUTO_SERVER=TRUE 可以在web控制台中同时打开zygl,前题是当使用自动混合模式，所有客户端都需要使用同样的URL进行连接（不管它是一个本地还是一个远程连接。
 #        jdbc-url: jdbc:h2:file:c:/temp/zyglWeb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
