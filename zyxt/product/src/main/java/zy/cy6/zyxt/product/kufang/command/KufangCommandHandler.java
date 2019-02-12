@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.product.command;
+package zy.cy6.zyxt.product.kufang.command;
 
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
@@ -11,6 +11,7 @@ import zy.cy6.zyxt.api.exception.ErrorCode;
 import zy.cy6.zyxt.api.product.kufang.ChangeKufangNameCommand;
 import zy.cy6.zyxt.api.product.kufang.CreateKufangCommand;
 import zy.cy6.zyxt.api.product.kufang.KufangId;
+import zy.cy6.zyxt.product.kufang.command.Kufang;
 import zy.cy6.zyxt.query.kufang.KufangQueryService;
 @Slf4j
 public class KufangCommandHandler {

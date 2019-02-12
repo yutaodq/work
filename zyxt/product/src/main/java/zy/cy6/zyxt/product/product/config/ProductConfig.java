@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.product.config;
+package zy.cy6.zyxt.product.product.config;
 
 import org.springframework.context.annotation.Configuration;
 
