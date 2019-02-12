@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
+import lombok.Value;
 
-@Getter
-@ToString
-@AllArgsConstructor
+//@Getter
+//@ToString
+//@AllArgsConstructor
+@Value
 public class CreateKufangCommand {
     @TargetAggregateIdentifier
     private KufangId kufangId;

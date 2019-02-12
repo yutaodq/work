@@ -35,11 +35,15 @@ public class Kufang {
     apply(KufangCreatedEvent.create(command.getKufangId(), command.getKufangName(), command.getBz()));
   }
 
-//  @CommandHandler
-//  public void handle(RemoveKufangCommand cmd) {
-//    log.info("aaaaaaaaaa");
-////    apply(new KufangRemovedEvent(cmd.getKufangId()));
-//  }
+  @CommandHandler
+  public void handle(RemoveKufangCommand cmd) {
+    log.info("aaaaaaaaaa");
+//    apply(new KufangRemovedEvent(cmd.getKufangId()));
+  }
+public void remove(){
+  log.info("删除kufang记录，在聚合kufang中");
+
+}
 
   @SuppressWarnings("UnusedDeclaration")
   @EventSourcingHandler

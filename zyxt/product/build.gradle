@@ -4,8 +4,8 @@ dependencies {
     compile project(':query')
 
     compile "org.axonframework:axon-spring-boot-starter:${axon_version}"
-//    compile "org.axonframework:axon-core:${axon_version}"
-//    compile "org.axonframework:axon-spring:${axon_version}"
+    compile "org.axonframework:axon-core:${axon_version}"
+    compile "org.axonframework:axon-spring:${axon_version}"
     compile "org.axonframework:axon-test:${axon_version}"
 }
 

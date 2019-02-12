@@ -49,7 +49,8 @@ public class KufangEventHandler {
   public void removedKufang(KufangRemovedEvent event) {
     long id = repository.findByIdentifier(event.getKufangId().getIdentifier()).get().getId();
     log.info("KufangQueryListener: kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-    repository.deleteById(id);
+
+//    repository.deleteById(id);
 
   }
 }
