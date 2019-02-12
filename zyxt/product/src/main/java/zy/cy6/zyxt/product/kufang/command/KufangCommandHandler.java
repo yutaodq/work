@@ -5,12 +5,14 @@ import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.Aggregate;
 import org.axonframework.commandhandling.model.AggregateNotFoundException;
 import org.axonframework.commandhandling.model.Repository;
+import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventBus;
 import zy.cy6.zyxt.api.exception.DomainException;
 import zy.cy6.zyxt.api.exception.ErrorCode;
 import zy.cy6.zyxt.api.product.kufang.ChangeKufangNameCommand;
 import zy.cy6.zyxt.api.product.kufang.CreateKufangCommand;
 import zy.cy6.zyxt.api.product.kufang.KufangId;
+import zy.cy6.zyxt.api.product.kufang.RemoveKufangCommand;
 import zy.cy6.zyxt.product.kufang.command.Kufang;
 import zy.cy6.zyxt.query.kufang.KufangQueryService;
 @Slf4j
@@ -38,7 +40,7 @@ public class KufangCommandHandler {
         }
     }
 
-    @CommandHandler
+//    @CommandHandler
     public KufangId handlecreatekufang(CreateKufangCommand command) throws Exception {
         kuFangQueryService.findByKuFangName(command.getKufangName()).ifPresent(p -> {
             throw new DomainException(ErrorCode.VIOLATION_CONSTRAINT, "com.believe.bike.error.user.NotFound", "aaa");
@@ -48,5 +50,10 @@ public class KufangCommandHandler {
         repository.newInstance(() -> new Kufang(command));
         return identifier;
     }
+//    @CommandHandler
+//    public void handle(RemoveKufangCommand cmd) {
+//        log.info("aaaaaaaaaa");
+////    apply(new KufangRemovedEvent(cmd.getKufangId()));
+//    }
 
 }

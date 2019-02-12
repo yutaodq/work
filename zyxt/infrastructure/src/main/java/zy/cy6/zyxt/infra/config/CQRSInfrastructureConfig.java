@@ -15,13 +15,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import zy.cy6.zyxt.product.kufang.command.Kufang;
 import zy.cy6.zyxt.product.product.command.Product;
 
 import java.util.Map;
 @Configuration
 @ComponentScan("zy.cy6.zyxt")
-
+@Import({CQRSInfrastructureHSQLDBConfig.class})
 public class CQRSInfrastructureConfig {
   /*
    * AxonFramework命令拦截器 Axon Framework支持基于JSR 303 Bean Validation的验证。

@@ -1,5 +1,7 @@
 package zy.cy6.zyxt.product.kufang.command;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
@@ -16,27 +18,28 @@ import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
  */
 @Aggregate
 @Slf4j
+@NoArgsConstructor  //Axon Framework 要求聚合根必需有无参数的构造函数
+
 public class Kufang {
   @AggregateIdentifier
   private KufangId kuFangId;
   private KufangName kuFangName;
 //  private String bz;
 
-  @SuppressWarnings("UnusedDeclaration")
-  public Kufang() {
-    //Axon Framework 要求聚合根必需有无参数的构造函数
-  }
+//  public Kufang() {
+//    //Axon Framework 要求聚合根必需有无参数的构造函数
+//  }
 
   @CommandHandler
   public Kufang(CreateKufangCommand command) {
     apply(KufangCreatedEvent.create(command.getKufangId(), command.getKufangName(), command.getBz()));
   }
 
-  @CommandHandler
-  public void handle(RemoveKufangCommand cmd) {
-    log.info("aaaaaaaaaa");
-    apply(new KufangRemovedEvent(cmd.getKufangId()));
-  }
+//  @CommandHandler
+//  public void handle(RemoveKufangCommand cmd) {
+//    log.info("aaaaaaaaaa");
+////    apply(new KufangRemovedEvent(cmd.getKufangId()));
+//  }
 
   @SuppressWarnings("UnusedDeclaration")
   @EventSourcingHandler

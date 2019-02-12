@@ -1,9 +1,10 @@
 package zy.cy6.zyxt.api.product.kufang;
 
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public final class KufangId{
+public final class KufangId implements Serializable {
     private final String identifier;
     public KufangId() {
         this.identifier = generateIdentifier();
