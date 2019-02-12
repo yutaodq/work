@@ -2,22 +2,18 @@ spring:
     profiles:
         active: dev
     datasource:
-       type: com.zaxxer.hikari.HikariDataSource
-       driver-class-name: org.h2.Driver
-       username: sa
-       password: sa
-       schema: classpath:/db/schema.sql
-       data: classpath:/db/data.sql
+           type: com.zaxxer.hikari.HikariDataSource
+           driver-class-name: org.hsqldb.jdbc.JDBCDriver
+           username: sa
+           password: sa
+           schema: classpath:/db/schema.sql
+           data: classpath:/db/data.sql
        hikari:
-        jdbc-url: jdbc:h2:mem:zyglWeb
-#         jdbc-url: jdbc:h2:file:c:/temp/zyglWeb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
-#        datasource 使用HikariDataSource 时，一定是 jdbc-url不能是url
-        #加入AUTO_SERVER=TRUE 可以在web控制台中同时打开zygl,前题是当使用自动混合模式，所有客户端都需要使用同样的URL进行连接（不管它是一个本地还是一个远程连接。
-#        jdbc-url: jdbc:h2:file:c:/temp/zyglWeb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
-#        jdbc-url: jdbc:h2:mem:zyglWeb
+#         jdbc-url: jdbc:hsqldb:file:c:/temp/zyglWeb
+         jdbc-url: jdbc:hsqldb:mem:testdb
     jpa:
-        database-platform: org.hibernate.dialect.H2Dialect
-        database: H2
+#        database-platform: org.hibernate.dialect.HSQLDialect
+        database: HSQL
         show-sql: true
         hibernate:
             ddl-auto: update
@@ -26,12 +22,6 @@ spring:
             hibernate.cache.use_second_level_cache: true
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
-    h2:
-        console:
-            enabled: true      # 开启 h2 web consloe，默认为 false
-            path: /h2-console   # h2 web consloe 路径
-            settings:
-                web-allow-others: true
     mvc:
       throw-exception-if-no-handler-found: true   #允许远程访问 h2 web consloe
 
