@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
+import org.axonframework.commandhandling.model.AggregateNotFoundException;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 import zy.cy6.zyxt.api.product.kufang.*;
@@ -18,17 +19,16 @@ import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
  */
 @Aggregate
 @Slf4j
-@NoArgsConstructor  //Axon Framework 要求聚合根必需有无参数的构造函数
+//@NoArgsConstructor  //Axon Framework 要求聚合根必需有无参数的构造函数
 
 public class Kufang {
   @AggregateIdentifier
   private KufangId kuFangId;
-  private KufangName kuFangName;
-//  private String bz;
-
-//  public Kufang() {
-//    //Axon Framework 要求聚合根必需有无参数的构造函数
-//  }
+//  private KufangName kuFangName;
+/*
+Axon Framework 要求聚合根必需有无参数的构造函数
+ */
+  public Kufang() { }
 
   @CommandHandler
   public Kufang(CreateKufangCommand command) {
@@ -40,6 +40,12 @@ public class Kufang {
     log.info("aaaaaaaaaa");
 //    apply(new KufangRemovedEvent(cmd.getKufangId()));
   }
+
+  @CommandHandler
+  public void handle(ChangeKufangNameCommand command)  {
+    log.info("aaaaaaaaaa");
+  }
+
 public void remove(){
   log.info("删除kufang记录，在聚合kufang中");
 
@@ -49,9 +55,8 @@ public void remove(){
   @EventSourcingHandler
   public void on(KufangCreatedEvent event) {
     this.kuFangId = event.getKuFangId();
-//    this.kuFangName = event.getKuFangName();
-//    this.bz = event.getBz();
   }
+
   @EventSourcingHandler
   public void on(KufangRemovedEvent event) {
     log.info("Done handling {} event: {}", event.getClass().getSimpleName(), event);
@@ -64,7 +69,7 @@ public void remove(){
   @SuppressWarnings("UnusedDeclaration")
   @EventSourcingHandler
   public void on(KufangNameChangedEvent event) {
-    this.kuFangName = event.getKufangName();
+    log.info("删除kufang记录，在聚合kufang中");
   }
 
 }

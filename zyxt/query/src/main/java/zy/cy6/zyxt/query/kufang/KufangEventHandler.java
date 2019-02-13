@@ -1,6 +1,7 @@
 package zy.cy6.zyxt.query.kufang;
 
 import lombok.extern.slf4j.Slf4j;
+import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import zy.cy6.zyxt.query.kufang.repositories.KufangQueryRepository;
 import java.util.Optional;
 
 @Service
-//@ProcessingGroup("queryModel")
+@ProcessingGroup("queryModel")
 @Slf4j
 public class KufangEventHandler {
   private final KufangQueryRepository repository;
@@ -23,34 +24,30 @@ public class KufangEventHandler {
   }
 
   @EventHandler
-  public void handleKuFangCreatedEvent(KufangCreatedEvent event) {
-    create(event);
-  }
-
-  private void create(KufangCreatedEvent event) {
+  public void on(KufangCreatedEvent event) {
     KufangEntity kuFangEntry = new KufangEntity();
     kuFangEntry.setIdentifier(event.getKuFangId().getIdentifier());
     kuFangEntry.setName(event.getKuFangName().getName());
     kuFangEntry.setBz(event.getBz());
-    log.info("KufangEventHandler:create:kuFangEntry实体的名称" + event.getBz());
+    log.info("KufangEventHandler:create:kuFangEntry实体的名称" + event.getKuFangName().getName());
 
     repository.save(kuFangEntry);
   }
 
-  @EventHandler
-  public void changeKuFangName(KufangNameChangedEvent event) {
-    log.info("修改：kuFangEntry实体的名称");
-    Optional<KufangEntity> kuFangEntry = repository.findByIdentifier(event.getKufangId().getIdentifier());
-    KufangEntity entity = kuFangEntry.get();
-    entity.setName(event.getKufangName().getName());
-    repository.save(entity);
-  }
-  @EventHandler
-  public void removedKufang(KufangRemovedEvent event) {
-    long id = repository.findByIdentifier(event.getKufangId().getIdentifier()).get().getId();
-    log.info("KufangQueryListener: kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-
-//    repository.deleteById(id);
-
-  }
+//  @EventHandler
+//  public void changeKuFangName(KufangNameChangedEvent event) {
+//    log.info("修改：kuFangEntry实体的名称");
+//    Optional<KufangEntity> kuFangEntry = repository.findByIdentifier(event.getKufangId().getIdentifier());
+//    KufangEntity entity = kuFangEntry.get();
+//    entity.setName(event.getKufangName().getName());
+//    repository.save(entity);
+//  }
+//  @EventHandler
+//  public void removedKufang(KufangRemovedEvent event) {
+//    long id = repository.findByIdentifier(event.getKufangId().getIdentifier()).get().getId();
+//    log.info("KufangQueryListener: kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+//
+////    repository.deleteById(id);
+//
+//  }
 }

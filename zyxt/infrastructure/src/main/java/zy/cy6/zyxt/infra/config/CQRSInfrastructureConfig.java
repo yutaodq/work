@@ -96,9 +96,10 @@ public class CQRSInfrastructureConfig {
                     .configureAggregate(Product.class)
                     .registerModule(queryModelConfiguration)
                     .registerModule(commandPublisherConfiguration)
+                    .buildConfiguration();
+
 //                    .registerModule(SagaConfiguration.subscribingSagaManager(SellTradeManagerSaga.class))
 //                    .registerModule(SagaConfiguration.subscribingSagaManager(BuyTradeManagerSaga.class))
-                    .buildConfiguration();
     configuration.start();
     return configuration;
   }
