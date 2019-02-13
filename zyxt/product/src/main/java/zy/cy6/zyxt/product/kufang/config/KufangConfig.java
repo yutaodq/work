@@ -38,10 +38,10 @@ public class KufangConfig {
     @Autowired
     private EventBus eventBus;
 
-    @Bean
-    public KufangCommandHandler kufangCommandHandler() {
-        return new KufangCommandHandler(axonConfiguration.repository(Kufang.class), eventBus);
-    }
+//    @Bean
+//    public KufangCommandHandler kufangCommandHandler() {
+//        return new KufangCommandHandler(axonConfiguration.repository(Kufang.class), eventBus);
+//    }
 //    @Bean
 //    public KufangCommandHandler kufangCommandHandler() {
 //        KufangCommandHandler kufangCommandHandler = new KufangCommandHandler();
