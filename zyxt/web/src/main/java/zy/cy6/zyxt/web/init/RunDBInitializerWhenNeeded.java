@@ -34,7 +34,7 @@ import org.springframework.stereotype.Component;
 public class RunDBInitializerWhenNeeded implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        HsqlDBInit init = event.getApplicationContext().getBean(HsqlDBInit.class);
-        init.initializeDB();
+//        HsqlDBInit init = event.getApplicationContext().getBean(HsqlDBInit.class);
+//        init.initializeDB();
     }
 }

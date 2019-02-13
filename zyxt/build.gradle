@@ -46,7 +46,6 @@ subprojects {
 //        compile 'org.mapstruct:mapstruct:1.3.0.Final'
 
         testImplementation ('org.springframework.boot:spring-boot-starter-test')
-        testImplementation ('org.axonframework:axon-test:3.0.4')
     }
 
 }

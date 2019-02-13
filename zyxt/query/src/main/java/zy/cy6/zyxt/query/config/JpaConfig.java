@@ -7,6 +7,7 @@ package zy.cy6.zyxt.query.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 //springboot 2.0 import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +26,7 @@ import java.util.Map;
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory",
         transactionManagerRef = "transactionManager",
-        basePackages = {"zy.cy6.zyxt.query"})
+        basePackages = {"zy.cy6.zyxt"})
 // 设置Repository所在位置
 public class JpaConfig {
 
@@ -43,20 +44,20 @@ public class JpaConfig {
   @Bean(name = "entityManagerFactory")
   public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
     return builder.dataSource(dataSource)
-//            .properties(getVendorProperties())
-            .packages("zy.cy6.zyxt.query"
-//                    "org.axonframework.eventsourcing.eventstore.jpa",
-//                    "org.axonframework.eventhandling.tokenstore",
-//                    "org.axonframework.eventhandling.saga.repository.jpa"
+            .properties(getVendorProperties())
+            .packages("zy.cy6.zyxt",
+                    "org.axonframework.eventsourcing.eventstore.jpa",
+                    "org.axonframework.eventhandling.tokenstore",
+                    "org.axonframework.eventhandling.saga.repository.jpa"
             ) // 设置实体类所在位置
             .persistenceUnit("persistenceUnit").build();
   }
 
-//  @Autowired
-//  private JpaProperties jpaProperties;
-//  private Map<String, Object> getVendorProperties() {
-//    return jpaProperties.getHibernateProperties(new HibernateSettings());
-//  }
+  @Autowired
+  private JpaProperties jpaProperties;
+  private Map<String, Object> getVendorProperties() {
+    return jpaProperties.getHibernateProperties(new HibernateSettings());
+  }
 
   @Bean(name = "transactionManager")
   public PlatformTransactionManager transactionManager(EntityManagerFactoryBuilder builder) {

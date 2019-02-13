@@ -21,8 +21,6 @@ import zy.cy6.zyxt.product.product.command.Product;
 
 import java.util.Map;
 @Configuration
-@ComponentScan("zy.cy6.zyxt")
-@Import({CQRSInfrastructureHSQLDBConfig.class})
 public class CQRSInfrastructureConfig {
   /*
    * AxonFramework命令拦截器 Axon Framework支持基于JSR 303 Bean Validation的验证。
@@ -37,13 +35,13 @@ public class CQRSInfrastructureConfig {
   // BeanValidationInterceptor类使用了 javax.validation中的接口
   // 所以在.gradle中要引入  spring-boot-starter-validation
 
-  @Bean
-  public CommandBus commandBus() {
-    SimpleCommandBus commandBus = new SimpleCommandBus();
-    commandBus.registerDispatchInterceptor(new BeanValidationInterceptor<>());
-
-    return commandBus;
-  }
+//  @Bean
+//  public CommandBus commandBus() {
+//    SimpleCommandBus commandBus = new SimpleCommandBus();
+//    commandBus.registerDispatchInterceptor(new BeanValidationInterceptor<>());
+//
+//    return commandBus;
+//  }
 
   @Bean
   public CommandGateway commandGateway(CommandBus commandBus) {
@@ -60,47 +58,4 @@ public class CQRSInfrastructureConfig {
     return new CommandHandlerSubscriber();
   }
 
-  /**
-   * Ideally, this bean would be created by the axon-spring module automatically, by setting the
-   * {@link org.axonframework.spring.config.EnableAxon} on one of our configuration classes.
-   * This however throws 'interesting' lifecycle exceptions which didn't seem all that clear.
-   * In the interest of getting this application running again for the time being, I've resorted to using the
-   * {@link org.axonframework.config.Configuration} as shown below.
-   * If you are interested in other forms of setting up the configuration, the
-   * [Reference Guide](https://docs.axonframework.org/) would be an ideal place to start your investigation.
-   */
-  @Bean
-  public org.axonframework.config.Configuration configuration(CommandBus commandBus,
-                                                              EventStore eventStore,
-                                                              ApplicationContext applicationContext) {
-    EventHandlingConfiguration queryModelConfiguration =
-            new EventHandlingConfiguration().registerSubscribingEventProcessor("queryModel");
-    EventHandlingConfiguration commandPublisherConfiguration =
-            new EventHandlingConfiguration().registerSubscribingEventProcessor("commandPublishingEventHandlers");
-
-    Map<String, Object> eventHandlingComponents = applicationContext.getBeansWithAnnotation(ProcessingGroup.class);
-
-    eventHandlingComponents.forEach((key, value) -> {
-      if (key.contains("Listener")) {
-        commandPublisherConfiguration.registerEventHandler(conf -> value);
-      } else {
-        queryModelConfiguration.registerEventHandler(conf -> value);
-      }
-    });
-
-    org.axonframework.config.Configuration configuration =
-            DefaultConfigurer.defaultConfiguration()
-                    .configureCommandBus(conf -> commandBus)
-                    .configureEventStore(conf -> eventStore)
-                    .configureAggregate(Kufang.class)
-                    .configureAggregate(Product.class)
-                    .registerModule(queryModelConfiguration)
-                    .registerModule(commandPublisherConfiguration)
-                    .buildConfiguration();
-
-//                    .registerModule(SagaConfiguration.subscribingSagaManager(SellTradeManagerSaga.class))
-//                    .registerModule(SagaConfiguration.subscribingSagaManager(BuyTradeManagerSaga.class))
-    configuration.start();
-    return configuration;
-  }
 }

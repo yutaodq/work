@@ -42,12 +42,12 @@ public class KufangEventHandler {
 //    entity.setName(event.getKufangName().getName());
 //    repository.save(entity);
 //  }
-//  @EventHandler
-//  public void removedKufang(KufangRemovedEvent event) {
-//    long id = repository.findByIdentifier(event.getKufangId().getIdentifier()).get().getId();
-//    log.info("KufangQueryListener: kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-//
-////    repository.deleteById(id);
-//
-//  }
+  @EventHandler
+  public void removedKufang(KufangRemovedEvent event) {
+    long id = repository.findByIdentifier(event.getKufangId().getIdentifier()).get().getId();
+    log.info("KufangQueryListener: kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+
+    repository.deleteById(id);
+
+  }
 }

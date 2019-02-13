@@ -39,8 +39,8 @@ public class Kufang {
 
   @CommandHandler
   public void handle(RemoveKufangCommand cmd) {
-    log.info("aaaaaaaaaa");
-//    apply(new KufangRemovedEvent(cmd.getKufangId()));
+    log.info("删除kufang记录，在聚合kufang中");
+    apply(new KufangRemovedEvent(cmd.getKufangId()));
   }
 
   @CommandHandler
