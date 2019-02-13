@@ -7,7 +7,10 @@ import zy.cy6.zyxt.product.config.ProductConfig;
 import zy.cy6.zyxt.query.config.QueryConfig;
 
 @Configuration
-@Import({InfraConfig.class, QueryConfig.class, ProductConfig.class})
+@Import({InfraConfig.class,
+        PersistenceInfrastructureConfig.class,
+        QueryConfig.class,
+        ProductConfig.class})
 public class AxonConfig {
 
 }

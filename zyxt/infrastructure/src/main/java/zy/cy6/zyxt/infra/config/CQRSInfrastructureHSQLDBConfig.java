@@ -18,6 +18,8 @@ package zy.cy6.zyxt.infra.config;
 
 import org.axonframework.common.jdbc.ConnectionProvider;
 import org.axonframework.common.transaction.NoTransactionManager;
+import org.axonframework.config.Configurer;
+import org.axonframework.config.DefaultConfigurer;
 import org.axonframework.eventhandling.saga.repository.SagaStore;
 import org.axonframework.eventhandling.saga.repository.jdbc.HsqlSagaSqlSchema;
 import org.axonframework.eventhandling.saga.repository.jdbc.JdbcSagaStore;
@@ -46,7 +48,18 @@ public class CQRSInfrastructureHSQLDBConfig {
   public JdbcEventStorageEngine eventStorageEngine(ConnectionProvider connectionProvider) {
     return new JdbcEventStorageEngine(connectionProvider, NoTransactionManager.INSTANCE);
   }
+  /*
+  Axon 提供了两个事件总线的实现：
+  SimpleEventBus和EmbeddedEventStore。两个实现都支持订阅和跟踪处理器(processor)。
+  EmbeddedEventStore持久化事件，它允许你在以后的阶段重放它们。
+  SimpleEventBus有一个易失性存储器，然后一旦事件已经发布到订阅组件上，就会“忘记”它们。
 
+  当使用配置API时，默认情况下使用SimpleEventBus。
+  配置EmbeddedEventStore则相反，需要提供一个StorageEngine的实现，它对事件进行实际存储。
+
+  Configurer configurer = DefaultConfigurer.defaultConfiguration();
+configurer.configureEmbeddedEventStore(c -> new InMemoryEventStorageEngine());
+*/
   @Bean
   public EventStore eventStore(ConnectionProvider connectionProvider) {
     return new EmbeddedEventStore(eventStorageEngine(connectionProvider));

@@ -26,7 +26,9 @@ public class Kufang {
   private KufangId kuFangId;
 //  private KufangName kuFangName;
 /*
-Axon Framework 要求聚合根必需有无参数的构造函数
+ * 事件源聚合的聚合根也必须包含无参数构造函数。
+ * Axon框架使用此构造函数在使用过去的事件初始化聚合之前创建一个空聚合实例。
+ * 如果未能提供此构造函数，则在加载聚合时将导致异常。
  */
   public Kufang() { }
 
@@ -50,13 +52,17 @@ public void remove(){
   log.info("删除kufang记录，在聚合kufang中");
 
 }
-
+/*
+聚合标识符必须设置在由聚合所发布的第一个事件的
+@eventsourcinghandler中。这通常是创建事件。
+ */
   @SuppressWarnings("UnusedDeclaration")
   @EventSourcingHandler
   public void on(KufangCreatedEvent event) {
     this.kuFangId = event.getKuFangId();
   }
 
+  @SuppressWarnings("UnusedDeclaration")
   @EventSourcingHandler
   public void on(KufangRemovedEvent event) {
     log.info("Done handling {} event: {}", event.getClass().getSimpleName(), event);
