@@ -6,7 +6,7 @@ import org.springframework.util.Assert;
 import java.io.Serializable;
 
 @EqualsAndHashCode
-public abstract class AbstractAggregateIdentifier implements AggregateIdentifier, Serializable {
+public abstract class AbstractAggregateIdentifier<T> implements AggregateIdentifier, Serializable {
     private final String identifier;
 
     public AbstractAggregateIdentifier() {
@@ -15,7 +15,7 @@ public abstract class AbstractAggregateIdentifier implements AggregateIdentifier
 
     public AbstractAggregateIdentifier(String identifier) {
         this.identifier = identifier;
-        checkIdentifier();
+        this.checkIdentifier();
     }
 
     private void checkIdentifier() {
@@ -31,6 +31,7 @@ public abstract class AbstractAggregateIdentifier implements AggregateIdentifier
 
     @Override
     public String toString() {
-        return "AbstractAggregateIdentifier{" + "identifier='" + identifier + '\'' + '}';
+        return  "identifier=" + getIdentifier();
     }
+
 }

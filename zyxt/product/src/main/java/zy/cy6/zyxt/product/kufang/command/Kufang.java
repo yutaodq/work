@@ -19,7 +19,7 @@ import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
  */
 @Aggregate
 @Slf4j
-//@NoArgsConstructor  //Axon Framework 要求聚合根必需有无参数的构造函数
+@NoArgsConstructor  //Axon Framework 要求聚合根必需有无参数的构造函数
 
 public class Kufang {
   @AggregateIdentifier
@@ -30,7 +30,7 @@ public class Kufang {
  * Axon框架使用此构造函数在使用过去的事件初始化聚合之前创建一个空聚合实例。
  * 如果未能提供此构造函数，则在加载聚合时将导致异常。
  */
-  public Kufang() { }
+//  public Kufang() { }
 
   @CommandHandler
   public Kufang(CreateKufangCommand command) {
@@ -38,42 +38,38 @@ public class Kufang {
   }
 
   @CommandHandler
+  @SuppressWarnings("UnusedDeclaration")
   public void handle(RemoveKufangCommand cmd) {
     log.info("删除kufang记录，在聚合kufang中");
     apply(new KufangRemovedEvent(cmd.getKufangId()));
   }
 
   @CommandHandler
+  @SuppressWarnings("UnusedDeclaration")
   public void handle(ChangeKufangNameCommand command)  {
+
     log.info("aaaaaaaaaa");
+    apply(new KufangNameChangedEvent(command.getKufangId(), command.getKufangName()));
+
   }
-
-public void remove(){
-  log.info("删除kufang记录，在聚合kufang中");
-
-}
 /*
 聚合标识符必须设置在由聚合所发布的第一个事件的
 @eventsourcinghandler中。这通常是创建事件。
  */
-  @SuppressWarnings("UnusedDeclaration")
   @EventSourcingHandler
+  @SuppressWarnings("UnusedDeclaration")
   public void on(KufangCreatedEvent event) {
     this.kuFangId = event.getKuFangId();
   }
 
-  @SuppressWarnings("UnusedDeclaration")
   @EventSourcingHandler
+  @SuppressWarnings("UnusedDeclaration")
   public void on(KufangRemovedEvent event) {
     log.info("Done handling {} event: {}", event.getClass().getSimpleName(), event);
   }
 
-  public void changeKufangName(KufangName kuFangName) {
-    apply(new KufangNameChangedEvent(kuFangId, kuFangName));
-  }
-
-  @SuppressWarnings("UnusedDeclaration")
   @EventSourcingHandler
+  @SuppressWarnings("UnusedDeclaration")
   public void on(KufangNameChangedEvent event) {
     log.info("删除kufang记录，在聚合kufang中");
   }

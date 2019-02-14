@@ -1,66 +1,33 @@
 package zy.cy6.zyxt.api.product.kufang;
 
+import lombok.EqualsAndHashCode;
+import lombok.extern.slf4j.Slf4j;
 
-import java.io.Serializable;
-import java.util.UUID;
+import zy.cy6.zyxt.common.domain.AbstractAggregateIdentifier;
 
-public final class KufangId implements Serializable {
-    private final String identifier;
-    public KufangId() {
-        this.identifier = generateIdentifier();
+@Slf4j
+@EqualsAndHashCode
+public final class KufangId extends AbstractAggregateIdentifier {
+    private KufangId() {
+        super();
+        log.info("新建库房标识：KufangId");
     }
 
-    public KufangId(String identifier) {
-        this.identifier = identifier;
+    private KufangId(String identifier) {
+        super(identifier);
+        log.info("新建库房标识：KufangId");
     }
-    static String generateIdentifier() {
-        return UUID.randomUUID().toString();
-    }
-    public String getIdentifier() {
-        return identifier;
-    }
+
     public static KufangId create() {
         return new KufangId();
     }
+
     public static KufangId create(String identifier) {
         return new KufangId(identifier);
     }
+
+        @Override
     public String toString() {
-        return getIdentifier();
+        return "库房标识:"+super.toString();
     }
-
 }
-
-//@Slf4j
-////@EqualsAndHashCode
-//
-//public final class KufangId extends AbstractAggregateIdentifier {
-//
-//    private KufangId() {
-//        super();
-//        log.info("新建：KufangId");
-//    }
-//
-//    private KufangId(String identifier) {
-//        super(identifier);
-//        log.info("新建：KufangId");
-//    }
-//
-//    public static KufangId create() {
-//        return new KufangId();
-//    }
-//
-//    public static KufangId create(String identifier) {
-//        return new KufangId(identifier);
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return getIdentifier();
-//    }
-//
-//    //    @Override
-////    public String toString() {
-////        return "库房标识{" + "identifier='" + getIdentifier() + '\'' + '}';
-////    }
-//}
