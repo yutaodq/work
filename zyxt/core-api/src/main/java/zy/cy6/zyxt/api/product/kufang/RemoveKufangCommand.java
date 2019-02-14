@@ -4,6 +4,7 @@ import lombok.*;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
 
 @Value
+@Builder
 public class RemoveKufangCommand {
   @TargetAggregateIdentifier
   @NonNull

@@ -1,16 +1,20 @@
 package zy.cy6.zyxt.api.product.kufang;
 
 import com.google.common.base.MoreObjects;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.Assert;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Set;
 
 @Getter
 @Slf4j
 @EqualsAndHashCode
+@Builder
 public final class KufangName implements Serializable {
 
   private String name;
@@ -21,12 +25,7 @@ public final class KufangName implements Serializable {
   }
 
   public KufangName changeName(String name) {
-    return create(name);
-  }
-
-
-  public static KufangName create(String name) {
-    return new KufangName(name);
+    return KufangName.builder().name(name).build();
   }
 
   private void setName(String name) {
@@ -34,8 +33,11 @@ public final class KufangName implements Serializable {
     this.name = name;
   }
 
+
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this).add("库房名称是：", name).toString();
   }
+
+
 }
