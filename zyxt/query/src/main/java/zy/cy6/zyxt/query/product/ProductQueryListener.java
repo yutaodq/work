@@ -5,8 +5,8 @@ import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import zy.cy6.zyxt.api.exception.DomainException;
-import zy.cy6.zyxt.api.product.ProductCreatedEvent;
-import zy.cy6.zyxt.api.product.ProductNameChangedEvent;
+import zy.cy6.zyxt.api.product.product.ProductCreatedEvent;
+import zy.cy6.zyxt.api.product.product.ProductNameChangedEvent;
 import zy.cy6.zyxt.query.product.repositories.ProductQueryRepository;
 
 import java.util.Optional;

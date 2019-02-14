@@ -18,8 +18,8 @@ public final class KufangCreatedEvent {
   public KufangCreatedEvent(KufangId kuFangId, KufangName kuFangName, String bz) {
     log.info("新建：KufangCreatedEvent");
 
-    this.kuFangId = checkNotNull(kuFangId, "没有库房标识符！");
-    this.kuFangName = checkNotNull(kuFangName, "没有库房名称！");
+    this.kuFangId = checkNotNull(kuFangId, "新建库房记录时，没有库房标识符！");
+    this.kuFangName = checkNotNull(kuFangName, "新建库房记录时，没有库房名称！");
     this.bz = bz;
   }
 

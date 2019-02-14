@@ -2,6 +2,7 @@ package zy.cy6.zyxt.api.product;
 
 
 import org.junit.Test;
+import zy.cy6.zyxt.api.product.product.ProductId;
 import zy.cy6.zyxt.common.domain.AggregateIdentifier;
 
 import static org.assertj.core.api.Assertions.assertThat;

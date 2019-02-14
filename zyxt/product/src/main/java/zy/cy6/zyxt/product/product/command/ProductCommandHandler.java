@@ -8,9 +8,9 @@ import org.axonframework.commandhandling.model.Repository;
 import org.axonframework.eventhandling.EventBus;
 import zy.cy6.zyxt.api.exception.DomainException;
 import zy.cy6.zyxt.api.exception.ErrorCode;
-import zy.cy6.zyxt.api.product.ChangeProductNameCommand;
-import zy.cy6.zyxt.api.product.CreateProductCommand;
-import zy.cy6.zyxt.api.product.ProductId;
+import zy.cy6.zyxt.api.product.product.ChangeProductNameCommand;
+import zy.cy6.zyxt.api.product.product.CreateProductCommand;
+import zy.cy6.zyxt.api.product.product.ProductId;
 import zy.cy6.zyxt.query.product.ProductQueryService;
 
 @Slf4j

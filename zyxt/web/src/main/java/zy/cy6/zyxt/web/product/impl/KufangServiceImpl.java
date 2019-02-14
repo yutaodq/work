@@ -61,16 +61,15 @@ public class KufangServiceImpl implements KufangService {
     }
 
     public ResponseEntity<Resource<KufangEntity>> create(KufangEntity kufang) throws Exception {
-        KufangName name = KufangName.create(kufang.getName());
-        log.info("KufangName name = KufangName.create(kufang.getName());");
-        KufangId id = KufangId.create();
-        String bz = kufang.getBz();
-        CreateKufangCommand command = new CreateKufangCommand(id, name, bz);
-        commandGateway.send(command);
-        Optional<KufangEntity> kufangSave = repository.findByIdentifier(id.getIdentifier());
-
-        return ResponseEntity.ok(assembler.toResource(kufangSave.get()));
-
+//        KufangName name = KufangName.create(kufang.getName());
+//        log.info("KufangName name = KufangName.create(kufang.getName());");
+//        KufangId id = KufangId.create();
+//        String bz = kufang.getBz();
+//        CreateKufangCommand command = new CreateKufangCommand(id, name, bz);
+//        commandGateway.send(command);
+//        Optional<KufangEntity> kufangSave = repository.findByIdentifier(id.getIdentifier());
+//        return ResponseEntity.ok(assembler.toResource(kufangSave.get()));
+return null;
     }
 
 }

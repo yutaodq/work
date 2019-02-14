@@ -1,19 +1,11 @@
 package zy.cy6.zyxt.api.product.kufang;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
 
-@Getter
-@ToString
-//@AllArgsConstructor
+@Value
 public class RemoveKufangCommand {
   @TargetAggregateIdentifier
+  @NonNull
   private KufangId kufangId;
-
-  public RemoveKufangCommand(KufangId kufangId) {
-    this.kufangId = kufangId;
-  }
 }

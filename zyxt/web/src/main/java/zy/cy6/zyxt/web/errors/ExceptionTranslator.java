@@ -4,7 +4,7 @@
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.web.bind.annotation.ControllerAdvice;
 //import org.springframework.web.bind.annotation.ExceptionHandler;
-//import zy.cy6.zyxt.api.product.ProductNameNotUniqueException;
+//import zy.cy6.zyxt.api.product.product.ProductNameNotUniqueException;
 //
 ///**
 // * Controller advice to translate the server side exceptions to client-friendly json structures.

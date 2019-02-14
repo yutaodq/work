@@ -2,6 +2,9 @@ package zy.cy6.zyxt.api.product;
 
 import org.junit.Before;
 import org.junit.Test;
+import zy.cy6.zyxt.api.product.product.ProductCreatedEvent;
+import zy.cy6.zyxt.api.product.product.ProductId;
+import zy.cy6.zyxt.api.product.product.ProductName;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

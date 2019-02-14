@@ -5,7 +5,7 @@ import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
-import zy.cy6.zyxt.api.product.*;
+import zy.cy6.zyxt.api.product.product.*;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 

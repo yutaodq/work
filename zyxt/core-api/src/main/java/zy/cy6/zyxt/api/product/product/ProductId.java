@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.api.product;
+package zy.cy6.zyxt.api.product.product;
 
 import lombok.extern.slf4j.Slf4j;
 import zy.cy6.zyxt.common.domain.AbstractAggregateIdentifier;

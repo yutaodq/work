@@ -1,18 +1,15 @@
 package zy.cy6.zyxt.api.product.kufang;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Builder;
+import lombok.NonNull;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
-import lombok.Value;
 
-//@Getter
-//@ToString
-//@AllArgsConstructor
-@Value
+@Builder
 public class CreateKufangCommand {
     @TargetAggregateIdentifier
+    @NonNull
     private KufangId kufangId;
+    @NonNull
     private KufangName kufangName;
     private String bz;
 

@@ -8,7 +8,6 @@ import org.springframework.util.Assert;
 
 import java.io.Serializable;
 
-// @Value
 @Getter
 @Slf4j
 @EqualsAndHashCode
@@ -33,13 +32,10 @@ public final class KufangName implements Serializable {
   private void setName(String name) {
     Assert.hasLength(name, "库房名称不能为空或null");
     this.name = name;
-//    this.name = checkNotNull(name, "库房名称不能是null！");
-//    checkArgument(!this.name.trim().isEmpty(), "请您录入库房名称！");
   }
-
 
   @Override
   public String toString() {
-    return MoreObjects.toStringHelper(this).add("库房名称：", name).toString();
+    return MoreObjects.toStringHelper(this).add("库房名称是：", name).toString();
   }
 }

@@ -1,4 +1,5 @@
 package zy.cy6.zyxt.api.product.kufang;
+import lombok.NonNull;
 import lombok.Value;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
 
@@ -7,8 +8,8 @@ import javax.validation.constraints.NotNull;
 @Value
 public class ChangeKufangNameCommand {
     @TargetAggregateIdentifier
+    @NonNull
     private KufangId kufangId;
-
-    @NotNull(message = "工具名称对象不能为空")
+    @NonNull
     private KufangName kufangName;
 }

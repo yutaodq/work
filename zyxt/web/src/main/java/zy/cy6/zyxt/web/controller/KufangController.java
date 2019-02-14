@@ -117,7 +117,14 @@ public class KufangController {
     Optional<KufangName> name = createKufangName(kufang.getName());
     KufangId id = KufangId.create();
     String bz = kufang.getBz();
-    CreateKufangCommand command = new CreateKufangCommand(id, name.get(), bz);
+    CreateKufangCommand command = CreateKufangCommand.builder()
+            .kufangId(id)
+//            .kufangName(name.get())
+            .bz(bz)
+            .build();
+//            (id, name.get(), bz);
+
+//    CreateKufangCommand command = new CreateKufangCommand(id, name.get(), bz);
     commandGateway.sendAndWait(command);
 //    commandBus.dispatch(new GenericCommandMessage<>(command));
     return kufangQueryService.findByIdentifier(command.getKufangId().getIdentifier());

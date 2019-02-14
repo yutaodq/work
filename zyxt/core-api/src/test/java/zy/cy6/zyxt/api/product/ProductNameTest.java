@@ -1,6 +1,7 @@
 package zy.cy6.zyxt.api.product;
 
 import org.junit.Test;
+import zy.cy6.zyxt.api.product.product.ProductName;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -6,7 +6,7 @@ import org.axonframework.test.aggregate.AggregateTestFixture;
 import org.axonframework.test.aggregate.FixtureConfiguration;
 import org.junit.Before;
 import org.junit.Test;
-import zy.cy6.zyxt.api.product.*;
+import zy.cy6.zyxt.api.product.product.*;
 
 public class ProductCommandHandlerTest {
   private FixtureConfiguration<Product> testFixture;
