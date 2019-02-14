@@ -31,88 +31,99 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class KufangServiceImpl implements KufangService {
-    private final KufangQueryRepository repository;
-    private final KufangResourceAssembler assembler;
-    private CommandBus commandBus;
-    private final CommandGateway commandGateway;
-    private final KufangQueryService kufangQueryService;
-    @Autowired
-    public KufangServiceImpl(CommandGateway commandGateway,
-                             CommandBus commandBus,
-                             KufangQueryRepository repository,
-                             KufangResourceAssembler assembler,
-                             KufangQueryService kufangQueryService) {
-        this.repository = repository;
-        this.assembler = assembler;
-        this.commandBus = commandBus;
-        this.commandGateway = commandGateway;
-        this.kufangQueryService = kufangQueryService;
-    }
+  private final KufangResourceAssembler assembler;
+  private CommandBus commandBus;
+  private final CommandGateway commandGateway;
+  private final KufangQueryService kufangQueryService;
 
-    public Optional<KufangEntity> findKufangName(String name, String gg, String xh) {
-        return repository.findByName(name);
-    }
+  @Autowired
+  public KufangServiceImpl(CommandGateway commandGateway, CommandBus commandBus, KufangResourceAssembler assembler, KufangQueryService kufangQueryService) {
+    this.assembler = assembler;
+    this.commandBus = commandBus;
+    this.commandGateway = commandGateway;
+    this.kufangQueryService = kufangQueryService;
+  }
 
-    public List<KufangEntity> findAllKufang() {
-        log.info("所有的工具记录");
-        return repository.findAll();
-    }
+  public Optional<KufangEntity> findKufangName(String name) {
+    return kufangQueryService.findByKufangName(createKufangName(name).get());
+  }
 
-    /*参见 EmployeeController.java
-     * D:\yutao\源代码\spring-hateoas-examples\hypermedia\src\main\java\org\springframework\hateoas\examples\EmployeeController.java
-     */
-    //  @GetMapping(value = "/kufangs", produces = MediaTypes.HAL_JSON_VALUE)
-    public ResponseEntity<Resources<Resource<KufangEntity>>> findAll() {
-        return ResponseEntity.ok(assembler.toResources(repository.findAll()));
-    }
+  public List<KufangEntity> findAllKufang() {
+    log.info("所有的工具记录");
+    return kufangQueryService.findAllKufangs();
+  }
 
-    public ResponseEntity<Resource<KufangEntity>> findOne(Long id) {
-        return kufangQueryService.findOne(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+  /*参见 EmployeeController.java
+   * D:\yutao\源代码\spring-hateoas-examples\hypermedia\src\main\java\org\springframework\hateoas\examples\EmployeeController.java
+   */
+  //  @GetMapping(value = "/kufangs", produces = MediaTypes.HAL_JSON_VALUE)
+  public ResponseEntity<Resources<Resource<KufangEntity>>> findAll() {
+    return ResponseEntity.ok(assembler.toResources(findAllKufang()));
+  }
+
+  public ResponseEntity<Resource<KufangEntity>> findOne(Long id) {
+    return kufangQueryService.findOne(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 //        return repository.findById(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-    }
-    public void remove(String id){
-        var kufangId = KufangId.builder().identifier(id).build();
-        var command = RemoveKufangCommand.builder()
-                .kufangId(kufangId)
-                .build();
-        commandBus.dispatch(new GenericCommandMessage<>(command));
-//    return commandGateway.send(command);
+  }
+  /**
+   * 删除记录
+   */
 
-    }
-    public  Optional<KufangEntity> findByIdentifier(String identifier){
-        return kufangQueryService.findByIdentifier(identifier);
+  public void remove(String id) {
+    commandBus.dispatch(new GenericCommandMessage<>(removeKufangCommand(id)));
+//    return commandGateway.send(removeKufangCommand(id));
 
-    }
+  }
+  private RemoveKufangCommand removeKufangCommand(String id){
+    return RemoveKufangCommand.builder().kufangId(createKufangId(id)).build();
+  }
+  private KufangId createKufangId(String id) {
+    return KufangId.builder().identifier(id).build();
+  }
 
-    public Optional<KufangEntity> create(KufangEntity kufang) {
-        Optional<KufangName> name = createKufangName(kufang.getName());
+  private Optional<KufangEntity> findByIdentifier(String identifier) {
+    return kufangQueryService.findByIdentifier(identifier);
 
-        KufangId id = KufangId.builder().build();
-        String bz = kufang.getBz();
-        var command = CreateKufangCommand.builder()
-                .kufangId(id)
-                .kufangName(name.get())
-                .bz(bz)
-                .build();
+  }
 
-        commandGateway.sendAndWait(command);
+  /**
+   * POST /countries : Create a new kufang.
+   * 创建新记录
+   *
+   * @param kufang the country to create
+   * @return the ResponseEntity with status 201 (Created) and with body the new country, or with
+   * status 400 (Bad Request) if the country has already an ID
+   * @throws  if the Location URI syntax is incorrect
+   */
+
+  public Optional<KufangEntity> create(KufangEntity kufang) {
+    var command = createKufangCommand(kufang);
+    commandGateway.sendAndWait(command);
 //    commandBus.dispatch(new GenericCommandMessage<>(command));
-        return findByIdentifier(command.getKufangId().getIdentifier());
-    }
+    return findByIdentifier(command.getKufangId().getIdentifier());
+  }
 
+  private CreateKufangCommand createKufangCommand(KufangEntity kufang) {
+    return CreateKufangCommand.builder().kufangId(createKufangId()).kufangName(createKufangName(kufang.getName()).get()).bz(kufang.getBz()).build();
+
+  }
+
+  private KufangId createKufangId() {
+    return KufangId.builder().build();
+  }
+
+
+  private Optional<KufangName> createKufangName(String name) {
+    return Optional.of(KufangName.builder().name(name).build());
+  }
+
+}
 
 //    public ResponseEntity<Resource<KufangEntity>> create(KufangEntity kufang) throws Exception {
-//        KufangName name = KufangName.create(kufang.getName());
-//        log.info("KufangName name = KufangName.create(kufang.getName());");
-//        KufangId id = KufangId.create();
-//        String bz = kufang.getBz();
-//        CreateKufangCommand command = new CreateKufangCommand(id, name, bz);
-//        commandGateway.send(command);
 //        Optional<KufangEntity> kufangSave = repository.findByIdentifier(id.getIdentifier());
 //        return ResponseEntity.ok(assembler.toResource(kufangSave.get()));
 //    }
-    private Optional<KufangName> createKufangName(String name) {
-        return Optional.of(KufangName.builder().name(name).build());
-    }
 
-}
+//  public ResponseEntity createKufang(@RequestBody KufangEntity kufang) {
+//    return ResponseEntity.ok(assembler.toResource(kufangQueryService.findByIdentifier(command.getKufangId().getIdentifier()).get()));
+//  }

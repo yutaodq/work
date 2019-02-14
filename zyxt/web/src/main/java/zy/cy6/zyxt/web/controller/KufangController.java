@@ -35,20 +35,10 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class KufangController {
   private final KufangService kufangService;
-  private final KufangResourceAssembler assembler;
   private static final String ENTITY_NAME = "KufangEntity";
 
   @Autowired
-//  public KufangController(CommandBus commandBus,
-//                          KufangResourceAssembler assembler,
-//                          CommandGateway commandGateway,
-//                          KufangService kufangService,
-//                          KufangQueryService kufangQueryService) {
-  public KufangController(
-                          KufangResourceAssembler assembler,
-                          KufangService kufangService
-                         ) {
-    this.assembler = assembler;
+  public KufangController(KufangService kufangService ) {
     this.kufangService = kufangService;
 
   }
@@ -56,7 +46,7 @@ public class KufangController {
   @GetMapping(value = "/kufangEntities", produces = MediaTypes.HAL_JSON_VALUE)
   @Timed
   public List<KufangEntity> getAllKufangs() {
-    log.info("所有的工具记录");
+    log.info("查找所有的工具记录");
     return kufangService.findAllKufang();
   }
 
@@ -78,7 +68,8 @@ public class KufangController {
 //  }
   @DeleteMapping("/kufangEntities/{id}")
   public void remove(@PathVariable String id) {
-     kufangService.remove(id);
+    log.info("删除一个记录");
+    kufangService.remove(id);
   }
 
   /**
@@ -90,17 +81,6 @@ public class KufangController {
    * status 400 (Bad Request) if the country has already an ID
    * @throws URISyntaxException if the Location URI syntax is incorrect
    */
-//  @PostMapping("/kufangEntities")
-//  public ResponseEntity createKufang(@RequestBody KufangEntity kufang) {
-//    Optional<KufangName> name = createKufangName(kufang.getName());
-//    KufangId id = KufangId.create();
-//    String bz = kufang.getBz();
-//    CreateKufangCommand command = new CreateKufangCommand(id, name.get(), bz);
-//    commandGateway.sendAndWait(command);
-//
-//    return ResponseEntity.ok(assembler.toResource(kufangQueryService.findByIdentifier(command.getKufangId().getIdentifier()).get()));
-////return kufangService.create(kufang);
-//  }
 
   @PostMapping("/kufangEntities")
   public Optional<KufangEntity> createKufang(@RequestBody KufangEntity kufang) {

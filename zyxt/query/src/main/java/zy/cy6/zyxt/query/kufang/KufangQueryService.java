@@ -27,8 +27,8 @@ public class KufangQueryService {
     return kuFangRepository.findById(id);
   }
 
-  public Optional<KufangEntity> findByKuFangName(KufangName kuFangName) {
-    String name = kuFangName.getName();
+  public Optional<KufangEntity> findByKufangName(KufangName kufangName) {
+    String name = kufangName.getName();
     return kuFangRepository.findByName(name);
   }
 
@@ -37,7 +37,7 @@ public class KufangQueryService {
 
   }
 
-  public List<KufangEntity> findAllKufang() {
+  public List<KufangEntity> findAllKufangs() {
     log.info("所有的库房记录");
     return kuFangRepository.findAll();
   }

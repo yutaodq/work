@@ -15,9 +15,9 @@ public interface KufangService {
 
     ResponseEntity<Resource<KufangEntity>> findOne(Long id);
 
-    Optional<KufangEntity> findByIdentifier(String identifier);
+//    Optional<KufangEntity> findByIdentifier(String identifier);
 
-    Optional<KufangEntity> findKufangName(String name, String gg, String xh);
+    Optional<KufangEntity> findKufangName(String name);
 
 //    ResponseEntity<Resource<KufangEntity>> create(KufangEntity product) throws Exception;
 
