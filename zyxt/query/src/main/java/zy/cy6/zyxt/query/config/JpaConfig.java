@@ -26,7 +26,7 @@ import java.util.Map;
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory",
         transactionManagerRef = "transactionManager",
-        basePackages = {"zy.cy6.zyxt"})
+        basePackages = {"zy.cy6.zyxt.query"})
 // 设置Repository所在位置
 public class JpaConfig {
 
@@ -45,7 +45,7 @@ public class JpaConfig {
   public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
     return builder.dataSource(dataSource)
             .properties(getVendorProperties())
-            .packages("zy.cy6.zyxt",
+            .packages("zy.cy6.zyxt.query",
                     "org.axonframework.eventsourcing.eventstore.jpa",
                     "org.axonframework.eventhandling.tokenstore",
                     "org.axonframework.eventhandling.saga.repository.jpa"

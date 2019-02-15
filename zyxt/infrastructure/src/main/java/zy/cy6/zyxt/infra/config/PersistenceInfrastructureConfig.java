@@ -26,10 +26,19 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 public class PersistenceInfrastructureConfig {
 
     @Bean
-//    @Profile("hsqldb")
+    @Profile("dev")
+
     public EmbeddedDatabaseFactoryBean dataSource() {
         EmbeddedDatabaseFactoryBean embeddedDatabaseFactoryBean = new EmbeddedDatabaseFactoryBean();
-        embeddedDatabaseFactoryBean.setDatabaseType(EmbeddedDatabaseType.HSQL);
+        embeddedDatabaseFactoryBean.setDatabaseType(EmbeddedDatabaseType.H2);
         return embeddedDatabaseFactoryBean;
     }
+//    @Bean
+//    @Profile("hsqldb")
+//    public EmbeddedDatabaseFactoryBean dataSource() {
+//        EmbeddedDatabaseFactoryBean embeddedDatabaseFactoryBean = new EmbeddedDatabaseFactoryBean();
+//        embeddedDatabaseFactoryBean.setDatabaseType(EmbeddedDatabaseType.HSQL);
+//        return embeddedDatabaseFactoryBean;
+//    }
+
 }

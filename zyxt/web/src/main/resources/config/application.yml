@@ -2,7 +2,7 @@
 # Spring Boot configuration.
 #
 # This configuration will be overriden by the Spring profile you use,
-# for example application-dev.yml if you use the "dev" profile.
+# for example application-hsqldb-dev.yml if you use the "dev" profile.
 # ===================================================================
 
 # ===================================================================

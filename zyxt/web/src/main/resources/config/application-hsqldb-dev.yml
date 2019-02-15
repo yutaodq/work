@@ -1,0 +1,34 @@
+spring:
+    profiles:
+           active: hsqldb
+    datasource:
+           type: com.zaxxer.hikari.HikariDataSource
+           platform: hsqldb
+           driver-class-name: org.hsqldb.jdbc.JDBCDriver
+           username: sa
+           password: sa
+           schema: classpath:/db/schema.sql
+           data: classpath:/db/data.sql
+           hikari:
+#              jdbc-url: jdbc:hsqldb:file:c:/temp/zyglWeb
+                jdbc-url: jdbc:hsqldb:mem:testdb
+    jpa:
+          database-platform: org.hibernate.dialect.HSQLDialect
+          database: HSQL
+          show-sql: true
+          hibernate:
+               ddl-auto: create-drop
+          properties:
+               hibernate.id.new_generator_mappings: true
+               hibernate.cache.use_second_level_cache: true
+               hibernate.cache.use_query_cache: false
+               hibernate.generate_statistics: true
+               hibernate.hbm2ddl.auto: create
+    devtools.restart.enabled : true
+    mvc:
+        throw-exception-if-no-handler-found: true   #允许远程访问 h2 web consloe
+server:
+    port: 8080
+logging:
+   level:
+      root: INFO
