@@ -23,10 +23,10 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactoryBean;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 @Configuration
+@Profile("hsqldb")
 public class PersistenceInfrastructureConfig {
 
     @Bean
-    @Profile("dev")
 
     public EmbeddedDatabaseFactoryBean dataSource() {
         EmbeddedDatabaseFactoryBean embeddedDatabaseFactoryBean = new EmbeddedDatabaseFactoryBean();

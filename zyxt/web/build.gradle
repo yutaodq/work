@@ -13,6 +13,6 @@ dependencies {
 
     compile "com.ryantenney.metrics:metrics-spring:${metrics_spring_version}"
     compile 'org.zalando:problem-spring-web:0.23.0'
-//    compile "org.hsqldb:hsqldb"
+    compile "org.hsqldb:hsqldb"
 
 }
