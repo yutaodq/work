@@ -40,6 +40,12 @@ export interface State {
  * These reducer functions are called with each dispatched action
  * and the current or initial state and return a new immutable state.
  */
+/*
+使用const定义的变量 reducers是不可以再被赋值的，但是它定义的变量的内部属性是可以被修改的
+ActionReducerMap注册了reducer。
+我们需要在我们配置我们的reducer的地方创建一个 ActionReducerMap的常量。
+然后在应用模块中使用StoreModule来配置这个常量。
+*/
 export const reducers: ActionReducerMap<State> = {
   layout: fromLayout.reducer,
   router: fromRouter.routerReducer
