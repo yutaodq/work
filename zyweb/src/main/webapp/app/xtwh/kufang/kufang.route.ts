@@ -1,4 +1,3 @@
-import { Injectable } from "@angular/core";
 import { HttpResponse } from "@angular/common/http";
 import {
   Resolve,
@@ -6,13 +5,10 @@ import {
   RouterStateSnapshot,
   Routes
 } from "@angular/router";
-import { of } from "rxjs";
-import { map } from "rxjs/operators";
 import { KufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { UserRouteAccessService } from "app/core";
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { KufangService } from "./service/kufang.service";
-// import * as path from "./kufang.constants";
 import * as path from "app/app.constants";
 
 import {

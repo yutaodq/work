@@ -30,10 +30,6 @@ export class KufangComponent implements OnInit {
   onCreate(lx: string) {
     this._kufangService.createLink();
   }
-  // onLook(recordID: number) {
-  //   const routerLink = link.ROUTE_KUFANG + "/" + recordID + "/view";
-  //   this._router.navigate([routerLink]);
-  // }
   showEntity(kufang: IKufangEntity) {
     this._kufangService.findLink(kufang.id);
   }

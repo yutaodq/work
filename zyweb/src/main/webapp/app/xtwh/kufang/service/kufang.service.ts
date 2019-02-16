@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable, of } from "rxjs";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import * as link from "app/app.constants";
 import { delay } from "rxjs/operators";
 

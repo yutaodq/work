@@ -1,4 +1,9 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit
+} from "@angular/core";
 import { Store, ActionsSubject, select } from "@ngrx/store";
 import { Observable, Subscription } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -10,11 +15,15 @@ import * as link from "app/app.constants";
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import * as fromKufangs from "../reducers";
 import { SelectedKufangPageActions, CollectionApiActions } from "../actions";
+import { KufangService } from "../service";
 
 @Component({
   selector: "zy-selected-kufang-page",
-  templateUrl: "./selected-kufang-page.component.html"
+  templateUrl: "./selected-kufang-page.component.html",
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
+// 学习案例 https://github.com/avatsaev/angular-contacts-app-example
+// app\views\contacts\contact-details\contact-details.component.ts
 export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   private _pageTitle: string;
   private _entity$: Observable<IKufangEntity>;
@@ -24,25 +33,26 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
     private _store: Store<fromKufangs.State>,
     private activatedRoute: ActivatedRoute,
     private _router: Router,
-    private actionsSubject: ActionsSubject
+    private actionsSubject: ActionsSubject,
+    private _kufangService: KufangService
   ) {
     this._entity$ = this._store.pipe(
       select(fromKufangs.getSelectedKufang)
     ) as Observable<IKufangEntity>;
 
-    // If the destroy effect fires, we check if the current id is the one being viewed, and redirect to index
-    this.redirectSub = this.actionsSubject
-      .pipe(
-        ofType(
-          CollectionApiActions.CollectionApiActionTypes.RemoveKufangSuccess
-        ),
-        filter(
-          (action: CollectionApiActions.RemoveKufangSuccess) =>
-            action.payload.id ===
-            +this.activatedRoute.snapshot.params["contactId"]
-        )
-      )
-      .subscribe(_ => this._router.navigate(["/contacts"]));
+    // // If the destroy effect fires, we check if the current id is the one being viewed, and redirect to index
+    // this.redirectSub = this.actionsSubject
+    //   .pipe(
+    //     ofType(
+    //       CollectionApiActions.CollectionApiActionTypes.RemoveKufangSuccess
+    //     ),
+    //     filter(
+    //       (action: CollectionApiActions.RemoveKufangSuccess) =>
+    //         action.payload.id ===
+    //         this.activatedRoute.snapshot.params["id"]
+    //     )
+    //   )
+    //   .subscribe(_ => this._router.navigate(["/about"]));
 
     this.redirectSub = this.actionsSubject
       .pipe(
@@ -53,6 +63,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe(_ => this._router.navigate(["/kufang"]));
+    // .subscribe(_ => this._kufangService.getAll());
   }
 
   ngOnInit() {

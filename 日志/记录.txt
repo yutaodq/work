@@ -1,2 +1,7 @@
-﻿学习
+﻿
+1- zyweb 学习案例 https://github.com/avatsaev/angular-contacts-app-example
+app\views\contacts\contact-details\contact-details.component.ts
+
+
+学习
 https://cn.redux.js.org/index.html
