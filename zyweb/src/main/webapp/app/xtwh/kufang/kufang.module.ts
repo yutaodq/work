@@ -14,7 +14,7 @@ import { CollectionEffects } from "app/xtwh/kufang/effects/collection.effects";
 
 import { ZyxtSharedModule } from "app/shared";
 import { CoreModule } from "app/core";
-import { NebularModule } from "app/core";
+import { NebularModule } from "app/nebular";
 
 import {
   Validator,

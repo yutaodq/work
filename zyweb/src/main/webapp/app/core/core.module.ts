@@ -6,7 +6,7 @@ import {
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ExtraOptions, RouterModule, Routes } from "@angular/router";
-import { NebularModule } from "app/core/nebular.module";
+import { NebularModule } from "../nebular";
 // 不加"FontAwesomeModule" core模块中的组件不显示图标
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
