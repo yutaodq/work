@@ -2,7 +2,7 @@
 
 <nb-layout  windowMode>
     <nb-layout-header fixed>
-        <zy-header></zy-header>
+        <ng-content select="zy-header"></ng-content>
     </nb-layout-header>
 
     <nb-sidebar class="menu-sidebar"
@@ -18,7 +18,7 @@
 
 
     <nb-layout-footer fixed>
-        <zy-footer></zy-footer>
+        <ng-content select="zy-footer"></ng-content>
     </nb-layout-footer>
 
 </nb-layout>
