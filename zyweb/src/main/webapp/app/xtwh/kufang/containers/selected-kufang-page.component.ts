@@ -10,8 +10,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ofType } from "@ngrx/effects";
 import { filter } from "rxjs/operators";
 
-import * as link from "app/app.constants";
-
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import * as fromKufangs from "../reducers";
 import { SelectedKufangPageActions, CollectionApiActions } from "../actions";
@@ -32,7 +30,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   constructor(
     private _store: Store<fromKufangs.State>,
     private activatedRoute: ActivatedRoute,
-    private _router: Router,
+    // private _router: Router,
     private actionsSubject: ActionsSubject,
     private _kufangService: KufangService
   ) {
@@ -40,19 +38,18 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
       select(fromKufangs.getSelectedKufang)
     ) as Observable<IKufangEntity>;
 
-    // // If the destroy effect fires, we check if the current id is the one being viewed, and redirect to index
-    // this.redirectSub = this.actionsSubject
-    //   .pipe(
-    //     ofType(
-    //       CollectionApiActions.CollectionApiActionTypes.RemoveKufangSuccess
-    //     ),
-    //     filter(
-    //       (action: CollectionApiActions.RemoveKufangSuccess) =>
-    //         action.payload.id ===
-    //         this.activatedRoute.snapshot.params["id"]
-    //     )
-    //   )
-    //   .subscribe(_ => this._router.navigate(["/about"]));
+    // If the destroy effect fires, we check if the current id is the one being viewed, and redirect to index
+    this.redirectSub = this.actionsSubject
+      .pipe(
+        ofType(
+          CollectionApiActions.CollectionApiActionTypes.RemoveKufangSuccess
+        ),
+        filter(
+          (action: CollectionApiActions.RemoveKufangSuccess) =>
+            action.payload.id === this.activatedRoute.snapshot.params["id"]
+        )
+      )
+      .subscribe(_ => this._kufangService.getAllLink());
 
     this.redirectSub = this.actionsSubject
       .pipe(
@@ -62,8 +59,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
             CollectionApiActions.CollectionApiActionTypes.RemoveKufangSuccess
         )
       )
-      .subscribe(_ => this._router.navigate(["/kufang"]));
-    // .subscribe(_ => this._kufangService.getAll());
+      .subscribe(_ => this._kufangService.getAllLink());
   }
 
   ngOnInit() {
@@ -71,7 +67,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   }
 
   onKufangList(kufang: IKufangEntity) {
-    this._router.navigate([link.ROUTE_KUFANG]);
+    this._kufangService.getAllLink();
   }
 
   onKufangDelete(kufang: IKufangEntity) {
