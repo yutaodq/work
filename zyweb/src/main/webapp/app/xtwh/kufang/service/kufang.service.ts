@@ -21,12 +21,10 @@ type EntityArrayResponseType = HttpResponse<IKufangEntity[]>;
 
 const ALTER_EGOS = ["Eric"];
 
-// @Injectable({ providedIn: "root" })
 @Injectable()
 export class KufangService implements IZyEntityService<IKufangEntity> {
   private resourceUrl = SERVER_API_URL + "api/kufangEntities";
   private resourceSearchUrl = SERVER_API_URL + "api/kufangEntities";
-  // kufangs: Observable<IKufangEntity[]>;
 
   constructor(
     private _router: Router,
@@ -42,23 +40,18 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
   findLink(id: number) {
     this._router.navigate([link.ROUTE_KUFANG + "/" + id + "/view"]);
   }
-
+  /*
+   * 表单录入时，用于验证
+   */
   isNameTaken(alterEgo: string): Observable<boolean> {
     const isTaken = ALTER_EGOS.includes(alterEgo);
     console.log(`异步验证KufangService:` + isTaken);
 
     return of(isTaken).pipe(delay(100));
   }
-
   create(kufang: IKufangEntity): Observable<IKufangEntity> {
     return this.http.post<IKufangEntity>(this.resourceUrl, kufang);
   }
-
-  // create(kufang: IKufangEntity): Observable<EntityResponseType> {
-  //   return this.http.post<IKufangEntity>(this.resourceUrl, kufang, {
-  //     observe: "response"
-  //   });
-  // }
 
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<IKufangEntity>(`${this.resourceUrl}/${id}`, {
