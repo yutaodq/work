@@ -22,20 +22,20 @@ import {
   NewKufangPageComponent
 } from "./containers";
 
-@Injectable({ providedIn: "root" })
-export class KufangResolve implements Resolve<IKufangEntity> {
-  constructor(private service: KufangService) {}
-
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const id = route.params["id"] ? route.params["id"] : null;
-    if (id) {
-      return this.service
-        .find(id)
-        .pipe(map((kufang: HttpResponse<KufangEntity>) => kufang.body));
-    }
-    return of(new KufangEntity());
-  }
-}
+// @Injectable({ providedIn: "root" })
+// export class KufangResolve implements Resolve<IKufangEntity> {
+//   constructor(private service: KufangService) {}
+//
+//   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+//     const id = route.params["id"] ? route.params["id"] : null;
+//     if (id) {
+//       return this.service
+//         .find(id)
+//         .pipe(map((kufang: HttpResponse<KufangEntity>) => kufang.body));
+//     }
+//     return of(new KufangEntity());
+//   }
+// }
 
 export const kufangRoute: Routes = [
   {
@@ -46,13 +46,8 @@ export const kufangRoute: Routes = [
   },
   {
     path: path.ROUTE_KUFANG_VIEW,
-    // path: "kufang/:id/view",
-    // component: KufangDetailComponent,
-    // component: SelectedKufangPageComponent,
     component: ViewKufangPageComponent,
-    resolve: {
-      entity: KufangResolve
-    },
+    resolve: {},
     data: {
       authorities: ["ROLE_USER"],
       pageTitle: "库房名称-查看表单"
@@ -62,9 +57,7 @@ export const kufangRoute: Routes = [
   {
     path: path.ROUTE_KUFANG_NEW,
     component: NewKufangPageComponent,
-    resolve: {
-      entity: KufangResolve
-    },
+    resolve: {},
     data: {
       authorities: ["ROLE_USER"],
       pageTitle: "工具-添加新记录表单"

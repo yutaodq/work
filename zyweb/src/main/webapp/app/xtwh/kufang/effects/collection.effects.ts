@@ -25,16 +25,6 @@ import { KufangService } from "../service";
 
 @Injectable()
 export class CollectionEffects {
-  /**
-   * This effect does not yield any actions back to the store. Set
-   * `dispatch` to false to hint to @ngrx/effects that it should
-   * ignore any elements of this effect stream.
-   *
-   * The `defer` observable accepts an observable factory function
-   * that is called when the observable is subscribed to.
-   * Wrapping the database open call in `defer` makes
-   * effect easier to test.
-   */
   /*
      * rxjs写法。loadCollection$ 是effect名，在外部没有用到，可以随便起。
      */
@@ -42,7 +32,7 @@ export class CollectionEffects {
   loadCollection$: Observable<Action> = this.actions$.pipe(
     ofType(CollectionPageActions.CollectionPageActionTypes.LoadCollection),
     switchMap(() =>
-      this.kufangService.queryyu().pipe(
+      this.kufangService.getAll().pipe(
         // toArray(),
         map(
           (kufangs: IKufangEntity[]) =>
@@ -78,19 +68,6 @@ export class CollectionEffects {
         )
     )
   );
-  /*
-   * 删除记录
-   */
-  // @Effect()
-  // destroy$: Observable<Action> = this.actions$.pipe(
-  //   ofType(SelectedKufangPageActions.SelectedKufangPageActionTypes.RemoveKufang),
-  //   map((action: SelectedKufangPageActions.RemoveKufang) => action.payload),
-  //   switchMap(
-  //     (kufang: IKufangEntity) => this.kufangService.delete(kufang.id).pipe(
-  //       map(() => new CollectionApiActions.RemoveKufangSuccess(kufang))
-  //     )
-  //   )
-  // );
 
   @Effect()
   removeBookFromCollection$: Observable<Action> = this.actions$.pipe(

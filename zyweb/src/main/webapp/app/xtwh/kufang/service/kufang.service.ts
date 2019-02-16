@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable, of } from "rxjs";
+import { ActivatedRoute, Router } from "@angular/router";
+import * as link from "app/app.constants";
 import { delay } from "rxjs/operators";
 
 import { select, Store } from "@ngrx/store";
@@ -13,7 +15,6 @@ import {
   KufangEntity
 } from "app/xtwh/kufang/models/kufang.model";
 import { IZyEntityService } from "app/core/service/";
-import { CollectionPageActions } from "app/xtwh/kufang/actions";
 
 type EntityResponseType = HttpResponse<IKufangEntity>;
 type EntityArrayResponseType = HttpResponse<IKufangEntity[]>;
@@ -28,10 +29,18 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
   // kufangs: Observable<IKufangEntity[]>;
 
   constructor(
+    private _router: Router,
     private http: HttpClient,
     private store: Store<fromKufangs.State>
   ) {
     // this.kufangs = store.pipe(select(fromKufangs.getKufangCollection));
+  }
+
+  createLink() {
+    this._router.navigate([link.ROUTE_KUFANG_NEW]);
+  }
+  findLink(id: number) {
+    this._router.navigate([link.ROUTE_KUFANG + "/" + id + "/view"]);
   }
 
   isNameTaken(alterEgo: string): Observable<boolean> {
@@ -41,22 +50,15 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
     return of(isTaken).pipe(delay(100));
   }
 
+  create(kufang: IKufangEntity): Observable<IKufangEntity> {
+    return this.http.post<IKufangEntity>(this.resourceUrl, kufang);
+  }
+
   // create(kufang: IKufangEntity): Observable<EntityResponseType> {
   //   return this.http.post<IKufangEntity>(this.resourceUrl, kufang, {
   //     observe: "response"
   //   });
   // }
-
-  create(kufang: IKufangEntity): Observable<IKufangEntity> {
-    return this.http.post<IKufangEntity>(this.resourceUrl, kufang);
-  }
-
-  update(product: IKufangEntity): Observable<EntityResponseType> {
-    // update(product: IKufangEntity): Observable<EntityResponseType> {
-    return this.http.put<IKufangEntity>(this.resourceUrl, product, {
-      observe: "response"
-    });
-  }
 
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<IKufangEntity>(`${this.resourceUrl}/${id}`, {
@@ -64,28 +66,12 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
     });
   }
 
-  queryyu(): Observable<IKufangEntity[]> {
+  getAll(): Observable<IKufangEntity[]> {
     return this.http.get<IKufangEntity[]>(this.resourceUrl);
-  }
-
-  query(req?: any): Observable<EntityArrayResponseType> {
-    const options = createRequestOption(req);
-    return this.http.get<IKufangEntity[]>(this.resourceUrl, {
-      params: options,
-      observe: "response"
-    });
   }
 
   delete(id: string): Observable<IKufangEntity> {
     console.log(`以前的状态: KufangService`);
     return this.http.delete<any>(`${this.resourceUrl}/${id}`);
-  }
-
-  search(req?: any): Observable<EntityArrayResponseType> {
-    const options = createRequestOption(req);
-    return this.http.get<IKufangEntity[]>(this.resourceSearchUrl, {
-      params: options,
-      observe: "response"
-    });
   }
 }

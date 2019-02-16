@@ -38,8 +38,8 @@
 //       ),
 //       debounceTime(debounce, scheduler),
 //       map(action => action.payload),
-//       switchMap(query => {
-//         if (query === '') {
+//       switchMap(getAll => {
+//         if (getAll === '') {
 //           return empty;
 //         }
 //
@@ -48,7 +48,7 @@
 //           skip(1)
 //         );
 //
-//         return this.googleBooks.searchBooks(query).pipe(
+//         return this.googleBooks.searchBooks(getAll).pipe(
 //           takeUntil(nextSearch$),
 //           map((books: Book[]) => new BooksApiActions.SearchSuccess(books)),
 //           catchError(err => of(new BooksApiActions.SearchFailure(err)))
