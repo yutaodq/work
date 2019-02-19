@@ -3,8 +3,6 @@
     <nb-card-header>{{pageTitle}}</nb-card-header>
     <nb-card-body>
         <zy-kufang-detail [kufang]="entity$ | async"
-                          (list)="onKufangList($event)"
-                          (delete)="onKufangDelete($event)"
         >
         </zy-kufang-detail>
 
