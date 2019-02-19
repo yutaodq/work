@@ -33,10 +33,10 @@ export class KufangComponent implements OnInit {
   }
 
   onCreate(lx: string) {
-    this._kufangService.createLink();
+    this._kufangService.linkToNewKufangPage();
   }
   showEntity(kufang: IKufangEntity) {
-    this._kufangService.findLink(kufang.id);
+    this._kufangService.linkToViewKufangPage(kufang.id);
   }
 
   ngOnInit() {

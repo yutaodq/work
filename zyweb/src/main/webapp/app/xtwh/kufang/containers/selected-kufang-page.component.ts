@@ -49,7 +49,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
             action.payload.id === this.activatedRoute.snapshot.params["id"]
         )
       )
-      .subscribe(_ => this._kufangService.getAllLink());
+      .subscribe(_ => this._kufangService.linkToKufang());
 
     this.redirectSub = this.actionsSubject
       .pipe(
@@ -59,7 +59,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
             CollectionApiActions.CollectionApiActionTypes.RemoveKufangSuccess
         )
       )
-      .subscribe(_ => this._kufangService.getAllLink());
+      .subscribe(_ => this._kufangService.linkToKufang());
     this.activatedRoute.data.subscribe(data => {
       this._pageTitle = data.pageTitle;
     });
@@ -70,7 +70,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   }
 
   onKufangList(kufang: IKufangEntity) {
-    this._kufangService.getAllLink();
+    this._kufangService.linkToKufang();
   }
 
   onKufangDelete(kufang: IKufangEntity) {

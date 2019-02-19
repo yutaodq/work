@@ -10,18 +10,9 @@ import { Subscription } from "rxjs";
 import { Router } from "@angular/router";
 import * as fromKufangs from "../reducers";
 import { NewKufangPageActions } from "../actions";
-import * as path from "app/app.constants";
 import { KufangService } from "../service";
 
-// import * as fromRoot from '@app-root-store';
-// import {ContactsActionTypes, Create, CreateSuccess} from '@app-contacts-store/actions/contacts-actions';
 import { ofType } from "@ngrx/effects";
-// import {
-//   CreateKufang,
-//   NewKufangPageActionsUnion
-// } from "app/xtwh/kufang/actions/new-kufang-page.actions";
-
-import * as link from "app/app.constants";
 
 @Component({
   selector: "zy-new-kufang-page",
@@ -47,11 +38,11 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe((action: NewKufangPageActions.CreateKufangSuccess) =>
-        this.findId(action.payload.id)
+        this.linkToViewKufangPage(action.payload.id)
       );
   }
-  findId(recordID: number) {
-    this._kufangService.findLink(recordID);
+  linkToViewKufangPage(recordID: number) {
+    this._kufangService.linkToViewKufangPage(recordID);
   }
 
   cancelCreate(kufang: IKufangEntity) {

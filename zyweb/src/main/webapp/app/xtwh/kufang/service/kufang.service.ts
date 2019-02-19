@@ -33,14 +33,14 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
   ) {
     // this.kufangs = store.pipe(select(fromKufangs.getKufangCollection));
   }
-  getAllLink() {
+  linkToKufang() {
     this._router.navigate([link.ROUTE_KUFANG]);
   }
 
-  createLink() {
+  linkToNewKufangPage() {
     this._router.navigate([link.ROUTE_KUFANG_NEW]);
   }
-  findLink(id: number) {
+  linkToViewKufangPage(id: number) {
     this._router.navigate([link.ROUTE_KUFANG + "/" + id + "/view"]);
   }
   /*
