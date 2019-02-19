@@ -8,6 +8,7 @@ import { KufangService } from "../service";
 
 import * as fromKufangs from "app/xtwh/kufang/reducers";
 import { CollectionPageActions } from "app/xtwh/kufang/actions";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "zy-kufang",
@@ -18,9 +19,13 @@ export class KufangComponent implements OnInit {
   private _pageTitle: string;
   constructor(
     private store: Store<fromKufangs.State>,
-    private _kufangService: KufangService
+    private _kufangService: KufangService,
+    private activatedRoute: ActivatedRoute
   ) {
     this._kufangs$ = store.pipe(select(fromKufangs.getKufangCollection));
+    this.activatedRoute.data.subscribe(data => {
+      this._pageTitle = data.pageTitle;
+    });
   }
 
   loadAll() {
