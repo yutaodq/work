@@ -8,14 +8,9 @@ import * as fromKufangs from "../reducers";
 import { ViewKufangPageActions } from "../actions";
 
 /**
- * Note: Container components are also reusable. Whether or not
- * a component is a presentation component or a container
- * component is an implementation detail.
- *
- * The View Book Page's responsibility is to map router params
- * to a 'Select' book action. Actually showing the selected
- * book remains a responsibility of the
- * SelectedBookPageComponent
+ * 学习ngrx中的案例
+ *zy-view-kufang-page页面的职责是将路由器参数映射到“new ViewKufangPageActions.SelectKufang(params.id)”操作。
+ * 实际显示选中的库房记录仍然是SelectedKufangPageComponent的责任
  */
 @Component({
   selector: "zy-view-kufang-page",

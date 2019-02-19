@@ -60,10 +60,13 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe(_ => this._kufangService.getAllLink());
+    this.activatedRoute.data.subscribe(data => {
+      this._pageTitle = data.pageTitle;
+    });
   }
 
   ngOnInit() {
-    this._pageTitle = "库房";
+    // this._pageTitle = "库房";
   }
 
   onKufangList(kufang: IKufangEntity) {
