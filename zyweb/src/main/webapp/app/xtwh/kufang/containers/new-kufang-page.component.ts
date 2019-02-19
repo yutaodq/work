@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
 import * as fromKufangs from "../reducers";
 import { NewKufangPageActions } from "../actions";
 import * as path from "app/app.constants";
+import { KufangService } from "../service";
 
 // import * as fromRoot from '@app-root-store';
 // import {ContactsActionTypes, Create, CreateSuccess} from '@app-contacts-store/actions/contacts-actions';
@@ -33,6 +34,7 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<fromKufangs.State>,
     private router: Router,
+    private _kufangService: KufangService,
     private actionsSubject: ActionsSubject
   ) {}
 
@@ -45,13 +47,11 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe((action: NewKufangPageActions.CreateKufangSuccess) =>
-        this.router.navigate(["/kufang", action.payload.id, "view"])
+        this.findId(action.payload.id)
       );
   }
-
-  onLook(recordID: number) {
-    const routerLink = path.ROUTE_KUFANG + "/" + recordID + "/view";
-    this.router.navigate([routerLink]);
+  findId(recordID: number) {
+    this._kufangService.findLink(recordID);
   }
 
   cancelCreate(kufang: IKufangEntity) {
