@@ -34,14 +34,18 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   constructor(
     private _store: Store<fromKufangs.State>,
     private activatedRoute: ActivatedRoute,
-    // private _router: Router,
     private actionsSubject: ActionsSubject,
     private _kufangService: KufangService
-  ) {
-    this._entity$ = this._store.pipe(
-      select(fromKufangs.getSelectedKufang)
-    ) as Observable<IKufangEntity>;
+  ) {}
 
+  ngOnInit() {
+    this.set_entity$();
+    this.setPageTitle();
+    this.setKufang();
+    this.removeKufangSuccessLink();
+  }
+
+  private removeKufangSuccessLink() {
     // If the destroy effect fires, we check if the current id is the one being viewed, and redirect to index
     this.redirectSub = this.actionsSubject
       .pipe(
@@ -64,12 +68,18 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe(_ => this._kufangService.linkToKufang());
+  }
+  private set_entity$() {
+    this._entity$ = this._store.pipe(
+      select(fromKufangs.getSelectedKufang)
+    ) as Observable<IKufangEntity>;
+  }
+  private setPageTitle() {
     this.activatedRoute.data.subscribe(data => {
       this._pageTitle = data.pageTitle;
     });
   }
-
-  ngOnInit() {
+  private setKufang() {
     this._entity$.subscribe((kf: IKufangEntity) => {
       this._kufang = kf;
     });
@@ -83,7 +93,6 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   onKufangDelete() {
     const r = confirm("Are you sure?");
     if (r) {
-      console.log(`在控制台打印:` + this._kufang);
       this._store.dispatch(
         new SelectedKufangPageActions.RemoveKufang(this._kufang)
       );
