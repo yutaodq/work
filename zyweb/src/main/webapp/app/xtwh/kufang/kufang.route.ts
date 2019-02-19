@@ -1,4 +1,6 @@
 import { HttpResponse } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+
 import {
   Resolve,
   ActivatedRouteSnapshot,
@@ -13,25 +15,22 @@ import * as path from "app/app.constants";
 
 import {
   KufangComponent,
-  SelectedKufangPageComponent,
   ViewKufangPageComponent,
   NewKufangPageComponent
 } from "./containers";
 
-// @Injectable({ providedIn: "root" })
-// export class KufangResolve implements Resolve<IKufangEntity> {
-//   constructor(private service: KufangService) {}
-//
-//   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-//     const id = route.params["id"] ? route.params["id"] : null;
-//     if (id) {
-//       return this.service
-//         .find(id)
-//         .pipe(map((kufang: HttpResponse<KufangEntity>) => kufang.body));
-//     }
-//     return of(new KufangEntity());
-//   }
-// }
+@Injectable({ providedIn: "root" })
+export class KufangResolve implements Resolve<IKufangEntity> {
+  constructor(private service: KufangService) {}
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return {
+      id: undefined,
+      identifier: "",
+      name: "",
+      bz: ""
+    };
+  }
+}
 
 export const kufangRoute: Routes = [
   {
@@ -53,7 +52,7 @@ export const kufangRoute: Routes = [
   {
     path: path.ROUTE_KUFANG_NEW,
     component: NewKufangPageComponent,
-    resolve: {},
+    resolve: { KufangResolve },
     data: {
       authorities: ["ROLE_USER"],
       pageTitle: "工具-添加新记录表单"

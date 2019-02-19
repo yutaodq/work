@@ -41,6 +41,7 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
         this.linkToViewKufangPage(action.payload.id)
       );
   }
+
   linkToViewKufangPage(recordID: number) {
     this._kufangService.linkToViewKufangPage(recordID);
   }

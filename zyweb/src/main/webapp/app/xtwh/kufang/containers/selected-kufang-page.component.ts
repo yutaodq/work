@@ -10,7 +10,10 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ofType } from "@ngrx/effects";
 import { filter } from "rxjs/operators";
 
-import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
+import {
+  IKufangEntity,
+  KufangEntity
+} from "app/xtwh/kufang/models/kufang.model";
 import * as fromKufangs from "../reducers";
 import { SelectedKufangPageActions, CollectionApiActions } from "../actions";
 import { KufangService } from "../service";
@@ -26,6 +29,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   private _pageTitle: string;
   private _entity$: Observable<IKufangEntity>;
   redirectSub: Subscription;
+  private _kufang: IKufangEntity;
 
   constructor(
     private _store: Store<fromKufangs.State>,
@@ -66,17 +70,23 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this._pageTitle = "库房";
+    this._entity$.subscribe((kf: IKufangEntity) => {
+      this._kufang = kf;
+    });
   }
 
-  onKufangList(kufang: IKufangEntity) {
+  onKufangList() {
+    // onKufangList(kufang: IKufangEntity) {
     this._kufangService.linkToKufang();
   }
 
-  onKufangDelete(kufang: IKufangEntity) {
+  onKufangDelete() {
     const r = confirm("Are you sure?");
     if (r) {
-      this._store.dispatch(new SelectedKufangPageActions.RemoveKufang(kufang));
+      console.log(`在控制台打印:` + this._kufang);
+      this._store.dispatch(
+        new SelectedKufangPageActions.RemoveKufang(this._kufang)
+      );
     }
   }
 
