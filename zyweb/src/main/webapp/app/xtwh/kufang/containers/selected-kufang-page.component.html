@@ -1,4 +1,3 @@
-
 <nb-card>
     <nb-card-header>{{pageTitle}}</nb-card-header>
     <nb-card-body>
@@ -6,17 +5,17 @@
         >
         </zy-kufang-detail>
 
-        <button type="button" nbButton id="toList" class="btn btn-secondary" (click)="onKufangList()">
-            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>返回库房列表</span>
-        </button>
+        <zy-selected-page-button
+                [toListButtonCaption]="toListButtonCaption"
+                (toListButtonClick)="onKufangList($event)"
+                [createButtonCaption]="createButtonCaption"
+                (createButtonClick)="onKufangCreate($event)"
+                [deleteButtonCaption]="deleteButtonCaption"
+                (deleteButtonClick)="onKufangDelete($event)"
+        >
 
-        <button  type="button" nbButton (click)="onKufangCreate()">
-            <fa-icon [icon]="'plus'"></fa-icon>&nbsp;<span>增加新记录</span>
-        </button>
+        </zy-selected-page-button>
 
-        <button type="button" nbButton id="delete" class="btn btn-secondary" (click)="onKufangDelete()">
-            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>删除</span>
-        </button>
 
     </nb-card-body>
 </nb-card>
