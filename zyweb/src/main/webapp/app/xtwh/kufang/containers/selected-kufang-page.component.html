@@ -6,11 +6,15 @@
         >
         </zy-kufang-detail>
 
-        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="onKufangList()">
+        <button type="button" nbButton id="toList" class="btn btn-secondary" (click)="onKufangList()">
             <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>返回库房列表</span>
         </button>
 
-        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="onKufangDelete()">
+        <button  type="button" nbButton (click)="onKufangCreate()">
+            <fa-icon [icon]="'plus'"></fa-icon>&nbsp;<span>增加新记录</span>
+        </button>
+
+        <button type="button" nbButton id="delete" class="btn btn-secondary" (click)="onKufangDelete()">
             <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>删除</span>
         </button>
 
