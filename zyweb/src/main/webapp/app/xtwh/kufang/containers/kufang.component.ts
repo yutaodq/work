@@ -32,7 +32,7 @@ export class KufangComponent implements OnInit {
     this.store.dispatch(new CollectionPageActions.LoadCollection());
   }
 
-  onCreate(lx: string) {
+  onKufangCreate(lx: string) {
     this._kufangService.linkToNewKufangPage();
   }
   showEntity(kufang: IKufangEntity) {

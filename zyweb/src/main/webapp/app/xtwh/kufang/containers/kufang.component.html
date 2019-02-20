@@ -1,6 +1,6 @@
 <zy-card-table  [title]="pageTitle">
     <div name="button-top">
-        <zy-table-button (createButtonClick) = "onCreate($event)"> </zy-table-button>
+        <zy-table-button (createButtonClick) = "onKufangCreate($event)"> </zy-table-button>
     </div>
     <div name="datatable">
         <zy-kufang-list [entities] = "kufangs$ | async"  (show) = "showEntity($event)">

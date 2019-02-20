@@ -89,6 +89,9 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
     // onKufangList(kufang: IKufangEntity) {
     this._kufangService.linkToKufang();
   }
+  onKufangCreate() {
+    this._kufangService.linkToNewKufangPage();
+  }
 
   onKufangDelete() {
     const r = confirm("Are you sure?");
