@@ -10,7 +10,7 @@ import {
 } from "./kufang-form.validator";
 import { Injectable } from "@angular/core";
 import { KufangService } from "app/xtwh/kufang/index";
-import { IKufangEntity } from "app/xtwh/kufang";
+import { IKufangEntity } from "src/main/webapp/app/xtwh/kufang/index";
 import { IZyFormModel } from "app/core/service/form/zy-form.model";
 
 @Injectable()

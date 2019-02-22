@@ -46,7 +46,7 @@ import {
   myCustomValidator,
   UniqueNameValidator,
   kufangNameValidator
-} from "./kufang-form.validator";
+} from "./form/kufang-form.validator";
 
 const ROUTE = [...kufangRoute];
 

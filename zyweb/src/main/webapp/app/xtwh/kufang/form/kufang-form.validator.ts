@@ -8,7 +8,7 @@ import {
   ValidationErrors
 } from "@angular/forms";
 import { catchError, map } from "rxjs/operators";
-import { KufangService } from "./service/kufang.service";
+import { KufangService } from "../service/kufang.service";
 import { of } from "rxjs";
 import { Observable } from "rxjs/Observable";
 

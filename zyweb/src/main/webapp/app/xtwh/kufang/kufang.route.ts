@@ -20,15 +20,10 @@ import {
 } from "./containers";
 
 @Injectable({ providedIn: "root" })
-export class KufangResolve implements Resolve<IKufangEntity> {
+export class NewKufangResolve implements Resolve<IKufangEntity> {
   constructor(private service: KufangService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return {
-      id: undefined,
-      identifier: "",
-      name: "",
-      bz: ""
-    };
+    return this.service.newKufangEntity();
   }
 }
 
@@ -52,7 +47,7 @@ export const kufangRoute: Routes = [
   {
     path: path.ROUTE_KUFANG_NEW,
     component: NewKufangPageComponent,
-    resolve: { KufangResolve },
+    resolve: { entity: NewKufangResolve },
     data: {
       authorities: ["ROLE_USER"],
       pageTitle: "工具-添加新记录表单"

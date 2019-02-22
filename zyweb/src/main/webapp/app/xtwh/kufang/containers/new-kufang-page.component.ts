@@ -7,12 +7,13 @@ import {
 import { IKufangEntity, KufangEntity } from "../models";
 import { ActionsSubject, Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import * as fromKufangs from "../reducers";
 import { NewKufangPageActions } from "../actions";
 import { KufangService } from "../service";
 
 import { ofType } from "@ngrx/effects";
+import { Observable } from "rxjs/index";
 
 @Component({
   selector: "zy-new-kufang-page",
@@ -21,13 +22,19 @@ import { ofType } from "@ngrx/effects";
 })
 export class NewKufangPageComponent implements OnInit, OnDestroy {
   redirectSub: Subscription;
+  private _entity$: Observable<IKufangEntity>;
 
   constructor(
     private store: Store<fromKufangs.State>,
     private router: Router,
     private _kufangService: KufangService,
+    private activatedRoute: ActivatedRoute,
     private actionsSubject: ActionsSubject
-  ) {}
+  ) {
+    this.activatedRoute.data.subscribe(({ entity }) => {
+      this._entity$ = entity;
+    });
+  }
 
   ngOnInit() {
     this.redirectSub = this.actionsSubject
@@ -54,6 +61,10 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
     this.store.dispatch(new NewKufangPageActions.CreateKufang(kufang));
   }
 
+  get entity$(): Observable<IKufangEntity> {
+    return this._entity$;
+  }
+
   // 以前的状态 在表单中按返回键时调用的方法
   previousState() {
     window.history.back();
@@ -61,9 +72,5 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.redirectSub.unsubscribe();
-  }
-
-  submitted(kufang: IKufangEntity) {
-    // this.store.dispatch(new Create(kufang));
   }
 }

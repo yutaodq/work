@@ -6,12 +6,12 @@ import {
   AsyncValidatorFn
 } from "@angular/forms";
 
-import { UniqueNameValidator } from "app/xtwh/kufang/kufang-form.validator";
+import { UniqueNameValidator } from "app/xtwh/kufang/form/kufang-form.validator";
 import { Injectable } from "@angular/core";
-import { FormService } from "app/shared";
-import { IKufangEntity, KufangEntity } from "app/xtwh/kufang/";
+import { FormService } from "app/shared/index";
+import { IKufangEntity, KufangEntity } from "../models";
 
-import { KufangService } from "app/xtwh/kufang/service/kufang.service";
+import { KufangService } from "../service";
 import {
   kufangNameValidator,
   myCustomValidator
