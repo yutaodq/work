@@ -9,12 +9,13 @@ import {
 import { ActivatedRoute } from "@angular/router";
 import { DynamicFormService } from "@ng-dynamic-forms/core";
 
-import { IKufangEntity } from "app/xtwh/kufang/";
+import { IKufangEntity, KufangEntity } from "app/xtwh/kufang/";
 import { KufangService } from "../";
 
 import { KufangFormModelService } from "../form/kufang-form-model.service";
 import { KUFANG_FORM_LAYOUT } from "../form/kufang-form.layout";
 import { NewComponent } from "app/core/containers/new-component";
+import { Observable } from "rxjs/index";
 
 @Component({
   selector: "zy-kufang-new",
@@ -25,7 +26,7 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
   @Input()
   kufangEntity: IKufangEntity = {
     id: undefined,
-    identifier: "",
+    identifier: "ggggggg",
     name: "",
     bz: ""
   };
@@ -39,11 +40,12 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
     kufangService: KufangService
   ) {
     super(activatedRoute, formService, formModelService, kufangService);
-    this._entity = this.kufangEntity;
   }
 
   ngOnInit() {
+    this._entity = this.kufangEntity;
     super.ngOnInit();
+    console.log(`在控制台打印ppppp:{}`, this.kufangEntity.valueOf());
   }
   ngOnChanges() {
     // if (this.contact) {
@@ -51,13 +53,13 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
     // }
   }
   onCancel() {
-    this.cancel.emit(this.kufangEntity);
+    this.cancel.emit(this._entity);
   }
 
   onSave() {
     // this.entity.name = this.formGroup.value["name"];
     this.kufangEntity = this.formGroup.value;
-    this.save.emit(this.kufangEntity);
+    this.save.emit(this._entity);
   }
 
   formModelToEntity() {

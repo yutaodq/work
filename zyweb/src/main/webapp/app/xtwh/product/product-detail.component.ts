@@ -1,28 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
-import { IProductEntity } from 'app/shared/model/product.model';
+import { IProductEntity } from "app/shared/model/product.model";
 
 @Component({
-    selector: 'zy-product-detail',
-    templateUrl: './product-detail.component.html'
+  selector: "zy-product-detail",
+  templateUrl: "./product-detail.component.html"
 })
 export class ProductDetailComponent implements OnInit {
-    product: IProductEntity;
+  product: IProductEntity;
   pageTitle: string;
-    constructor(private activatedRoute: ActivatedRoute) {
-      this.activatedRoute.data.subscribe(data => {
-        this.pageTitle = data.pageTitle;
-      });
-    }
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.data.subscribe(data => {
+      this.pageTitle = data.pageTitle;
+    });
+  }
 
-    ngOnInit() {
-        this.activatedRoute.data.subscribe(({ product }) => {
-            this.product = product;
-        });
-    }
+  ngOnInit() {
+    this.activatedRoute.data.subscribe(({ product }) => {
+      this.product = product;
+      console.log(`在控制台打印ppppp:{}`, this.product.name);
+    });
+  }
 
-    previousState() {
-        window.history.back();
-    }
+  previousState() {
+    window.history.back();
+  }
 }

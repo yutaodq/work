@@ -52,13 +52,14 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
 
     return of(isTaken).pipe(delay(100));
   }
-  newKufangEntity(): Observable<IKufangEntity> {
-    return of({
+  newKufangEntity(): IKufangEntity {
+    // return of(new KufangEntity());
+    return {
       id: undefined,
       identifier: "",
       name: "hjkl",
       bz: ""
-    });
+    };
   }
 
   create(kufang: IKufangEntity): Observable<IKufangEntity> {

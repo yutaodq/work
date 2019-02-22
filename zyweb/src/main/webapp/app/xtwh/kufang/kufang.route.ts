@@ -1,5 +1,6 @@
 import { HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { of } from "rxjs";
 
 import {
   Resolve,
@@ -23,7 +24,12 @@ import {
 export class NewKufangResolve implements Resolve<IKufangEntity> {
   constructor(private service: KufangService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.service.newKufangEntity();
+    return of({
+      id: undefined,
+      identifier: "",
+      name: "hjkl",
+      bz: ""
+    });
   }
 }
 
@@ -47,7 +53,7 @@ export const kufangRoute: Routes = [
   {
     path: path.ROUTE_KUFANG_NEW,
     component: NewKufangPageComponent,
-    resolve: { entity: NewKufangResolve },
+    resolve: { kufang: NewKufangResolve },
     data: {
       authorities: ["ROLE_USER"],
       pageTitle: "工具-添加新记录表单"

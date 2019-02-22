@@ -21,8 +21,9 @@ import { Observable } from "rxjs/index";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewKufangPageComponent implements OnInit, OnDestroy {
+  private _pageTitle: string;
   redirectSub: Subscription;
-  private _entity$: Observable<IKufangEntity>;
+  private _entity$: IKufangEntity;
 
   constructor(
     private store: Store<fromKufangs.State>,
@@ -31,22 +32,14 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private actionsSubject: ActionsSubject
   ) {
-    this.activatedRoute.data.subscribe(({ entity }) => {
-      this._entity$ = entity;
+    this.activatedRoute.data.subscribe(data => {
+      this._entity$ = data.kufang;
     });
   }
 
   ngOnInit() {
-    this.redirectSub = this.actionsSubject
-      .asObservable()
-      .pipe(
-        ofType(
-          NewKufangPageActions.NewKufangPageActionTypes.CreateKufangSuccess
-        )
-      )
-      .subscribe((action: NewKufangPageActions.CreateKufangSuccess) =>
-        this.linkToViewKufangPage(action.payload.id)
-      );
+    this.setPageTitle();
+    this.CreateKufangSuccessLink();
   }
 
   linkToViewKufangPage(recordID: number) {
@@ -60,9 +53,28 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
   saveCreate(kufang: IKufangEntity) {
     this.store.dispatch(new NewKufangPageActions.CreateKufang(kufang));
   }
-
-  get entity$(): Observable<IKufangEntity> {
+  private setPageTitle() {
+    this.activatedRoute.data.subscribe(data => {
+      this._pageTitle = data.pageTitle;
+    });
+  }
+  private CreateKufangSuccessLink() {
+    this.redirectSub = this.actionsSubject
+      .asObservable()
+      .pipe(
+        ofType(
+          NewKufangPageActions.NewKufangPageActionTypes.CreateKufangSuccess
+        )
+      )
+      .subscribe((action: NewKufangPageActions.CreateKufangSuccess) =>
+        this.linkToViewKufangPage(action.payload.id)
+      );
+  }
+  get entity$(): IKufangEntity {
     return this._entity$;
+  }
+  get pageTitle(): string {
+    return this._pageTitle;
   }
 
   // 以前的状态 在表单中按返回键时调用的方法
