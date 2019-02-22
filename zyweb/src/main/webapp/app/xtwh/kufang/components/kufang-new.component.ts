@@ -26,7 +26,7 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
   @Input()
   kufangEntity: IKufangEntity = {
     id: undefined,
-    identifier: "ggggggg",
+    identifier: "",
     name: "",
     bz: ""
   };
@@ -34,12 +34,13 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
   @Output() save = new EventEmitter<IKufangEntity>();
 
   constructor(
-    activatedRoute: ActivatedRoute,
+    // activatedRoute: ActivatedRoute,
     formService: DynamicFormService,
-    formModelService: KufangFormModelService,
-    kufangService: KufangService
+    formModelService: KufangFormModelService
+    // kufangService: KufangService
   ) {
-    super(activatedRoute, formService, formModelService, kufangService);
+    // super(activatedRoute, formService, formModelService, kufangService);
+    super(formService, formModelService);
   }
 
   ngOnInit() {
@@ -53,19 +54,19 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
     // }
   }
   onCancel() {
-    this.cancel.emit(this._entity);
+    this.cancel.emit(this.kufangEntity);
   }
 
   onSave() {
     // this.entity.name = this.formGroup.value["name"];
     this.kufangEntity = this.formGroup.value;
-    this.save.emit(this._entity);
+    this.save.emit(this.kufangEntity);
   }
 
-  formModelToEntity() {
-    this.entity.name = this.formGroup.value["name"];
-    this.entity.bz = this.formGroup.value["bz"];
-  }
+  // formModelToEntity() {
+  //   this.entity.name = this.formGroup.value["name"];
+  //   this.entity.bz = this.formGroup.value["bz"];
+  // }
 }
 
 // 可以使用

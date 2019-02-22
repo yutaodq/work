@@ -8,32 +8,23 @@ import { IZyFormModel } from "app/core/service/form/zy-form.model";
 import { OnInit } from "@angular/core";
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs/index";
-// import { IKufangEntity } from "app/shared";
 import { IZyEntityService } from "app/core/service";
 
 export abstract class NewComponent<T> implements OnInit {
   _entity: T;
   _isSaving: boolean;
-  _pageTitle: string;
+  // _pageTitle: string;
   _formGroup: FormGroup;
   _formModel: DynamicFormControlModel[];
 
   constructor(
-    private _activatedRoute: ActivatedRoute,
+    // private _activatedRoute: ActivatedRoute,
     private _formService: DynamicFormService,
-    private _formModelService: IZyFormModel<T>,
-    private _entityService: IZyEntityService<T>
-  ) {}
+    private _formModelService: IZyFormModel<T>
+  ) // private _entityService: IZyEntityService<T>
+  {}
 
   ngOnInit() {
-    // this.activatedRoute.data.subscribe(data => {
-    //   this.pageTitle = data.pageTitle;
-    // });
-    //
-    // this.activatedRoute.data.subscribe(({ entity }) => {
-    //   this.entity = entity;
-    //   this.initForm();
-    // });
     this.initForm();
     this.isSaving = false;
   }
@@ -47,37 +38,31 @@ export abstract class NewComponent<T> implements OnInit {
     this.formGroup = this.formService.createFormGroup(this.formModel);
   }
 
-  // 以前的状态 在表单中按返回键时调用的方法
-  previousState() {
-    window.history.back();
-  }
+  // saveY() {
+  //   this.isSaving = true;
+  //   this.formModelToEntity();
+  // }
 
-  saveY() {
-    this.isSaving = true;
-    this.formModelToEntity();
-    // this.subscribeToSaveResponse(this.entityService.create(this.entity));
-  }
+  // private subscribeToSaveResponse(result: Observable<HttpResponse<T>>) {
+  //   result.subscribe(
+  //     (res: HttpResponse<T>) => this.onSaveSuccess(),
+  //     (res: HttpErrorResponse) => this.onSaveError()
+  //   );
+  // }
 
-  private subscribeToSaveResponse(result: Observable<HttpResponse<T>>) {
-    result.subscribe(
-      (res: HttpResponse<T>) => this.onSaveSuccess(),
-      (res: HttpErrorResponse) => this.onSaveError()
-    );
-  }
-
-  private onSaveSuccess() {
-    this.isSaving = false;
-    this.previousState();
-  }
-
-  private onSaveError() {
-    this.isSaving = false;
-  }
+  // private onSaveSuccess() {
+  //   this.isSaving = false;
+  //   // this.previousState();
+  // }
+  //
+  // private onSaveError() {
+  //   this.isSaving = false;
+  // }
 
   /*
    * 抽象方法
    */
-  abstract formModelToEntity();
+  // abstract formModelToEntity();
 
   /*
    * 对象的访问器和设置器
@@ -86,16 +71,16 @@ export abstract class NewComponent<T> implements OnInit {
     return this._formModelService;
   }
 
-  protected get activatedRoute() {
-    return this._activatedRoute;
-  }
+  // protected get activatedRoute() {
+  //   return this._activatedRoute;
+  // }
   protected get formService() {
     return this._formService;
   }
 
-  protected get entityService() {
-    return this._entityService;
-  }
+  // protected get entityService() {
+  //   return this._entityService;
+  // }
 
   set formGroup(formGroup: FormGroup) {
     this._formGroup = formGroup;
@@ -111,12 +96,12 @@ export abstract class NewComponent<T> implements OnInit {
     return this._formModel;
   }
 
-  set pageTitle(pageTitle: string) {
-    this._pageTitle = pageTitle;
-  }
-  get pageTitle() {
-    return this._pageTitle;
-  }
+  // set pageTitle(pageTitle: string) {
+  //   this._pageTitle = pageTitle;
+  // }
+  // get pageTitle() {
+  //   return this._pageTitle;
+  // }
   get isSaving() {
     return this._isSaving;
   }
