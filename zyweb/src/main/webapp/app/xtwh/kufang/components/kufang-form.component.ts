@@ -1,27 +1,17 @@
-import {
-  Component,
-  OnInit,
-  OnChanges,
-  Input,
-  Output,
-  EventEmitter
-} from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit, OnChanges, Input } from "@angular/core";
 import { DynamicFormService } from "@ng-dynamic-forms/core";
 
 import { IKufangEntity, KufangEntity } from "app/xtwh/kufang/";
-import { KufangService } from "../";
 
 import { KufangFormModelService } from "../form/kufang-form-model.service";
 import { KUFANG_FORM_LAYOUT } from "../form/kufang-form.layout";
 import { NewComponent } from "app/core/containers/new-component";
-import { Observable } from "rxjs/index";
 
 @Component({
-  selector: "zy-kufang-new",
-  templateUrl: "./kufang-new.component.html"
+  selector: "zy-kufang-form",
+  templateUrl: "./kufang-form.component.html"
 })
-export class KufangNewComponent extends NewComponent<IKufangEntity>
+export class KufangFormComponent extends NewComponent<IKufangEntity>
   implements OnInit, OnChanges {
   @Input()
   kufangEntity: IKufangEntity = {
@@ -30,8 +20,6 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
     name: "",
     bz: ""
   };
-  @Output() cancel = new EventEmitter<IKufangEntity>();
-  @Output() save = new EventEmitter<IKufangEntity>();
 
   constructor(
     formService: DynamicFormService,
@@ -49,15 +37,6 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
     // if (this.contact) {
     //   this.form.patchValue({...this.contact});
     // }
-  }
-  onCancel() {
-    this.cancel.emit(this.kufangEntity);
-  }
-
-  onSave() {
-    // this.entity.name = this.formGroup.value["name"];
-    this.kufangEntity = this.formGroup.value;
-    this.save.emit(this.kufangEntity);
   }
 }
 

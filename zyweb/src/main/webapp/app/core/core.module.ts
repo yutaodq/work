@@ -21,7 +21,8 @@ import {
   ZyTableButtonComponent,
   ZyFormHeaderComponent,
   ZyFormLayoutsComponent,
-  SelectedPageButtonComponent
+  SelectedPageButtonComponent,
+  NewPageButtonComponent
 } from "./components";
 
 import { AnalyticsService, UserService, LayoutService } from "app/core/service";
@@ -36,7 +37,8 @@ const COMPONENTS = [
   ZyTableButtonComponent,
   ZyFormHeaderComponent,
   ZyFormLayoutsComponent,
-  SelectedPageButtonComponent
+  SelectedPageButtonComponent,
+  NewPageButtonComponent
 ];
 
 const BASE_MODULES = [

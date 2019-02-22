@@ -3,26 +3,19 @@ import {
   DynamicFormService
 } from "@ng-dynamic-forms/core";
 import { FormGroup } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
 import { IZyFormModel } from "app/core/service/form/zy-form.model";
 import { OnInit } from "@angular/core";
-import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
-import { Observable } from "rxjs/index";
-import { IZyEntityService } from "app/core/service";
 
 export abstract class NewComponent<T> implements OnInit {
   _entity: T;
   _isSaving: boolean;
-  // _pageTitle: string;
   _formGroup: FormGroup;
   _formModel: DynamicFormControlModel[];
 
   constructor(
-    // private _activatedRoute: ActivatedRoute,
     private _formService: DynamicFormService,
     private _formModelService: IZyFormModel<T>
-  ) // private _entityService: IZyEntityService<T>
-  {}
+  ) {}
 
   ngOnInit() {
     this.initForm();
@@ -38,27 +31,6 @@ export abstract class NewComponent<T> implements OnInit {
     this.formGroup = this.formService.createFormGroup(this.formModel);
   }
 
-  // saveY() {
-  //   this.isSaving = true;
-  //   this.formModelToEntity();
-  // }
-
-  // private subscribeToSaveResponse(result: Observable<HttpResponse<T>>) {
-  //   result.subscribe(
-  //     (res: HttpResponse<T>) => this.onSaveSuccess(),
-  //     (res: HttpErrorResponse) => this.onSaveError()
-  //   );
-  // }
-
-  // private onSaveSuccess() {
-  //   this.isSaving = false;
-  //   // this.previousState();
-  // }
-  //
-  // private onSaveError() {
-  //   this.isSaving = false;
-  // }
-
   /*
    * 抽象方法
    */
@@ -71,16 +43,9 @@ export abstract class NewComponent<T> implements OnInit {
     return this._formModelService;
   }
 
-  // protected get activatedRoute() {
-  //   return this._activatedRoute;
-  // }
   protected get formService() {
     return this._formService;
   }
-
-  // protected get entityService() {
-  //   return this._entityService;
-  // }
 
   set formGroup(formGroup: FormGroup) {
     this._formGroup = formGroup;
@@ -96,12 +61,6 @@ export abstract class NewComponent<T> implements OnInit {
     return this._formModel;
   }
 
-  // set pageTitle(pageTitle: string) {
-  //   this._pageTitle = pageTitle;
-  // }
-  // get pageTitle() {
-  //   return this._pageTitle;
-  // }
   get isSaving() {
     return this._isSaving;
   }
