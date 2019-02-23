@@ -5,6 +5,7 @@ import {
 import { FormGroup } from "@angular/forms";
 import { IZyFormModel } from "app/core/service/form/zy-form.model";
 import { EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { IKufangEntity } from "app/xtwh/kufang";
 
 export abstract class NewComponent<T> implements OnInit {
   private _entity: T;
@@ -31,6 +32,10 @@ export abstract class NewComponent<T> implements OnInit {
     this.formGroup = this.formService.createFormGroup(this.formModel);
   }
 
+  returnEntity(): T {
+    this.entity = this.formGroup.value;
+    return this.entity;
+  }
   /*
    * 抽象方法
    */
