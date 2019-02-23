@@ -16,45 +16,44 @@ import { KufangFormModelService } from "../form/kufang-form-model.service";
 import { KUFANG_FORM_LAYOUT } from "../form/kufang-form.layout";
 import { FormComponent } from "app/core/containers/form-component";
 import { Observable } from "rxjs/index";
+import { NewKufangPageActions } from "app/xtwh/kufang/actions";
 
 @Component({
   selector: "zy-kufang-new",
   templateUrl: "./kufang-new.component.html"
 })
-export class KufangNewComponent extends FormComponent<IKufangEntity>
-  implements OnInit, OnChanges {
-  @Output() cancel = new EventEmitter<IKufangEntity>();
-  @Output() save = new EventEmitter<IKufangEntity>();
-
-  constructor(
-    formService: DynamicFormService,
-    formModelService: KufangFormModelService
-  ) {
-    super(formService, formModelService);
+export class KufangNewComponent {
+  cancelCreate(kufang: string) {
+    this.previousState();
   }
 
-  ngOnInit() {
-    // this._entity = this.kufangEntity;
-    super.ngOnInit();
-    console.log(`在控制台打印ppppp:{}`, this.entity.valueOf());
-  }
-  ngOnChanges() {
-    // if (this.contact) {
-    //   this.form.patchValue({...this.contact});
-    // }
-  }
-  onCancel() {
-    this.cancel.emit(this.entity);
+  saveCreate(kufang: string) {
+    this.store.dispatch(
+      new NewKufangPageActions.CreateKufang(
+        this._kufangFormComponent.returnEntity()
+      )
+    );
   }
 
-  onSave() {
-    // this.kufang.name = this.formGroup.value["name"];
-    // this.kufangEntity = this.formGroup.value;
-    // this.save.emit(this.kufangEntity);
+  recoverCreate(kufang: string) {
+    this._kufangFormComponent.restoreEntity();
+  }
 
-    this.entity = this.formGroup.value;
+  private previousState() {
+    window.history.back();
+  }
 
-    this.save.emit(this.entity);
+  /*
+按键标题
+ */
+  get cancelButtonCaption(): string {
+    return "取消创建";
+  }
+  get saveButtonCaption(): string {
+    return "保存记录";
+  }
+  get recoverButtonCaption(): string {
+    return "恢复初始值";
   }
 }
 

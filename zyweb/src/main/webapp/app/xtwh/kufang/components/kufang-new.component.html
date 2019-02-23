@@ -1,23 +1,12 @@
-
-<form class="form-horizontal" [formGroup]="formGroup" (ngSubmit)="onSave()">
-
-    <dynamic-ng-bootstrap-form [group]="formGroup"
-                               [model]="_formModel"
-                               [layout]="formLayout"
-
+<zy-new-page-button
+        [cancelButtonCaption]="cancelButtonCaption"
+        (cancelButtonClick)="cancelCreate($event)"
+        [saveButtonCaption]="saveButtonCaption"
+        (saveButtonClick)="saveCreate($event)"
+        [recoverButtonCaption]="recoverButtonCaption"
+        (recoverButtonClick)="recoverCreate($event)">
     >
-
-    </dynamic-ng-bootstrap-form>
-
-    <button type="button" id="cancel-save" class="btn btn-secondary" (click)="onCancel()">
-        <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>取消</span>
-    </button>
-    <button type="submit" id="save-entity" [disabled]="formGroup.invalid || isSaving"
-            class="btn btn-primary">
-        <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>保存</span>
-    </button>
-
-</form>
+</zy-new-page-button>
 
 
 
