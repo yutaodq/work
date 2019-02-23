@@ -4,10 +4,10 @@ import {
 } from "@ng-dynamic-forms/core";
 import { FormGroup } from "@angular/forms";
 import { IZyFormModel } from "app/core/service/form/zy-form.model";
-import { OnInit } from "@angular/core";
+import { Input, OnInit } from "@angular/core";
 
 export abstract class NewComponent<T> implements OnInit {
-  _entity: T;
+  private _entity: T;
   _isSaving: boolean;
   _formGroup: FormGroup;
   _formModel: DynamicFormControlModel[];
@@ -68,6 +68,7 @@ export abstract class NewComponent<T> implements OnInit {
     this._isSaving = isSaving;
   }
 
+  @Input()
   set entity(entity: T) {
     this._entity = entity;
   }

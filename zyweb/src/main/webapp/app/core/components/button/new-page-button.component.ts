@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { IKufangEntity } from "app/xtwh/kufang";
 
 @Component({
   selector: "zy-new-page-button",

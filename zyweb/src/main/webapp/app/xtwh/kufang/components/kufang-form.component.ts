@@ -13,14 +13,6 @@ import { NewComponent } from "app/core/containers/new-component";
 })
 export class KufangFormComponent extends NewComponent<IKufangEntity>
   implements OnInit, OnChanges {
-  @Input()
-  kufangEntity: IKufangEntity = {
-    id: undefined,
-    identifier: "",
-    name: "",
-    bz: ""
-  };
-
   constructor(
     formService: DynamicFormService,
     formModelService: KufangFormModelService
@@ -29,9 +21,7 @@ export class KufangFormComponent extends NewComponent<IKufangEntity>
   }
 
   ngOnInit() {
-    this._entity = this.kufangEntity;
     super.ngOnInit();
-    console.log(`在控制台打印ppppp:{}`, this.kufangEntity.valueOf());
   }
   ngOnChanges() {
     // if (this.contact) {

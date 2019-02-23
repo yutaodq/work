@@ -2,7 +2,8 @@
     <nb-card-header>{{pageTitle}}</nb-card-header>
     <nb-card-body>
         <!--<zy-kufang-new (cancel)="cancelCreate($event)" (save)="saveCreate($event)">-->
-            <zy-kufang-new [kufangEntity]="entity$" (cancel)="cancelCreate($event)" (save)="saveCreate($event)">
+        <!--<zy-kufang-new [kufangEntity]="entity$" (cancel)="cancelCreate($event)" (save)="saveCreate($event)">-->
+        <zy-kufang-new [entity]="entity$" (cancel)="cancelCreate($event)" (save)="saveCreate($event)">
         </zy-kufang-new>
     </nb-card-body>
 </nb-card>

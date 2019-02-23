@@ -23,13 +23,6 @@ import { Observable } from "rxjs/index";
 })
 export class KufangNewComponent extends NewComponent<IKufangEntity>
   implements OnInit, OnChanges {
-  @Input()
-  kufangEntity: IKufangEntity = {
-    id: undefined,
-    identifier: "",
-    name: "",
-    bz: ""
-  };
   @Output() cancel = new EventEmitter<IKufangEntity>();
   @Output() save = new EventEmitter<IKufangEntity>();
 
@@ -38,12 +31,13 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
     formModelService: KufangFormModelService
   ) {
     super(formService, formModelService);
+    // super(formService, formModelService);
   }
 
   ngOnInit() {
-    this._entity = this.kufangEntity;
+    // this._entity = this.kufangEntity;
     super.ngOnInit();
-    console.log(`在控制台打印ppppp:{}`, this.kufangEntity.valueOf());
+    console.log(`在控制台打印ppppp:{}`, this.entity.valueOf());
   }
   ngOnChanges() {
     // if (this.contact) {
@@ -51,13 +45,17 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
     // }
   }
   onCancel() {
-    this.cancel.emit(this.kufangEntity);
+    this.cancel.emit(this.entity);
   }
 
   onSave() {
     // this.entity.name = this.formGroup.value["name"];
-    this.kufangEntity = this.formGroup.value;
-    this.save.emit(this.kufangEntity);
+    // this.kufangEntity = this.formGroup.value;
+    // this.save.emit(this.kufangEntity);
+
+    this.entity = this.formGroup.value;
+
+    this.save.emit(this.entity);
   }
 }
 
