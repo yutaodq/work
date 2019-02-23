@@ -29,7 +29,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   private _pageTitle: string;
   private _entity$: Observable<IKufangEntity>;
   redirectSub: Subscription;
-  private _kufang: IKufangEntity;
+  // private _kufang: IKufangEntity;
   constructor(
     private _store: Store<fromKufangs.State>,
     private activatedRoute: ActivatedRoute,
@@ -40,7 +40,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.set_entity$();
     this.setPageTitle();
-    this.setKufang();
+    // this.setKufang();
     this.removeKufangSuccessLink();
   }
 
@@ -78,32 +78,32 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
       this._pageTitle = data.pageTitle;
     });
   }
-  private setKufang() {
-    this._entity$.subscribe((kf: IKufangEntity) => {
-      this._kufang = kf;
-    });
-  }
+  // private setKufang() {
+  //   this._entity$.subscribe((kf: IKufangEntity) => {
+  //     this._kufang = kf;
+  //   });
+  // }
 
-  onKufangList(zy: string) {
-    // onKufangList(kufang: IKufangEntity) {
-    this._kufangService.linkToKufang();
-  }
-  onKufangCreate(zy: string) {
-    this._kufangService.linkToNewKufangPage();
-  }
-
-  onKufangDelete(zy: string) {
-    const r = confirm("Are you sure?");
-    if (r) {
-      this._store.dispatch(
-        new SelectedKufangPageActions.RemoveKufang(this._kufang)
-      );
-    }
-  }
-
-  previousState() {
-    window.history.back();
-  }
+  // onKufangList(zy: string) {
+  //   // onKufangList(kufang: IKufangEntity) {
+  //   this._kufangService.linkToKufang();
+  // }
+  // onKufangCreate(zy: string) {
+  //   this._kufangService.linkToNewKufangPage();
+  // }
+  //
+  // onKufangDelete(zy: string) {
+  //   const r = confirm("Are you sure?");
+  //   if (r) {
+  //     this._store.dispatch(
+  //       new SelectedKufangPageActions.RemoveKufang(this._kufang)
+  //     );
+  //   }
+  // }
+  //
+  // previousState() {
+  //   window.history.back();
+  // }
 
   ngOnDestroy() {
     this.redirectSub.unsubscribe();
@@ -119,13 +119,13 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   /*
 按键标题
  */
-  get toListButtonCaption(): string {
-    return "返回库房列表";
-  }
-  get createButtonCaption(): string {
-    return "新建库房记录";
-  }
-  get deleteButtonCaption(): string {
-    return "删除库房记录";
-  }
+  // get toListButtonCaption(): string {
+  //   return "返回库房列表";
+  // }
+  // get createButtonCaption(): string {
+  //   return "新建库房记录";
+  // }
+  // get deleteButtonCaption(): string {
+  //   return "删除库房记录";
+  // }
 }
