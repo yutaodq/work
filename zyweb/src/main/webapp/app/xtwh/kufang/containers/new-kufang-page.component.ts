@@ -23,7 +23,7 @@ import { Observable } from "rxjs/index";
 export class NewKufangPageComponent implements OnInit, OnDestroy {
   private _pageTitle: string;
   redirectSub: Subscription;
-  private _entity$: IKufangEntity;
+  private _entity: IKufangEntity;
 
   constructor(
     private store: Store<fromKufangs.State>,
@@ -33,17 +33,13 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
     private actionsSubject: ActionsSubject
   ) {
     this.activatedRoute.data.subscribe(data => {
-      this._entity$ = data.kufang;
+      this._entity = data.kufang;
     });
   }
 
   ngOnInit() {
     this.setPageTitle();
     this.CreateKufangSuccessLink();
-  }
-
-  linkToViewKufangPage(recordID: number) {
-    this._kufangService.linkToViewKufangPage(recordID);
   }
 
   cancelCreate(kufang: IKufangEntity) {
@@ -53,6 +49,7 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
   saveCreate(kufang: IKufangEntity) {
     this.store.dispatch(new NewKufangPageActions.CreateKufang(kufang));
   }
+
   private setPageTitle() {
     this.activatedRoute.data.subscribe(data => {
       this._pageTitle = data.pageTitle;
@@ -70,11 +67,25 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
         this.linkToViewKufangPage(action.payload.id)
       );
   }
-  get entity$(): IKufangEntity {
-    return this._entity$;
+  private linkToViewKufangPage(recordID: number) {
+    this._kufangService.linkToViewKufangPage(recordID);
+  }
+
+  get entity(): IKufangEntity {
+    return this._entity;
   }
   get pageTitle(): string {
     return this._pageTitle;
+  }
+
+  get cancelButtonCaption(): string {
+    return "取消创建";
+  }
+  get saveButtonCaption(): string {
+    return "保存记录";
+  }
+  get recoverButtonCaption(): string {
+    return "恢复初始值";
   }
 
   // 以前的状态 在表单中按返回键时调用的方法

@@ -1,8 +1,12 @@
-<dynamic-ng-bootstrap-form [group]="formGroup"
-                           [model]="_formModel"
-                           [layout]="formLayout"
+<form class="form-horizontal" [formGroup]="formGroup" (ngSubmit)="onSave()">
+    <dynamic-ng-bootstrap-form [group]="formGroup"
+                               [model]="_formModel"
+                               [layout]="formLayout"
 
->
+    >
+    </dynamic-ng-bootstrap-form>
 
-</dynamic-ng-bootstrap-form>
+    <ng-content select="zy-header"></ng-content>
+    <ng-content></ng-content>
 
+</form>

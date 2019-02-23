@@ -31,7 +31,6 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
     formModelService: KufangFormModelService
   ) {
     super(formService, formModelService);
-    // super(formService, formModelService);
   }
 
   ngOnInit() {
