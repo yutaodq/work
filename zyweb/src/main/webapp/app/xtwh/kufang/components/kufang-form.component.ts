@@ -34,7 +34,8 @@ export class KufangFormComponent extends NewComponent<IKufangEntity>
   }
 
   returnEntity(): IKufangEntity {
-    return (this.entity = this.formGroup.value);
+    this.entity = this.formGroup.value;
+    return this.entity;
   }
 
   ngOnInit() {

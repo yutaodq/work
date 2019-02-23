@@ -26,7 +26,7 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
   private _pageTitle: string;
   redirectSub: Subscription;
   private _entity: IKufangEntity;
-  @ViewChild("kufangForm") _kufangForm: KufangFormComponent;
+  @ViewChild("kufangForm") _kufangFormComponent: KufangFormComponent;
   constructor(
     private store: Store<fromKufangs.State>,
     private router: Router,
@@ -47,7 +47,13 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
   cancelCreate(kufang: string) {
     this.previousState();
   }
-  saveCreate(kufang: string) {}
+  saveCreate(kufang: string) {
+    this.store.dispatch(
+      new NewKufangPageActions.CreateKufang(
+        this._kufangFormComponent.returnEntity()
+      )
+    );
+  }
   recoverCreate(kufang: string) {}
   // saveCreate(kufang: IKufangEntity) {
   //   this.store.dispatch(new NewKufangPageActions.CreateKufang(kufang));
