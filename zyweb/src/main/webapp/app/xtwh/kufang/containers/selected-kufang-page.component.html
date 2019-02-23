@@ -1,19 +1,21 @@
 <nb-card>
     <nb-card-header>{{pageTitle}}</nb-card-header>
     <nb-card-body>
-        <zy-kufang-detail [kufang]="entity$ | async"
-        >
+        <zy-kufang-form #kufangForm [entity]="entity$ | async" >
+
+        </zy-kufang-form>
+<!--<router-outlet></router-outlet>-->
+        <zy-kufang-detail [kufang]="entity$ | async">
+
         </zy-kufang-detail>
-
-        <zy-selected-page-button
-                [toListButtonCaption]="toListButtonCaption"
-                (toListButtonClick)="onKufangList($event)"
-                [createButtonCaption]="createButtonCaption"
-                (createButtonClick)="onKufangCreate($event)"
-                [deleteButtonCaption]="deleteButtonCaption"
-                (deleteButtonClick)="onKufangDelete($event)">
-
-        </zy-selected-page-button>
+        <!--<zy-selected-page-button-->
+                <!--[toListButtonCaption]="toListButtonCaption"-->
+                <!--(toListButtonClick)="onKufangList($event)"-->
+                <!--[createButtonCaption]="createButtonCaption"-->
+                <!--(createButtonClick)="onKufangCreate($event)"-->
+                <!--[deleteButtonCaption]="deleteButtonCaption"-->
+                <!--(deleteButtonClick)="onKufangDelete($event)">-->
+        <!--</zy-selected-page-button>-->
 
 
     </nb-card-body>

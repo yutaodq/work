@@ -19,6 +19,7 @@ import {
   ViewKufangPageComponent,
   NewKufangPageComponent
 } from "./containers";
+import { KufangDetailComponent } from "app/xtwh/kufang/components";
 
 @Injectable({ providedIn: "root" })
 export class NewKufangResolve implements Resolve<IKufangEntity> {
@@ -48,7 +49,8 @@ export const kufangRoute: Routes = [
       authorities: ["ROLE_USER"],
       pageTitle: "库房名称-查看表单"
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
+    children: [{ path: "", component: KufangDetailComponent }]
   },
   {
     path: path.ROUTE_KUFANG_NEW,

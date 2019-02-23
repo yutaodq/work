@@ -8,6 +8,10 @@ import {
 } from "@angular/core";
 
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
+import { Store } from "@ngrx/store";
+import * as fromKufangs from "app/xtwh/kufang/reducers";
+import { KufangService } from "app/xtwh/kufang/service";
+import { SelectedKufangPageActions } from "app/xtwh/kufang/actions";
 
 @Component({
   selector: "zy-kufang-detail",
@@ -15,20 +19,46 @@ import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class KufangDetailComponent implements OnInit {
-  @Input() kufang: IKufangEntity;
-
-  constructor() {}
-
+  private _kufang: IKufangEntity;
+  constructor(
+    private _store: Store<fromKufangs.State>,
+    private _kufangService: KufangService
+  ) {}
   ngOnInit() {}
+  onKufangList(zy: string) {
+    this._kufangService.linkToKufang();
+  }
+  onKufangCreate(zy: string) {
+    this._kufangService.linkToNewKufangPage();
+  }
+
+  onKufangDelete(zy: string) {
+    const r = confirm("Are you sure?");
+    if (r) {
+      this._store.dispatch(
+        new SelectedKufangPageActions.RemoveKufang(this._kufang)
+      );
+    }
+  }
+
+  @Input()
+  set kufang(entity: IKufangEntity) {
+    this._kufang = entity;
+  }
+  get kufang(): IKufangEntity {
+    return this._kufang;
+  }
 
   /*
-   * 获取表属性
-   */
-
-  get name() {
-    return this.kufang.name;
+按键标题
+ */
+  get toListButtonCaption(): string {
+    return "返回库房列表";
   }
-  get bz() {
-    return this.kufang.bz;
+  get createButtonCaption(): string {
+    return "新建库房记录";
+  }
+  get deleteButtonCaption(): string {
+    return "删除库房记录";
   }
 }

@@ -59,8 +59,8 @@ export class KufangFormComponent extends FormComponent<IKufangEntity>
 //   }
 //
 //   formModelToEntity() {
-//     this.entity.name = this.formGroup.value["name"];
-//     this.entity.bz = this.formGroup.value["bz"];
+//     this.kufang.name = this.formGroup.value["name"];
+//     this.kufang.bz = this.formGroup.value["bz"];
 //   }
 // }
 
@@ -139,7 +139,7 @@ export class KufangFormComponent extends FormComponent<IKufangEntity>
 //   get isSaving() {
 //     return this._isSaving;
 //   }
-//   get entity() {
+//   get kufang() {
 //     return this._entity;
 //   }
 // }

@@ -67,12 +67,12 @@ export const getSelectedKufangId = createSelector(
 );
 
 /**
- * Adapters created with @ngrx/entity generate
+ * Adapters created with @ngrx/kufang generate
  * commonly used selector functions including
  * getting all ids in the record set, a dictionary
  * of the records by id, an array of records and
  * the total number of records. This reduces boilerplate
- * in selecting records from the entity state.
+ * in selecting records from the kufang state.
  */
 export const {
   selectIds: getKufangIds,
