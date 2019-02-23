@@ -44,7 +44,7 @@ export class NewPageButtonComponent {
   set recoverButtonCaption(value: string) {
     this._recoverButtonCaption = value;
   }
-  get deleteButtonCaption(): string {
+  get recoverButtonCaption(): string {
     return this._recoverButtonCaption;
   }
 }

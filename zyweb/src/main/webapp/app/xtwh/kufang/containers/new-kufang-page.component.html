@@ -6,25 +6,18 @@
 
 
 
-<zy-kufang-form [entity]="entity">
+<zy-kufang-form #kufangForm [entity]="entity" >
     <zy-new-page-button
             [cancelButtonCaption]="cancelButtonCaption"
-            (cancelButtonClick)="cancelButtonClick($event)"
+            (cancelButtonClick)="cancelCreate($event)"
             [saveButtonCaption]="saveButtonCaption"
-            (saveButtonClick)="saveButtonClick($event)"
+            (saveButtonClick)="saveCreate($event)"
             [recoverButtonCaption]="recoverButtonCaption"
-            (recoverButtonClick)="recoverButtonClick($event)">
+            (recoverButtonClick)="recoverCreate($event)">
         >
     </zy-new-page-button>
 
 </zy-kufang-form>
-
-
-
-
-
-
-
 
     </nb-card-body>
 </nb-card>

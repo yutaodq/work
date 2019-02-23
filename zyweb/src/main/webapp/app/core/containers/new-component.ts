@@ -4,7 +4,7 @@ import {
 } from "@ng-dynamic-forms/core";
 import { FormGroup } from "@angular/forms";
 import { IZyFormModel } from "app/core/service/form/zy-form.model";
-import { Input, OnInit } from "@angular/core";
+import { EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 export abstract class NewComponent<T> implements OnInit {
   private _entity: T;

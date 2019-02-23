@@ -2,7 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnDestroy,
-  OnInit
+  OnInit,
+  ViewChild
 } from "@angular/core";
 import { IKufangEntity, KufangEntity } from "../models";
 import { ActionsSubject, Store } from "@ngrx/store";
@@ -14,6 +15,7 @@ import { KufangService } from "../service";
 
 import { ofType } from "@ngrx/effects";
 import { Observable } from "rxjs/index";
+import { KufangFormComponent } from "app/xtwh/kufang/components";
 
 @Component({
   selector: "zy-new-kufang-page",
@@ -24,7 +26,7 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
   private _pageTitle: string;
   redirectSub: Subscription;
   private _entity: IKufangEntity;
-
+  @ViewChild("kufangForm") _kufangForm: KufangFormComponent;
   constructor(
     private store: Store<fromKufangs.State>,
     private router: Router,
@@ -42,13 +44,14 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
     this.CreateKufangSuccessLink();
   }
 
-  cancelCreate(kufang: IKufangEntity) {
+  cancelCreate(kufang: string) {
     this.previousState();
   }
-
-  saveCreate(kufang: IKufangEntity) {
-    this.store.dispatch(new NewKufangPageActions.CreateKufang(kufang));
-  }
+  saveCreate(kufang: string) {}
+  recoverCreate(kufang: string) {}
+  // saveCreate(kufang: IKufangEntity) {
+  //   this.store.dispatch(new NewKufangPageActions.CreateKufang(kufang));
+  // }
 
   private setPageTitle() {
     this.activatedRoute.data.subscribe(data => {

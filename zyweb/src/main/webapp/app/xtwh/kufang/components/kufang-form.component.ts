@@ -1,4 +1,11 @@
-import { Component, OnInit, OnChanges, Input } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  Input,
+  EventEmitter,
+  Output
+} from "@angular/core";
 import { DynamicFormService } from "@ng-dynamic-forms/core";
 
 import { IKufangEntity, KufangEntity } from "app/xtwh/kufang/";
@@ -6,6 +13,7 @@ import { IKufangEntity, KufangEntity } from "app/xtwh/kufang/";
 import { KufangFormModelService } from "../form/kufang-form-model.service";
 import { KUFANG_FORM_LAYOUT } from "../form/kufang-form.layout";
 import { NewComponent } from "app/core/containers/new-component";
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: "zy-kufang-form",
@@ -13,11 +21,20 @@ import { NewComponent } from "app/core/containers/new-component";
 })
 export class KufangFormComponent extends NewComponent<IKufangEntity>
   implements OnInit, OnChanges {
+  // @Input()
+  // saveEntity: Observable<string>;
+  // @Output() formToEntity = new EventEmitter<IKufangEntity>();
+
   constructor(
     formService: DynamicFormService,
     formModelService: KufangFormModelService
   ) {
     super(formService, formModelService);
+    // this.saveEntity.subscribe(_ =>  this.returnEntity());
+  }
+
+  returnEntity(): IKufangEntity {
+    return (this.entity = this.formGroup.value);
   }
 
   ngOnInit() {
