@@ -5,13 +5,13 @@ import { IKufangEntity, KufangEntity } from "app/xtwh/kufang/";
 
 import { KufangFormModelService } from "../form";
 import { KUFANG_FORM_LAYOUT } from "../form";
-import { NewComponent } from "app/core/containers/new-component";
+import { FormComponent } from "app/core/containers/form-component";
 
 @Component({
   selector: "zy-kufang-form",
   templateUrl: "./kufang-form.component.html"
 })
-export class KufangFormComponent extends NewComponent<IKufangEntity>
+export class KufangFormComponent extends FormComponent<IKufangEntity>
   implements OnInit, OnChanges {
   constructor(
     formService: DynamicFormService,
@@ -40,9 +40,9 @@ export class KufangFormComponent extends NewComponent<IKufangEntity>
 //
 // import { KufangFormModelService } from "../kufang-form-model.service";
 // import { KUFANG_FORM_LAYOUT } from "../kufang-form.layout";
-// import { NewComponent } from "app/core/containers/new-component";
+// import { FormComponent } from "app/core/containers/new-component";
 //
-// export class KufangNewComponent extends NewComponent<IKufangEntity>
+// export class KufangNewComponent extends FormComponent<IKufangEntity>
 //   implements OnInit {
 //   constructor(
 //     activatedRoute: ActivatedRoute,

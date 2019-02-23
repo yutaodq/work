@@ -55,7 +55,9 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
       )
     );
   }
-  recoverCreate(kufang: string) {}
+  recoverCreate(kufang: string) {
+    this._kufangFormComponent.restoreEntity();
+  }
 
   private setPageTitle() {
     this.activatedRoute.data.subscribe(data => {

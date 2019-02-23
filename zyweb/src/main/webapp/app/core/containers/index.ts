@@ -1,2 +1,2 @@
 export * from "./app.component";
-export * from "./new-component";
+export * from "./form-component";

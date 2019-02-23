@@ -14,14 +14,14 @@ import { KufangService } from "../";
 
 import { KufangFormModelService } from "../form/kufang-form-model.service";
 import { KUFANG_FORM_LAYOUT } from "../form/kufang-form.layout";
-import { NewComponent } from "app/core/containers/new-component";
+import { FormComponent } from "app/core/containers/form-component";
 import { Observable } from "rxjs/index";
 
 @Component({
   selector: "zy-kufang-new",
   templateUrl: "./kufang-new.component.html"
 })
-export class KufangNewComponent extends NewComponent<IKufangEntity>
+export class KufangNewComponent extends FormComponent<IKufangEntity>
   implements OnInit, OnChanges {
   @Output() cancel = new EventEmitter<IKufangEntity>();
   @Output() save = new EventEmitter<IKufangEntity>();
@@ -68,9 +68,9 @@ export class KufangNewComponent extends NewComponent<IKufangEntity>
 //
 // import { KufangFormModelService } from "../kufang-form-model.service";
 // import { KUFANG_FORM_LAYOUT } from "../kufang-form.layout";
-// import { NewComponent } from "app/core/containers/new-component";
+// import { FormComponent } from "app/core/containers/new-component";
 //
-// export class KufangNewComponent extends NewComponent<IKufangEntity>
+// export class KufangNewComponent extends FormComponent<IKufangEntity>
 //   implements OnInit {
 //   constructor(
 //     activatedRoute: ActivatedRoute,
