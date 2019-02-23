@@ -31,7 +31,7 @@ import {
 
 import {
   KufangListComponent,
-  KufangDetailComponent,
+  KufangSelectedButtonComponent,
   KufangFormComponent,
   KufangNewComponent
 } from "./components";
@@ -62,7 +62,7 @@ const IMPORTS_MODULES = [
 ];
 const COMPONENT = [
   KufangComponent,
-  KufangDetailComponent,
+  KufangSelectedButtonComponent,
   KufangNewComponent,
   KufangListComponent,
   KufangFormComponent,
@@ -70,7 +70,7 @@ const COMPONENT = [
   ViewKufangPageComponent,
   NewKufangPageComponent
 ];
-const ENTRY_COMPONENTS = [KufangComponent, KufangDetailComponent];
+const ENTRY_COMPONENTS = [KufangComponent, KufangSelectedButtonComponent];
 const SERVICE = [
   KufangFormService,
   KufangService,

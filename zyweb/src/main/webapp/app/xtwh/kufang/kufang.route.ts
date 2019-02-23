@@ -19,7 +19,7 @@ import {
   ViewKufangPageComponent,
   NewKufangPageComponent
 } from "./containers";
-import { KufangDetailComponent } from "app/xtwh/kufang/components";
+import { KufangSelectedButtonComponent } from "app/xtwh/kufang/components";
 
 @Injectable({ providedIn: "root" })
 export class NewKufangResolve implements Resolve<IKufangEntity> {
@@ -50,7 +50,7 @@ export const kufangRoute: Routes = [
       pageTitle: "库房名称-查看表单"
     },
     canActivate: [UserRouteAccessService],
-    children: [{ path: "", component: KufangDetailComponent }]
+    children: [{ path: "", component: KufangSelectedButtonComponent }]
   },
   {
     path: path.ROUTE_KUFANG_NEW,

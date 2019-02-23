@@ -29,7 +29,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   private _pageTitle: string;
   private _entity$: Observable<IKufangEntity>;
   redirectSub: Subscription;
-  // private _kufang: IKufangEntity;
+
   constructor(
     private _store: Store<fromKufangs.State>,
     private activatedRoute: ActivatedRoute,
@@ -40,7 +40,6 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.set_entity$();
     this.setPageTitle();
-    // this.setKufang();
     this.removeKufangSuccessLink();
   }
 
@@ -68,42 +67,18 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
       )
       .subscribe(_ => this._kufangService.linkToKufang());
   }
+
   private set_entity$() {
     this._entity$ = this._store.pipe(
       select(fromKufangs.getSelectedKufang)
     ) as Observable<IKufangEntity>;
   }
+
   private setPageTitle() {
     this.activatedRoute.data.subscribe(data => {
       this._pageTitle = data.pageTitle;
     });
   }
-  // private setKufang() {
-  //   this._entity$.subscribe((kf: IKufangEntity) => {
-  //     this._kufang = kf;
-  //   });
-  // }
-
-  // onKufangList(zy: string) {
-  //   // onKufangList(kufang: IKufangEntity) {
-  //   this._kufangService.linkToKufang();
-  // }
-  // onKufangCreate(zy: string) {
-  //   this._kufangService.linkToNewKufangPage();
-  // }
-  //
-  // onKufangDelete(zy: string) {
-  //   const r = confirm("Are you sure?");
-  //   if (r) {
-  //     this._store.dispatch(
-  //       new SelectedKufangPageActions.RemoveKufang(this._kufang)
-  //     );
-  //   }
-  // }
-  //
-  // previousState() {
-  //   window.history.back();
-  // }
 
   ngOnDestroy() {
     this.redirectSub.unsubscribe();
@@ -116,16 +91,4 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   get pageTitle(): string {
     return this._pageTitle;
   }
-  /*
-按键标题
- */
-  // get toListButtonCaption(): string {
-  //   return "返回库房列表";
-  // }
-  // get createButtonCaption(): string {
-  //   return "新建库房记录";
-  // }
-  // get deleteButtonCaption(): string {
-  //   return "删除库房记录";
-  // }
 }

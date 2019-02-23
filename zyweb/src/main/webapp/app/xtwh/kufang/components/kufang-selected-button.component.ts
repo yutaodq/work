@@ -15,10 +15,10 @@ import { SelectedKufangPageActions } from "app/xtwh/kufang/actions";
 
 @Component({
   selector: "zy-kufang-detail",
-  templateUrl: "./kufang-detail.component.html",
+  templateUrl: "./kufang-selected-button.component.html",
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class KufangDetailComponent implements OnInit {
+export class KufangSelectedButtonComponent implements OnInit {
   private _kufang: IKufangEntity;
   constructor(
     private _store: Store<fromKufangs.State>,

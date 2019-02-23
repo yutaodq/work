@@ -1,9 +1,8 @@
 <nb-card>
     <nb-card-header>{{pageTitle}}</nb-card-header>
     <nb-card-body>
-
-<zy-kufang-form #kufangForm [entity]="entity" >
-    <zy-new-page-button
+        <zy-kufang-form #kufangForm [entity]="entity">
+        <zy-new-page-button
             [cancelButtonCaption]="cancelButtonCaption"
             (cancelButtonClick)="cancelCreate($event)"
             [saveButtonCaption]="saveButtonCaption"
