@@ -23,6 +23,7 @@ export class KufangFormModelService implements IZyFormModel<IKufangEntity> {
         id: "name",
         label: "库房名称",
         value: kufang.name,
+        disabled: false,
         placeholder: "库房名称",
         validators: {
           required: null,

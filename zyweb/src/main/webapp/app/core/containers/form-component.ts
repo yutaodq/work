@@ -35,6 +35,7 @@ export abstract class FormComponent<T> implements OnInit {
   }
 
   returnEntity(): T {
+    // this.entity.name = this.formGroup.value["name"];
     this.entity = this.formGroup.value;
     return this.entity;
   }
