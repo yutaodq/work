@@ -17,43 +17,15 @@ import { KUFANG_FORM_LAYOUT } from "../form/kufang-form.layout";
 import { FormComponent } from "app/core/containers/form-component";
 import { Observable } from "rxjs/index";
 import { NewKufangPageActions } from "app/xtwh/kufang/actions";
+import { NewPageButtonComponent } from "app/core/components";
 
 @Component({
   selector: "zy-kufang-new",
-  templateUrl: "./kufang-new.component.html"
+  templateUrl: "../../../template/new-page-button.component.html"
 })
-export class KufangNewComponent {
-  cancelCreate(kufang: string) {
-    this.previousState();
-  }
-
-  saveCreate(kufang: string) {
-    this.store.dispatch(
-      new NewKufangPageActions.CreateKufang(
-        this._kufangFormComponent.returnEntity()
-      )
-    );
-  }
-
-  recoverCreate(kufang: string) {
-    this._kufangFormComponent.restoreEntity();
-  }
-
+export class KufangNewComponent extends NewPageButtonComponent {
   private previousState() {
     window.history.back();
-  }
-
-  /*
-按键标题
- */
-  get cancelButtonCaption(): string {
-    return "取消创建";
-  }
-  get saveButtonCaption(): string {
-    return "保存记录";
-  }
-  get recoverButtonCaption(): string {
-    return "恢复初始值";
   }
 }
 

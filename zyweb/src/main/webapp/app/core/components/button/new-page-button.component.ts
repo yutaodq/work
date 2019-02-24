@@ -3,7 +3,7 @@ import { IKufangEntity } from "app/xtwh/kufang";
 
 @Component({
   selector: "zy-new-page-button",
-  templateUrl: "./new-page-button.component.html"
+  templateUrl: "../../../template/new-page-button.component.html"
 })
 export class NewPageButtonComponent {
   private _cancelButtonCaption = "取消创建";
