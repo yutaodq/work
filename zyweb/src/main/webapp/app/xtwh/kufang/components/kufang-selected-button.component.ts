@@ -14,7 +14,7 @@ import { KufangService } from "app/xtwh/kufang/service";
 import { SelectedKufangPageActions } from "app/xtwh/kufang/actions";
 
 @Component({
-  selector: "zy-kufang-detail",
+  selector: "zy-kufang-selected-button",
   templateUrl: "./kufang-selected-button.component.html",
   changeDetection: ChangeDetectionStrategy.OnPush
 })

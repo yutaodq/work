@@ -42,7 +42,7 @@ export class KufangFormComponent extends FormComponent<IKufangEntity>
 // import { KUFANG_FORM_LAYOUT } from "../kufang-form.layout";
 // import { FormComponent } from "app/core/containers/new-component";
 //
-// export class KufangNewComponent extends FormComponent<IKufangEntity>
+// export class KufangNewButtonComponent extends FormComponent<IKufangEntity>
 //   implements OnInit {
 //   constructor(
 //     activatedRoute: ActivatedRoute,
@@ -54,7 +54,7 @@ export class KufangFormComponent extends FormComponent<IKufangEntity>
 //   }
 //
 //   ngOnInit() {
-//     console.log(`KufangNewComponent - ngOnInit`);
+//     console.log(`KufangNewButtonComponent - ngOnInit`);
 //     super.ngOnInit();
 //   }
 //
@@ -65,7 +65,7 @@ export class KufangFormComponent extends FormComponent<IKufangEntity>
 // }
 
 // 原始代码
-// export class KufangNewComponent implements OnInit {
+// export class KufangNewButtonComponent implements OnInit {
 //   _entity: IKufangEntity;
 //   _isSaving: boolean;
 //   _pageTitle: string;

@@ -33,7 +33,7 @@ import {
   KufangListComponent,
   KufangSelectedButtonComponent,
   KufangFormComponent,
-  KufangNewComponent
+  KufangNewButtonComponent
 } from "./components";
 
 import {
@@ -63,7 +63,7 @@ const IMPORTS_MODULES = [
 const COMPONENT = [
   KufangComponent,
   KufangSelectedButtonComponent,
-  KufangNewComponent,
+  KufangNewButtonComponent,
   KufangListComponent,
   KufangFormComponent,
   SelectedKufangPageComponent,

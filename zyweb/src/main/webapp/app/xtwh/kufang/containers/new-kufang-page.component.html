@@ -2,8 +2,7 @@
     <nb-card-header>{{pageTitle}}</nb-card-header>
     <nb-card-body>
         <zy-kufang-form #kufangForm [entity]="entity">
-        <!--<zy-new-page-button-->
-            <zy-kufang-new
+            <zy-kufang-new-button
             [cancelButtonCaption]="cancelButtonCaption"
             (cancelButtonClick)="cancelCreate($event)"
             [saveButtonCaption]="saveButtonCaption"
@@ -11,8 +10,7 @@
             [recoverButtonCaption]="recoverButtonCaption"
             (recoverButtonClick)="recoverCreate($event)">
         >
-            </zy-kufang-new>
-    <!--</zy-new-page-button>-->
+            </zy-kufang-new-button>
 </zy-kufang-form>
 
     </nb-card-body>

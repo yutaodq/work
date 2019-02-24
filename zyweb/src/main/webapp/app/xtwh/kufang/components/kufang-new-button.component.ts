@@ -1,29 +1,11 @@
-import {
-  Component,
-  OnInit,
-  OnChanges,
-  Input,
-  Output,
-  EventEmitter
-} from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { DynamicFormService } from "@ng-dynamic-forms/core";
-
-import { IKufangEntity, KufangEntity } from "app/xtwh/kufang/";
-import { KufangService } from "../";
-
-import { KufangFormModelService } from "../form/kufang-form-model.service";
-import { KUFANG_FORM_LAYOUT } from "../form/kufang-form.layout";
-import { FormComponent } from "app/core/containers/form-component";
-import { Observable } from "rxjs/index";
-import { NewKufangPageActions } from "app/xtwh/kufang/actions";
+import { Component } from "@angular/core";
 import { NewPageButtonComponent } from "app/core/components";
 
 @Component({
-  selector: "zy-kufang-new",
+  selector: "zy-kufang-new-button",
   templateUrl: "../../../template/new-page-button.component.html"
 })
-export class KufangNewComponent extends NewPageButtonComponent {
+export class KufangNewButtonComponent extends NewPageButtonComponent {
   private previousState() {
     window.history.back();
   }
@@ -41,7 +23,7 @@ export class KufangNewComponent extends NewPageButtonComponent {
 // import { KUFANG_FORM_LAYOUT } from "../kufang-form.layout";
 // import { FormComponent } from "app/core/containers/new-component";
 //
-// export class KufangNewComponent extends FormComponent<IKufangEntity>
+// export class KufangNewButtonComponent extends FormComponent<IKufangEntity>
 //   implements OnInit {
 //   constructor(
 //     activatedRoute: ActivatedRoute,
@@ -53,7 +35,7 @@ export class KufangNewComponent extends NewPageButtonComponent {
 //   }
 //
 //   ngOnInit() {
-//     console.log(`KufangNewComponent - ngOnInit`);
+//     console.log(`KufangNewButtonComponent - ngOnInit`);
 //     super.ngOnInit();
 //   }
 //
@@ -64,7 +46,7 @@ export class KufangNewComponent extends NewPageButtonComponent {
 // }
 
 // 原始代码
-// export class KufangNewComponent implements OnInit {
+// export class KufangNewButtonComponent implements OnInit {
 //   _entity: IKufangEntity;
 //   _isSaving: boolean;
 //   _pageTitle: string;
