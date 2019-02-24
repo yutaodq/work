@@ -22,8 +22,10 @@ export class KufangFormComponent extends FormComponent<IKufangEntity>
 
   ngOnInit() {
     super.ngOnInit();
+    // this.formModel.keys(name).
   }
   ngOnChanges() {
+    // this.formGroup
     // if (this.contact) {
     //   this.form.patchValue({...this.contact});
     // }

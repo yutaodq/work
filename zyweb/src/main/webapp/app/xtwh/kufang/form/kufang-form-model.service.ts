@@ -9,12 +9,14 @@ import {
   kufangNameValidator
 } from "./kufang-form.validator";
 import { Injectable } from "@angular/core";
-import { KufangService } from "app/xtwh/kufang/index";
-import { IKufangEntity } from "src/main/webapp/app/xtwh/kufang/index";
+import { KufangService } from "app/xtwh/kufang";
+import { IKufangEntity } from "app/xtwh/kufang";
 import { IZyFormModel } from "app/core/service/form/zy-form.model";
 
 @Injectable()
 export class KufangFormModelService implements IZyFormModel<IKufangEntity> {
+  kufangFormModel: DynamicFormControlModel[];
+
   constructor(private kufangService: KufangService) {}
 
   createFormModel(kufang: IKufangEntity): DynamicFormControlModel[] {
