@@ -15,7 +15,7 @@ import { IZyFormModel } from "app/core/service/form/zy-form.model";
 
 @Injectable()
 export class KufangFormModelService implements IZyFormModel<IKufangEntity> {
-  kufangFormModel: DynamicFormControlModel[];
+  _kufangFormModel: DynamicFormControlModel[];
 
   constructor(private kufangService: KufangService) {}
 
@@ -57,6 +57,10 @@ export class KufangFormModelService implements IZyFormModel<IKufangEntity> {
         rows: 5
       })
     ];
+  }
+
+  get kufangFormModel(): DynamicFormControlModel[] {
+    return this._kufangFormModel;
   }
 }
 
