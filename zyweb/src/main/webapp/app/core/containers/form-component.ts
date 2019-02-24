@@ -9,8 +9,8 @@ import { EventEmitter, Input, OnInit, Output } from "@angular/core";
 export abstract class FormComponent<T> implements OnInit {
   private _entity: T;
   _isSaving: boolean;
-  _formGroup: FormGroup;
-  _formModel: DynamicFormControlModel[];
+  private _formGroup: FormGroup;
+  private _formModel: DynamicFormControlModel[];
 
   constructor(
     private _formService: DynamicFormService,

@@ -3,15 +3,11 @@
     <nb-card-body>
         <zy-kufang-form #kufangForm [entity]="entity">
             <zy-kufang-new-button
-            [cancelButtonCaption]="cancelButtonCaption"
-            (cancelButtonClick)="cancelCreate($event)"
-            [saveButtonCaption]="saveButtonCaption"
-            (saveButtonClick)="saveCreate($event)"
-            [recoverButtonCaption]="recoverButtonCaption"
-            (recoverButtonClick)="recoverCreate($event)">
-        >
+                    (saveButtonClick)="saveCreate($event)"
+                    (recoverButtonClick)="recoverCreate($event)">
+                >
             </zy-kufang-new-button>
-</zy-kufang-form>
+        </zy-kufang-form>
 
     </nb-card-body>
 </nb-card>

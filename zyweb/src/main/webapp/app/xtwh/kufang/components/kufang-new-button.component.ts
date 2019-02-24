@@ -6,9 +6,22 @@ import { NewPageButtonComponent } from "app/core/components";
   templateUrl: "../../../template/new-page-button.component.html"
 })
 export class KufangNewButtonComponent extends NewPageButtonComponent {
-  private previousState() {
-    window.history.back();
+  onCancel() {
+    this.previousState();
   }
+
+  /*
+   * 按钮的标题 改变默认值时使用
+   */
+  // get cancelButtonCaption(): string {
+  //   return "取消创建";
+  // }
+  // get saveButtonCaption(): string {
+  //   return "保存记录";
+  // }
+  // get recoverButtonCaption(): string {
+  //   return "恢复初始值";
+  // }
 }
 
 // 可以使用

@@ -45,9 +45,6 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
     this.CreateKufangSuccessLink();
   }
 
-  cancelCreate(kufang: string) {
-    this.previousState();
-  }
   saveCreate(kufang: string) {
     this.store.dispatch(
       new NewKufangPageActions.CreateKufang(
@@ -85,16 +82,6 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
   }
   get pageTitle(): string {
     return this._pageTitle;
-  }
-
-  get cancelButtonCaption(): string {
-    return "取消创建";
-  }
-  get saveButtonCaption(): string {
-    return "保存记录";
-  }
-  get recoverButtonCaption(): string {
-    return "恢复初始值";
   }
 
   // 以前的状态 在表单中按返回键时调用的方法

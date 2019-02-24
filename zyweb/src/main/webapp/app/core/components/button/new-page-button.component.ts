@@ -17,6 +17,9 @@ export class NewPageButtonComponent {
   onCancel() {
     this.cancelButtonClick.emit("cancel");
   }
+  protected previousState() {
+    window.history.back();
+  }
 
   onSave() {
     this.saveButtonClick.emit("save");
