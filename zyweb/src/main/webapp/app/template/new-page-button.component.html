@@ -1,16 +1,11 @@
-<button nbButton status="primary" (click)="onCancel()">
-    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>{{cancelButtonCaption}}</span>
+<button type="button" class="btn btn-with-icon btn-secondary" (click)="onCancel()">
+    <fa-icon [icon]="'undo-alt'"></fa-icon>&nbsp;<span>{{cancelButtonCaption}}</span>
 </button>
-<button nbButton status="success" (click)="onSave()">
+
+<button type="button" class="btn btn-with-icon btn-success" (click)="onSave()">
     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>{{saveButtonCaption}}</span>
 </button>
-<button  nbButton status="warning" (click)="onRecover()">
-    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>{{recoverButtonCaption}}</span>
+
+<button  type="button" class="btn btn-with-icon btn-warning" (click)="onRecover()">
+    <fa-icon [icon]="'redo-alt'"></fa-icon>&nbsp;<span>{{recoverButtonCaption}}</span>
 </button>
-
-
-<!--<button nbButton status="primary">Primary</button>-->
-<!--<button nbButton status="success">Success</button>-->
-<!--<button nbButton status="info">Info</button>-->
-<!--<button nbButton status="warning">Warning</button>-->
-<!--<button nbButton status="danger">Danger</button>-->

@@ -1,21 +1,17 @@
-<button nbButton status="primary" (click)="onZyList()">
-    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>{{toListButtonCaption}}</span>
+<button type="button" class="btn btn-primary btn-with-icon" (click)="onZyList()">
+    <fa-icon [icon]="'list'"></fa-icon>&nbsp;
+    <span>{{toListButtonCaption}}</span>
 </button>
 
-<button nbButton status="info" (click)="onZyCreate()">
-    <fa-icon [icon]="'plus'"></fa-icon>&nbsp;<span>{{createButtonCaption}}</span>
-</button>
-<button nbButton status="danger" (click)="onZyDelete()">
-    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>{{deleteButtonCaption}}</span>
+<button type="button" class="btn btn-info btn-with-icon" (click)="onZyCreate()">
+    <fa-icon [icon]="'file'"></fa-icon>&nbsp;
+    <span>{{createButtonCaption}}</span>
 </button>
 
-<!--<div class="dropdown btn-group col-lg-4" ngbDropdown>-->
-    <!--<button type="button" class="btn btn-primary">image/jpg</button>-->
-    <!--<button type="button" class="btn btn-primary" ngbDropdownToggle></button>-->
-    <!--<ul class="dropdown-menu" ngbDropdownMenu>-->
-        <!--<li class="dropdown-item" *ngFor="let fileType of fileTypes">{{fileType.title}}</li>-->
-    <!--</ul>-->
-<!--</div>-->
+<button type="button" class="btn btn-danger btn-with-icon" (click)="onZyDelete()">
+    <fa-icon [icon]="'trash-alt'"></fa-icon>&nbsp;
+    <span>{{deleteButtonCaption}}</span>
+</button>
 
 <ng-content></ng-content>
 
