@@ -24,12 +24,7 @@ export class KufangFormComponent extends FormComponent<IKufangEntity>
     super.ngOnInit();
     // this.formGroup.controls['name'].disable();
   }
-  ngOnChanges() {
-    // this.formGroup
-    // if (this.contact) {
-    //   this.form.patchValue({...this.contact});
-    // }
-  }
+  ngOnChanges() {}
 }
 
 // 可以使用

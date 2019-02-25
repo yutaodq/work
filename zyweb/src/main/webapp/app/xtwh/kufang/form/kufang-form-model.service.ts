@@ -15,8 +15,8 @@ import { IZyFormModel } from "app/core/service/form/zy-form.model";
 
 @Injectable()
 export class KufangFormModelService implements IZyFormModel<IKufangEntity> {
-  _kufangFormModel: DynamicFormControlModel[];
-  // private _disabledField = true;
+  // _kufangFormModel: DynamicFormControlModel[];
+
   constructor(private kufangService: KufangService) {}
 
   createFormModel(
@@ -62,17 +62,10 @@ export class KufangFormModelService implements IZyFormModel<IKufangEntity> {
       })
     ];
   }
-  // @Input()
-  // set disabledField(disabledField: boolean) {
-  //   this._disabledField = disabledField;
-  // }
-  // get disabledField(): boolean {
-  //   return this._disabledField;
-  // }
 
-  get kufangFormModel(): DynamicFormControlModel[] {
-    return this._kufangFormModel;
-  }
+  // get kufangFormModel(): DynamicFormControlModel[] {
+  //   return this._kufangFormModel;
+  // }
 }
 
 // @Injectable()

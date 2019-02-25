@@ -5,7 +5,9 @@
         (createButtonClick)="onKufangCreate($event)"
         [deleteButtonCaption]="deleteButtonCaption"
         (deleteButtonClick)="onKufangDelete($event)">
-    <div class="dropdown btn-group" ngbDropdown>
+    <div class="btn-group dropup">
+
+    <div class="dropdown btn-group" ngbDropdown placement="top">
         <button type="button" class="btn btn-with-icon btn-warning"
                 (click)="onKufangEditName()">
             <fa-icon [icon]="'edit'"></fa-icon> <span>修改记录</span>
