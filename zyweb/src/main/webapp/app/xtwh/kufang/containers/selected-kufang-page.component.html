@@ -1,7 +1,7 @@
 <nb-card>
     <nb-card-header>{{pageTitle}}</nb-card-header>
     <nb-card-body>
-        <zy-kufang-form #kufangForm [entity]="entity$ | async" >
+        <zy-kufang-form #kufangForm [entity]="entity$ | async" [disabledField]=true >
 
         </zy-kufang-form>
 <!--<router-outlet></router-outlet>-->

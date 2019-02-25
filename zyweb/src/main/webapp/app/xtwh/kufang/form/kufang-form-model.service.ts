@@ -8,7 +8,7 @@ import {
   myCustomValidator,
   kufangNameValidator
 } from "./kufang-form.validator";
-import { Injectable } from "@angular/core";
+import { Injectable, Input } from "@angular/core";
 import { KufangService } from "app/xtwh/kufang";
 import { IKufangEntity } from "app/xtwh/kufang";
 import { IZyFormModel } from "app/core/service/form/zy-form.model";
@@ -16,16 +16,19 @@ import { IZyFormModel } from "app/core/service/form/zy-form.model";
 @Injectable()
 export class KufangFormModelService implements IZyFormModel<IKufangEntity> {
   _kufangFormModel: DynamicFormControlModel[];
-
+  // private _disabledField = true;
   constructor(private kufangService: KufangService) {}
 
-  createFormModel(kufang: IKufangEntity): DynamicFormControlModel[] {
+  createFormModel(
+    kufang: IKufangEntity,
+    disabledField: boolean
+  ): DynamicFormControlModel[] {
     return [
       new DynamicInputModel({
         id: "name",
         label: "库房名称",
         value: kufang.name,
-        disabled: false,
+        disabled: disabledField,
         placeholder: "库房名称",
         validators: {
           required: null,
@@ -53,11 +56,19 @@ export class KufangFormModelService implements IZyFormModel<IKufangEntity> {
         id: "bz",
         label: "库房说明",
         value: kufang.bz,
+        disabled: disabledField,
         placeholder: "请在此处填写该库房的信息",
         rows: 5
       })
     ];
   }
+  // @Input()
+  // set disabledField(disabledField: boolean) {
+  //   this._disabledField = disabledField;
+  // }
+  // get disabledField(): boolean {
+  //   return this._disabledField;
+  // }
 
   get kufangFormModel(): DynamicFormControlModel[] {
     return this._kufangFormModel;

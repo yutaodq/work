@@ -22,8 +22,7 @@ export class KufangFormComponent extends FormComponent<IKufangEntity>
 
   ngOnInit() {
     super.ngOnInit();
-    this.formService.findById("name", this.formModel)._disabled = true;
-    // this.formModel.keys(name).
+    // this.formGroup.controls['name'].disable();
   }
   ngOnChanges() {
     // this.formGroup

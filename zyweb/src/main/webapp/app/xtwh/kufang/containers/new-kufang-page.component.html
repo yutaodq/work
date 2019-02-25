@@ -1,7 +1,7 @@
 <nb-card>
     <nb-card-header>{{pageTitle}}</nb-card-header>
     <nb-card-body>
-        <zy-kufang-form #kufangForm [entity]="entity">
+        <zy-kufang-form #kufangForm [entity]="entity" [disabledField]=false>
             <zy-kufang-new-button
                     (saveButtonClick)="saveCreate($event)"
                     (recoverButtonClick)="recoverCreate($event)">

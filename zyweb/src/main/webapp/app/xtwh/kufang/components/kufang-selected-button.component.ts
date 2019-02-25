@@ -41,6 +41,9 @@ export class KufangSelectedButtonComponent implements OnInit {
     }
   }
 
+  onKufangEditName() {
+    console.log(`在控制台打印:修改库房名称`);
+  }
   @Input()
   set kufang(entity: IKufangEntity) {
     this._kufang = entity;

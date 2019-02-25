@@ -1,9 +1,16 @@
-<button type="button" id="cancel-save" class="btn btn-secondary" (click)="onCancel()">
+<button nbButton status="primary" (click)="onCancel()">
     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>{{cancelButtonCaption}}</span>
 </button>
-<button type="submit" id="save-entity" class="btn btn-primary" (click)="onSave()">
+<button nbButton status="success" (click)="onSave()">
     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>{{saveButtonCaption}}</span>
 </button>
-<button type="button" id="recover" class="btn btn-secondary" (click)="onRecover()">
+<button  nbButton status="warning" (click)="onRecover()">
     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>{{recoverButtonCaption}}</span>
 </button>
+
+
+<!--<button nbButton status="primary">Primary</button>-->
+<!--<button nbButton status="success">Success</button>-->
+<!--<button nbButton status="info">Info</button>-->
+<!--<button nbButton status="warning">Warning</button>-->
+<!--<button nbButton status="danger">Danger</button>-->

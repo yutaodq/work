@@ -5,5 +5,44 @@
         (createButtonClick)="onKufangCreate($event)"
         [deleteButtonCaption]="deleteButtonCaption"
         (deleteButtonClick)="onKufangDelete($event)">
-    lllllll
+
+    <div class="dropdown btn-group" ngbDropdown>
+        <button type="button" class="btn btn-primary">修改记录</button>
+        <button type="button" class="btn btn-primary" ngbDropdownToggle></button>
+        <ul class="dropdown-menu" ngbDropdownMenu>
+            <a class="dropdown-item" (click)="onKufangEditName()" >Action</a>
+
+            <!--<li class="dropdown-item">Icon Button</li>-->
+            <!--<li class="dropdown-item">Hero Button</li>-->
+            <!--<li class="dropdown-item">Default</li>-->
+        </ul>
+    </div>
+
 </zy-selected-page-button>
+
+
+<!--<div class="dropdown btn-group" ngbDropdown>-->
+    <!--<button type="button" class="btn btn-primary">修改记录</button>-->
+    <!--<button type="button" class="btn btn-primary" ngbDropdownToggle></button>-->
+    <!--<ul class="dropdown-menu" ngbDropdownMenu>-->
+        <!--<a class="dropdown-item" (click)="" >Action</a>-->
+
+        <!--&lt;!&ndash;<li class="dropdown-item">Icon Button</li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li class="dropdown-item">Hero Button</li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li class="dropdown-item">Default</li>&ndash;&gt;-->
+    <!--</ul>-->
+<!--</div>-->
+
+<!--<div class="btn-group">-->
+    <!--<button type="button" class="btn btn-danger">Action</button>-->
+    <!--<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+        <!--<span class="sr-only">Toggle Dropdown</span>-->
+    <!--</button>-->
+    <!--<div class="dropdown-menu">-->
+        <!--<a class="dropdown-item" href="#">Action</a>-->
+        <!--<a class="dropdown-item" href="#">Another action</a>-->
+        <!--<a class="dropdown-item" href="#">Something else here</a>-->
+        <!--<div class="dropdown-divider"></div>-->
+        <!--<a class="dropdown-item" href="#">Separated link</a>-->
+    <!--</div>-->
+<!--</div>-->

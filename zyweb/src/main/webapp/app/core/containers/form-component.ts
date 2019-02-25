@@ -11,6 +11,7 @@ export abstract class FormComponent<T> implements OnInit {
   _isSaving: boolean;
   private _formGroup: FormGroup;
   private _formModel: DynamicFormControlModel[];
+  private _disabledField = true;
 
   constructor(
     private _formService: DynamicFormService,
@@ -26,7 +27,10 @@ export abstract class FormComponent<T> implements OnInit {
  * 通用方法
  */
   protected initForm() {
-    this.formModel = this.formModelService.createFormModel(this.entity);
+    this.formModel = this.formModelService.createFormModel(
+      this.entity,
+      this.disabledField
+    );
     this.formGroup = this.formService.createFormGroup(this.formModel);
   }
 
@@ -82,5 +86,12 @@ export abstract class FormComponent<T> implements OnInit {
   }
   get entity() {
     return this._entity;
+  }
+  @Input()
+  set disabledField(disabledField: boolean) {
+    this._disabledField = disabledField;
+  }
+  get disabledField(): boolean {
+    return this._disabledField;
   }
 }
