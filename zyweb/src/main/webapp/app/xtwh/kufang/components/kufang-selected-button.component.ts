@@ -41,8 +41,9 @@ export class KufangSelectedButtonComponent implements OnInit {
     }
   }
 
-  onKufangEditName() {
+  onKufangEdit() {
     console.log(`在控制台打印:修改库房名称`);
+    this._kufangService.linkToEditKufangPage();
   }
   @Input()
   set kufang(entity: IKufangEntity) {

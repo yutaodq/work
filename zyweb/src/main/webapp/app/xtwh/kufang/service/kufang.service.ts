@@ -43,6 +43,13 @@ export class KufangService implements IZyEntityService<IKufangEntity> {
   linkToViewKufangPage(id: number) {
     this._router.navigate([link.ROUTE_KUFANG + "/" + id + "/view"]);
   }
+  linkToEditKufangPage() {
+    this._router.navigate([link.ROUTE_KUFANG_EDIT]);
+  }
+  // linkToEditKufangPage() {
+  //   this._router.navigate([link.ROUTE_KUFANG + "/" + id + "/edit/name"]);
+  // }
+
   /*
    * 表单录入时，用于验证
    */

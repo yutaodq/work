@@ -10,3 +10,4 @@ export const BUILD_TIMESTAMP = process.env.BUILD_TIMESTAMP;
 export const ROUTE_KUFANG = "kufang";
 export const ROUTE_KUFANG_NEW = ROUTE_KUFANG + "/new";
 export const ROUTE_KUFANG_VIEW = ROUTE_KUFANG + "/:id/view";
+export const ROUTE_KUFANG_EDIT = ROUTE_KUFANG + "/:id/edit";

@@ -8,16 +8,16 @@ import {
   RouterStateSnapshot,
   Routes
 } from "@angular/router";
-import { KufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { UserRouteAccessService } from "app/core";
-import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
-import { KufangService } from "./service/kufang.service";
+import { IKufangEntity } from "./models";
+import { KufangService } from "./service";
 import * as path from "app/app.constants";
 
 import {
   KufangComponent,
   ViewKufangPageComponent,
-  NewKufangPageComponent
+  NewKufangPageComponent,
+  EditKufangPageComponent
 } from "./containers";
 import { KufangSelectedButtonComponent } from "app/xtwh/kufang/components";
 
@@ -59,6 +59,16 @@ export const kufangRoute: Routes = [
     data: {
       authorities: ["ROLE_USER"],
       pageTitle: "工具-添加新记录表单"
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: path.ROUTE_KUFANG_EDIT,
+    component: EditKufangPageComponent,
+    resolve: {},
+    data: {
+      authorities: ["ROLE_USER"],
+      pageTitle: "库房记录-修改库房名称"
     },
     canActivate: [UserRouteAccessService]
   }

@@ -40,7 +40,8 @@ import {
   KufangComponent,
   SelectedKufangPageComponent,
   ViewKufangPageComponent,
-  NewKufangPageComponent
+  NewKufangPageComponent,
+  EditKufangPageComponent
 } from "./containers";
 
 import {
@@ -68,7 +69,8 @@ const COMPONENT = [
   KufangFormComponent,
   SelectedKufangPageComponent,
   ViewKufangPageComponent,
-  NewKufangPageComponent
+  NewKufangPageComponent,
+  EditKufangPageComponent
 ];
 const ENTRY_COMPONENTS = [KufangComponent, KufangSelectedButtonComponent];
 const SERVICE = [
