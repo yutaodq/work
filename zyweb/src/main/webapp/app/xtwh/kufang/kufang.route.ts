@@ -24,6 +24,7 @@ import { KufangSelectedButtonComponent } from "app/xtwh/kufang/components";
 @Injectable({ providedIn: "root" })
 export class NewKufangResolve implements Resolve<IKufangEntity> {
   constructor(private service: KufangService) {}
+
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return of({
       id: undefined,

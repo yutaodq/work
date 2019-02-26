@@ -35,8 +35,8 @@ export abstract class FormComponent<T> implements OnInit {
   }
 
   restoreEntity() {
-    // this.formGroup.reset();
-    this.initForm();
+    this.formGroup.reset(this.entity);
+    // this.initForm();
   }
 
   returnEntity(): T {

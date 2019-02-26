@@ -20,6 +20,10 @@ import { ViewKufangPageActions } from "../actions";
   `
 })
 export class ViewKufangPageComponent implements OnDestroy {
+  /* actionsSubscription: Subscription 是订阅者
+   * route.params是主题
+   * 发出 ViewKufangPageActions.SelectKufang Action 交给其它 Effect 或者 Reducer 去处理
+   */
   actionsSubscription: Subscription;
   constructor(store: Store<fromKufangs.State>, route: ActivatedRoute) {
     this.actionsSubscription = route.params
