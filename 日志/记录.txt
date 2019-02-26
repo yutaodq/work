@@ -1,4 +1,7 @@
-﻿
+﻿2-ngrx
+   https://segmentfault.com/a/1190000010306020
+   http://www.voidcn.com/article/p-gxjaaeoa-bmt.html
+
 1- zyweb 学习案例 https://github.com/avatsaev/angular-contacts-app-example
 app\views\contacts\contact-details\contact-details.component.ts
 
