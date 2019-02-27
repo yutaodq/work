@@ -34,15 +34,19 @@ export class KufangSelectedButtonComponent implements OnInit {
   onKufangCreate(zy: string) {
     this._kufangService.linkToNewKufangPage();
   }
+  /* onKufangDelete() 请参照angular-example-app项目
+   * \heroes\pages\heroes-list-page\heroes-list-page.component.ts
+   * deleteHero(hero: Hero)
+   */
 
   onKufangDelete(zy: string) {
-    this.dialogService
-      .open(RemoveDialogComponent)
-      .onClose.subscribe(_ =>
-        this._store.dispatch(
-          new SelectedKufangPageActions.RemoveKufang(this._kufang)
-        )
-      );
+    this.dialogService.open(RemoveDialogComponent).onClose.subscribe(
+      _ => console.log(`在控制台打印:RemoveDialogComponent`)
+
+      // this._store.dispatch(
+      //   new SelectedKufangPageActions.RemoveKufang(this._kufang)
+      // )
+    );
 
     // const r = confirm("Are you sure?");
     // if (r) {

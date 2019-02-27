@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
-// import { NbDialogRef } from '@nebular/theme';
-import { NbDialogRef } from "app/nebular/ne";
+import { NbDialogRef } from "@nebular/theme";
 
 @Component({
   selector: "zy-remove-dialog",
@@ -8,10 +7,11 @@ import { NbDialogRef } from "app/nebular/ne";
 })
 export class RemoveDialogComponent {
   constructor(protected ref: NbDialogRef<RemoveDialogComponent>) {}
-  cancel() {
-    this.ref.close("No");
-  }
-  submit(name) {
-    this.ref.close("Yes");
-  }
+  // constructor(protected ref: NbDialogRef<RemoveDialogComponent>) {}
+  // cancel() {
+  //   this.ref.close("No");
+  // }
+  // submit(name) {
+  //   this.ref.close("Yes");
+  // }
 }
