@@ -56,7 +56,6 @@ const IMPORTS_MODULES = [
   HttpClientModule,
   ZyxtSharedModule,
   CoreModule,
-  NebularModule,
   NgxDatatableModule,
   DynamicFormsNGBootstrapUIModule
   // StoreModule.forFeature("kufangs", reducers)
@@ -83,6 +82,7 @@ const SERVICE = [
 @NgModule({
   imports: [
     ...IMPORTS_MODULES,
+    NebularModule.forRoot(),
     RouterModule.forChild(ROUTE),
     StoreModule.forFeature("kufangs", reducers),
     EffectsModule.forFeature([CollectionEffects])

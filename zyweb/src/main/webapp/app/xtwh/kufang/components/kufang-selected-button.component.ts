@@ -12,6 +12,8 @@ import { Store } from "@ngrx/store";
 import * as fromKufangs from "app/xtwh/kufang/reducers";
 import { KufangService } from "app/xtwh/kufang/service";
 import { SelectedKufangPageActions } from "app/xtwh/kufang/actions";
+import { RemoveDialogComponent } from "app/core";
+import { NbDialogService } from "@nebular/theme";
 
 @Component({
   selector: "zy-kufang-selected-button",
@@ -22,7 +24,8 @@ export class KufangSelectedButtonComponent implements OnInit {
   private _kufang: IKufangEntity;
   constructor(
     private _store: Store<fromKufangs.State>,
-    private _kufangService: KufangService
+    private _kufangService: KufangService,
+    private dialogService: NbDialogService
   ) {}
   ngOnInit() {}
   onKufangList(zy: string) {
@@ -33,12 +36,20 @@ export class KufangSelectedButtonComponent implements OnInit {
   }
 
   onKufangDelete(zy: string) {
-    const r = confirm("Are you sure?");
-    if (r) {
-      this._store.dispatch(
-        new SelectedKufangPageActions.RemoveKufang(this._kufang)
+    this.dialogService
+      .open(RemoveDialogComponent)
+      .onClose.subscribe(_ =>
+        this._store.dispatch(
+          new SelectedKufangPageActions.RemoveKufang(this._kufang)
+        )
       );
-    }
+
+    // const r = confirm("Are you sure?");
+    // if (r) {
+    //   this._store.dispatch(
+    //     new SelectedKufangPageActions.RemoveKufang(this._kufang)
+    //   );
+    // }
   }
 
   onKufangEdit() {

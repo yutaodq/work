@@ -8,3 +8,4 @@ export * from "./form/zy-form-header.component";
 export * from "./form/zy-form-layouts.component";
 export * from "./button/selected-page-button.component";
 export * from "./button/new-page-button.component";
+export * from "./modal/remove-dialog.component";
