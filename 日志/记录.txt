@@ -1,4 +1,10 @@
-﻿2-ngrx
+﻿
+
+响应式表单学习
+https://www.concretepage.com/angular-2/angular-2-formgroup-example
+
+
+2-ngrx
    https://segmentfault.com/a/1190000010306020
    http://www.voidcn.com/article/p-gxjaaeoa-bmt.html
 https://www.toptal.com/angular-js/ngrx-angular-reaction-application
