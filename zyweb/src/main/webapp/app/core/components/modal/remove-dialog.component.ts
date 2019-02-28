@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { NbDialogRef } from "@nebular/theme";
+import * as dialog from "app/app.constants";
 
 @Component({
   selector: "zy-remove-dialog",
@@ -11,10 +12,10 @@ export class RemoveDialogComponent {
   private _submitButtonCaption = "是";
   constructor(protected ref: NbDialogRef<RemoveDialogComponent>) {}
   cancel() {
-    this.ref.close("No");
+    this.ref.close(dialog.DIALOG_NO);
   }
   submit() {
-    this.ref.close("Yes");
+    this.ref.close(dialog.DIALOG_YES);
   }
 
   @Input()

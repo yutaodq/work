@@ -1,6 +1,3 @@
-// export * from "./layouts/sample.layout.core.component";
-// export * from "../../theme/components/footer/footer.component";
-// export * from "../../theme/components/header/header.component";
 export * from "./table/zy-card-table.component";
 export * from "./table/zy-table-column-action.component";
 export * from "./table/zy-table-button.component";
@@ -8,4 +5,5 @@ export * from "./form/zy-form-header.component";
 export * from "./form/zy-form-layouts.component";
 export * from "./button/selected-page-button.component";
 export * from "./button/new-page-button.component";
+export * from "./button/dialog-button.component";
 export * from "./modal/remove-dialog.component";

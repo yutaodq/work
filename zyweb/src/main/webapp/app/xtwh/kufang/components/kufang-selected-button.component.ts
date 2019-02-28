@@ -14,6 +14,7 @@ import { KufangService } from "app/xtwh/kufang/service";
 import { SelectedKufangPageActions } from "app/xtwh/kufang/actions";
 import { RemoveDialogComponent } from "app/core";
 import { NbDialogService } from "@nebular/theme";
+import * as dialog from "app/app.constants";
 
 @Component({
   selector: "zy-kufang-selected-button",
@@ -38,14 +39,6 @@ export class KufangSelectedButtonComponent implements OnInit {
    * \heroes\pages\heroes-list-page\heroes-list-page.component.ts
    * deleteHero(hero: Hero)
    */
-  open() {
-    this.dialogService.open(ShowcaseDialogComponent, {
-      context: {
-        title: "This is a title passed to the dialog component"
-      }
-    });
-  }
-
   onKufangDelete(zy: string) {
     this.dialogService
       .open(RemoveDialogComponent, {
@@ -53,7 +46,7 @@ export class KufangSelectedButtonComponent implements OnInit {
           title: this._kufang.name + "对话框"
         }
       })
-      .onClose.filter(data => data === "Yes")
+      .onClose.filter(data => data === dialog.DIALOG_YES)
       .subscribe(_ => {
         this._store.dispatch(
           new SelectedKufangPageActions.RemoveKufang(this._kufang)
