@@ -2,7 +2,6 @@ import { ModuleWithProviders, NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-
 import {
   NbActionsModule,
   NbCardModule,
@@ -35,6 +34,8 @@ import {
   NbTooltipModule
 } from "@nebular/theme";
 import { NbSecurityModule } from "@nebular/security";
+import { SampleLayoutComponent } from "./layouts";
+import { FooterComponent, HeaderComponent } from "./components";
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 const NB_MODULES = [
@@ -69,7 +70,7 @@ const NB_MODULES = [
   NbSelectModule,
   NbTooltipModule
 ];
-
+const COMPONENTS = [SampleLayoutComponent, FooterComponent, HeaderComponent];
 const NB_THEME_PROVIDERS = [
   ...NbThemeModule.forRoot({
     name: "corporate"
@@ -84,8 +85,8 @@ const NB_THEME_PROVIDERS = [
 
 @NgModule({
   imports: [...BASE_MODULES, ...NB_MODULES],
-  exports: [...BASE_MODULES, ...NB_MODULES],
-  declarations: [],
+  exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS],
+  declarations: [...COMPONENTS],
   providers: []
 })
 export class ThemeModule {

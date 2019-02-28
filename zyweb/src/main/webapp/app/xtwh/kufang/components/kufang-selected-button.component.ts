@@ -38,22 +38,27 @@ export class KufangSelectedButtonComponent implements OnInit {
    * \heroes\pages\heroes-list-page\heroes-list-page.component.ts
    * deleteHero(hero: Hero)
    */
+  open() {
+    this.dialogService.open(ShowcaseDialogComponent, {
+      context: {
+        title: "This is a title passed to the dialog component"
+      }
+    });
+  }
 
   onKufangDelete(zy: string) {
-    this.dialogService.open(RemoveDialogComponent).onClose.subscribe(
-      _ => console.log(`在控制台打印:RemoveDialogComponent`)
-
-      // this._store.dispatch(
-      //   new SelectedKufangPageActions.RemoveKufang(this._kufang)
-      // )
-    );
-
-    // const r = confirm("Are you sure?");
-    // if (r) {
-    //   this._store.dispatch(
-    //     new SelectedKufangPageActions.RemoveKufang(this._kufang)
-    //   );
-    // }
+    this.dialogService
+      .open(RemoveDialogComponent, {
+        context: {
+          title: this._kufang.name + "对话框"
+        }
+      })
+      .onClose.filter(data => data === "Yes")
+      .subscribe(_ => {
+        this._store.dispatch(
+          new SelectedKufangPageActions.RemoveKufang(this._kufang)
+        );
+      });
   }
 
   onKufangEdit() {

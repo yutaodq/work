@@ -2,8 +2,8 @@ import { Component, OnDestroy } from "@angular/core";
 // TODO: move layouts into the framework
 @Component({
   selector: "zy-sample-layout",
-  styleUrls: ["./sample.layout.component.scss"],
-  templateUrl: `./sample.layout.component.html`
+  styleUrls: ["./sample-layout.component.scss"],
+  templateUrl: `./sample-layout.component.html`
 })
 export class SampleLayoutComponent implements OnDestroy {
   layout: any = {};

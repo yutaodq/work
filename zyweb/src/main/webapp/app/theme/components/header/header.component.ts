@@ -2,7 +2,11 @@ import { Component, Input, OnInit } from "@angular/core";
 
 import { NbMenuService, NbSidebarService } from "@nebular/theme";
 
-import { AnalyticsService, LayoutService, UserService } from "../../service";
+import {
+  AnalyticsService,
+  LayoutService,
+  UserService
+} from "../../../core/service/index";
 @Component({
   selector: "zy-header",
   styleUrls: ["./header.component.scss"],
