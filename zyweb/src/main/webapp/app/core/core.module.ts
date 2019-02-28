@@ -4,9 +4,8 @@ import {
   NgModule
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+// import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ExtraOptions, RouterModule, Routes } from "@angular/router";
-// import { NebularModule } from "../nebular";
 import { NbDialogModule, NbWindowModule } from "@nebular/theme";
 
 import { ThemeModule } from "app/theme";
@@ -17,9 +16,6 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { AppComponent } from "./containers";
 
 import {
-  // SampleLayoutCoreComponent,
-  // FooterComponent,
-  // HeaderComponent,
   ZyCardTableComponent,
   ZyTableColumnActionComponent,
   ZyTableButtonComponent,
@@ -35,9 +31,6 @@ import { AnalyticsService, UserService, LayoutService } from "app/core/service";
 
 const COMPONENTS = [
   AppComponent,
-  // SampleLayoutCoreComponent,
-  // FooterComponent,
-  // HeaderComponent,
   ZyCardTableComponent,
   ZyTableColumnActionComponent,
   ZyTableButtonComponent,
@@ -51,8 +44,6 @@ const COMPONENTS = [
 
 const BASE_MODULES = [
   CommonModule,
-  FormsModule,
-  ReactiveFormsModule,
   FontAwesomeModule,
   ThemeModule,
   NbDialogModule.forChild()
@@ -63,7 +54,6 @@ const ENTRY_COMPONENTS = [RemoveDialogComponent];
 
 @NgModule({
   imports: [...BASE_MODULES, RouterModule],
-  // exports: [...BASE_MODULES, ...COMPONENTS],
   exports: [, ...COMPONENTS],
   declarations: [...COMPONENTS],
   providers: [...SERVICE],

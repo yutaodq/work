@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { HttpClientModule } from "@angular/common/http";
+// import { HttpClientModule } from "@angular/common/http";
 import { NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
 
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
@@ -14,7 +14,7 @@ import { CollectionEffects } from "app/xtwh/kufang/effects/collection.effects";
 
 import { ZyxtSharedModule } from "app/shared";
 import { CoreModule } from "app/core";
-import { NebularModule } from "app/nebular";
+import { ThemeModule } from "app/theme";
 
 import {
   Validator,
@@ -53,12 +53,11 @@ import {
 const ROUTE = [...kufangRoute];
 
 const IMPORTS_MODULES = [
-  HttpClientModule,
   ZyxtSharedModule,
   CoreModule,
   NgxDatatableModule,
+  ThemeModule,
   DynamicFormsNGBootstrapUIModule
-  // StoreModule.forFeature("kufangs", reducers)
 ];
 const COMPONENT = [
   KufangComponent,
@@ -82,7 +81,6 @@ const SERVICE = [
 @NgModule({
   imports: [
     ...IMPORTS_MODULES,
-    NebularModule.forRoot(),
     RouterModule.forChild(ROUTE),
     StoreModule.forFeature("kufangs", reducers),
     EffectsModule.forFeature([CollectionEffects])
