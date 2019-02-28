@@ -4,14 +4,14 @@
         您确定要删除这个记录吗？
     </nb-card-body>
     <nb-card-footer>
-        <button type="button" class="btn btn-primary btn-with-icon" (click)="cancel()">
+        <button type="button" class="btn btn-primary btn-with-icon" (click)="onCancel()">
             <fa-icon [icon]="'list'"></fa-icon>&nbsp;
             <span>{{cancelButtonCaption}}</span>
         </button>
 
-        <button type="button" class="btn btn-danger btn-with-icon" (click)="submit()">
+        <button type="button" class="btn btn-danger btn-with-icon" (click)="onDelete()">
             <fa-icon [icon]="'trash-alt'"></fa-icon>&nbsp;
-            <span>{{submitButtonCaption}}</span>
+            <span>{{deleteButtonCaption}}</span>
         </button>
     </nb-card-footer>
 </nb-card>

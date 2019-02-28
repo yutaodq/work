@@ -9,13 +9,19 @@ import * as dialog from "app/app.constants";
 export class RemoveDialogComponent {
   private _title: string;
   private _cancelButtonCaption = "否";
-  private _submitButtonCaption = "是";
-  constructor(protected ref: NbDialogRef<RemoveDialogComponent>) {}
-  cancel() {
-    this.ref.close(dialog.DIALOG_NO);
+  private _deleteButtonCaption = "是";
+  private _promptMessage = "您确定要删除这个记录吗？";
+
+  constructor(private _refDialog: NbDialogRef<RemoveDialogComponent>) {}
+
+  onCancel() {
+    this.closeDialog(dialog.DIALOG_NO);
   }
-  submit() {
-    this.ref.close(dialog.DIALOG_YES);
+  private closeDialog(closeType: string) {
+    this._refDialog.close(closeType);
+  }
+  onDelete() {
+    this.closeDialog(dialog.DIALOG_YES);
   }
 
   @Input()
@@ -35,10 +41,17 @@ export class RemoveDialogComponent {
   }
 
   @Input()
-  set submitButtonCaption(value: string) {
-    this._submitButtonCaption = value;
+  set deleteButtonCaption(value: string) {
+    this._deleteButtonCaption = value;
   }
-  get submitButtonCaption(): string {
-    return this._submitButtonCaption;
+  get deleteButtonCaption(): string {
+    return this._deleteButtonCaption;
+  }
+  @Input()
+  set promptMessage(value: string) {
+    this._promptMessage = value;
+  }
+  get promptMessage(): string {
+    return this._promptMessage;
   }
 }
