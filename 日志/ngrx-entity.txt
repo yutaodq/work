@@ -1,0 +1,333 @@
+﻿1 - Entity State
+
+NgRx提供EntityState接口，该接口是为给定实体集合预定义的通用接口。
+EntityState具有以下属性。
+ids : 集合中所有主id的数组 (Array of all primary ids in collection. )
+entities : 按主id索引的集合项的字典 (A dictionary of collection items indexed by primary id. )
+
+export interface Article {
+   id: string;
+   title: string;
+   category: string;
+} 
+
+export interface ArticleState extends EntityState<Article> {
+   //Other entity state properties
+} 
+
+2 - Entity Adapter
+
+NgRx具有EntityAdapter接口，该接口提供了许多用于管理实体状态的收集方法。
+它使用NgRx createEntityAdapter方法实例化，如下所示。
+
+import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+
+export const adapter: EntityAdapter<Article> = createEntityAdapter<Article>();
+
+createEntityAdapter方法可以接受可选参数，即具有selectId和sortComparer属性的对象。
+
+selectId:    NgRx实体使用这个方法为集合选择主id。
+sortComparer:这是一个比较函数，用于对集合进行排序。
+             如果要在显示之前对集合进行排序，应该使用此属性。
+             如果我们只想要高性能而不像在CRUD操作中那样进行排序，
+             我们应该将sortComparer值设置为false。
+             
+3 - Entity Adapter Methods    
+
+这里我们将讨论EntityAdapter方法。它有getInitialState方法来获取实体的初始状态，getselators方法来获取实体选择器。
+EntityAdapter扩展EntityStateAdapter并继承其方法来添加、更新和删除实体。
+找到EntityAdapter的方法。  
+  ( 1 ) getInitialState
+  getInitialState 方法返回实体状态的初始状态
+
+export const initialState: ArticleState = adapter.getInitialState({ 
+    //Initialize other entity state properties
+});       
+
+ ( 2 ) getSelectors
+
+getselators方法返回NgRx entityselators，该选择器提供了从实体集合中选择信息的函数。
+entityselators的功能如下:
+
+selectIds: 选择id数组。
+selectEntities: 选择实体的字典。我们可以用它来通过id获取实体。
+selectAll: 选择所有实体的数组。
+selectTotal: 选择实体的总数。
+
+export const {
+   selectIds: selectArticleIds,
+   selectEntities: selectArticleEntities,
+   selectAll: selectAllArticles,
+   selectTotal: articlesCount
+} = adapter.getSelectors(); 
+
+( 3 ) Add, Update and Remove
+
+addOne: 它将一个实体添加到集合中。
+addMany: 它向集合中添加多个实体。
+addAll: 它用给定的集合替换集合。
+updateOne: 它使用NgRx更新类型根据id更新集合中的一个实体。
+updateMany: 它使用Update类型的数组根据给定的id更新集合中的多个实体。
+removeOne: 它从给定id的集合中删除一个实体。
+removeMany: 它从给定id数组的集合中删除多个实体。
+removeAll: 从集合中删除所有实体。
+
+4 - addOne, addMany and addAll
+
+这里我们将讨论EntityAdapter添加实体的方法。这些方法是addOne、addMany和addAll。
+addOne向集合添加一个实体，
+addMany向集合添加多个实体。
+addAll首先清除集合，然后添加给定的实体。
+这意味着addAll完全用给定的实体替换现有的集合实体。
+我们需要将参数传递给这些方法，如下所示。 
+
+Step-1: Creating actions 
+
+//Action for addOne method.
+export class AddArticle implements Action { 
+  readonly type = ArticleActionTypes.ADD_ARTICLE;
+  constructor(public payload: { article: Article }) {}
+}
+//Action for addMany method.
+export class AddArticles implements Action {
+  readonly type = ArticleActionTypes.ADD_ARTICLES;
+  constructor(public payload: { articles: Article[] }) {}
+}
+//Action for addAll method.
+export class LoadArticlesSuccess implements Action {
+  readonly type = ArticleActionTypes.LOAD_ALL_ARTICLES_SUCCESS;
+  constructor(public payload: { articles: Article[] }) {}
+} 
+
+Step-2: Creating reducer 
+
+export function reducer(state = initialState, action: fromActions.ARTICLE_ACTIONS): ArticleState {
+  switch(action.type) {
+    case fromActions.ArticleActionTypes.ADD_ARTICLE: {
+      return fromAdapter.adapter.addOne(action.payload.article, state);
+    }
+    case fromActions.ArticleActionTypes.ADD_ARTICLES: { 
+      return fromAdapter.adapter.addMany(action.payload.articles, state);
+    }
+    case fromActions.ArticleActionTypes.LOAD_ALL_ARTICLES_SUCCESS: {
+      return fromAdapter.adapter.addAll(action.payload.articles, state);
+    }
+  }	
+} 
+
+Step-3: Dispatch action 
+
+addArticle(data: Article) {
+   this.store.dispatch(new fromActions.AddArticle({ article: data }));
+}
+addArticles(data: Article[]) {
+   this.store.dispatch(new fromActions.AddArticles({ articles: data }));
+} 
+
+@Effect() 
+loadAllArticles$: Observable<Action> = this.actions$
+  .ofType(fromActions.ArticleActionTypes.LOAD_ALL_ARTICLES)
+  .switchMap(() => 
+     this.articleService.getAllArticles()
+     .map(data => new fromActions.LoadArticlesSuccess({ articles: data })) 
+  ); 
+  
+5 - updateOne and updateMany using Update Type
+
+要更新集合中的实体，EntityAdapter提供updateOne和updateMany方法。
+updateOne更新一个实体，updateMany更新多个实体。
+updateOne和updateMany方法接受NgRx更新类型和状态的参数。
+
+Update 类型有两个属性
+id: 需要更新的实体的id。
+changes: 修改实体。
+
+Step-1: Creating actions 
+
+export class UpdateArticle implements Action {
+  readonly type = ArticleActionTypes.UPDATE_ARTICLE;
+  constructor(public payload: { article: Update<Article> }) {}
+}
+//Action for updateMany method.
+export class UpdateArticles implements Action {
+  readonly type = ArticleActionTypes.UPDATE_ARTICLES;
+  constructor(public payload: { articles: Update<Article>[] }) {}
+} 
+
+Step-2: Creating reducer 
+
+export function reducer(state = initialState, action: fromActions.ARTICLE_ACTIONS): ArticleState {
+  switch(action.type) {
+    case fromActions.ArticleActionTypes.UPDATE_ARTICLE: {
+      return fromAdapter.adapter.updateOne(action.payload.article, state);
+    }
+    case fromActions.ArticleActionTypes.UPDATE_ARTICLES: {
+      return fromAdapter.adapter.updateMany(action.payload.articles, state);
+    }
+  }	
+} 
+
+Step-3: Dispatch action 
+
+updateArticle(data: Article) {
+   this.store.dispatch(new fromActions.UpdateArticle({ article: {id: data.id, changes: data}}));
+} 
+updateArticles(data: Article[]) {
+   let allUpdates = data.map(article => Object.assign({}, {id: article.id, changes: article}));
+   this.store.dispatch(new fromActions.UpdateArticles({ articles: allUpdates }));
+} 
+
+6. removeOne, removeMany and removeAll
+
+removeOne: Pass entity id and state. 
+removeMany: Pass array of entity ids and state. 
+removeAll: Pass state. 
+
+Step-1: Creating actions 
+
+export class RemoveArticle implements Action {
+  readonly type = ArticleActionTypes.REMOVE_ARTICLE;
+  constructor(public payload: { id: string }) {}
+}
+//Action for removeMany method.
+export class RemoveArticles implements Action {
+  readonly type = ArticleActionTypes.REMOVE_ARTICLES;
+  constructor(public payload: { ids: string[] }) {}
+}
+//Action for removeAll method.
+export class ClearArticles implements Action {
+  readonly type = ArticleActionTypes.CLEAR_ARTICLES;
+} 
+
+Step-2: Creating reducer 
+
+export function reducer(state = initialState, action: fromActions.ARTICLE_ACTIONS): ArticleState {
+  switch(action.type) {
+    case fromActions.ArticleActionTypes.REMOVE_ARTICLE: {
+      return fromAdapter.adapter.removeOne(action.payload.id, state);
+    }
+    case fromActions.ArticleActionTypes.REMOVE_ARTICLES: {
+      return fromAdapter.adapter.removeMany(action.payload.ids, state);
+    }
+    case fromActions.ArticleActionTypes.CLEAR_ARTICLES: {
+      return fromAdapter.adapter.removeAll(state);
+    }    
+  }	
+} 
+
+Step-3: Dispatch action 
+
+article.component.ts
+removeArticle(articleId: string) {
+   this.store.dispatch(new fromActions.RemoveArticle({ id: articleId }));
+}
+removeArticles(articleIds: string[]) {
+   this.store.dispatch(new fromActions.RemoveArticles({ ids: articleIds }));
+}	
+clearAllArticles() {
+   this.store.dispatch(new fromActions.ClearArticles());
+} 
+
+8. Entity Selectors
+
+在这里，我们将创建选择器来从集合中获取实体。
+我们已经讨论过使用EntityAdapter的getselators方法初始化entityselators。
+我们初始化entityselators如下所示。
+
+export const {
+   selectIds: selectArticleIds,
+   selectEntities: selectArticleEntities,
+   selectAll: selectAllArticles,
+   selectTotal: articlesCount
+} = adapter.getSelectors();
+
+现在我们将创建如下所示的选择器。
+export const getArticleState = createFeatureSelector<ArticleState>('articleState');
+
+export const selectArticleIds = createSelector(getArticleState, fromAdapter.selectArticleIds);
+export const selectArticleEntities = createSelector(getArticleState, fromAdapter.selectArticleEntities);
+export const selectAllArticles = createSelector(getArticleState, fromAdapter.selectAllArticles);
+export const articlesCount = createSelector(getArticleState, fromAdapter.articlesCount); 
+
+我们将在组件中使用选择器，如下所示。
+
+ngOnInit() {
+  this.count$ = this.store.select(fromReducer.articlesCount);
+  this.allArticles$ = this.store.select(fromReducer.selectAllArticles);
+  this.articleIds$ = this.store.select(fromReducer.selectArticleIds);
+  ------
+} 
+
+8. Select by Id
+
+我们将在这里讨论如何通过id从集合中选择实体。
+我们需要遵循以下步骤。
+
+Step-1:在实体状态中为id创建一个属性。在我们的示例中，我们有article的状态。
+
+export interface ArticleState extends EntityState<Article> {
+     selectedArticleId: string | number | null;
+} 
+
+这里我们创建了一个属性selectedArticleId，我们将为它获取实体。
+
+Step-2:在创建初始状态时初始化selectedArticleId。
+
+export const initialState: ArticleState = fromAdapter.adapter.getInitialState({ 
+  selectedArticleId: null
+}); 
+
+Step-3:创建action类来按id选择实体。
+
+export class SelectArticle implements Action {
+  readonly type = ArticleActionTypes.SELECT_ARTICLE;
+  constructor(public payload: { articleId: string }) {}
+} 
+
+Step-4:
+
+export function reducer(state = initialState, action: fromActions.ARTICLE_ACTIONS): ArticleState {
+  switch(action.type) {
+    case fromActions.ArticleActionTypes.SELECT_ARTICLE: {
+      return Object.assign({ ...state, selectedArticleId: action.payload.articleId });
+    }     
+  }
+} 
+
+在分派SelectArticle操作时，我们将值设置为实体状态的selectedArticleId属性。
+在调用EntityAdapter的removeAll方法时，应该重置它的值。
+
+export function reducer(state = initialState, action: fromActions.ARTICLE_ACTIONS): ArticleState {
+  switch(action.type) {
+    case fromActions.ArticleActionTypes.SELECT_ARTICLE: {
+      return Object.assign({ ...state, selectedArticleId: action.payload.articleId });
+    }     
+    case fromActions.ArticleActionTypes.CLEAR_ARTICLES: {
+      return fromAdapter.adapter.removeAll({ ...state, selectedArticleId: null });
+    }
+  }
+}
+
+Step-5: Create selector 
+
+export const getArticleState = createFeatureSelector<ArticleState>('articleState');
+export const getSelectedArticleId = (state: ArticleState) => state.selectedArticleId;
+export const selectCurrentArticleId = createSelector(getArticleState, getSelectedArticleId);
+
+export const selectCurrentArticle = createSelector(
+  selectArticleEntities,
+  selectCurrentArticleId,
+  (articleEntities, articleId) => articleEntities[articleId]
+);  
+
+在上面的createSelector方法中，参数(articleEntities, articleId)将以以下方式填写。
+selectArticleEntities将为articleEntities赋值。
+selectCurrentArticleId将为articleId赋值
+最后，articleEntities[articleId]将返回给定id的实体。
+
+Step-6: 使用组件中的选择器按id获取实体。
+
+ngOnInit() {
+   this.articleById$ = 
+       this.store.select(fromReducer.selectCurrentArticle);
+} 

@@ -6,6 +6,7 @@ import {
   ViewKufangPageActions,
   NewKufangPageActions
 } from "app/xtwh/kufang/actions";
+import * as fromAdapter from "./kufang.adapter";
 
 /**
  * @ngrx/kufang provides a predefined interface for handling
@@ -18,27 +19,27 @@ export interface State extends EntityState<KufangEntity> {
   selectedKufangId: number | null;
 }
 
-/**
- * createEntityAdapter creates an object of many helper
- * functions for single or multiple operations
- * against the dictionary of records. The configuration
- * object takes a record id selector function and
- * a sortComparer option which is set to a compare
- * function if the records are to be sorted.
- */
-export const adapter: EntityAdapter<KufangEntity> = createEntityAdapter<
-  KufangEntity
->({
-  selectId: (kufang: KufangEntity) => kufang.id,
-  sortComparer: false
-});
+// /**
+//  * createEntityAdapter creates an object of many helper
+//  * functions for single or multiple operations
+//  * against the dictionary of records. The configuration
+//  * object takes a record id selector function and
+//  * a sortComparer option which is set to a compare
+//  * function if the records are to be sorted.
+//  */
+// export const adapter: EntityAdapter<KufangEntity> = createEntityAdapter<
+//   KufangEntity
+// >({
+//   selectId: (kufang: KufangEntity) => kufang.id,
+//   sortComparer: false
+// });
 
 /**
  * getInitialState returns the default initial state
  * for the generated kufang state. Initial state
  * additional properties can also be defined.
  */
-export const initialState: State = adapter.getInitialState({
+export const initialState: State = fromAdapter.adapter.getInitialState({
   selectedKufangId: null
 });
 
@@ -59,7 +60,7 @@ export function reducer(
        * the collection is to be sorted, the adapter will
        * sort each record upon entry into the sorted array.
        */
-      return adapter.addMany(action.payload, state);
+      return fromAdapter.adapter.addMany(action.payload, state);
     }
 
     case KufangActions.KufangActionTypes.LoadKufang: {
@@ -70,7 +71,7 @@ export function reducer(
        * exist already. If the collection is to be sorted, the adapter will
        * insert the new record into the sorted array.
        */
-      return adapter.addOne(action.payload, state);
+      return fromAdapter.adapter.addOne(action.payload, state);
     }
 
     case ViewKufangPageActions.ViewKufangPageActionTypes.SelectKufang: {
@@ -80,12 +81,12 @@ export function reducer(
       };
     }
     case NewKufangPageActions.NewKufangPageActionTypes.CreateKufangSuccess: {
-      return adapter.addOne(action.payload, {
+      return fromAdapter.adapter.addOne(action.payload, {
         ...state
       });
     }
     case CollectionApiActions.CollectionApiActionTypes.RemoveKufangSuccess: {
-      return adapter.removeOne(action.payload.id, state);
+      return fromAdapter.adapter.removeOne(action.payload.id, state);
     }
 
     default: {

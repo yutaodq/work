@@ -6,6 +6,7 @@ import {
 import * as fromKufangs from "app/xtwh/kufang/reducers/kufang.reducer";
 import * as fromCollection from "app/xtwh/kufang/reducers/collection.reducer";
 import * as fromRoot from "app/reducers";
+import * as fromAdapter from "./kufang.adapter";
 
 export interface KufangsState {
   // search: fromSearch.State;
@@ -33,14 +34,15 @@ export const reducers: ActionReducerMap<KufangsState, any> = {
  * ```ts
  * class MyComponent {
  *   constructor(state$: Observable<State>) {
- *     this.booksState$ = state$.pipe(select(getBooksState));
+ *     this.kufangsState$ = state$.pipe(select(getKufangsState));
  *   }
  * }
  *
  */
 
 /**
- * The createFeatureSelector function selects a piece of state from the root of the state object.
+ * createFeatureSelector函数从根状态对象中选择一段状态
+ * 这用于选择急切加载或延迟加载的特性状态
  * This is used for selecting feature states that are loaded eagerly or lazily.
  */
 export const getKufangsState = createFeatureSelector<State, KufangsState>(
@@ -79,7 +81,7 @@ export const {
   selectEntities: getKufangEntities,
   selectAll: getAllKufangs,
   selectTotal: getTotalKufangs
-} = fromKufangs.adapter.getSelectors(getKufangEntitiesState);
+} = fromAdapter.adapter.getSelectors(getKufangEntitiesState);
 
 export const getSelectedKufang = createSelector(
   getKufangEntities,

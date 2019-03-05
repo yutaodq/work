@@ -19,3 +19,6 @@ app\views\contacts\contact-details\contact-details.component.ts
 
 学习
 https://cn.redux.js.org/index.html
+
+学习 ngrx 的好资料
+https://segmentfault.com/a/1190000017566273
