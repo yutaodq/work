@@ -43,6 +43,7 @@ export function reducer(
 
     case NewKufangPageActions.NewKufangPageActionTypes.CreateKufangSuccess:
     case CollectionApiActions.CollectionApiActionTypes.RemoveKufangFailure: {
+      // indexOf()返回找到的匹配项的索引，否则返回-1（如果未找到）
       if (state.ids.indexOf(action.payload.id) > -1) {
         return state;
       }
