@@ -34,8 +34,10 @@ sortComparer:这是一个比较函数，用于对集合进行排序。
              
 3 - Entity Adapter Methods    
 
-这里我们将讨论EntityAdapter方法。它有getInitialState方法来获取实体的初始状态，getselators方法来获取实体选择器。
+这里我们将讨论EntityAdapter方法。
+它有getInitialState方法来获取实体的初始状态，getselators方法来获取实体选择器。
 EntityAdapter扩展EntityStateAdapter并继承其方法来添加、更新和删除实体。
+
 找到EntityAdapter的方法。  
   ( 1 ) getInitialState
   getInitialState 方法返回实体状态的初始状态

@@ -48,16 +48,11 @@ export const reducers: ActionReducerMap<KufangsState, any> = {
 export const getKufangsState = createFeatureSelector<State, KufangsState>(
   "kufangs"
 );
+// 每个reducer导出选择器函数(selector)，但是reducer不知道整个状态树。
+// 为了使它们可用，我们需要创建包装它们的新选择器。
+// createSelector函数创建了非常高效的选择器，这些选择器被记忆，只有在参数发生变化时才会重新计算。
+// 创建的选择器还可以组合在一起以选择不同的状态块。
 
-/**
- * Every reducer module exports selector functions, however child reducers
- * have no knowledge of the overall state tree. To make them usable, we
- * need to make new selectors that wrap them.
- *
- * The createSelector function creates very efficient selectors that are memoized and
- * only recompute when arguments change. The created selectors can also be composed
- * together to select different pieces of state.
- */
 export const getKufangEntitiesState = createSelector(
   getKufangsState,
   state => state.kufangs
@@ -76,6 +71,13 @@ export const getSelectedKufangId = createSelector(
  * the total number of records. This reduces boilerplate
  * in selecting records from the kufang state.
  */
+
+// getSelectors 方法返回 NgRx EntitySelectors，它提供从实体集合中选择信息的功能。
+// EntitySelectors 的功能如下：
+// selectIds：选择 id 数组。
+// selectEntities：选择实体字典。 我们可以用它来获取 id 的实体。
+// selectAll：选择所有实体的数组。
+// selectTotal：选择实体的总数。
 export const {
   selectIds: getKufangIds,
   selectEntities: getKufangEntities,
