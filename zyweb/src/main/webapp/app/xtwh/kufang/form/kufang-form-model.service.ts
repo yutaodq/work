@@ -62,10 +62,6 @@ export class KufangFormModelService implements IZyFormModel<IKufangEntity> {
       })
     ];
   }
-
-  // get kufangFormModel(): DynamicFormControlModel[] {
-  //   return this._kufangFormModel;
-  // }
 }
 
 // @Injectable()

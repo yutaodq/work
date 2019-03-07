@@ -1,14 +1,14 @@
 <nb-card>
     <nb-card-header>{{pageTitle}}</nb-card-header>
     <nb-card-body>
-        <zy-kufang-form #kufangForm [entity]="entity$ | async" [disabledField]=true >
+        <!--<zy-kufang-form #kufangForm [entity]="entity$ | async" [disabledField]=true >-->
+            <zy-kufang-form #kufangForm [formGroup]="formGroup" [formModel]="formModel">
 
         </zy-kufang-form>
         <zy-kufang-selected-button [kufang]="entity$ | async">
 
         </zy-kufang-selected-button>
 
-<!--<zy-remove-dialog></zy-remove-dialog>-->
 
     </nb-card-body>
 </nb-card>

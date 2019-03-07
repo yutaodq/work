@@ -10,13 +10,16 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ofType } from "@ngrx/effects";
 import { filter } from "rxjs/operators";
 
-import {
-  IKufangEntity,
-  KufangEntity
-} from "app/xtwh/kufang/models/kufang.model";
+import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import * as fromKufangs from "../reducers";
 import { SelectedKufangPageActions, CollectionApiActions } from "../actions";
 import { KufangService } from "../service";
+import { KufangFormModelService } from "app/xtwh/kufang/form";
+import {
+  DynamicFormControlModel,
+  DynamicFormService
+} from "@ng-dynamic-forms/core";
+import { FormGroup } from "@angular/forms";
 
 @Component({
   selector: "zy-selected-kufang-page",
@@ -29,18 +32,29 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   private _pageTitle: string;
   private _entity$: Observable<IKufangEntity>;
   redirectSub: Subscription;
+  private _formModel: DynamicFormControlModel[];
+  private _formGroup: FormGroup;
+  private _kufang: IKufangEntity;
 
   constructor(
     private _store: Store<fromKufangs.State>,
     private activatedRoute: ActivatedRoute,
     private actionsSubject: ActionsSubject,
-    private _kufangService: KufangService
+    private _kufangService: KufangService,
+    private _formService: DynamicFormService,
+    private _formModelService: KufangFormModelService
   ) {}
 
   ngOnInit() {
     this.set_entity$();
     this.setPageTitle();
     this.removeKufangSuccessLink();
+    this.initFormGroup();
+  }
+
+  initFormGroup() {
+    this._formModel = this._formModelService.createFormModel(this.kufang, true);
+    this._formGroup = this._formService.createFormGroup(this._formModel);
   }
 
   private removeKufangSuccessLink() {
@@ -72,6 +86,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
     this._entity$ = this._store.pipe(
       select(fromKufangs.getSelectedKufang)
     ) as Observable<IKufangEntity>;
+    this._entity$.subscribe((enityt: IKufangEntity) => (this._kufang = enityt));
   }
 
   private setPageTitle() {
@@ -90,5 +105,17 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
 
   get pageTitle(): string {
     return this._pageTitle;
+  }
+
+  get formGroup() {
+    return this._formGroup;
+  }
+
+  get formModel() {
+    return this._formModel;
+  }
+
+  get kufang() {
+    return this._kufang;
   }
 }
