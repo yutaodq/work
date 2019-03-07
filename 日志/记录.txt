@@ -28,3 +28,6 @@ http://www.xampp.cc/archives/2109
 
 学习 Angular应用架构设计  (非常好)
 http://www.imooc.com/article/76347
+
+利用Angular2的Observables实现交互控制
+https://blog.csdn.net/ztguang/article/details/53107016
