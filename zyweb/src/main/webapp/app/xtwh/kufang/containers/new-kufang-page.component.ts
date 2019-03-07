@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild
 } from "@angular/core";
-import { IKufangEntity, KufangEntity } from "../models";
+import { IKufangEntity } from "../models";
 import { ActionsSubject, Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -14,7 +14,6 @@ import { NewKufangPageActions } from "../actions";
 import { KufangService } from "../service";
 
 import { ofType } from "@ngrx/effects";
-import { Observable } from "rxjs/index";
 import { KufangFormComponent } from "app/xtwh/kufang/components";
 import { FormGroup } from "@angular/forms";
 import {
@@ -61,6 +60,7 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
   initFormGroup() {
     this._formModel = this._formModelService.createFormModel(
       this.entity,
+      this.kufangService,
       false
     );
     this._formGroup = this._formService.createFormGroup(this._formModel);
@@ -69,12 +69,14 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
   saveCreate(kufang: string) {
     this.store.dispatch(
       new NewKufangPageActions.CreateKufang(
-        this._kufangFormComponent.returnEntity()
+        this.formGroup.value
+        // this._kufangFormComponent.returnEntity()
       )
     );
   }
   recoverCreate(kufang: string) {
-    this._kufangFormComponent.restoreEntity();
+    this.formGroup.reset(this.entity);
+    // this._kufangFormComponent.restoreEntity();
   }
 
   private setPageTitle() {
@@ -115,7 +117,9 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
   get kufang() {
     return this._kufang;
   }
-
+  get kufangService() {
+    return this._kufangService;
+  }
   // 以前的状态 在表单中按返回键时调用的方法
   previousState() {
     window.history.back();

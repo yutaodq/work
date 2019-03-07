@@ -20,6 +20,7 @@ import {
   DynamicFormService
 } from "@ng-dynamic-forms/core";
 import { FormGroup } from "@angular/forms";
+import { NG_BOOTSTRAP_KUFANG_FORM_MODEL } from "app/xtwh/kufang/form/kufang-form.model";
 
 @Component({
   selector: "zy-selected-kufang-page",
@@ -35,7 +36,6 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   private _formModel: DynamicFormControlModel[];
   private _formGroup: FormGroup;
   private _kufang: IKufangEntity;
-
   constructor(
     private _store: Store<fromKufangs.State>,
     private activatedRoute: ActivatedRoute,
@@ -46,14 +46,19 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.set_entity$();
+    this.initEntity();
+    this.initKufang();
     this.setPageTitle();
     this.removeKufangSuccessLink();
     this.initFormGroup();
   }
 
   initFormGroup() {
-    this._formModel = this._formModelService.createFormModel(this.kufang, true);
+    this._formModel = this._formModelService.createFormModel(
+      this.kufang,
+      this.kufangService,
+      true
+    );
     this._formGroup = this._formService.createFormGroup(this._formModel);
   }
 
@@ -82,10 +87,12 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
       .subscribe(_ => this._kufangService.linkToKufang());
   }
 
-  private set_entity$() {
+  private initEntity() {
     this._entity$ = this._store.pipe(
       select(fromKufangs.getSelectedKufang)
     ) as Observable<IKufangEntity>;
+  }
+  private initKufang() {
     this._entity$.subscribe((enityt: IKufangEntity) => (this._kufang = enityt));
   }
 
@@ -117,5 +124,8 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
 
   get kufang() {
     return this._kufang;
+  }
+  get kufangService() {
+    return this._kufangService;
   }
 }

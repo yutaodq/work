@@ -29,17 +29,17 @@ export class KufangFormComponent implements OnInit, OnChanges {
 
   ngOnChanges() {}
 
-  restoreEntity() {
-    this.formGroup.reset(this.entity);
-  }
-
-  returnEntity(): IKufangEntity {
-    // // this.formGroup.get("name").value;
-    // // this.entity.name = this.formGroup.value["name"];
-    // this.entity = this.formGroup.value;
-    // return this.entity;
-    return this.formGroup.value;
-  }
+  // restoreEntity() {
+  //   this.formGroup.reset(this.entity);
+  // }
+  //
+  // returnEntity(): IKufangEntity {
+  //   // // this.formGroup.get("name").value;
+  //   // // this.entity.name = this.formGroup.value["name"];
+  //   // this.entity = this.formGroup.value;
+  //   // return this.entity;
+  //   return this.formGroup.value;
+  // }
 
   @Input()
   set formGroup(formGroup: FormGroup) {
