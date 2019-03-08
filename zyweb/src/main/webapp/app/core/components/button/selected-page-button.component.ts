@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+import * as fromKufangs from "app/xtwh/kufang/reducers";
+import { Store } from "@ngrx/store";
 
 @Component({
   selector: "zy-selected-page-button",
@@ -12,6 +14,10 @@ export class SelectedPageButtonComponent {
   @Output() toListButtonClick = new EventEmitter<string>();
   @Output() createButtonClick = new EventEmitter<string>();
   @Output() deleteButtonClick = new EventEmitter<string>();
+
+  // constructor(
+  //   private store: Store<fromKufangs.State>,
+  // ) {}
 
   onZyList(): void {
     this.toListButtonClick.emit("abc");

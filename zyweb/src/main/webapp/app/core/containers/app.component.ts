@@ -4,7 +4,7 @@ import { select, Store } from "@ngrx/store";
 
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { MENU_ITEMS } from "./app-menu";
-import * as fromRoot from "app/reducers";
+import * as fromRoot from "app/store/reducers";
 
 @Component({
   selector: "zy-app",

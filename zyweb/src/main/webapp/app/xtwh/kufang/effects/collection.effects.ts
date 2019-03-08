@@ -22,6 +22,10 @@ import {
   NewKufangPageActions
 } from "../actions";
 import { KufangService } from "../service";
+import {
+  CollectionApiActionsUnion,
+  CollectionApiActionTypes
+} from "app/xtwh/kufang/actions/collection-api.actions";
 
 @Injectable()
 export class CollectionEffects {
@@ -44,6 +48,13 @@ export class CollectionEffects {
       )
     )
   );
+
+  // @Effect()
+  // loadCollectionSuccess$: Observable<Action> = this.actions$.pipe(
+  //   ofType(CollectionApiActions.CollectionApiActionTypes.LoadKufangsSuccess),
+  //   map(() =>  this.kufangService.linkToKufang() )
+  // );
+
   /*
  * 创建新库房记录
  */

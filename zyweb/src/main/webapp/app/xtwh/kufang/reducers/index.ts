@@ -5,7 +5,7 @@ import {
 } from "@ngrx/store";
 import * as fromKufangs from "app/xtwh/kufang/reducers/kufang.reducer";
 import * as fromCollection from "app/xtwh/kufang/reducers/collection.reducer";
-import * as fromRoot from "app/reducers";
+import * as fromRoot from "app/store/reducers";
 import * as fromAdapter from "./kufang.adapter";
 
 export interface KufangsState {

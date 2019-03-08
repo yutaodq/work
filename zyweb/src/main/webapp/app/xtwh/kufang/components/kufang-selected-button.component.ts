@@ -1,20 +1,19 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   Input,
-  OnInit,
-  Output
+  OnInit
 } from "@angular/core";
 
 import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
 import { Store } from "@ngrx/store";
 import * as fromKufangs from "app/xtwh/kufang/reducers";
 import { KufangService } from "app/xtwh/kufang/service";
-import { SelectedKufangPageActions } from "app/xtwh/kufang/actions";
 import { RemoveDialogComponent } from "app/core";
 import { NbDialogService } from "@nebular/theme";
 import * as dialog from "app/app.constants";
+
+import { SelectedKufangPageActions, CollectionPageActions } from "../actions";
 
 @Component({
   selector: "zy-kufang-selected-button",
@@ -29,9 +28,12 @@ export class KufangSelectedButtonComponent implements OnInit {
     private dialogService: NbDialogService
   ) {}
   ngOnInit() {}
+
   onKufangList(zy: string) {
-    this._kufangService.linkToKufang();
+    this._store.dispatch(new CollectionPageActions.LoadCollection());
+    // this._kufangService.linkToKufang();
   }
+
   onKufangCreate(zy: string) {
     this._kufangService.linkToNewKufangPage();
   }

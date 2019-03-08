@@ -6,7 +6,7 @@ import {
   MetaReducer
 } from "@ngrx/store";
 
-import { environment } from "../../../../environments/environment";
+import { environment } from "../../../../../environments/environment";
 
 import * as fromRouter from "@ngrx/router-store";
 
@@ -15,7 +15,7 @@ import * as fromRouter from "@ngrx/router-store";
  * 当发生突变时，将引发异常
  * 这在开发模式中非常有用，可以确保所有的reducers accidentally不会意外地改变状态
  */
-import { storeFreeze } from "../ngrx-store-freeze";
+import { storeFreeze } from "../../ngrx-store-freeze/index";
 /**
  * Every reducer module's default export is the reducer function itself. In
  * addition, each module should export a type or interface that describes
@@ -24,7 +24,7 @@ import { storeFreeze } from "../ngrx-store-freeze";
  */
 
 // import * as fromLayout from "app/core/reducers/layout.reducer";
-import { fromLayout } from "app/core/reducers";
+import { fromLayout } from "app/core/reducers/index";
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
