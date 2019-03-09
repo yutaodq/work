@@ -18,11 +18,11 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 
+import { reducers, metaReducers } from "./store/reducers";
+
 import { environment } from "../../../environments/environment";
 import { ErrorHandlerInterceptor } from "./blocks/interceptor/errorhandler.interceptor";
 import { NotificationInterceptor } from "./blocks/interceptor/notification.interceptor";
-import { reducers, metaReducers } from "./store/reducers";
-
 import { ZyxtAppRoutingModule } from "./app-routing.module";
 import { ZyxtHomeModule } from "./home";
 import { ZyxtAboutModule } from "./about";
