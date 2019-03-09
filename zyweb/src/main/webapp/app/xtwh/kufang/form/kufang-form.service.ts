@@ -9,7 +9,7 @@ import {
 import { UniqueNameValidator } from "app/xtwh/kufang/form/kufang-form.validator";
 import { Injectable } from "@angular/core";
 import { FormService } from "app/shared/index";
-import { IKufangEntity, KufangEntity } from "../models";
+import { IKufangEntity, KufangEntity } from "../../../models";
 
 import { KufangService } from "../service";
 import {

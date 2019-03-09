@@ -1,5 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
-import { KufangEntity } from "app/xtwh/kufang/models/kufang.model";
+import { KufangEntity } from "app/models/kufang.model";
 import {
   KufangActions,
   CollectionApiActions,

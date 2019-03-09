@@ -1,20 +1,20 @@
 import { ActionReducer, Action, ActionReducerMap } from "@ngrx/store";
 import * as actions from "../actions";
 
-export interface UsersState {
+export interface State {
   isLogin: boolean;
   currentUser: string;
 }
 
-const initialState: UsersState = {
+const initialState: State = {
   isLogin: false,
   currentUser: ""
 };
 
 export function reducer(
-  state: UsersState = initialState,
+  state: State = initialState,
   action: actions.UserActions
-): UsersState {
+): State {
   switch (action.type) {
     case actions.UserActionTypes.LOGOUT:
       return initialState;
@@ -26,5 +26,5 @@ export function reducer(
 }
 
 // for selector
-export const getIsLogin = (state: UsersState) => state.isLogin;
-export const getCurrentUser = (state: UsersState) => state.currentUser;
+export const getIsLogin = (state: State) => state.isLogin;
+export const getCurrentUser = (state: State) => state.currentUser;

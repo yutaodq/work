@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { select, Store } from "@ngrx/store";
 
-import { IKufangEntity } from "app/xtwh/kufang/models";
+import { IKufangEntity } from "app/models";
 
 import { KufangService } from "../service";
 

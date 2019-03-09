@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
+import { IKufangEntity } from "app/models/kufang.model";
 import { CollectionApiActionTypes } from "app/xtwh/kufang/actions/collection-api.actions";
 
 export enum NewKufangPageActionTypes {

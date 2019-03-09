@@ -11,3 +11,4 @@ export * from "./login/login.service";
 export * from "./user/user.service";
 export * from "./core.module";
 export * from "./components/modal/remove-dialog.component";
+export * from "./service";

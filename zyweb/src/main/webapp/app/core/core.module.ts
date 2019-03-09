@@ -27,7 +27,11 @@ import {
   DialogButtonComponent
 } from "./components";
 
-import { AnalyticsService, UserService, LayoutService } from "app/core/service";
+import {
+  AnalyticsService,
+  UtilsService,
+  LayoutService
+} from "app/core/service";
 
 const COMPONENTS = [
   AppComponent,
@@ -49,7 +53,7 @@ const BASE_MODULES = [
   NbDialogModule.forChild()
 ];
 
-const SERVICE = [AnalyticsService, UserService, LayoutService];
+const SERVICE = [AnalyticsService, UtilsService, LayoutService];
 const ENTRY_COMPONENTS = [RemoveDialogComponent];
 
 @NgModule({

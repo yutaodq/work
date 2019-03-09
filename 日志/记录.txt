@@ -23,8 +23,11 @@ https://cn.redux.js.org/index.html
 学习 ngrx 的好资料
 https://segmentfault.com/a/1190000017566273
 
-学习 ngrx 路由
-http://www.xampp.cc/archives/2109
+学习 ngrx 
+http://www.xampp.cc/archives/2109  资料的源代码 https://github.com/jerryhsieh/ngrx-auth
+                                                https://github.com/jerryhsieh/ngrx-demo
+
+https://github.com/manish8561/shop (布局)  在 Effects 中路由
 
 学习 Angular应用架构设计  (非常好)
 http://www.imooc.com/article/76347

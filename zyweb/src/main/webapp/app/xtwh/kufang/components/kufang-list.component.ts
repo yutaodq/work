@@ -6,7 +6,7 @@ import {
   OnInit,
   Output
 } from "@angular/core";
-import { IKufangEntity } from "../models";
+import { IKufangEntity } from "../../../models";
 
 @Component({
   selector: "zy-kufang-list",

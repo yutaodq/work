@@ -11,10 +11,7 @@ import {
   startWith
 } from "rxjs/operators";
 
-import {
-  IKufangEntity,
-  KufangEntity
-} from "app/xtwh/kufang/models/kufang.model";
+import { IKufangEntity, KufangEntity } from "app/models/kufang.model";
 import {
   SelectedKufangPageActions,
   CollectionPageActions,

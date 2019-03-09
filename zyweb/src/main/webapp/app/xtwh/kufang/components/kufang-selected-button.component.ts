@@ -5,7 +5,7 @@ import {
   OnInit
 } from "@angular/core";
 
-import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
+import { IKufangEntity } from "app/models/kufang.model";
 import { Store } from "@ngrx/store";
 import * as fromKufangs from "app/xtwh/kufang/reducers";
 import { KufangService } from "app/xtwh/kufang/service";

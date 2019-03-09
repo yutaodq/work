@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { IKufangEntity } from "app/xtwh/kufang/models/kufang.model";
+import { IKufangEntity } from "app/models/kufang.model";
 
 export enum CollectionApiActionTypes {
   // CreateKufangSuccess = "[Collection/API] Create Kufang Success",

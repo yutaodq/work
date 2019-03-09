@@ -9,7 +9,7 @@ import {
   Routes
 } from "@angular/router";
 import { UserRouteAccessService } from "app/core";
-import { IKufangEntity } from "./models";
+import { IKufangEntity } from "../../models";
 import { KufangService } from "./service";
 import * as path from "app/app.constants";
 

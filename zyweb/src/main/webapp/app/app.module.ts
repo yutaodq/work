@@ -24,8 +24,6 @@ import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 
 // import { reducers, metaReducers } from "./store/reducers";
 import * as fromStore from "./store";
-// import { metaReducers, effects } from "./store";
-// import { metaReducers } from "./store";
 
 import { environment } from "../../../environments/environment";
 import { ErrorHandlerInterceptor } from "./blocks/interceptor/errorhandler.interceptor";
@@ -37,7 +35,7 @@ import { CoreModule } from "app/core";
 import { ZyxtSharedModule } from "app/shared";
 import { JhiEventManager } from "ng-jhipster";
 import { ZyxtXtwhModule } from "app/xtwh/xtwh.module";
-import { ThemeModule } from "app/theme";
+import { ThemeModule } from "./theme";
 
 import { AppComponent } from "app/core/containers/app.component";
 
@@ -69,7 +67,6 @@ import { AppComponent } from "app/core/containers/app.component";
     StoreModule.forRoot(fromStore.reducers, {
       metaReducers: fromStore.metaReducers
     }),
-    // StoreModule.forRoot(fromStore.reducers),
 
     StoreRouterConnectingModule.forRoot(),
 

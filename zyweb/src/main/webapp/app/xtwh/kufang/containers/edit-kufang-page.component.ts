@@ -10,10 +10,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ofType } from "@ngrx/effects";
 import { filter } from "rxjs/operators";
 
-import {
-  IKufangEntity,
-  KufangEntity
-} from "app/xtwh/kufang/models/kufang.model";
+import { IKufangEntity, KufangEntity } from "app/models/kufang.model";
 import * as fromKufangs from "../reducers";
 import { CollectionApiActions } from "../actions";
 import { KufangService } from "../service";

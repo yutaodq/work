@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild
 } from "@angular/core";
-import { IKufangEntity } from "../models";
+import { IKufangEntity } from "../../../models";
 import { ActionsSubject, Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";

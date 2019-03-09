@@ -4,7 +4,7 @@ import {
   DynamicFormService
 } from "@ng-dynamic-forms/core";
 
-import { IKufangEntity, KufangEntity } from "app/xtwh/kufang/";
+import { IKufangEntity, KufangEntity } from "app/models";
 
 import { KufangFormModelService } from "../form";
 import { KUFANG_FORM_LAYOUT } from "../form";

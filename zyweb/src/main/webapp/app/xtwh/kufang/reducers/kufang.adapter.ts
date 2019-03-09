@@ -1,5 +1,5 @@
 import { createEntityAdapter, EntityAdapter } from "@ngrx/entity";
-import { KufangEntity } from "app/xtwh/kufang/models/kufang.model";
+import { KufangEntity } from "app/models/kufang.model";
 
 /**
  * createEntityAdapter creates an object of many helper

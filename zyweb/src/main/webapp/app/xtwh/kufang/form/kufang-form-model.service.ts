@@ -9,7 +9,7 @@ import {
   kufangNameValidator
 } from "./kufang-form.validator";
 import { KufangService } from "app/xtwh/kufang";
-import { IKufangEntity } from "app/xtwh/kufang";
+import { IKufangEntity } from "app/models";
 
 export class KufangFormModelService {
   createFormModel(
