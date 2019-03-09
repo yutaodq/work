@@ -25,7 +25,7 @@ import { storeFreeze } from "../../ngrx-store-freeze/index";
 
 // import * as fromLayout from "app/core/reducers/layout.reducer";
 import { fromLayout } from "app/core/reducers";
-import * as fromUser from "./user.reducers";
+import * as fromUser from "app/user/reducers";
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means

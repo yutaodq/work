@@ -5,13 +5,13 @@ import { Router } from "@angular/router";
 import * as link from "app/app.constants";
 import { delay } from "rxjs/operators";
 
-import { select, Store } from "@ngrx/store";
+import { Store } from "@ngrx/store";
 import * as fromKufangs from "app/xtwh/kufang/reducers";
 
 import { SERVER_API_URL } from "app/app.constants";
 import { createRequestOption } from "app/shared";
 import { IKufangEntity, KufangEntity } from "app/models/kufang.model";
-import { IZyEntityService } from "app/core/service/";
+// import { IZyEntityService } from "app/core/service/";
 
 type EntityResponseType = HttpResponse<IKufangEntity>;
 type EntityArrayResponseType = HttpResponse<IKufangEntity[]>;
@@ -19,7 +19,8 @@ type EntityArrayResponseType = HttpResponse<IKufangEntity[]>;
 const ALTER_EGOS = ["Eric"];
 
 @Injectable()
-export class KufangService implements IZyEntityService<IKufangEntity> {
+export class KufangService {
+  // export class KufangService implements IZyEntityService<IKufangEntity> {
   private resourceUrl = SERVER_API_URL + "api/kufangEntities";
   private resourceSearchUrl = SERVER_API_URL + "api/kufangEntities";
 

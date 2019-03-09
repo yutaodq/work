@@ -8,7 +8,7 @@ import { IKufangEntity, KufangEntity } from "app/models";
 
 import { KufangFormModelService } from "../form";
 import { KUFANG_FORM_LAYOUT } from "../form";
-import { FormComponent } from "app/core/containers/form-component";
+// import { FormComponent } from "app/core/containers/form-component";
 import { FormGroup } from "@angular/forms";
 
 @Component({

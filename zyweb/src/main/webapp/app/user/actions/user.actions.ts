@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { UserEntity } from "app/core/model";
+import { IUserEntity } from "app/models";
 
 export enum UserActionTypes {
   LOGIN = "[user] LOGIN",
@@ -19,7 +19,7 @@ export enum UserActionTypes {
 export class LoginAction implements Action {
   readonly type = UserActionTypes.LOGIN;
 
-  constructor(public payload: UserEntity) {}
+  constructor(public payload: IUserEntity) {}
 }
 
 export class LoginSuccessAction implements Action {
