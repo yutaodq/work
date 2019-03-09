@@ -36,6 +36,7 @@ import { ZyxtSharedModule } from "app/shared";
 import { JhiEventManager } from "ng-jhipster";
 import { ZyxtXtwhModule } from "app/xtwh/xtwh.module";
 import { ThemeModule } from "./theme";
+import { UserModule } from "./user";
 
 import { AppComponent } from "app/core/containers/app.component";
 
@@ -57,6 +58,7 @@ import { AppComponent } from "app/core/containers/app.component";
     ZyxtXtwhModule,
     ZyxtHomeModule,
     CoreModule,
+    UserModule,
     NgbModule,
     ThemeModule.forRoot(),
 
