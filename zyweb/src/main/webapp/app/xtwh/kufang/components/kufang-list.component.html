@@ -36,8 +36,8 @@
     <ngx-datatable-column name="操作" prop="id">
 
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <!--<zy-table-column-action [recordID]="value" (lookRecord)="linkToViewKufangPage($event)">-->
-            <!--</zy-table-column-action>-->
+            <!--<zy-table-column-actions [recordID]="value" (lookRecord)="linkToViewKufangPage($event)">-->
+            <!--</zy-table-column-actions>-->
             <button (click)="showDetails(row)" class="btn btn-outline-primary mb-1 btn-sm">
                 <fa-icon [icon]="'eye'"></fa-icon>&nbsp;<span>查看</span>
             </button>

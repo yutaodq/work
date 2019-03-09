@@ -1,6 +1,6 @@
 # robotstxt.org/
 
-User-agent: *
+UserModel-agent: *
 Disallow: /api/account
 Disallow: /api/account/change-password
 Disallow: /api/account/sessions

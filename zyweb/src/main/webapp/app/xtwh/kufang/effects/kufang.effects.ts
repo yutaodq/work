@@ -37,7 +37,7 @@
 //         FindBookPageActions.FindBookPageActionTypes.SearchBooks
 //       ),
 //       debounceTime(debounce, scheduler),
-//       map(action => action.payload),
+//       map(actions => actions.payload),
 //       switchMap(getAll => {
 //         if (getAll === '') {
 //           return empty;

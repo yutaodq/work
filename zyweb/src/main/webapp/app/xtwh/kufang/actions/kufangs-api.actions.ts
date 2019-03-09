@@ -7,7 +7,7 @@ export enum KufangApiActionTypes {
 }
 
 /**
- * Every action is comprised of at least a type and an optional
+ * Every actions is comprised of at least a type and an optional
  * payload. Expressing actions as classes enables powerful
  * type checking in reducer functions.
  *
@@ -26,7 +26,7 @@ export class SearchFailure implements Action {
 }
 
 /**
- * Export a type alias of all actions in this action group
- * so that reducers can easily compose action types
+ * Export a type alias of all actions in this actions group
+ * so that reducers can easily compose actions types
  */
 export type KufangApiActionsUnion = SearchSuccess | SearchFailure;
