@@ -24,7 +24,7 @@ import { storeFreeze } from "../../ngrx-store-freeze/index";
  */
 
 // import * as fromLayout from "app/core/reducers/layout.reducer";
-import { fromLayout } from "app/core/reducers";
+import { fromLayout } from "app/theme/reducers";
 import * as fromUser from "app/user/reducers";
 
 /**
