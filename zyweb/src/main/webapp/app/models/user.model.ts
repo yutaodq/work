@@ -1,7 +1,7 @@
 export interface IUserEntity {
+  username: string;
   id?: number;
   identifier?: string;
-  username: string;
   password?: string;
   rememberMe?: boolean;
 }

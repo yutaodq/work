@@ -1,14 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Action } from "@ngrx/store";
 import { Actions, Effect, ofType } from "@ngrx/effects";
-
 import { Observable } from "rxjs/Observable";
 import { of } from "rxjs/observable/of";
 import { map, switchMap, filter, catchError } from "rxjs/operators";
-
 import { UserService } from "../service";
-import { UtilsService } from "app/core/service";
-import { IUserEntity } from "app/models";
+import { UtilsService } from "../../core/service";
+import { IUserEntity } from "app/ab";
 import * as actions from "../actions";
 import { IKufangEntity } from "app/models/kufang.model";
 import {
@@ -18,26 +16,26 @@ import {
 
 @Injectable()
 export class UserEffectsY {
-  // @Effect()
-  // loginEffect$: Observable<Action> = this.action$.pipe(
-  //   ofType(actions.UserActionTypes.LOGIN),
-  //   map((action: actions.LoginAction) => action.payload),
-  //   switchMap((user: IUserEntity) => {
-  //     return this.userService.loginServer(user).pipe(
-  //       map((res: Response) => {
-  //         if (res.success) {
-  //           if (user.rememberMe) {
-  //             this.utils.writeToken(res.payload);
-  //           }
-  //           return new actions.LoginSuccessAction(user.username);
-  //         } else {
-  //           return new actions.LoginFailAction(res.payload);
-  //         }
-  //       }),
-  //       catchError((err) => of(new actions.LoginFailAction(err))),
-  //     );
-  //   }),
-  // );
+  @Effect()
+  loginEffect$: Observable<Action> = this.action$.pipe(
+    ofType(actions.UserActionTypes.LOGIN),
+    map((action: actions.LoginAction) => action.payload),
+    switchMap((user: IUserEntity) => {
+      return this.userService.loginServer(user).pipe(
+        map((res: Response) => {
+          if (res.success) {
+            if (user.rememberMe) {
+              this.utils.writeToken(res.payload);
+            }
+            return new actions.LoginSuccessAction(user.username);
+          } else {
+            return new actions.LoginFailAction(res.payload);
+          }
+        }),
+        catchError(err => of(new actions.LoginFailAction(err)))
+      );
+    })
+  );
 
   @Effect()
   logoutEffect$: Observable<Action> = this.action$.pipe(
