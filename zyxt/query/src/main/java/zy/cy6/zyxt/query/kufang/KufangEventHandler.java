@@ -6,11 +6,8 @@ import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zy.cy6.zyxt.api.product.kufang.KufangCreatedEvent;
-import zy.cy6.zyxt.api.product.kufang.KufangNameChangedEvent;
 import zy.cy6.zyxt.api.product.kufang.KufangRemovedEvent;
 import zy.cy6.zyxt.query.kufang.repositories.KufangQueryRepository;
-
-import java.util.Optional;
 
 @Service
 @ProcessingGroup("queryModel")
@@ -25,13 +22,13 @@ public class KufangEventHandler {
 
   @EventHandler
   public void on(KufangCreatedEvent event) {
-    KufangEntity kuFangEntry = new KufangEntity();
-    kuFangEntry.setIdentifier(event.getKuFangId().getIdentifier());
-    kuFangEntry.setName(event.getKuFangName().getName());
-    kuFangEntry.setBz(event.getBz());
-    log.info("KufangEventHandler:create:kuFangEntry实体的名称" + event.getKuFangName().getName());
+    KufangEntity kufangEntry = new KufangEntity();
+    kufangEntry.setIdentifier(event.getKufangId().getIdentifier());
+    kufangEntry.setName(event.getKufangName().getName());
+    kufangEntry.setBz(event.getBz());
+    log.info("KufangEventHandler:create:kuFangEntry实体的名称" + event.getKufangName().getName());
 
-    repository.save(kuFangEntry);
+    repository.save(kufangEntry);
   }
 
 //  @EventHandler

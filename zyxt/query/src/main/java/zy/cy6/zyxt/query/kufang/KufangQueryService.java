@@ -13,33 +13,33 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class KufangQueryService {
-  private final KufangQueryRepository kuFangRepository;
+  private final KufangQueryRepository kufangRepository;
 //  private final KufangSearchRepository kufangSearchRepository;
 
   @Autowired
-  public KufangQueryService(KufangQueryRepository kuFangRepository) {
-    this.kuFangRepository = kuFangRepository;
+  public KufangQueryService(KufangQueryRepository kufangRepository) {
+    this.kufangRepository = kufangRepository;
 //    this.kufangSearchRepository = kufangSearchRepository;
 
   }
 
   public Optional<KufangEntity> findOne(Long id) {
-    return kuFangRepository.findById(id);
+    return kufangRepository.findById(id);
   }
 
   public Optional<KufangEntity> findByKufangName(KufangName kufangName) {
     String name = kufangName.getName();
-    return kuFangRepository.findByName(name);
+    return kufangRepository.findByName(name);
   }
 
   public Optional<KufangEntity> findByIdentifier(String identifier) {
-    return kuFangRepository.findByIdentifier(identifier);
+    return kufangRepository.findByIdentifier(identifier);
 
   }
 
   public List<KufangEntity> findAllKufangs() {
     log.info("所有的库房记录");
-    return kuFangRepository.findAll();
+    return kufangRepository.findAll();
   }
 
 //  public List<KufangEntity> search(String query) {

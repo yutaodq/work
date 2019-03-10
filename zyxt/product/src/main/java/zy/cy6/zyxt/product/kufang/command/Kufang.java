@@ -1,11 +1,9 @@
 package zy.cy6.zyxt.product.kufang.command;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
-import org.axonframework.commandhandling.model.AggregateNotFoundException;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 import zy.cy6.zyxt.api.product.kufang.*;
@@ -24,7 +22,7 @@ import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 public class Kufang {
   @AggregateIdentifier
   private KufangId kuFangId;
-//  private KufangName kuFangName;
+//  private KufangName kufangName;
   /*
    * 事件源聚合的聚合根也必须包含无参数构造函数。
    * Axon框架使用此构造函数在使用过去的事件初始化聚合之前创建一个空聚合实例。
@@ -34,7 +32,7 @@ public class Kufang {
 
   @CommandHandler
   public Kufang(CreateKufangCommand command) {
-    apply(KufangCreatedEvent.builder().kuFangId(command.getKufangId()).kuFangName(command.getKufangName()).bz(command.getBz()).build());
+    apply(KufangCreatedEvent.builder().kufangId(command.getKufangId()).kufangName(command.getKufangName()).bz(command.getBz()).build());
   }
 
   @CommandHandler
@@ -58,7 +56,7 @@ public class Kufang {
   @EventSourcingHandler
   @SuppressWarnings("UnusedDeclaration")
   public void on(KufangCreatedEvent event) {
-    this.kuFangId = event.getKuFangId();
+    this.kuFangId = event.getKufangId();
   }
 
   @EventSourcingHandler
