@@ -8,10 +8,33 @@ import java.util.UUID;
 @Getter
 @Setter
 
-public abstract class AbstractAggregateIdentifierBuilder {
-  private String identifier = UUID.randomUUID().toString();
+public abstract class AbstractAggregateIdentifierBuilder<T, E> {
+    private String identifier = UUID.randomUUID().toString();
 
-//  abstract AbstractAggregateIdentifierBuilder identifier(String identifier);
-//  abstract AbstractAggregateIdentifierBuilder build();
+    public T identifier(String identifier) {
+        setIdentifier(identifier);
+        return (T) this;
+    }
 
+    public E build() {
+        return (E) createId();
+    }
+
+    abstract protected AggregateIdentifier createId();
 }
+
+/*
+ * AbstractAggregateIdentifierBuilder 没有形参和抽象方法的使用说明
+ */
+
+//public static class KufangIdBuilder extends AbstractAggregateIdentifierBuilder {
+//    public KufangIdBuilder identifier(String identifier) {
+//        setIdentifier(identifier);
+//        return this;
+//    }
+//
+//    public KufangId build() {
+//        return new KufangId(getIdentifier());
+//    }
+//
+//}

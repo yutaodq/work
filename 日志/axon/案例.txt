@@ -1,0 +1,4 @@
+﻿1- axon学习 用户与认证领域模型 t04041143@163.com
+https://github.com/t04041143/user-authorization-axon-sample
+
+https://github.com/idugalic/micro-company  

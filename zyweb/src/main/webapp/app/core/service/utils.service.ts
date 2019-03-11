@@ -16,7 +16,7 @@ export class UtilsService {
   constructor(private jwtHelper: JwtHelperService) {}
 
   isTokenExpired(token: string = TOKEN): boolean {
-    let jwtStr = this.getToken(token);
+    const jwtStr = this.getToken(token);
     if (jwtStr) {
       return this.jwtHelper.isTokenExpired(jwtStr); // token expired?
     } else {

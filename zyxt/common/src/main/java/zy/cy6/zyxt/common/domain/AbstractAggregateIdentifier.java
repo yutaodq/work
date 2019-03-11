@@ -7,10 +7,11 @@ import java.io.Serializable;
 
 @EqualsAndHashCode
 public abstract class AbstractAggregateIdentifier implements AggregateIdentifier, Serializable {
-//  private final String identifier;
   private String identifier;
 
-  public AbstractAggregateIdentifier(){}
+  public AbstractAggregateIdentifier() {
+  }
+
   public AbstractAggregateIdentifier(String identifier) {
     this.identifier = identifier;
     this.checkIdentifier();
@@ -22,7 +23,7 @@ public abstract class AbstractAggregateIdentifier implements AggregateIdentifier
 
   @Override
   public String getIdentifier() {
-    return identifier;
+    return this.identifier;
   }
 
   @Override
@@ -31,3 +32,4 @@ public abstract class AbstractAggregateIdentifier implements AggregateIdentifier
   }
 
 }
+
