@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.api.users;
+package zy.cy6.zyxt.api.users.user;
 
 import lombok.Builder;
 import lombok.Value;

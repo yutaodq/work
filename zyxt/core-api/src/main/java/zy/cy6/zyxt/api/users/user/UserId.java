@@ -1,8 +1,7 @@
-package zy.cy6.zyxt.api.users;
+package zy.cy6.zyxt.api.users.user;
 
 import lombok.extern.slf4j.Slf4j;
 
-import zy.cy6.zyxt.api.product.kufang.KufangId;
 import zy.cy6.zyxt.common.domain.AbstractAggregateIdentifier;
 import zy.cy6.zyxt.common.domain.AbstractAggregateIdentifierBuilder;
 import zy.cy6.zyxt.common.domain.AggregateIdentifier;
@@ -20,8 +19,8 @@ public final class UserId extends AbstractAggregateIdentifier {
     log.info("新建库房标识：UserId");
   }
 
-  public static UserId.UserIdBuilder builder() {
-    return new UserId.UserIdBuilder();
+  public static UserIdBuilder builder() {
+    return new UserIdBuilder();
   }
 
   @Override
