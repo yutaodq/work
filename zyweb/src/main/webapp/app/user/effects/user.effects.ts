@@ -4,18 +4,14 @@ import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Observable } from "rxjs/Observable";
 import { of } from "rxjs/observable/of";
 import { map, switchMap, filter, catchError } from "rxjs/operators";
-import { UserService } from "../service";
-import { UtilsService } from "../../core/service";
-import { IUserEntity } from "app/ab";
+import { UserService } from "app/user";
+import { UtilsService } from "app/core";
+import { IUserEntity } from "app/models";
 import * as actions from "../actions";
-import { IKufangEntity } from "app/models/kufang.model";
-import {
-  CollectionApiActions,
-  CollectionPageActions
-} from "app/xtwh/kufang/actions";
+import { Response } from "app/models";
 
 @Injectable()
-export class UserEffectsY {
+export class UserEffects {
   @Effect()
   loginEffect$: Observable<Action> = this.action$.pipe(
     ofType(actions.UserActionTypes.LOGIN),
@@ -25,7 +21,7 @@ export class UserEffectsY {
         map((res: Response) => {
           if (res.success) {
             if (user.rememberMe) {
-              this.utils.writeToken(res.payload);
+              this.utilsService.writeToken(res.payload);
             }
             return new actions.LoginSuccessAction(user.username);
           } else {

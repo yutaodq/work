@@ -5,7 +5,6 @@
 // ngrx-auth
 // Copyright (C) 2017 by Jerry Hsieh. All rights reserved
 //
-
 import { Injectable } from "@angular/core";
 
 import { JwtHelperService } from "@auth0/angular-jwt";
@@ -17,26 +16,25 @@ export class UtilsService {
   constructor(private jwtHelper: JwtHelperService) {}
 
   isTokenExpired(token: string = TOKEN): boolean {
-    const jwtStr = localStorage.getItem(token);
+    let jwtStr = this.getToken(token);
     if (jwtStr) {
-      return this.jwtHelper.isTokenExpired(jwtStr);
+      return this.jwtHelper.isTokenExpired(jwtStr); // token expired?
     } else {
-      return true; // no token, token expired
+      return true; // no token
     }
   }
 
-  writeToken(token: string = TOKEN, value: string) {
-    // this.jwtHelper.isTokenExpired(value);
+  writeToken(value: string, token: string = TOKEN) {
     localStorage.setItem(token, value);
-  }
-
-  removeToken(token: string = TOKEN) {
-    if (localStorage.getItem(token)) {
-      localStorage.removeItem(token);
-    }
   }
 
   getToken(token: string = TOKEN) {
     return localStorage.getItem(token);
+  }
+
+  removeToken(token: string = TOKEN) {
+    if (this.getToken(token)) {
+      localStorage.removeItem(token);
+    }
   }
 }
