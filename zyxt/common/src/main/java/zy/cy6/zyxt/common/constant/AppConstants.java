@@ -1,10 +1,10 @@
-package zy.cy6.zyxt.common.config;
+package zy.cy6.zyxt.common.constant;
 
 /**
  * Application constants.
  * 应用常量
  */
-public final class Constants {
+public final class AppConstants {
 
   //Regex for acceptable logins
   public static final String LOGIN_REGEX = "^[_'.@A-Za-z0-9-]*$";
@@ -22,6 +22,6 @@ public final class Constants {
 
   public static final String SYSTEM_ACCOUNT = "system";
 
-  private Constants() {
+  private AppConstants() {
   }
 }

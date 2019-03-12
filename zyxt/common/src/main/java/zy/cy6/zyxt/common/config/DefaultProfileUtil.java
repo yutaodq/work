@@ -2,6 +2,7 @@ package zy.cy6.zyxt.common.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.core.env.Environment;
+import zy.cy6.zyxt.common.constant.AppConstants;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +35,7 @@ public final class DefaultProfileUtil {
      * See https://github.com/spring-projects/spring-boot/issues/1219
      */
 
-    defProperties.put(SPRING_PROFILE_DEFAULT, Constants.SPRING_PROFILE_DEVELOPMENT);
+    defProperties.put(SPRING_PROFILE_DEFAULT, AppConstants.SPRING_PROFILE_DEVELOPMENT);
     app.setDefaultProperties(defProperties);
   }
 

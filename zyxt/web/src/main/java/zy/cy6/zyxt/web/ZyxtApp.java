@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.hateoas.config.EnableHypermediaSupport;
 import org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType;
-import zy.cy6.zyxt.common.config.Constants;
+import zy.cy6.zyxt.common.constant.AppConstants;
 import zy.cy6.zyxt.common.config.DefaultProfileUtil;
 
 import javax.annotation.PostConstruct;
@@ -58,11 +58,11 @@ public class ZyxtApp {
     @PostConstruct
     public void initApplication() {
         Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
-        if (activeProfiles.contains(Constants.SPRING_PROFILE_DEVELOPMENT) && activeProfiles.contains(Constants.SPRING_PROFILE_PRODUCTION)) {
+        if (activeProfiles.contains(AppConstants.SPRING_PROFILE_DEVELOPMENT) && activeProfiles.contains(AppConstants.SPRING_PROFILE_PRODUCTION)) {
 			log.error("你的应用程序配置错误!在同一时间,程序不能在同一时间运行在'开发模式'和“生产模式”下。"
 					+"请检查application.yml文件spring.profiles的配制 ");
         }
-        if (activeProfiles.contains(Constants.SPRING_PROFILE_DEVELOPMENT) && activeProfiles.contains(Constants.SPRING_PROFILE_CLOUD)) {
+        if (activeProfiles.contains(AppConstants.SPRING_PROFILE_DEVELOPMENT) && activeProfiles.contains(AppConstants.SPRING_PROFILE_CLOUD)) {
 			log.error("你的应用程序配置错误!在同一时间,程序不能在同一时间运行在'开发模式'和'cloud'下。"
 					+"请检查application.yml文件spring.profiles的配制 ");
         }
