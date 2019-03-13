@@ -1,0 +1,1 @@
+﻿neo4j和shiro均有名称为sessionFactory的注入bean

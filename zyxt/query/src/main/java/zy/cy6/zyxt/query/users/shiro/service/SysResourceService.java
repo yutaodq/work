@@ -1,6 +1,5 @@
 package zy.cy6.zyxt.query.users.shiro.service;
 
-import com.sherlock.premssion.model.SysResource;
 
 import java.util.Set;
 

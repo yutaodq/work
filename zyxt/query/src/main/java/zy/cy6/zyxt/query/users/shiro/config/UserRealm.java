@@ -1,12 +1,5 @@
 package zy.cy6.zyxt.query.users.shiro.config;
 
-import com.sherlock.premssion.enums.ForbiddenEnum;
-import com.sherlock.premssion.enums.REnum;
-import com.sherlock.premssion.model.SysUser;
-import com.sherlock.premssion.repository.SysResourceRepository;
-import com.sherlock.premssion.service.SysResourceService;
-import com.sherlock.premssion.service.SysUserService;
-import com.sherlock.premssion.utils.ShiroUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
@@ -18,7 +11,12 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import sun.net.www.protocol.http.AuthenticationInfo;
+import zy.cy6.zyxt.query.users.shiro.SysUser;
+import zy.cy6.zyxt.query.users.shiro.enums.ForbiddenEnum;
+import zy.cy6.zyxt.query.users.shiro.enums.REnum;
+import zy.cy6.zyxt.query.users.shiro.service.SysResourceService;
+import zy.cy6.zyxt.query.users.shiro.service.SysUserService;
+import zy.cy6.zyxt.query.users.shiro.utils.ShiroUtil;
 
 /**
  * 认证与授权规则

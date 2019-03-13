@@ -9,7 +9,6 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import zy.cy6.zyxt.query.users.shiro.config.UserRealm;
 
 import java.util.LinkedHashMap;
@@ -20,8 +19,8 @@ import java.util.Map;
  * author: 小宇宙
  * date: 2018/4/7
  */
-@Configuration
-public class ShiroConfig {
+//@Configuration
+public class ShiroUserConfig {
 
     @Bean("sessionManager")
     public SessionManager sessionManager(){

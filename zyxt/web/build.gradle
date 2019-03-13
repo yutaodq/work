@@ -4,6 +4,8 @@ dependencies {
     compile project(':core-api')
     compile project(':query')
     compile project(':product')
+    compile project(':users')
+
     compile("org.springframework.boot:spring-boot-starter-hateoas")
     compile "org.atteo:evo-inflector:1.2.2"
     compile("com.zaxxer:HikariCP")

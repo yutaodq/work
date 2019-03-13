@@ -1,11 +1,11 @@
 package zy.cy6.zyxt.query.users.shiro.utils;
 
-import com.sherlock.premssion.model.SysUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import zy.cy6.zyxt.query.users.shiro.SysUser;
 
 /**
  * shiro工具
