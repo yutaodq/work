@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.query.users;
+package zy.cy6.zyxt.query.users.shiro;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

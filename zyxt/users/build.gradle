@@ -6,4 +6,6 @@ dependencies {
     compile "org.axonframework:axon-core:${axon_version}"
     compile "org.axonframework:axon-spring:${axon_version}"
     compile "org.axonframework:axon-test:${axon_version}"
+//    compile("org.apache.shiro:shiro-spring-boot-starter:${shiro_spring_version}")
+
 }

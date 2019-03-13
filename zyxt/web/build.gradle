@@ -10,7 +10,7 @@ dependencies {
     compile "com.h2database:h2"
     compile "org.axonframework:axon-spring-boot-starter:${axon_version}"
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.apache.shiro:shiro-spring-boot-starter:1.4.0")
+    compile("org.apache.shiro:shiro-spring-boot-starter:${shiro_spring_version}")
     compile "com.ryantenney.metrics:metrics-spring:${metrics_spring_version}"
     compile 'org.zalando:problem-spring-web:0.23.0'
     compile "org.hsqldb:hsqldb"
