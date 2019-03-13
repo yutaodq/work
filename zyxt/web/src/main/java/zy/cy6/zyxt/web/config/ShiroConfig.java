@@ -18,43 +18,25 @@ package zy.cy6.zyxt.web.config;
  * specific language governing permissions and limitations
  * under the License.
  */
+
 import org.apache.shiro.event.EventBus;
-import org.apache.shiro.spring.LifecycleBeanPostProcessor;
-import org.apache.shiro.spring.config.AbstractShiroBeanConfiguration;
-import org.apache.shiro.spring.ShiroEventBusBeanPostProcessor;
+import org.apache.shiro.event.support.DefaultEventBus;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import zy.cy6.zyxt.users.config.ShiroUserConfig;
 
 /**
  * @since 1.4.0
  */
 @Configuration
-@ConditionalOnProperty(name = "shiro.enabled", matchIfMissing = true)
-@Import({ShiroUserConfig.class})
-public class ShiroConfig extends AbstractShiroBeanConfiguration {
+//@ConditionalOnProperty(name = "shiro.enabled", matchIfMissing = true)
+public class ShiroConfig {
+//    public class ShiroConfig extends AbstractShiroBeanConfiguration {
 
-    @Bean
-    @ConditionalOnMissingBean
-    @Override
-    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
-        return super.lifecycleBeanPostProcessor();
-    }
 
     @Bean(name="eventBusShiro")
     @ConditionalOnMissingBean
-    @Override
     protected EventBus eventBus() {
-        return super.eventBus();
-    }
-
-    @Bean
-    @ConditionalOnMissingBean
-    @Override
-    public ShiroEventBusBeanPostProcessor shiroEventBusAwareBeanPostProcessor() {
-        return super.shiroEventBusAwareBeanPostProcessor();
+        return new DefaultEventBus();
     }
 }

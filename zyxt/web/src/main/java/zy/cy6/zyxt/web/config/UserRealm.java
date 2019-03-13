@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.query.users.shiro.config;
+package zy.cy6.zyxt.web.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
@@ -75,6 +75,7 @@ public class UserRealm extends AuthorizingRealm{
      * 密码验证服务
      * @param credentialsMatcher
      */
+    @Override
     public void setCredentialsMatcher(CredentialsMatcher credentialsMatcher) {
         HashedCredentialsMatcher md5HashedCredentialsMatcher = new HashedCredentialsMatcher();
         md5HashedCredentialsMatcher.setHashAlgorithmName(ShiroUtil.hashAlgorithmName);
