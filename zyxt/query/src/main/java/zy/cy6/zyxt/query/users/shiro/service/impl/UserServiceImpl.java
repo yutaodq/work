@@ -13,53 +13,50 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import zy.cy6.zyxt.query.users.shiro.BeanMapUtils;
 import zy.cy6.zyxt.query.users.shiro.EntityStatus;
-import zy.cy6.zyxt.query.users.shiro.MD5;
+import zy.cy6.zyxt.query.users.shiro.base.utils.MD5;
 import zy.cy6.zyxt.query.users.shiro.data.AccountProfile;
 import zy.cy6.zyxt.query.users.shiro.data.BadgesCount;
 import zy.cy6.zyxt.query.users.shiro.data.UserVO;
 import zy.cy6.zyxt.query.users.shiro.entity.User;
+import zy.cy6.zyxt.query.users.shiro.repository.MyAccountRepository;
 import zy.cy6.zyxt.query.users.shiro.repository.RoleRepository;
-import zy.cy6.zyxt.query.users.shiro.repository.UserRepository;
-import zy.cy6.zyxt.query.users.shiro.service.MessageService;
 import zy.cy6.zyxt.query.users.shiro.service.UserService;
 
-import javax.persistence.criteria.Predicate;
 import java.util.*;
 
 @Service
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
-  @Autowired private UserRepository userRepository;
-  @Autowired private MessageService messageService;
+  @Autowired private MyAccountRepository userRepository;
 
   @Autowired private RoleRepository roleRepository;
 
   @Override
   public Page<UserVO> paging(Pageable pageable, String name) {
-    Page<User> page =
-        userRepository.findAll(
-            (root, query, builder) -> {
-              Predicate predicate = builder.conjunction();
-
-              if (StringUtils.isNoneBlank(name)) {
-                predicate.getExpressions().add(builder.like(root.get("name"), "%" + name + "%"));
-              }
-
-              query.orderBy(builder.desc(root.get("id")));
-              return predicate;
-            },
-            pageable);
-
-    List<UserVO> rets = new ArrayList<>();
-    page.getContent().forEach(n -> rets.add(BeanMapUtils.copy(n)));
-    return new PageImpl<>(rets, pageable, page.getTotalElements());
+    return null;
+//    Page<User> page =
+//        userRepository.findAll(
+//            (root, query, builder) -> {
+//              Predicate predicate = builder.conjunction();
+//
+//              if (StringUtils.isNoneBlank(name)) {
+//                predicate.getExpressions().add(builder.like(root.get("name"), "%" + name + "%"));
+//              }
+//
+//              query.orderBy(builder.desc(root.get("id")));
+//              return predicate;
+//            },
+//            pageable);
+//
+//    List<UserVO> rets = new ArrayList<>();
+//    page.getContent().forEach(n -> rets.add(BeanMapUtils.copy(n)));
+//    return new PageImpl<>(rets, pageable, page.getTotalElements());
   }
 
   @Override
@@ -91,7 +88,7 @@ public class UserServiceImpl implements UserService {
     u = BeanMapUtils.copyPassport(po);
 
     BadgesCount badgesCount = new BadgesCount();
-    badgesCount.setMessages(messageService.unread4Me(u.getId()));
+//    badgesCount.setMessages(messageService.unread4Me(u.getId()));
 
     u.setBadgesCount(badgesCount);
     return u;
@@ -111,7 +108,7 @@ public class UserServiceImpl implements UserService {
     u = BeanMapUtils.copyPassport(po);
 
     BadgesCount badgesCount = new BadgesCount();
-    badgesCount.setMessages(messageService.unread4Me(u.getId()));
+//    badgesCount.setMessages(messageService.unread4Me(u.getId()));
 
     u.setBadgesCount(badgesCount);
 

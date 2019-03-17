@@ -21,22 +21,54 @@ package zy.cy6.zyxt.web.config;
 
 import org.apache.shiro.event.EventBus;
 import org.apache.shiro.event.support.DefaultEventBus;
+import org.apache.shiro.mgt.SubjectFactory;
+import org.apache.shiro.realm.Realm;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.ShiroEventBusBeanPostProcessor;
+import org.apache.shiro.spring.config.AbstractShiroBeanConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-/**
- * @since 1.4.0
- */
+import zy.cy6.zyxt.query.users.shiro.service.UserRoleService;
+import zy.cy6.zyxt.query.users.shiro.service.UserService;
+import zy.cy6.zyxt.web.shiro.AccountRealm;
+/** @since 1.4.0 */
 @Configuration
-//@ConditionalOnProperty(name = "shiro.enabled", matchIfMissing = true)
-public class ShiroConfig {
-//    public class ShiroConfig extends AbstractShiroBeanConfiguration {
+public class ShiroConfig extends AbstractShiroBeanConfiguration {
+  @Autowired private UserService userService;
+  @Autowired private UserRoleService userRoleService;
 
+  @Bean(name = "eventBusShiro")
+  @Override
+  protected EventBus eventBus() {
+    return new DefaultEventBus();
+  }
 
-    @Bean(name="eventBusShiro")
-    @ConditionalOnMissingBean
-    protected EventBus eventBus() {
-        return new DefaultEventBus();
-    }
+  @Bean
+  @ConditionalOnMissingBean
+  @Override
+  public ShiroEventBusBeanPostProcessor shiroEventBusAwareBeanPostProcessor() {
+    return super.shiroEventBusAwareBeanPostProcessor();
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  @Override
+  public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+    return super.lifecycleBeanPostProcessor();
+  }
+
+  @Bean
+  public SubjectFactory subjectFactory() {
+    return new AccountSubjectFactory();
+  }
+
+  @Bean
+  public Realm accountRealm() {
+    Realm realm = new AccountRealm();
+    ((AccountRealm) realm).setUserRoleService(userRoleService);
+    ((AccountRealm) realm).setUserService(userService);
+    return realm;
+  }
 }

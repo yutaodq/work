@@ -10,6 +10,7 @@
 package zy.cy6.zyxt.query.users.shiro;
 
 import org.springframework.beans.BeanUtils;
+import zy.cy6.zyxt.query.users.shiro.base.utils.Consts;
 import zy.cy6.zyxt.query.users.shiro.data.*;
 import zy.cy6.zyxt.query.users.shiro.entity.Comment;
 import zy.cy6.zyxt.query.users.shiro.entity.Message;

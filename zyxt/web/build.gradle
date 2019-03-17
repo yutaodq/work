@@ -16,7 +16,6 @@ dependencies {
     compile 'org.zalando:problem-spring-web:0.23.0'
     compile "org.hsqldb:hsqldb"
     compile("org.apache.shiro:shiro-spring-boot-web-starter:${apache_shiro_core_version}")
-//    compile("org.apache.shiro:shiro-core:${apache_shiro_core_version}")
-
+    compile("org.apache.shiro:shiro-ehcache:${apache_shiro_core_version}")
 }
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package zy.cy6.zyxt.query.users.shiro;
+package zy.cy6.zyxt.query.users.shiro.base.utils;
 
 
 /**

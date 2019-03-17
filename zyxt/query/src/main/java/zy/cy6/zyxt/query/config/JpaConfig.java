@@ -26,7 +26,7 @@ import java.util.Map;
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory",
         transactionManagerRef = "transactionManager",
-        basePackages = {"zy.cy6.zyxt.query"})
+        basePackages = {"zy.cy6.zyxt.query.*"})
 // 设置Repository所在位置
 public class JpaConfig {
 

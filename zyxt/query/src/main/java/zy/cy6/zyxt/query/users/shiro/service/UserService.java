@@ -9,12 +9,10 @@
 */
 package zy.cy6.zyxt.query.users.shiro.service;
 
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import zy.cy6.zyxt.query.users.shiro.Consts;
 import zy.cy6.zyxt.query.users.shiro.data.AccountProfile;
 import zy.cy6.zyxt.query.users.shiro.data.UserVO;
 
@@ -25,7 +23,7 @@ import java.util.Set;
  * @author langhsu
  *
  */
-@CacheConfig(cacheNames = Consts.CACHE_USER)
+//@CacheConfig(cacheNames = Consts.CACHE_USER)
 public interface UserService {
 	/**
 	 * 分页查询

@@ -9,12 +9,12 @@
 */
 package zy.cy6.zyxt.query.users.shiro.entity;
 
-import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
+//import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.FilterDefs;
 import org.hibernate.annotations.Filters;
-import org.hibernate.search.annotations.*;
+//import org.hibernate.search.annotations.*;
 
 import javax.persistence.Index;
 import javax.persistence.*;
@@ -33,36 +33,36 @@ import java.util.Date;
 @FilterDefs({
 		@FilterDef(name = "POST_STATUS_FILTER", defaultCondition = "status = 0" )})
 @Filters({ @Filter(name = "POST_STATUS_FILTER") })
-@Indexed(index = "post")
-@Analyzer(impl = SmartChineseAnalyzer.class)
+//@Indexed(index = "post")
+//@Analyzer(impl = SmartChineseAnalyzer.class)
 public class Post implements Serializable {
 	private static final long serialVersionUID = 7144425803920583495L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@SortableField
-	@NumericField
+//	@SortableField
+//	@NumericField
 	private long id;
 
 	/**
 	 * 分组/模块ID
 	 */
-	@Field
-	@NumericField
+//	@Field
+//	@NumericField
 	@Column(name = "channel_id", length = 5)
 	private int channelId;
 
 	/**
 	 * 标题
 	 */
-	@Field
+//	@Field
 	@Column(name = "title", length = 64)
 	private String title;
 
 	/**
 	 * 摘要
 	 */
-	@Field
+//	@Field
 	@Column(length = 140)
 	private String summary;
 
@@ -75,12 +75,12 @@ public class Post implements Serializable {
 	/**
 	 * 标签, 多个逗号隔开
 	 */
-	@Field
+//	@Field
 	@Column(length = 64)
 	private String tags;
 
-	@Field
-	@NumericField
+//	@Field
+//	@NumericField
 	@Column(name = "author_id")
 	private long authorId; // 作者
 

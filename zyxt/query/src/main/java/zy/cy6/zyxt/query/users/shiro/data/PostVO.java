@@ -11,7 +11,7 @@ package zy.cy6.zyxt.query.users.shiro.data;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
-import zy.cy6.zyxt.query.users.shiro.Consts;
+import zy.cy6.zyxt.query.users.shiro.base.utils.Consts;
 import zy.cy6.zyxt.query.users.shiro.entity.Channel;
 import zy.cy6.zyxt.query.users.shiro.entity.Post;
 import zy.cy6.zyxt.query.users.shiro.entity.PostAttribute;

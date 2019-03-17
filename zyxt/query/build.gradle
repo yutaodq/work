@@ -5,18 +5,11 @@ dependencies {
     compile "org.axonframework:axon-spring:${axon_version}"
     compile "org.axonframework:axon-test:${axon_version}"
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-//    compile("org.apache.shiro:shiro-spring-boot-starter:${shiro_spring_version}")
     compile("com.alibaba:fastjson:${alibaba_fastjson}")
     compile("org.apache.commons:commons-lang3")
-    compile("org.apache.lucene:lucene-analyzers-smartcn:${apache_lucene}")
-    compile("org.hibernate:hibernate-search-orm:5.11.0.Final")
+//    compile("org.apache.lucene:lucene-analyzers-smartcn:${apache_lucene}")
+//    compile("org.hibernate:hibernate-search-orm:5.11.0.Final")
 
-//    <groupId>org.hibernate</groupId>
-//			<artifactId>hibernate-search-orm</artifactId>
-//    <version>5.11.0.Final</version>
-
-//    implementation('org.springframework.boot:spring-boot-starter-data-elasticsearch')
-//    implementation 'com.github.vanroy:spring-boot-starter-data-jest:2.2.0.RELEASE'
 
 }
 
