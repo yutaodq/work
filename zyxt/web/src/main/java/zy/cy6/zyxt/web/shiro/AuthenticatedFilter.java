@@ -7,7 +7,7 @@
 |
 +---------------------------------------------------------------------------
 */
-package zy.cy6.zyxt.query.users.shiro;
+package zy.cy6.zyxt.web.shiro;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;

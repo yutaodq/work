@@ -1,4 +1,5 @@
 package zy.cy6.zyxt.query.users.shiro;
+import com.google.common.base.Optional;
 import lombok.Setter;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -29,7 +30,9 @@ public class AccountRealm extends AuthorizingRealm {
     super(new AllowAllCredentialsMatcher());
     setAuthenticationTokenClass(UsernamePasswordToken.class);
   }
-
+/*
+ * 获取授权信息
+ */
   @Override
   protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
     AccountProfile profile = (AccountProfile) SecurityUtils.getSubject().getPrincipal();
@@ -50,6 +53,11 @@ public class AccountRealm extends AuthorizingRealm {
       }
     }
     return null;
+  }
+  // https://github.com/Lilongjian/iot
+  public Optional<AccountProfile> getCurrentUser(){
+    AccountProfile sysUserEntity = (AccountProfile)SecurityUtils.getSubject().getPrincipal();
+    return Optional.fromNullable(sysUserEntity);
   }
 
   @Override

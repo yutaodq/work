@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.query.users.shiro;
+package zy.cy6.zyxt.web.shiro;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.mgt.DefaultSubjectFactory;

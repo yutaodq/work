@@ -10,7 +10,7 @@ dependencies {
 //    compile("org.apache.lucene:lucene-analyzers-smartcn:${apache_lucene}")
 //    compile("org.hibernate:hibernate-search-orm:5.11.0.Final")
     compile("org.apache.shiro:shiro-core:${apache_shiro_core_version}")
-    compile("org.apache.shiro:shiro-web:${apache_shiro_core_version}")
+//    compile("org.apache.shiro:shiro-web:${apache_shiro_core_version}")
 
 
 }

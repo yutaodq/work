@@ -33,7 +33,7 @@ import org.springframework.context.annotation.Configuration;
 import zy.cy6.zyxt.query.users.shiro.service.UserRoleService;
 import zy.cy6.zyxt.query.users.shiro.service.UserService;
 import zy.cy6.zyxt.query.users.shiro.AccountRealm;
-import zy.cy6.zyxt.query.users.shiro.AccountSubjectFactory;
+import zy.cy6.zyxt.web.shiro.AccountSubjectFactory;
 
 /**
  * @since 1.4.0
@@ -72,7 +72,6 @@ public class ShiroConfig extends AbstractShiroBeanConfiguration {
 
     @Bean
     public Realm accountRealm() {
-        Realm realm = new AccountRealm();
-        return realm;
+        return new AccountRealm();
     }
 }
