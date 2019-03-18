@@ -1,6 +1,5 @@
 package zy.cy6.zyxt.query.users.shiro;
 
-import lombok.Setter;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.AllowAllCredentialsMatcher;
@@ -19,7 +18,6 @@ import zy.cy6.zyxt.query.users.shiro.service.UserService;
 
 import java.util.List;
 
-@Setter
 public class AccountRealm extends AuthorizingRealm {
   @Autowired private UserService userService;
   @Autowired private UserRoleService userRoleService;
@@ -28,12 +26,14 @@ public class AccountRealm extends AuthorizingRealm {
     super(new AllowAllCredentialsMatcher());
     setAuthenticationTokenClass(UsernamePasswordToken.class);
   }
-  /*
+  /**
    * 获取授权信息
    */
   @Override
   protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-//    long userId = Optional.ofNullable(getCurrentUser()).map(user -> user.getId()).orElse(null);
+    /**
+     * long userId = Optional.ofNullable(getCurrentUser()).map(user -> user.getId()).orElse(null)
+     */
     AccountProfile profile = (AccountProfile) SecurityUtils.getSubject().getPrincipal();
     if (profile != null) {
       UserVO user = userService.get(profile.getId());
@@ -53,11 +53,12 @@ public class AccountRealm extends AuthorizingRealm {
     }
     return null;
   }
-  // https://github.com/Lilongjian/iot
   private AccountProfile getCurrentUser() {
     return (AccountProfile) SecurityUtils.getSubject().getPrincipal();
   }
-
+  /**
+   * 认证验证（返回数据库中真实的用户名、密码）
+   */
   @Override
   protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
       throws AuthenticationException {
@@ -66,7 +67,6 @@ public class AccountRealm extends AuthorizingRealm {
     if (profile.getStatus() == Consts.STATUS_CLOSED) {
       throw new LockedAccountException(profile.getName());
     }
-
     SimpleAuthenticationInfo info =
         new SimpleAuthenticationInfo(profile, token.getCredentials(), getName());
     Session session = SecurityUtils.getSubject().getSession();

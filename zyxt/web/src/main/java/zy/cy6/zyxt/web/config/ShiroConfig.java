@@ -84,8 +84,12 @@ public class ShiroConfig extends AbstractShiroBeanConfiguration {
         return new AccountRealm();
     }
     /**
-     * Shiro的过滤器链
+     * ShiroFilterFactoryBean 处理拦截资源文件问题。
+     * Filter Chain定义说明 1、一个URL可以配置多个Filter，使用逗号分隔
+     * 2、当设置多个过滤器时，全部验证通过，才视为通过
+     * 3、部分过滤器可指定参数，如perms，roles
      */
+
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
