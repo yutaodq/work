@@ -6,7 +6,7 @@ spring:
        driver-class-name: org.h2.Driver
        username: sa
        password: sa
-       schema: classpath:/db/schema.sql
+#       schema: classpath:/db/schema.sql
        data: classpath:/db/data.sql
        hikari:
         jdbc-url: jdbc:h2:mem:zyglWeb

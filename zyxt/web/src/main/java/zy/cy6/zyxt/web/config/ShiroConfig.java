@@ -26,14 +26,23 @@ import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.ShiroEventBusBeanPostProcessor;
 import org.apache.shiro.spring.config.AbstractShiroBeanConfiguration;
+import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.mgt.SecurityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import zy.cy6.zyxt.query.users.shiro.AccountRealm;
 import zy.cy6.zyxt.query.users.shiro.service.UserRoleService;
 import zy.cy6.zyxt.query.users.shiro.service.UserService;
-import zy.cy6.zyxt.query.users.shiro.AccountRealm;
 import zy.cy6.zyxt.web.shiro.AccountSubjectFactory;
+import zy.cy6.zyxt.web.shiro.AuthenticatedFilter;
+
+import javax.servlet.Filter;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @since 1.4.0
@@ -74,4 +83,37 @@ public class ShiroConfig extends AbstractShiroBeanConfiguration {
     public Realm accountRealm() {
         return new AccountRealm();
     }
+    /**
+     * Shiro的过滤器链
+     */
+    @Bean
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
+        ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
+        shiroFilter.setSecurityManager(securityManager);
+        shiroFilter.setLoginUrl("/login");
+        shiroFilter.setSuccessUrl("/");
+        shiroFilter.setUnauthorizedUrl("/error/reject.html");
+
+        HashMap<String, Filter> filters = new HashMap<>();
+        filters.put("authc", new AuthenticatedFilter());
+        shiroFilter.setFilters(filters);
+
+        /**
+         * 配置shiro拦截器链
+         *
+         * anon  不需要认证
+         * authc 需要认证
+         * user  验证通过或RememberMe登录的都可以
+         *
+         * 顺序从上到下,优先级依次降低
+         *
+         */
+        Map<String, String> hashMap = new LinkedHashMap<>();
+        hashMap.put("/dist/**", "anon");
+        hashMap.put("/admin/channel/list", "authc,perms[channel:list]");
+
+        shiroFilter.setFilterChainDefinitionMap(hashMap);
+        return shiroFilter;
+    }
+
 }

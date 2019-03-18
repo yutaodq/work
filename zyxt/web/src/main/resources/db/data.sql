@@ -8,6 +8,7 @@ delete from kufang;
 insert into kufang values(2111111, 'kf1','井下工具库','说明书rtte');
 insert into kufang values(222222, 'kf2','管杆库','说明书aww21q');
 insert into kufang values(2333333333, 'aaaaaaa','大大大大大大','说明书y6ytre');
+
 -- insert into kufang values(2444, 'bbbbbbbb','管管管管管管管','说明书vghgdf');
 -- insert into kufang values(25555, 'ccccc','井井井井井井井','说明书dfarwe');
 -- insert into kufang values(266666, 'ddddddd','库库库库库库库库库','说明书dsfgrew');
