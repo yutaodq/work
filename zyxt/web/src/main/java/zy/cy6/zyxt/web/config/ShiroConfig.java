@@ -32,43 +32,47 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import zy.cy6.zyxt.query.users.shiro.service.UserRoleService;
 import zy.cy6.zyxt.query.users.shiro.service.UserService;
-import zy.cy6.zyxt.web.shiro.AccountRealm;
-/** @since 1.4.0 */
+import zy.cy6.zyxt.query.users.shiro.AccountRealm;
+import zy.cy6.zyxt.query.users.shiro.AccountSubjectFactory;
+
+/**
+ * @since 1.4.0
+ */
 @Configuration
 public class ShiroConfig extends AbstractShiroBeanConfiguration {
-  @Autowired private UserService userService;
-  @Autowired private UserRoleService userRoleService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private UserRoleService userRoleService;
 
-  @Bean(name = "eventBusShiro")
-  @Override
-  protected EventBus eventBus() {
-    return new DefaultEventBus();
-  }
+    @Bean(name = "eventBusShiro")
+    @Override
+    protected EventBus eventBus() {
+        return new DefaultEventBus();
+    }
 
-  @Bean
-  @ConditionalOnMissingBean
-  @Override
-  public ShiroEventBusBeanPostProcessor shiroEventBusAwareBeanPostProcessor() {
-    return super.shiroEventBusAwareBeanPostProcessor();
-  }
+    @Bean
+    @ConditionalOnMissingBean
+    @Override
+    public ShiroEventBusBeanPostProcessor shiroEventBusAwareBeanPostProcessor() {
+        return super.shiroEventBusAwareBeanPostProcessor();
+    }
 
-  @Bean
-  @ConditionalOnMissingBean
-  @Override
-  public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
-    return super.lifecycleBeanPostProcessor();
-  }
+    @Bean
+    @ConditionalOnMissingBean
+    @Override
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        return super.lifecycleBeanPostProcessor();
+    }
 
-  @Bean
-  public SubjectFactory subjectFactory() {
-    return new AccountSubjectFactory();
-  }
+    @Bean
+    public SubjectFactory subjectFactory() {
+        return new AccountSubjectFactory();
+    }
 
-  @Bean
-  public Realm accountRealm() {
-    Realm realm = new AccountRealm();
-    ((AccountRealm) realm).setUserRoleService(userRoleService);
-    ((AccountRealm) realm).setUserService(userService);
-    return realm;
-  }
+    @Bean
+    public Realm accountRealm() {
+        Realm realm = new AccountRealm();
+        return realm;
+    }
 }

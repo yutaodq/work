@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.web.shiro;
+package zy.cy6.zyxt.query.users.shiro;
 import lombok.Setter;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -8,6 +8,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 import zy.cy6.zyxt.query.users.shiro.base.utils.Consts;
 import zy.cy6.zyxt.query.users.shiro.data.AccountProfile;
 import zy.cy6.zyxt.query.users.shiro.data.UserVO;
@@ -19,9 +20,9 @@ import java.util.List;
 
 @Setter
 public class AccountRealm extends AuthorizingRealm {
-//  @Autowired
+  @Autowired
   private UserService userService;
-//  @Autowired
+  @Autowired
   private UserRoleService userRoleService;
 
   public AccountRealm() {
