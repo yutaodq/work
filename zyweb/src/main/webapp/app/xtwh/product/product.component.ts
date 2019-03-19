@@ -1,16 +1,15 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {ActivatedRoute} from '@angular/router';
-import {Subscription} from 'rxjs';
-import {JhiEventManager, JhiAlertService} from 'ng-jhipster';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
+import { ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
+import { JhiEventManager, JhiAlertService } from "ng-jhipster";
 
-import {IProductEntity} from 'app/shared/model/product.model';
-import {Principal} from 'app/core';
-import {ProductService} from './product.service';
+import { IProductEntity } from "app/shared/model/product.model";
+import { ProductService } from "./product.service";
 
 @Component({
-  selector: 'jhi-product',
-  templateUrl: './product.component.html'
+  selector: "jhi-product",
+  templateUrl: "./product.component.html"
 })
 export class ProductComponent implements OnInit, OnDestroy {
   // productEntities: IProductEntity[];
@@ -25,13 +24,13 @@ export class ProductComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private jhiAlertService: JhiAlertService,
     private eventManager: JhiEventManager,
-    private activatedRoute: ActivatedRoute,
-    private principal: Principal
+    private activatedRoute: ActivatedRoute
   ) {
     this.currentSearch =
-      this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
-        ? this.activatedRoute.snapshot.params['search']
-        : '';
+      this.activatedRoute.snapshot &&
+      this.activatedRoute.snapshot.params["search"]
+        ? this.activatedRoute.snapshot.params["search"]
+        : "";
     this.activatedRoute.data.subscribe(data => {
       this.pageTitle = data.pageTitle;
     });
@@ -52,10 +51,10 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.productService.query().subscribe(
       (res: HttpResponse<IProductEntity[]>) => {
         // this.products = res.body;
-        console.log('yyuuuuuuuu'+ res.body);
-        this.products =  res.body;
+        console.log("yyuuuuuuuu" + res.body);
+        this.products = res.body;
 
-        this.currentSearch = '';
+        this.currentSearch = "";
       },
       (res: HttpErrorResponse) => this.onError(res.message)
     );
@@ -70,7 +69,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   clear() {
-    this.currentSearch = '';
+    this.currentSearch = "";
     this.loadAll();
   }
 
@@ -91,7 +90,10 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   registerChangeInProductes() {
-    this.eventSubscriber = this.eventManager.subscribe('productListModification', response => this.loadAll());
+    this.eventSubscriber = this.eventManager.subscribe(
+      "productListModification",
+      response => this.loadAll()
+    );
   }
 
   private onError(errorMessage: string) {

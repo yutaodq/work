@@ -6,7 +6,7 @@ import { CommonModule } from "@angular/common";
 // import { ShareModule } from "../share/share.module";
 import { ThemeModule } from "app/theme";
 import { UserRoutingModule } from "./user-routing.module";
-import { LoginComponent } from "./login/login.component";
+import { LoginComponent } from "./component/login.component";
 import { UserService } from "./service/user.service";
 
 @NgModule({

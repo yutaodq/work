@@ -9,7 +9,7 @@ import {
 import { of } from "rxjs";
 import { map } from "rxjs/operators";
 import { ProductEntity } from "app/shared/model/product.model";
-import { UserRouteAccessService } from "app/core";
+// import { UserRouteAccessService } from "app/core";
 
 import { ProductService } from "./product.service";
 import { ProductComponent } from "./product.component";
@@ -39,8 +39,8 @@ export const productRoute: Routes = [
   {
     path: "product",
     component: ProductComponent,
-    data: { pageTitle: "工具列表：" },
-    canActivate: [UserRouteAccessService]
+    data: { pageTitle: "工具列表：" }
+    // canActivate: [UserRouteAccessService]
   },
   {
     path: "product/:id/view",
@@ -51,8 +51,8 @@ export const productRoute: Routes = [
     data: {
       authorities: ["ROLE_USER"],
       pageTitle: "工具-查看表单"
-    },
-    canActivate: [UserRouteAccessService]
+    }
+    // canActivate: [UserRouteAccessService]
   },
   {
     path: "product/:id/edit",
@@ -63,8 +63,8 @@ export const productRoute: Routes = [
     data: {
       authorities: ["ROLE_USER"],
       pageTitle: "工具-修改记录表单"
-    },
-    canActivate: [UserRouteAccessService]
+    }
+    // canActivate: [UserRouteAccessService]
   },
   {
     path: "product/new",
@@ -75,8 +75,8 @@ export const productRoute: Routes = [
     data: {
       authorities: ["ROLE_USER"],
       pageTitle: "工具-添加新记录表单"
-    },
-    canActivate: [UserRouteAccessService]
+    }
+    // canActivate: [UserRouteAccessService]
   }
 ];
 export const productPopupRoute: Routes = [
@@ -90,7 +90,7 @@ export const productPopupRoute: Routes = [
       authorities: ["ROLE_USER"],
       pageTitle: "工具-删除记录表单"
     },
-    canActivate: [UserRouteAccessService],
+    // canActivate: [UserRouteAccessService],
     outlet: "popup"
   }
 ];

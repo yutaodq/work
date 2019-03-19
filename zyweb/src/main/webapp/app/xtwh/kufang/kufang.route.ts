@@ -8,7 +8,6 @@ import {
   RouterStateSnapshot,
   Routes
 } from "@angular/router";
-import { UserRouteAccessService } from "app/core";
 import { IKufangEntity } from "../../models";
 import { KufangService } from "./service";
 import * as path from "app/app.constants";
@@ -39,8 +38,8 @@ export const kufangRoute: Routes = [
   {
     path: path.ROUTE_KUFANG,
     component: KufangComponent,
-    data: { pageTitle: "库房名称列表" },
-    canActivate: [UserRouteAccessService]
+    data: { pageTitle: "库房名称列表" }
+    // canActivate: [UserRouteAccessService]
   },
   {
     path: path.ROUTE_KUFANG_VIEW,
@@ -50,7 +49,7 @@ export const kufangRoute: Routes = [
       authorities: ["ROLE_USER"],
       pageTitle: "库房名称-查看表单"
     },
-    canActivate: [UserRouteAccessService],
+    // canActivate: [UserRouteAccessService],
     children: [{ path: "", component: KufangSelectedButtonComponent }]
   },
   {
@@ -60,8 +59,8 @@ export const kufangRoute: Routes = [
     data: {
       authorities: ["ROLE_USER"],
       pageTitle: "工具-添加新记录表单"
-    },
-    canActivate: [UserRouteAccessService]
+    }
+    // canActivate: [UserRouteAccessService]
   },
   {
     path: path.ROUTE_KUFANG_EDIT,
@@ -70,7 +69,7 @@ export const kufangRoute: Routes = [
     data: {
       authorities: ["ROLE_USER"],
       pageTitle: "库房记录-修改库房名称"
-    },
-    canActivate: [UserRouteAccessService]
+    }
+    // canActivate: [UserRouteAccessService]
   }
 ];

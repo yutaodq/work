@@ -24,8 +24,8 @@
 //     });
 //   }
 //
-//   find(login: string): Observable<HttpResponse<IUser>> {
-//     return this.http.get<IUser>(`${this.resourceUrl}/${login}`, {
+//   find(component: string): Observable<HttpResponse<IUser>> {
+//     return this.http.get<IUser>(`${this.resourceUrl}/${component}`, {
 //       observe: "response"
 //     });
 //   }
@@ -38,8 +38,8 @@
 //     });
 //   }
 //
-//   delete(login: string): Observable<HttpResponse<any>> {
-//     return this.http.delete(`${this.resourceUrl}/${login}`, {
+//   delete(component: string): Observable<HttpResponse<any>> {
+//     return this.http.delete(`${this.resourceUrl}/${component}`, {
 //       observe: "response"
 //     });
 //   }
