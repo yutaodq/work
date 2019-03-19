@@ -14,7 +14,6 @@ import java.util.Objects;
 //@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Data
 @Slf4j
-//@Document(indexName = "KufangEntity")
 public class KufangEntity extends AbstractEntity {
 
     @Column(name = "identifier")

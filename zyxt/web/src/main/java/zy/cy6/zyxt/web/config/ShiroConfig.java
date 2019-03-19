@@ -83,6 +83,7 @@ public class ShiroConfig extends AbstractShiroBeanConfiguration {
     public Realm accountRealm() {
         return new AccountRealm();
     }
+
     /**
      * ShiroFilterFactoryBean 处理拦截资源文件问题。
      * Filter Chain定义说明 1、一个URL可以配置多个Filter，使用逗号分隔
@@ -94,9 +95,9 @@ public class ShiroConfig extends AbstractShiroBeanConfiguration {
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager);
-        shiroFilter.setLoginUrl("/login");
-        shiroFilter.setSuccessUrl("/");
-        shiroFilter.setUnauthorizedUrl("/error/reject.html");
+        shiroFilter.setLoginUrl("/login"); //没有登录的用户请求需要登录的页面时自动跳转到登录页面，可配置也可不配置
+        shiroFilter.setSuccessUrl("/");  //登录成功默认跳转页面，不配置则跳转至”/”，一般可以不配置，直接通过代码进行处理
+        shiroFilter.setUnauthorizedUrl("/error/reject.html");  //没有权限默认跳转的页面
 
         HashMap<String, Filter> filters = new HashMap<>();
         filters.put("authc", new AuthenticatedFilter());
@@ -113,8 +114,9 @@ public class ShiroConfig extends AbstractShiroBeanConfiguration {
          *
          */
         Map<String, String> hashMap = new LinkedHashMap<>();
-        hashMap.put("/dist/**", "anon");
-        hashMap.put("/admin/channel/list", "authc,perms[channel:list]");
+        hashMap.put("/**", "anon");
+//        hashMap.put("/dist/**", "anon");
+//        hashMap.put("/admin/channel/list", "authc,perms[channel:list]");
 
         shiroFilter.setFilterChainDefinitionMap(hashMap);
         return shiroFilter;
