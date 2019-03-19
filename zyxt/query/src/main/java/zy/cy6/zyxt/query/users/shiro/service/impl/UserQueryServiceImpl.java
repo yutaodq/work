@@ -26,13 +26,13 @@ import zy.cy6.zyxt.query.users.shiro.data.UserVO;
 import zy.cy6.zyxt.query.users.shiro.entity.User;
 import zy.cy6.zyxt.query.users.shiro.repository.MyAccountRepository;
 import zy.cy6.zyxt.query.users.shiro.repository.RoleRepository;
-import zy.cy6.zyxt.query.users.shiro.service.UserService;
+import zy.cy6.zyxt.query.users.shiro.service.UserQueryService;
 
 import java.util.*;
 
 @Service
 @Transactional(readOnly = true)
-public class UserServiceImpl implements UserService {
+public class UserQueryServiceImpl implements UserQueryService {
   @Autowired private MyAccountRepository userRepository;
 
   @Autowired private RoleRepository roleRepository;

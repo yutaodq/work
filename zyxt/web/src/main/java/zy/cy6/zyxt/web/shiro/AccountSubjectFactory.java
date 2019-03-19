@@ -11,7 +11,7 @@ import org.apache.shiro.web.subject.WebSubjectContext;
 import org.apache.shiro.web.subject.support.WebDelegatingSubject;
 import org.springframework.beans.factory.annotation.Autowired;
 import zy.cy6.zyxt.query.users.shiro.data.AccountProfile;
-import zy.cy6.zyxt.query.users.shiro.service.UserService;
+import zy.cy6.zyxt.query.users.shiro.service.UserQueryService;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -22,7 +22,7 @@ import javax.servlet.ServletResponse;
 @Slf4j
 public class AccountSubjectFactory extends DefaultSubjectFactory {
     @Autowired
-    private UserService userService;
+    private UserQueryService userQueryService;
 
     @Override
     public Subject createSubject(SubjectContext context) {
@@ -50,7 +50,7 @@ public class AccountSubjectFactory extends DefaultSubjectFactory {
         if ((subject.isAuthenticated() || subject.isRemembered()) && session.getAttribute("profile") == null) {
             AccountProfile profile = (AccountProfile) subject.getPrincipal();
             log.debug("reload session - " + profile.getUsername());
-            session.setAttribute("profile", userService.findProfile(profile.getId()));
+            session.setAttribute("profile", userQueryService.findProfile(profile.getId()));
         }
     }
 

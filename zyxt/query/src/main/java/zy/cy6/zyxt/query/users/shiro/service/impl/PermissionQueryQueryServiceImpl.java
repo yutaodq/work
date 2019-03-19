@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import zy.cy6.zyxt.query.users.shiro.data.PermissionTree;
 import zy.cy6.zyxt.query.users.shiro.entity.Permission;
 import zy.cy6.zyxt.query.users.shiro.repository.PermissionRepository;
-import zy.cy6.zyxt.query.users.shiro.service.PermissionService;
+import zy.cy6.zyxt.query.users.shiro.service.PermissionQueryService;
 
 import javax.persistence.criteria.Predicate;
 import java.util.*;
@@ -21,7 +21,7 @@ import java.util.*;
  */
 @Service
 @Transactional(readOnly = true)
-public class PermissionServiceImpl implements PermissionService {
+public class PermissionQueryQueryServiceImpl implements PermissionQueryService {
     @Autowired
     private PermissionRepository permissionRepository;
 

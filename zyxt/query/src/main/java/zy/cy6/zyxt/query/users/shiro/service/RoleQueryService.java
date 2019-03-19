@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * @author - langhsu on 2018/2/11
  */
-public interface RoleService {
+public interface RoleQueryService {
     /**
      * 分页查询角色
      * @param pageable 分页对象

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author - langhsu on 2018/2/11
  */
-public interface PermissionService {
+public interface PermissionQueryService {
     /**
      * 分页查询权限
      * @param pageable 分页对象

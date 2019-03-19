@@ -6,8 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import zy.cy6.zyxt.query.users.shiro.entity.Role;
 import zy.cy6.zyxt.query.users.shiro.entity.UserRole;
 import zy.cy6.zyxt.query.users.shiro.repository.UserRoleRepository;
-import zy.cy6.zyxt.query.users.shiro.service.RoleService;
-import zy.cy6.zyxt.query.users.shiro.service.UserRoleService;
+import zy.cy6.zyxt.query.users.shiro.service.RoleQueryService;
+import zy.cy6.zyxt.query.users.shiro.service.UserRoleQueryService;
 
 import java.util.*;
 
@@ -16,11 +16,11 @@ import java.util.*;
  */
 @Service
 @Transactional(readOnly = true)
-public class UserRoleServiceImpl implements UserRoleService {
+public class UserRoleQueryServiceImpl implements UserRoleQueryService {
     @Autowired
     private UserRoleRepository userRoleRepository;
     @Autowired
-    private RoleService roleService;
+    private RoleQueryService roleService;
 
     @Override
     public List<Long> listRoleIds(long userId) {

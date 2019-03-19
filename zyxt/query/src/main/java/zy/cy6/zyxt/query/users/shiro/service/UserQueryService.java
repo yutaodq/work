@@ -24,7 +24,7 @@ import java.util.Set;
  *
  */
 //@CacheConfig(cacheNames = Consts.CACHE_USER)
-public interface UserService {
+public interface UserQueryService {
 	/**
 	 * 分页查询
 	 * @param pageable

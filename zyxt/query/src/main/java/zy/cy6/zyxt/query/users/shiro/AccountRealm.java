@@ -13,14 +13,14 @@ import zy.cy6.zyxt.query.users.shiro.base.utils.Consts;
 import zy.cy6.zyxt.query.users.shiro.data.AccountProfile;
 import zy.cy6.zyxt.query.users.shiro.data.UserVO;
 import zy.cy6.zyxt.query.users.shiro.entity.Role;
-import zy.cy6.zyxt.query.users.shiro.service.UserRoleService;
-import zy.cy6.zyxt.query.users.shiro.service.UserService;
+import zy.cy6.zyxt.query.users.shiro.service.UserRoleQueryService;
+import zy.cy6.zyxt.query.users.shiro.service.UserQueryService;
 
 import java.util.List;
 
 public class AccountRealm extends AuthorizingRealm {
-  @Autowired private UserService userService;
-  @Autowired private UserRoleService userRoleService;
+  @Autowired private UserQueryService userQueryService;
+  @Autowired private UserRoleQueryService userRoleQueryService;
 
   public AccountRealm() {
     super(new AllowAllCredentialsMatcher());
@@ -36,10 +36,10 @@ public class AccountRealm extends AuthorizingRealm {
      */
     AccountProfile profile = (AccountProfile) SecurityUtils.getSubject().getPrincipal();
     if (profile != null) {
-      UserVO user = userService.get(profile.getId());
+      UserVO user = userQueryService.get(profile.getId());
       if (user != null) {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        List<Role> roles = userRoleService.listRoles(user.getId());
+        List<Role> roles = userRoleQueryService.listRoles(user.getId());
 
         //赋予角色
         roles.forEach(role -> {
@@ -62,7 +62,7 @@ public class AccountRealm extends AuthorizingRealm {
   @Override
   protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
       throws AuthenticationException {
-    AccountProfile profile = getAccount(userService, token);
+    AccountProfile profile = getAccount(userQueryService, token);
 
     if (profile.getStatus() == Consts.STATUS_CLOSED) {
       throw new LockedAccountException(profile.getName());
@@ -74,8 +74,8 @@ public class AccountRealm extends AuthorizingRealm {
     return info;
   }
 
-  protected AccountProfile getAccount(UserService userService, AuthenticationToken token) {
+  protected AccountProfile getAccount(UserQueryService userQueryService, AuthenticationToken token) {
     UsernamePasswordToken upToken = (UsernamePasswordToken) token;
-    return userService.login(upToken.getUsername(), String.valueOf(upToken.getPassword()));
+    return userQueryService.login(upToken.getUsername(), String.valueOf(upToken.getPassword()));
   }
 }

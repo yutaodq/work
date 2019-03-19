@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * @author - langhsu on 2018/2/11
  */
-public interface UserRoleService {
+public interface UserRoleQueryService {
     /**
      * 查询用户已有的角色Id
      * @param userId 用户ID

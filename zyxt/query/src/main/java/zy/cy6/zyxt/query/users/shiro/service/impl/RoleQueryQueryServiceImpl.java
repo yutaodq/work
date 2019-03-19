@@ -14,8 +14,8 @@ import zy.cy6.zyxt.query.users.shiro.entity.UserRole;
 import zy.cy6.zyxt.query.users.shiro.repository.PermissionRepository;
 import zy.cy6.zyxt.query.users.shiro.repository.RoleRepository;
 import zy.cy6.zyxt.query.users.shiro.repository.UserRoleRepository;
-import zy.cy6.zyxt.query.users.shiro.service.RolePermissionService;
-import zy.cy6.zyxt.query.users.shiro.service.RoleService;
+import zy.cy6.zyxt.query.users.shiro.service.RolePermissionQueryService;
+import zy.cy6.zyxt.query.users.shiro.service.RoleQueryService;
 
 import javax.persistence.criteria.Predicate;
 import java.util.*;
@@ -25,13 +25,13 @@ import java.util.*;
  */
 @Service
 @Transactional
-public class RoleServiceImpl implements RoleService {
+public class RoleQueryQueryServiceImpl implements RoleQueryService {
     @Autowired
     private RoleRepository roleRepository;
     @Autowired
     private PermissionRepository permissionRepository;
     @Autowired
-    private RolePermissionService rolePermissionService;
+    private RolePermissionQueryService rolePermissionQueryService;
     @Autowired
     private UserRoleRepository userRoleRepository;
 
@@ -83,7 +83,7 @@ public class RoleServiceImpl implements RoleService {
 
         roleRepository.save(po);
 
-        rolePermissionService.deleteByRoleId(po.getId());
+        rolePermissionQueryService.deleteByRoleId(po.getId());
 
         if (permissions != null && permissions.size() > 0) {
             Set<RolePermission> rps = new HashSet<>();
@@ -95,7 +95,7 @@ public class RoleServiceImpl implements RoleService {
                 rps.add(rp);
             });
 
-            rolePermissionService.add(rps);
+            rolePermissionQueryService.add(rps);
         }
     }
 
@@ -104,7 +104,7 @@ public class RoleServiceImpl implements RoleService {
         List<UserRole> urs = userRoleRepository.findAllByRoleId(id);
         Assert.state(urs == null || urs.size() == 0, "该角色已经被使用,不能被删除");
         roleRepository.deleteById(id);
-        rolePermissionService.deleteByRoleId(id);
+        rolePermissionQueryService.deleteByRoleId(id);
         return true;
     }
 
@@ -121,7 +121,7 @@ public class RoleServiceImpl implements RoleService {
         r.setDescription(po.getDescription());
         r.setStatus(po.getStatus());
 
-        r.setPermissions(rolePermissionService.findPermissions(r.getId()));
+        r.setPermissions(rolePermissionQueryService.findPermissions(r.getId()));
         return r;
     }
 }

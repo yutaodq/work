@@ -34,8 +34,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import zy.cy6.zyxt.query.users.shiro.AccountRealm;
-import zy.cy6.zyxt.query.users.shiro.service.UserRoleService;
-import zy.cy6.zyxt.query.users.shiro.service.UserService;
+import zy.cy6.zyxt.query.users.shiro.service.UserRoleQueryService;
+import zy.cy6.zyxt.query.users.shiro.service.UserQueryService;
 import zy.cy6.zyxt.web.shiro.AccountSubjectFactory;
 import zy.cy6.zyxt.web.shiro.AuthenticatedFilter;
 
@@ -50,9 +50,9 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig extends AbstractShiroBeanConfiguration {
     @Autowired
-    private UserService userService;
+    private UserQueryService userQueryService;
     @Autowired
-    private UserRoleService userRoleService;
+    private UserRoleQueryService userRoleQueryService;
 
     @Bean(name = "eventBusShiro")
     @Override
