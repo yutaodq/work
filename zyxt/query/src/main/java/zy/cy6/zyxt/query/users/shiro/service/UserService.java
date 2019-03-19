@@ -64,14 +64,6 @@ public interface UserService {
 	AccountProfile update(UserVO user);
 
 	/**
-	 * 修改用户信息
-	 * @param email
-	 * @return
-	 */
-	@CacheEvict(key = "#id")
-	AccountProfile updateEmail(long id, String email);
-
-	/**
 	 * 查询单个用户
 	 * @param userId
 	 * @return
@@ -80,17 +72,6 @@ public interface UserService {
 	UserVO get(long userId);
 
 	UserVO getByUsername(String username);
-
-	UserVO getByEmail(String email);
-
-	/**
-	 * 修改头像
-	 * @param id
-	 * @param path
-	 * @return
-	 */
-	@CacheEvict(key = "#id")
-	AccountProfile updateAvatar(long id, String path);
 
 	/**
 	 * 修改密码

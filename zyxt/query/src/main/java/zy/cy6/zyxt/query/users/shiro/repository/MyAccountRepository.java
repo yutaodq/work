@@ -18,6 +18,4 @@ import zy.cy6.zyxt.query.users.shiro.entity.User;
 public interface MyAccountRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
 
-    User findByEmail(String email);
-
 }

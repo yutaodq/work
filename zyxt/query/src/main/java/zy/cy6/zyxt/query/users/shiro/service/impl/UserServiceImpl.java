@@ -83,7 +83,6 @@ public class UserServiceImpl implements UserService {
 
     Assert.state(StringUtils.equals(po.getPassword(), password), "密码错误");
 
-    po.setLastLogin(Calendar.getInstance().getTime());
     userRepository.save(po);
     u = BeanMapUtils.copyPassport(po);
 
@@ -103,7 +102,6 @@ public class UserServiceImpl implements UserService {
     Assert.notNull(po, "账户不存在");
 
     //		Assert.state(po.getStatus() != Const.STATUS_CLOSED, "您的账户已被封禁");
-    po.setLastLogin(Calendar.getInstance().getTime());
 
     u = BeanMapUtils.copyPassport(po);
 
@@ -138,7 +136,6 @@ public class UserServiceImpl implements UserService {
     Date now = Calendar.getInstance().getTime();
     po.setPassword(MD5.md5(user.getPassword()));
     po.setStatus(EntityStatus.ENABLED);
-    po.setCreated(now);
 
     userRepository.save(po);
 
@@ -150,29 +147,10 @@ public class UserServiceImpl implements UserService {
   public AccountProfile update(UserVO user) {
     User po = userRepository.findById(user.getId()).get();
     po.setName(user.getName());
-    po.setSignature(user.getSignature());
     userRepository.save(po);
     return BeanMapUtils.copyPassport(po);
   }
 
-  @Override
-  @Transactional
-  public AccountProfile updateEmail(long id, String email) {
-    User po = userRepository.findById(id).get();
-
-    if (email.equals(po.getEmail())) {
-      //            throw new MtonsException("邮箱地址没做更改");
-    }
-
-    User check = userRepository.findByEmail(email);
-
-    if (check != null && check.getId() != po.getId()) {
-      //            throw new MtonsException("该邮箱地址已经被使用了");
-    }
-    po.setEmail(email);
-    userRepository.save(po);
-    return BeanMapUtils.copyPassport(po);
-  }
 
   @Override
   public UserVO get(long userId) {
@@ -188,19 +166,6 @@ public class UserServiceImpl implements UserService {
     return BeanMapUtils.copy(userRepository.findByUsername(username));
   }
 
-  @Override
-  public UserVO getByEmail(String email) {
-    return BeanMapUtils.copy(userRepository.findByEmail(email));
-  }
-
-  @Override
-  @Transactional
-  public AccountProfile updateAvatar(long id, String path) {
-    User po = userRepository.findById(id).get();
-    po.setAvatar(path);
-    userRepository.save(po);
-    return BeanMapUtils.copyPassport(po);
-  }
 
   @Override
   @Transactional

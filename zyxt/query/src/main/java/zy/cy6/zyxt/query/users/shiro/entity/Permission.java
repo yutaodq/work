@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author - langhsu on 2018/2/11
  */
 @Entity
-@Table(name = "shiro_permission")
+@Table(name = "zy_permission")
 public class Permission implements Serializable {
     private static final long serialVersionUID = -5979636077639378677L;
 

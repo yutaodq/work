@@ -26,21 +26,10 @@ public class UserVO implements Serializable {
 	private long id;
 	private String username;
 
-	@JSONField(serialize = false)
 	private String password;
-	private String avatar;
 	private String name;
-	private String email;
-
-	private int posts; // 文章数
-	private int comments; // 发布评论数
-
-	private Date created;
-	private Date lastLogin;
-	private String signature; // 个性签名
 
 	private int status;
 
-	@JSONField(serialize = false)
 	private List<Role> roles = new ArrayList<>();
 }

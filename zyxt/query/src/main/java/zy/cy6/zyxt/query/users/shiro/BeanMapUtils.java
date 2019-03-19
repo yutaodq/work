@@ -35,9 +35,6 @@ public class BeanMapUtils {
     public static AccountProfile copyPassport(User po) {
         AccountProfile passport = new AccountProfile(po.getId(), po.getUsername());
         passport.setName(po.getName());
-        passport.setEmail(po.getEmail());
-        passport.setAvatar(po.getAvatar());
-        passport.setLastLogin(po.getLastLogin());
         passport.setStatus(po.getStatus());
         return passport;
     }
