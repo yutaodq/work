@@ -8,6 +8,7 @@ import {
 } from "@ng-dynamic-forms/core";
 import { ActivatedRoute } from "@angular/router";
 import { LoginFormModel } from "app/user/form/login-form.model";
+import { UserService } from "app/user";
 
 @Component({
   selector: "zy-login-page",
@@ -21,7 +22,8 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private _store: Store<fromLogin.State>,
     private _activatedRoute: ActivatedRoute,
-    private _formService: DynamicFormService
+    private _formService: DynamicFormService,
+    private _userService: UserService
   ) {}
 
   ngOnInit() {
@@ -42,15 +44,24 @@ export class LoginPageComponent implements OnInit {
 
   login() {
     console.log(`应用程序启动成功: login`);
+    this._userService.login(this.username(), this.password());
   }
 
   cancel() {
     console.log(`应用程序启动成功: cancel`);
   }
+  username(): string {
+    return this._formGroup.get("username").value;
+  }
+
+  password(): string {
+    return this._formGroup.get("password").value;
+  }
 
   /*
    *设置属性
    */
+
   get pageTitle(): string {
     return this._pageTitle;
   }
