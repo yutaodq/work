@@ -1,6 +1,4 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { RouterModule } from "@angular/router";
-// import { HttpClientModule } from "@angular/common/http";
 import { NG_VALIDATORS, NG_ASYNC_VALIDATORS } from "@angular/forms";
 
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
@@ -21,8 +19,7 @@ import {
   ValidatorFactory,
   DYNAMIC_VALIDATORS
 } from "@ng-dynamic-forms/core";
-
-import { kufangRoute } from "./";
+import { KufangRoutingModule } from "./kufang-route.module";
 import { KufangService } from "./service";
 import { KufangFormService, KufangFormModelService } from "./form";
 
@@ -47,14 +44,13 @@ import {
   kufangNameValidator
 } from "./form/kufang-form.validator";
 
-const ROUTE = [...kufangRoute];
-
 const IMPORTS_MODULES = [
   ZyxtSharedModule,
   CoreModule,
   NgxDatatableModule,
   ThemeModule,
-  DynamicFormsNGBootstrapUIModule
+  DynamicFormsNGBootstrapUIModule,
+  KufangRoutingModule
 ];
 const COMPONENT = [
   KufangComponent,
@@ -78,7 +74,6 @@ const SERVICE = [
 @NgModule({
   imports: [
     ...IMPORTS_MODULES,
-    RouterModule.forChild(ROUTE),
     StoreModule.forFeature("kufangs", reducers),
     EffectsModule.forFeature([CollectionEffects])
   ],

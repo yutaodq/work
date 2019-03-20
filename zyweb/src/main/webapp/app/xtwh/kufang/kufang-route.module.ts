@@ -1,4 +1,4 @@
-import { HttpResponse } from "@angular/common/http";
+import { NgModule } from "@angular/core";
 import { Injectable } from "@angular/core";
 import { of } from "rxjs";
 
@@ -6,9 +6,11 @@ import {
   Resolve,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  Routes
+  Routes,
+  RouterModule
 } from "@angular/router";
-import { IKufangEntity } from "../../models";
+
+import { IKufangEntity } from "app/models";
 import { KufangService } from "./service";
 import * as path from "app/app.constants";
 
@@ -34,7 +36,7 @@ export class NewKufangResolve implements Resolve<IKufangEntity> {
   }
 }
 
-export const kufangRoute: Routes = [
+const routes: Routes = [
   {
     path: path.ROUTE_KUFANG,
     component: KufangComponent,
@@ -73,3 +75,9 @@ export const kufangRoute: Routes = [
     // canActivate: [UserRouteAccessService]
   }
 ];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class KufangRoutingModule {}

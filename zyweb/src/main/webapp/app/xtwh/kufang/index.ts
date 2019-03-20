@@ -2,7 +2,6 @@
 
 export * from "./kufang.module";
 export * from "./service/kufang.service";
-export * from "./kufang.route";
 export * from "./components/kufang-selected-button.component";
 export * from "./components/kufang-new-button.component";
 export * from "./form/kufang-form.service";
