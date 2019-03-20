@@ -14,14 +14,12 @@ import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import zy.cy6.zyxt.api.product.kufang.CreateKufangCommand;
 import zy.cy6.zyxt.api.product.kufang.KufangId;
 import zy.cy6.zyxt.api.product.kufang.KufangName;
 import zy.cy6.zyxt.api.product.kufang.RemoveKufangCommand;
 import zy.cy6.zyxt.query.kufang.KufangEntity;
 import zy.cy6.zyxt.query.kufang.KufangQueryService;
-import zy.cy6.zyxt.query.kufang.repositories.KufangQueryRepository;
 import zy.cy6.zyxt.web.product.KufangResourceAssembler;
 import zy.cy6.zyxt.web.product.KufangService;
 
@@ -37,7 +35,11 @@ public class KufangServiceImpl implements KufangService {
   private final KufangQueryService kufangQueryService;
 
   @Autowired
-  public KufangServiceImpl(CommandGateway commandGateway, CommandBus commandBus, KufangResourceAssembler assembler, KufangQueryService kufangQueryService) {
+  public KufangServiceImpl(
+      CommandGateway commandGateway,
+      CommandBus commandBus,
+      KufangResourceAssembler assembler,
+      KufangQueryService kufangQueryService) {
     this.assembler = assembler;
     this.commandBus = commandBus;
     this.commandGateway = commandGateway;
@@ -62,61 +64,63 @@ public class KufangServiceImpl implements KufangService {
   }
 
   public ResponseEntity<Resource<KufangEntity>> findOne(Long id) {
-    return kufangQueryService.findOne(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-//        return repository.findById(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    return kufangQueryService
+        .findOne(id)
+        .map(assembler::toResource)
+        .map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());
+    //        return
+    // repository.findById(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
   }
-  /**
-   * 删除记录
-   */
-
+  /** 删除记录 */
   public void remove(String id) {
     commandBus.dispatch(new GenericCommandMessage<>(removeKufangCommand(id)));
-//    return commandGateway.send(removeKufangCommand(id));
+    //    return commandGateway.send(removeKufangCommand(id));
 
   }
-  private RemoveKufangCommand removeKufangCommand(String id){
+
+  private RemoveKufangCommand removeKufangCommand(String id) {
     return RemoveKufangCommand.builder().kufangId(createKufangId(id)).build();
   }
+
   private KufangId createKufangId(String id) {
     return KufangId.builder().identifier(id).build();
   }
 
   private Optional<KufangEntity> findByIdentifier(String identifier) {
     return kufangQueryService.findByIdentifier(identifier);
-
   }
 
   /**
-   * POST /countries : Create a new kufang.
-   * 创建新记录
+   * POST /countries : Create a new kufang. 创建新记录
    *
    * @param kufang the country to create
    * @return the ResponseEntity with status 201 (Created) and with body the new country, or with
-   * status 400 (Bad Request) if the country has already an ID
-   * @throws  if the Location URI syntax is incorrect
+   *     status 400 (Bad Request) if the country has already an ID
+   * @throws if the Location URI syntax is incorrect
    */
-
   public Optional<KufangEntity> create(KufangEntity kufang) {
     var command = createKufangCommand(kufang);
     commandGateway.sendAndWait(command);
-//    commandBus.dispatch(new GenericCommandMessage<>(command));
+    //    commandBus.dispatch(new GenericCommandMessage<>(command));
     return findByIdentifier(command.getKufangId().getIdentifier());
   }
 
   private CreateKufangCommand createKufangCommand(KufangEntity kufang) {
-    return CreateKufangCommand.builder().kufangId(createKufangId()).kufangName(createKufangName(kufang.getName()).get()).bz(kufang.getBz()).build();
-
+    return CreateKufangCommand.builder()
+        .kufangId(createKufangId())
+        .kufangName(createKufangName(kufang.getName()).get())
+        .bz(kufang.getBz())
+        .build();
   }
 
   private KufangId createKufangId() {
     return KufangId.builder().build();
   }
 
-
   private Optional<KufangName> createKufangName(String name) {
     return Optional.of(KufangName.builder().name(name).build());
   }
-
 }
 
 //    public ResponseEntity<Resource<KufangEntity>> create(KufangEntity kufang) throws Exception {
@@ -125,5 +129,6 @@ public class KufangServiceImpl implements KufangService {
 //    }
 
 //  public ResponseEntity createKufang(@RequestBody KufangEntity kufang) {
-//    return ResponseEntity.ok(assembler.toResource(kufangQueryService.findByIdentifier(command.getKufangId().getIdentifier()).get()));
+//    return
+// ResponseEntity.ok(assembler.toResource(kufangQueryService.findByIdentifier(command.getKufangId().getIdentifier()).get()));
 //  }

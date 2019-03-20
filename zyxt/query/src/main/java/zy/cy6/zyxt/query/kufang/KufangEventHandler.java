@@ -1,7 +1,6 @@
 package zy.cy6.zyxt.query.kufang;
 
 import lombok.extern.slf4j.Slf4j;
-import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,7 @@ import zy.cy6.zyxt.api.product.kufang.KufangRemovedEvent;
 import zy.cy6.zyxt.query.kufang.repositories.KufangQueryRepository;
 
 @Service
-@ProcessingGroup("queryModel")
+//@ProcessingGroup("queryModel")
 @Slf4j
 public class KufangEventHandler {
   private final KufangQueryRepository repository;

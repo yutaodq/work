@@ -6,29 +6,17 @@ package zy.cy6.zyxt.web.controller;
 
 import com.codahale.metrics.annotation.Timed;
 import lombok.extern.slf4j.Slf4j;
-import lombok.var;
-
-import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.commandhandling.GenericCommandMessage;
-import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import zy.cy6.zyxt.api.product.kufang.CreateKufangCommand;
-import zy.cy6.zyxt.api.product.kufang.KufangId;
-import zy.cy6.zyxt.api.product.kufang.KufangName;
-import zy.cy6.zyxt.api.product.kufang.RemoveKufangCommand;
 import zy.cy6.zyxt.query.kufang.KufangEntity;
-import zy.cy6.zyxt.query.kufang.KufangQueryService;
-import zy.cy6.zyxt.web.product.KufangResourceAssembler;
 import zy.cy6.zyxt.web.product.KufangService;
 
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-
 
 @RestController
 @Slf4j
@@ -38,9 +26,8 @@ public class KufangController {
   private static final String ENTITY_NAME = "KufangEntity";
 
   @Autowired
-  public KufangController(KufangService kufangService ) {
+  public KufangController(KufangService kufangService) {
     this.kufangService = kufangService;
-
   }
 
   @GetMapping(value = "/kufangEntities", produces = MediaTypes.HAL_JSON_VALUE)
@@ -56,16 +43,16 @@ public class KufangController {
     return kufangService.findOne(id);
   }
 
-//  @DeleteMapping("/kufangEntities/{id}")
-//  public ResponseEntity<Void> deleteKufang(@PathVariable Long id) {
-//    log.info("删除工具记录 : {}", id);
-//    CreateKufangCommand command = new CreateKufangCommand(id, name.get(), bz);
-//    commandGateway.sendAndWait(command);
-//    //    countryService.delete(id);
-//    //    return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME,
-//    // id.toString())).build();
-//    return null;
-//  }
+  //  @DeleteMapping("/kufangEntities/{id}")
+  //  public ResponseEntity<Void> deleteKufang(@PathVariable Long id) {
+  //    log.info("删除工具记录 : {}", id);
+  //    CreateKufangCommand command = new CreateKufangCommand(id, name.get(), bz);
+  //    commandGateway.sendAndWait(command);
+  //    //    countryService.delete(id);
+  //    //    return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME,
+  //    // id.toString())).build();
+  //    return null;
+  //  }
   @DeleteMapping("/kufangEntities/{id}")
   public void remove(@PathVariable String id) {
     log.info("删除一个记录");
@@ -73,19 +60,15 @@ public class KufangController {
   }
 
   /**
-   * POST /countries : Create a new kufang.
-   * 创建新记录
+   * POST /countries : Create a new kufang. 创建新记录
    *
    * @param kufang the country to create
    * @return the ResponseEntity with status 201 (Created) and with body the new country, or with
-   * status 400 (Bad Request) if the country has already an ID
+   *     status 400 (Bad Request) if the country has already an ID
    * @throws URISyntaxException if the Location URI syntax is incorrect
    */
-
   @PostMapping("/kufangEntities")
   public Optional<KufangEntity> createKufang(@RequestBody KufangEntity kufang) {
     return kufangService.create(kufang);
   }
-
-
 }
