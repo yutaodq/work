@@ -14,7 +14,7 @@ import { IKufangEntity } from "app/models/kufang.model";
 import * as fromKufangs from "../reducers";
 import { SelectedKufangPageActions, CollectionApiActions } from "../actions";
 import { KufangService } from "../service";
-import { KufangFormModelService } from "app/xtwh/kufang/form";
+import { KufangFormModel } from "app/xtwh/kufang/form";
 import {
   DynamicFormControlModel,
   DynamicFormService
@@ -41,8 +41,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private actionsSubject: ActionsSubject,
     private _kufangService: KufangService,
-    private _formService: DynamicFormService,
-    private _formModelService: KufangFormModelService
+    private _formService: DynamicFormService
   ) {}
 
   ngOnInit() {
@@ -54,7 +53,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   }
 
   initFormGroup() {
-    this._formModel = this._formModelService.createFormModel(
+    this._formModel = KufangFormModel.createFormModel(
       this.kufang,
       this.kufangService,
       true

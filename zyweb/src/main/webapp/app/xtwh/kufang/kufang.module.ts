@@ -21,7 +21,7 @@ import {
 } from "@ng-dynamic-forms/core";
 import { KufangRoutingModule } from "./kufang-route.module";
 import { KufangService } from "./service";
-import { KufangFormService, KufangFormModelService } from "./form";
+// import { KufangFormService, KufangFormModel } from "./form";
 
 import {
   KufangListComponent,
@@ -65,10 +65,10 @@ const COMPONENT = [
 ];
 const ENTRY_COMPONENTS = [KufangComponent, KufangSelectedButtonComponent];
 const SERVICE = [
-  KufangFormService,
+  // KufangFormService,
   KufangService,
-  UniqueNameValidator,
-  KufangFormModelService
+  UniqueNameValidator
+  // KufangFormModel
 ];
 
 @NgModule({

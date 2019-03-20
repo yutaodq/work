@@ -11,8 +11,8 @@ import {
 import { KufangService } from "app/xtwh/kufang";
 import { IKufangEntity } from "app/models";
 
-export class KufangFormModelService {
-  createFormModel(
+export class KufangFormModel {
+  static createFormModel(
     kufang: IKufangEntity,
     kufangService: KufangService,
     disabledField = true

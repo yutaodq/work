@@ -20,7 +20,7 @@ import {
   DynamicFormControlModel,
   DynamicFormService
 } from "@ng-dynamic-forms/core";
-import { KufangFormModelService } from "app/xtwh/kufang/form";
+import { KufangFormModel } from "app/xtwh/kufang/form";
 
 @Component({
   selector: "zy-new-kufang-page",
@@ -43,8 +43,7 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
     private _kufangService: KufangService,
     private activatedRoute: ActivatedRoute,
     private actionsSubject: ActionsSubject,
-    private _formService: DynamicFormService,
-    private _formModelService: KufangFormModelService
+    private _formService: DynamicFormService
   ) {
     this.activatedRoute.data.subscribe(data => {
       this._entity = data.kufang;
@@ -58,7 +57,7 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
     this.initFormGroup();
   }
   initFormGroup() {
-    this._formModel = this._formModelService.createFormModel(
+    this._formModel = KufangFormModel.createFormModel(
       this.entity,
       this.kufangService,
       false
