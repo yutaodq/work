@@ -1,0 +1,91 @@
+1- 案例 https://github.com/jerryhsieh/ngrx-demo
+
+[ngrx/store-1] 有關前端的狀態管理  
+    http://www.xampp.cc/archives/1998
+
+[ngrx/store-2] ngrx/store 用到的 Observable
+    http://www.xampp.cc/archives/2000
+
+[ngrx/store-3] Observable 的 運算子 (Operator)
+    http://www.xampp.cc/archives/2004
+    
+[ngrx/store-4] 多重資料流的 Operators
+    http://www.xampp.cc/archives/2006
+    
+[ngrx/store-5] 高階 (High Order) Observable
+    http://www.xampp.cc/archives/2009
+    
+[ngrx/store-6] Flux 的基本概念
+    http://www.xampp.cc/archives/2014
+
+[ngrx/store-7] 純函數 (Pure Function)
+http://www.xampp.cc/archives/2018
+
+[ngrx/store-8] Javascript Mutable 跟 Immutable 資料型態
+http://www.xampp.cc/archives/2020
+
+[ngrx-store-9] 用 Observable 來理解 Dispatcher 跟 Store
+http://www.xampp.cc/archives/2022
+
+[ngrx/store-10] Store 的大架構
+http://www.xampp.cc/archives/2028
+
+[ngrx/store-11] Store 架構加入最簡單的 Reducer
+http://www.xampp.cc/archives/2033
+
+[ngrx/store-12] Store 加完整的 Reducer
+http://www.xampp.cc/archives/2037
+
+[ngrx/store-13] Store 加入 select
+http://www.xampp.cc/archives/2040
+
+[ngrx/store-14] 用 Angular 5 建立一個投顧網站 - 需求篇
+http://www.xampp.cc/archives/2044
+
+[ngrx/store-15] 投顧網站 - 設定篇
+http://www.xampp.cc/archives/2050
+
+[ngrx/store-16] Angular 網站實例之 - 首頁篇
+http://www.xampp.cc/archives/2054
+
+[ngrx/store-17] Angular 網站實例 - 使用者登入篇
+http://www.xampp.cc/archives/2059
+
+[ngrx/store-18] Angular 網站實例 - 用 express 做後端
+http://www.xampp.cc/archives/2064
+
+[ngrx/store-19] Angular 網站實例 - 使用者服務篇
+http://www.xampp.cc/archives/2068
+
+[ngrx/store-20] Angular 網站實例 - 記得我篇
+http://www.xampp.cc/archives/2074
+
+[ngrx/store-21] Angular 網站實例 - 記得我之二篇
+http://www.xampp.cc/archives/2077
+
+[ngrx/store-22] Angular 網站實例 - 會員篇之後端
+http://www.xampp.cc/archives/2080
+
+[ngrx/store-23] Angular 網站實例 - 會員報告摘要篇
+http://www.xampp.cc/archives/2087
+
+[ngrx/store-24] Angular 網站實例 - 會員報告篇
+http://www.xampp.cc/archives/2092
+
+[ngrx/store-25] ngrx/store 設定篇及會員篇之 Action, Reducer
+http://www.xampp.cc/archives/2096
+
+[ngrx/store-26] ngrx/store 之會員篇 Effects, Selector
+http://www.xampp.cc/archives/2103
+
+[ngrx/store-27] ngrx/store 之會員篇
+http://www.xampp.cc/archives/2106
+
+[ngrx/store-28] ngrx/store 之路由篇
+http://www.xampp.cc/archives/2109
+
+[ngrx/store-29] ngrx/store 之報告篇
+http://www.xampp.cc/archives/2113
+
+[ngrx/store-30] ngrx/store 完成篇
+http://www.xampp.cc/archives/2115

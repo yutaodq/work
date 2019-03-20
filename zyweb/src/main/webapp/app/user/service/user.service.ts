@@ -9,11 +9,10 @@ import { Router } from "@angular/router";
 
 @Injectable()
 export class UserService {
-  constructor(
-    private _router: Router,
-    private http: HttpClient,
-    private store: Store<fromUser.State>
-  ) {}
+  constructor() // private _router: Router,
+  // private http: HttpClient,
+  // private store: Store<fromUser.State>
+  {}
 
   login(username: string, password: string) {
     console.log("应用程序启动成功{}和{}" + username + password);

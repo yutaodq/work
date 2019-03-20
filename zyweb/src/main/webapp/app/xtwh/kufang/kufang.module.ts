@@ -9,8 +9,8 @@ import { DynamicFormsNGBootstrapUIModule } from "@ng-dynamic-forms/ui-ng-bootstr
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 
-import { reducers } from "app/xtwh/kufang/reducers";
-import { CollectionEffects } from "app/xtwh/kufang/effects/collection.effects";
+import { reducers } from "./reducers";
+import { CollectionEffects } from "./effects";
 
 import { ZyxtSharedModule } from "app/shared";
 import { CoreModule } from "app/core";
@@ -22,12 +22,9 @@ import {
   DYNAMIC_VALIDATORS
 } from "@ng-dynamic-forms/core";
 
-import {
-  kufangRoute,
-  KufangService,
-  KufangFormService,
-  KufangFormModelService
-} from "./";
+import { kufangRoute } from "./";
+import { KufangService } from "./service";
+import { KufangFormService, KufangFormModelService } from "./form";
 
 import {
   KufangListComponent,
@@ -85,8 +82,8 @@ const SERVICE = [
     StoreModule.forFeature("kufangs", reducers),
     EffectsModule.forFeature([CollectionEffects])
   ],
-  declarations: [COMPONENT],
-  entryComponents: [ENTRY_COMPONENTS],
+  declarations: [...COMPONENT],
+  entryComponents: [...ENTRY_COMPONENTS],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     ...SERVICE,
