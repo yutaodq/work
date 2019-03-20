@@ -23,6 +23,7 @@ import {
   ZyFormLayoutsComponent,
   SelectedPageButtonComponent,
   NewPageButtonComponent,
+  ConfirmCancelButtonComponent,
   RemoveDialogComponent,
   DialogButtonComponent
 } from "./components";
@@ -42,6 +43,7 @@ const COMPONENTS = [
   ZyFormLayoutsComponent,
   SelectedPageButtonComponent,
   NewPageButtonComponent,
+  ConfirmCancelButtonComponent,
   RemoveDialogComponent,
   DialogButtonComponent
 ];

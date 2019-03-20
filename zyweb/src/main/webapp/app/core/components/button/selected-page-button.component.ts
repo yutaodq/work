@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import * as fromKufangs from "app/xtwh/kufang/reducers";
-import { Store } from "@ngrx/store";
 
 @Component({
   selector: "zy-selected-page-button",

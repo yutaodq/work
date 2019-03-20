@@ -20,7 +20,7 @@ import {
   DynamicFormService
 } from "@ng-dynamic-forms/core";
 import { FormGroup } from "@angular/forms";
-import { NG_BOOTSTRAP_KUFANG_FORM_MODEL } from "app/xtwh/kufang/form/kufang-form.model";
+// import { NG_BOOTSTRAP_KUFANG_FORM_MODEL } from "app/xtwh/kufang/form/kufang-form.model";
 
 @Component({
   selector: "zy-selected-kufang-page",
@@ -48,7 +48,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.initEntity();
     this.initKufang();
-    this.setPageTitle();
+    this.initPageTitle();
     this.removeKufangSuccessLink();
     this.initFormGroup();
   }
@@ -96,7 +96,7 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
     this._entity$.subscribe((enityt: IKufangEntity) => (this._kufang = enityt));
   }
 
-  private setPageTitle() {
+  private initPageTitle() {
     this.activatedRoute.data.subscribe(data => {
       this._pageTitle = data.pageTitle;
     });
@@ -109,6 +109,9 @@ export class SelectedKufangPageComponent implements OnInit, OnDestroy {
   get entity$(): Observable<IKufangEntity> {
     return this._entity$;
   }
+  /*
+   *设置
+   */
 
   get pageTitle(): string {
     return this._pageTitle;

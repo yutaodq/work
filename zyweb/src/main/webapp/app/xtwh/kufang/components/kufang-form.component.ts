@@ -41,6 +41,9 @@ export class KufangFormComponent implements OnInit, OnChanges {
   //   return this.formGroup.value;
   // }
 
+  /*
+   *设置属性
+   */
   @Input()
   set formGroup(formGroup: FormGroup) {
     this._formGroup = formGroup;

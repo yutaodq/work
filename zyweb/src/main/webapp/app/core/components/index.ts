@@ -6,4 +6,5 @@ export * from "./form/zy-form-layouts.component";
 export * from "./button/selected-page-button.component";
 export * from "./button/new-page-button.component";
 export * from "./button/dialog-button.component";
+export * from "./button/confirm-cancel-button.component";
 export * from "./modal/remove-dialog.component";
