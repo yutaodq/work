@@ -17,28 +17,30 @@ import zy.cy6.zyxt.web.util.Result;
 @Service
 public class UserServiceImpl implements UserService {
     public Result login(String username, String password, boolean rememberMe){
-        Result<AccountProfile> ret = Result.failure("登录失败");
-
-        if (StringUtils.isAnyBlank(username, password)) {
-            return ret;
-        }
-
-        UsernamePasswordToken token = new UsernamePasswordToken(username, MD5.md5(password), rememberMe);
-
-        try {
-            SecurityUtils.getSubject().login(token);
-            ret = Result.success(getProfile());
-        } catch (UnknownAccountException e) {
-            log.error(e.getMessage());
-            ret = Result.failure("用户不存在");
-        } catch (LockedAccountException e) {
-            log.error(e.getMessage());
-            ret = Result.failure("用户被禁用");
-        } catch (AuthenticationException e) {
-            log.error(e.getMessage());
-            ret = Result.failure("用户认证失败");
-        }
-        return ret;
+        log.info("你的应用程序配置错误! UserServiceImplUserServiceImplUserServiceImplUserServiceImpl");
+        return null;
+//        Result<AccountProfile> ret = Result.failure("登录失败");
+//
+//        if (StringUtils.isAnyBlank(username, password)) {
+//            return ret;
+//        }
+//
+//        UsernamePasswordToken token = new UsernamePasswordToken(username, MD5.md5(password), rememberMe);
+//
+//        try {
+//            SecurityUtils.getSubject().login(token);
+//            ret = Result.success(getProfile());
+//        } catch (UnknownAccountException e) {
+//            log.error(e.getMessage());
+//            ret = Result.failure("用户不存在");
+//        } catch (LockedAccountException e) {
+//            log.error(e.getMessage());
+//            ret = Result.failure("用户被禁用");
+//        } catch (AuthenticationException e) {
+//            log.error(e.getMessage());
+//            ret = Result.failure("用户认证失败");
+//        }
+//        return ret;
 
     }
     private AccountProfile getProfile() {

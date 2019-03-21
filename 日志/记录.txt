@@ -37,3 +37,13 @@ https://blog.csdn.net/ztguang/article/details/53107016
 
 学习 ngrx 模版
 https://github.com/tomastrajan/angular-ngrx-material-starter
+
+
+spring and angular 学习
+ 1 - https://github.com/jhipster/jhipster-sample-app
+ 
+ 2 - https://github.com/mrin9/Angular-SpringBoot-REST-JWT
+ 
+ 3 - https://github.com/borysn/spring-boot-angular2
+ 
+ 4 -https://github.com/spring-guides/tut-spring-security-and-angular-js

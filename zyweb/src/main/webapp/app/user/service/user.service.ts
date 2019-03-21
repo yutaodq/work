@@ -8,22 +8,27 @@ import * as fromUser from "../reducers";
 import * as action from "../actions";
 import { Router } from "@angular/router";
 import { IUserEntity } from "app/models";
+import { SERVER_API_URL } from "app/app.constants";
 
 @Injectable()
 export class UserService {
-  constructor(private store: Store<fromUser.State>) {}
+  private resourceUrl = SERVER_API_URL + "api";
+  constructor(private store: Store<fromUser.State>, private http: HttpClient) {}
   // private _router: Router,
   // private http: HttpClient,
   // private store: Store<fromUser.State>
 
   loginDispatch(user: IUserEntity) {
     this.store.dispatch(new action.LoginAction(user));
-
     console.log("应用程序启动成功{}和{}" + user.username + user.password);
+    this.login(user);
   }
 
   login(user: IUserEntity) {
     console.log("应用程序登录");
+    return this.http.post<Response>(this.resourceUrl + "/login", user);
+    // return this.http.post<Response>(this.resourceUrl + '/login',
+    //   { username: user.username, password: user.password });
   }
 
   // constructor(

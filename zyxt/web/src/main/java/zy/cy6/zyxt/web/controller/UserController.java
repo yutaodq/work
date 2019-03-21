@@ -23,8 +23,13 @@ public class UserController {
     }
 
     @PostMapping(value = "/login")
-    public Result login(String username, String password) {
-        return userService.login(username, password, false);
+    public Result login(USER) {
+        log.info("你的应用程序配置错误!infoinfoinfoinfoinfoinfo。");
+        return null;
     }
+//    public Result login(String username, String password) {
+//        log.info("你的应用程序配置错误!infoinfoinfoinfoinfoinfo。"                       );
+//        return userService.login(username, password, false);
+//    }
 
 }
