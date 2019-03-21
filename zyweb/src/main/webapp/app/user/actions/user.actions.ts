@@ -18,7 +18,6 @@ export enum UserActionTypes {
 // define Actions class
 export class LoginAction implements Action {
   readonly type = UserActionTypes.LOGIN;
-
   constructor(public payload: IUserEntity) {}
 }
 

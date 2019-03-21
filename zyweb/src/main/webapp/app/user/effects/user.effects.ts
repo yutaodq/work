@@ -12,26 +12,26 @@ import { Response } from "app/models";
 
 @Injectable()
 export class UserEffects {
-  // @Effect()
-  // loginEffect$: Observable<Action> = this.action$.pipe(
-  //   ofType(actions.UserActionTypes.LOGIN),
-  //   map((action: actions.LoginAction) => action.payload),
-  //   switchMap((user: IUserEntity) => {
-  //     return this.userService.loginServer(user).pipe(
-  //       map((res: Response) => {
-  //         if (res.success) {
-  //           if (user.rememberMe) {
-  //             this.utilsService.writeToken(res.payload);
-  //           }
-  //           return new actions.LoginSuccessAction(user.username);
-  //         } else {
-  //           return new actions.LoginFailAction(res.payload);
-  //         }
-  //       }),
-  //       catchError(err => of(new actions.LoginFailAction(err)))
-  //     );
-  //   })
-  // );
+  @Effect()
+  loginEffect$: Observable<Action> = this.action$.pipe(
+    ofType(actions.UserActionTypes.LOGIN),
+    map((action: actions.LoginAction) => action.payload),
+    switchMap((user: IUserEntity) => {
+      return this.userService.login(user).pipe(
+        map((res: Response) => {
+          if (res.success) {
+            if (user.rememberMe) {
+              this.utilsService.writeToken(res.payload);
+            }
+            return new actions.LoginSuccessAction(user.username);
+          } else {
+            return new actions.LoginFailAction(res.payload);
+          }
+        }),
+        catchError(err => of(new actions.LoginFailAction(err)))
+      );
+    })
+  );
 
   // @Effect()
   // logoutEffect$: Observable<Action> = this.action$.pipe(
@@ -61,7 +61,6 @@ export class UserEffects {
 
   constructor(
     private action$: Actions,
-    private userService: UserService
-  ) // private utilsService: UtilsService
-  {}
+    private userService: UserService // private utilsService: UtilsService
+  ) {}
 }

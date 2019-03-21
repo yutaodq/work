@@ -33,7 +33,7 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
   private _entity: IKufangEntity;
   private _formModel: DynamicFormControlModel[];
   private _formGroup: FormGroup;
-  private _kufang: IKufangEntity;
+  // private _kufang: IKufangEntity;
 
   @ViewChild("kufangForm") private _kufangFormComponent: KufangFormComponent;
 
@@ -47,7 +47,7 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
   ) {
     this.activatedRoute.data.subscribe(data => {
       this._entity = data.kufang;
-      this._kufang = data.kufang;
+      // this._kufang = data.kufang;
     });
   }
 
@@ -113,9 +113,9 @@ export class NewKufangPageComponent implements OnInit, OnDestroy {
     return this._formModel;
   }
 
-  get kufang() {
-    return this._kufang;
-  }
+  // get kufang() {
+  //   return this._kufang;
+  // }
   get kufangService() {
     return this._kufangService;
   }

@@ -43,8 +43,9 @@ export class LoginPageComponent implements OnInit {
   }
 
   login() {
-    console.log(`应用程序启动成功: login`);
-    this._userService.login(this.username(), this.password());
+    this._userService.loginDispatch(this._formGroup.value);
+
+    // this._userService.loginDispatch(this.username(), this.password());
   }
 
   cancel() {

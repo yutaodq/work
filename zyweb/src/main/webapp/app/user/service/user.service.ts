@@ -5,18 +5,27 @@ import { HttpClient } from "@angular/common/http";
 import "rxjs/add/operator/map";
 import { Store } from "@ngrx/store";
 import * as fromUser from "../reducers";
+import * as action from "../actions";
 import { Router } from "@angular/router";
+import { IUserEntity } from "app/models";
 
 @Injectable()
 export class UserService {
-  constructor() // private _router: Router,
+  constructor(private store: Store<fromUser.State>) {}
+  // private _router: Router,
   // private http: HttpClient,
   // private store: Store<fromUser.State>
-  {}
 
-  login(username: string, password: string) {
-    console.log("应用程序启动成功{}和{}" + username + password);
+  loginDispatch(user: IUserEntity) {
+    this.store.dispatch(new action.LoginAction(user));
+
+    console.log("应用程序启动成功{}和{}" + user.username + user.password);
   }
+
+  login(user: IUserEntity) {
+    console.log("应用程序登录");
+  }
+
   // constructor(
   //   private http: HttpClient,
   //   // private appConfig: AppConfig,
