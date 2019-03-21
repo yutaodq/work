@@ -44,6 +44,4 @@ spring and angular 学习
  
  2 - https://github.com/mrin9/Angular-SpringBoot-REST-JWT
  
- 3 - https://github.com/borysn/spring-boot-angular2
- 
  4 -https://github.com/spring-guides/tut-spring-security-and-angular-js
