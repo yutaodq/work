@@ -59,8 +59,7 @@ export class UserEffects {
   //   })
   // );
 
-  constructor(
-    private action$: Actions,
-    private userService: UserService // private utilsService: UtilsService
-  ) {}
+  constructor(private action$: Actions) // private userService: UserService
+  // private utilsService: UtilsService
+  {}
 }

@@ -76,7 +76,9 @@ export class CollectionEffects {
         )
     )
   );
-
+  /*
+ *删除记录
+ */
   @Effect()
   removeBookFromCollection$: Observable<Action> = this.actions$.pipe(
     ofType<SelectedKufangPageActions.RemoveKufang>(

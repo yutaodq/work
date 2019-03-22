@@ -4,38 +4,50 @@ package zy.cy6.zyxt.web.controller;
  *参见 spring官方案例 spring-hateoas-examples
  */
 
-import com.codahale.metrics.annotation.Timed;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.MediaTypes;
-import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import zy.cy6.zyxt.query.kufang.KufangEntity;
-import zy.cy6.zyxt.web.product.KufangService;
+import zy.cy6.zyxt.web.product.kufang.service.KufangService;
 
 import java.net.URISyntaxException;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
 @Slf4j
 @RequestMapping("/api")
+//@ExposesResourceFor(KufangEntity.class)
 public class KufangController {
   private final KufangService kufangService;
+  private final EntityLinks entityLinks;
   private static final String ENTITY_NAME = "KufangEntity";
 
   @Autowired
-  public KufangController(KufangService kufangService) {
+  public KufangController(KufangService kufangService,
+                          EntityLinks entityLinks ) {
     this.kufangService = kufangService;
+    this.entityLinks = entityLinks;
+
   }
 
-  @GetMapping(value = "/kufangEntities", produces = MediaTypes.HAL_JSON_VALUE)
-  @Timed
-  public List<KufangEntity> getAllKufangs() {
-    log.info("查找所有的工具记录");
-    return kufangService.findAllKufang();
+//  @GetMapping(value = "/kufangEntities", produces = MediaTypes.HAL_JSON_VALUE)
+//  @Timed
+//  public List<KufangEntity> getAllKufangs() {
+//    log.info("查找所有的工具记录");
+//    return kufangService.findAllKufang();
+//  }
+
+  @RequestMapping(value = "/kufangEntities", method = RequestMethod.GET)
+  public HttpEntity<Resources<KufangEntity>> getAllKufangs() {
+    Resources<KufangEntity> resources = new Resources<KufangEntity>(this.kufangService.findAllKufang());
+//    resources.add(this.entityLinks.linkToCollectionResource(KufangEntity.class));
+    return new ResponseEntity< Resources< KufangEntity > >(resources, HttpStatus.OK);
   }
+
 
   @GetMapping(value = "/kufangEntities/{id}", produces = MediaTypes.HAL_JSON_VALUE)
   public ResponseEntity<Resource<KufangEntity>> findOne(@PathVariable Long id) {

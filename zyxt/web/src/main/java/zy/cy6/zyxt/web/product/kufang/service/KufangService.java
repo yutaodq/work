@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.web.product;
+package zy.cy6.zyxt.web.product.kufang.service;
 
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;

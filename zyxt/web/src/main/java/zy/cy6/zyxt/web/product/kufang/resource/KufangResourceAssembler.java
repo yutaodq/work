@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.web.product;
+package zy.cy6.zyxt.web.product.kufang.resource;
 
 import org.springframework.stereotype.Component;
 import zy.cy6.zyxt.common.hateoas.SimpleIdentifiableResourceAssembler;

@@ -1,4 +1,4 @@
-package zy.cy6.zyxt.web.product.impl;
+package zy.cy6.zyxt.web.product.kufang.service.impl;
 
 /*
  *参见 spring官方案例 spring-hateoas-examples
@@ -20,8 +20,8 @@ import zy.cy6.zyxt.api.product.kufang.KufangName;
 import zy.cy6.zyxt.api.product.kufang.RemoveKufangCommand;
 import zy.cy6.zyxt.query.kufang.KufangEntity;
 import zy.cy6.zyxt.query.kufang.KufangQueryService;
-import zy.cy6.zyxt.web.product.KufangResourceAssembler;
-import zy.cy6.zyxt.web.product.KufangService;
+import zy.cy6.zyxt.web.product.kufang.resource.KufangResourceAssembler;
+import zy.cy6.zyxt.web.product.kufang.service.KufangService;
 
 import java.util.List;
 import java.util.Optional;
