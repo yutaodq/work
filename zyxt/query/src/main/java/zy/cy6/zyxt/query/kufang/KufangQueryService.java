@@ -19,8 +19,6 @@ public class KufangQueryService {
   @Autowired
   public KufangQueryService(KufangQueryRepository kufangRepository) {
     this.kufangRepository = kufangRepository;
-//    this.kufangSearchRepository = kufangSearchRepository;
-
   }
 
   public Optional<KufangEntity> findOne(Long id) {
@@ -36,13 +34,9 @@ public class KufangQueryService {
     return kufangRepository.findByIdentifier(identifier);
 
   }
-
   public List<KufangEntity> findAllKufangs() {
     log.info("所有的库房记录");
     return kufangRepository.findAll();
   }
 
-//  public List<KufangEntity> search(String query) {
-//    return StreamSupport.stream(kufangSearchRepository.search(queryStringQuery(query)).spliterator(), false).collect(Collectors.toList());
-//  }
 }

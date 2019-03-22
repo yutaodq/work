@@ -12,6 +12,9 @@ import java.util.Optional;
 //public interface KufangQueryRepository extends CrudRepository<KufangEntity, Long> {
 public interface KufangQueryRepository extends JpaRepository<KufangEntity, Long> {
 
+//    Optional<List<KufangEntity>> findAll();
+
+    @Override
     Optional<KufangEntity> findById(Long id);
 
     Optional<KufangEntity> findByIdentifier(String identifier);

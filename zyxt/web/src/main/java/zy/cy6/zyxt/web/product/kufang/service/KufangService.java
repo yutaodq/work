@@ -1,7 +1,6 @@
 package zy.cy6.zyxt.web.product.kufang.service;
 
 import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
 import zy.cy6.zyxt.query.kufang.KufangEntity;
 
@@ -9,9 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface KufangService {
-    List<KufangEntity> findAllKufang();
+//    List<KufangEntity> findAllKufang();
 
-    ResponseEntity<Resources<Resource<KufangEntity>>> findAll();
+//    ResponseEntity<Resources<Resource<KufangEntity>>> findAll();
+    ResponseEntity<List<KufangEntity>> findAll();
 
     ResponseEntity<Resource<KufangEntity>> findOne(Long id);
 

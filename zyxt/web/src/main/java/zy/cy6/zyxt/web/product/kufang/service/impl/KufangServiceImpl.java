@@ -11,7 +11,7 @@ import org.axonframework.commandhandling.GenericCommandMessage;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.Resources;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import zy.cy6.zyxt.api.product.kufang.CreateKufangCommand;
@@ -46,11 +46,12 @@ public class KufangServiceImpl implements KufangService {
     this.kufangQueryService = kufangQueryService;
   }
 
+  @Override
   public Optional<KufangEntity> findKufangName(String name) {
     return kufangQueryService.findByKufangName(createKufangName(name).get());
   }
 
-  public List<KufangEntity> findAllKufang() {
+  private List<KufangEntity> findAllKufang() {
     log.info("所有的工具记录");
     return kufangQueryService.findAllKufangs();
   }
@@ -59,20 +60,27 @@ public class KufangServiceImpl implements KufangService {
    * D:\yutao\源代码\spring-hateoas-examples\hypermedia\src\main\java\org\springframework\hateoas\examples\EmployeeController.java
    */
   //  @GetMapping(value = "/kufangs", produces = MediaTypes.HAL_JSON_VALUE)
-  public ResponseEntity<Resources<Resource<KufangEntity>>> findAll() {
-    return ResponseEntity.ok(assembler.toResources(findAllKufang()));
+
+  @Override
+  public ResponseEntity<List<KufangEntity>> findAll() {
+    return  new ResponseEntity<List<KufangEntity>>(findAllKufang(), HttpStatus.OK);
   }
 
+//  @Override
+//  public ResponseEntity<Resources<Resource<KufangEntity>>> findAll() {
+//    return ResponseEntity.ok(assembler.toResources(findAllKufang()));
+//  }
+
+  @Override
   public ResponseEntity<Resource<KufangEntity>> findOne(Long id) {
     return kufangQueryService
         .findOne(id)
         .map(assembler::toResource)
         .map(ResponseEntity::ok)
         .orElse(ResponseEntity.notFound().build());
-    //        return
-    // repository.findById(id).map(assembler::toResource).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-  }
+ }
   /** 删除记录 */
+  @Override
   public void remove(String id) {
     commandBus.dispatch(new GenericCommandMessage<>(removeKufangCommand(id)));
     //    return commandGateway.send(removeKufangCommand(id));
@@ -99,6 +107,7 @@ public class KufangServiceImpl implements KufangService {
    *     status 400 (Bad Request) if the country has already an ID
    * @throws if the Location URI syntax is incorrect
    */
+  @Override
   public Optional<KufangEntity> create(KufangEntity kufang) {
     var command = createKufangCommand(kufang);
     commandGateway.sendAndWait(command);
