@@ -9,7 +9,7 @@ import { Store } from "@ngrx/store";
 import * as fromKufangs from "app/xtwh/kufang/reducers";
 
 import { SERVER_API_URL } from "app/app.constants";
-import { createRequestOption } from "app/shared";
+// import { createRequestOption } from "app/shared";
 import { IKufangEntity, KufangEntity } from "app/models/kufang.model";
 // import { IZyEntityService } from "app/core/service/";
 

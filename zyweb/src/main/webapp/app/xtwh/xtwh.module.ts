@@ -1,10 +1,12 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
-import { ProductModule } from "./product/product.module";
+// import { ProductModule } from "./product/product.module";
 import { KufangModule } from "app/xtwh/kufang/kufang.module";
 
 @NgModule({
-  imports: [ProductModule, KufangModule],
+  // imports: [ProductModule, KufangModule],
+  imports: [KufangModule],
+
   declarations: [],
   entryComponents: [],
   providers: [],

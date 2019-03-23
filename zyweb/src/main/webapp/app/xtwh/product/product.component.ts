@@ -38,26 +38,26 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   loadAll() {
     if (this.currentSearch) {
-      this.productService
-        .search({
-          query: this.currentSearch
-        })
-        .subscribe(
-          (res: HttpResponse<IProductEntity[]>) => (this.products = res.body),
-          (res: HttpErrorResponse) => this.onError(res.message)
-        );
+      // this.productService
+      //   .search({
+      //     query: this.currentSearch
+      //   })
+      //   .subscribe(
+      //     (res: HttpResponse<IProductEntity[]>) => (this.products = res.body),
+      //     (res: HttpErrorResponse) => this.onError(res.message)
+      //   );
       return;
     }
-    this.productService.query().subscribe(
-      (res: HttpResponse<IProductEntity[]>) => {
-        // this.products = res.body;
-        console.log("yyuuuuuuuu" + res.body);
-        this.products = res.body;
-
-        this.currentSearch = "";
-      },
-      (res: HttpErrorResponse) => this.onError(res.message)
-    );
+    // this.productService.query().subscribe(
+    //   (res: HttpResponse<IProductEntity[]>) => {
+    //     // this.products = res.body;
+    //     console.log("yyuuuuuuuu" + res.body);
+    //     this.products = res.body;
+    //
+    //     this.currentSearch = "";
+    //   },
+    //   (res: HttpErrorResponse) => this.onError(res.message)
+    // );
   }
 
   search(query) {

@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 import { SERVER_API_URL } from "app/app.constants";
-import { createRequestOption } from "app/shared";
+// import { createRequestOption } from "app/shared";
 import { IProductEntity } from "app/models";
 
 type EntityResponseType = HttpResponse<IProductEntity>;
@@ -35,13 +35,13 @@ export class ProductService {
     });
   }
 
-  query(req?: any): Observable<EntityArrayResponseType> {
-    const options = createRequestOption(req);
-    return this.http.get<IProductEntity[]>(this.resourceUrl, {
-      params: options,
-      observe: "response"
-    });
-  }
+  // query(req?: any): Observable<EntityArrayResponseType> {
+  //   const options = createRequestOption(req);
+  //   return this.http.get<IProductEntity[]>(this.resourceUrl, {
+  //     params: options,
+  //     observe: "response"
+  //   });
+  // }
 
   // getAll(req?: any) {
   //     const options = createRequestOption(req);
@@ -54,11 +54,11 @@ export class ProductService {
     });
   }
 
-  search(req?: any): Observable<EntityArrayResponseType> {
-    const options = createRequestOption(req);
-    return this.http.get<IProductEntity[]>(this.resourceSearchUrl, {
-      params: options,
-      observe: "response"
-    });
-  }
+  // search(req?: any): Observable<EntityArrayResponseType> {
+  //   const options = {};
+  //   return this.http.get<IProductEntity[]>(this.resourceSearchUrl, {
+  //     params: options,
+  //     observe: "response"
+  //   });
+  // }
 }

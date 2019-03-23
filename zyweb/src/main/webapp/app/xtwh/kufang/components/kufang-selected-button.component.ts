@@ -37,10 +37,12 @@ export class KufangSelectedButtonComponent implements OnInit {
   onKufangCreate(zy: string) {
     this._kufangService.linkToNewKufangPage();
   }
+
   /* onKufangDelete() 请参照angular-example-app项目
    * \heroes\pages\heroes-list-page\heroes-list-page.component.ts
    * deleteHero(hero: Hero)
    */
+
   onKufangDelete(zy: string) {
     this.dialogService
       .open(RemoveDialogComponent, {
@@ -48,13 +50,28 @@ export class KufangSelectedButtonComponent implements OnInit {
           title: this._kufang.name + "对话框"
         }
       })
-      .onClose.filter(data => data === dialog.DIALOG_YES)
-      .subscribe(_ => {
-        this._store.dispatch(
-          new SelectedKufangPageActions.RemoveKufang(this._kufang)
-        );
+      .onClose.subscribe(data => {
+        if (data === dialog.DIALOG_YES) {
+          this._store.dispatch(
+            new SelectedKufangPageActions.RemoveKufang(this._kufang)
+          );
+        }
       });
   }
+  // onKufangDelete(zy: string) {
+  //   this.dialogService
+  //     .open(RemoveDialogComponent, {
+  //       context: {
+  //         title: this._kufang.name + "对话框"
+  //       }
+  //     })
+  //     .onClose.filter(data => data === dialog.DIALOG_YES)
+  //     .subscribe(_ => {
+  //       this._store.dispatch(
+  //         new SelectedKufangPageActions.RemoveKufang(this._kufang)
+  //       );
+  //     });
+  // }
 
   onKufangEdit() {
     console.log(`在控制台打印:修改库房名称`);

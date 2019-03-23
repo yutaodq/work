@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
-import { ZyxtSharedModule } from "app/shared";
+// import { ZyxtSharedModule } from "app/shared";
 import {
   ProductComponent,
   ProductNewComponent,
@@ -17,7 +17,7 @@ const PRODUCT_STATES = [...productRoute, ...productPopupRoute];
 // const PRODUCT_STATES = [...productRoute];
 
 @NgModule({
-  imports: [ZyxtSharedModule, RouterModule.forChild(PRODUCT_STATES)],
+  imports: [RouterModule.forChild(PRODUCT_STATES)],
   declarations: [
     ProductComponent,
     ProductNewComponent,
