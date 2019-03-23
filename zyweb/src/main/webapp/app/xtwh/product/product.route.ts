@@ -8,7 +8,7 @@ import {
 } from "@angular/router";
 import { of } from "rxjs";
 import { map } from "rxjs/operators";
-import { ProductEntity } from "app/shared/model/product.model";
+import { ProductEntity, IProductEntity } from "app/models";
 // import { UserRouteAccessService } from "app/core";
 
 import { ProductService } from "./product.service";
@@ -18,7 +18,6 @@ import { ProductUpdateComponent } from "./product-update.component";
 import { ProductNewComponent } from "./product-new.component";
 
 import { ProductDeletePopupComponent } from "./product-delete-dialog.component";
-import { IProductEntity } from "app/shared/model/product.model";
 
 @Injectable({ providedIn: "root" })
 export class ProductResolve implements Resolve<IProductEntity> {

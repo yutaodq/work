@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule } from "@angular/core";
 
-import { ZyxtSharedLibsModule, JhiAlertComponent, JhiAlertErrorComponent } from './index';
+import { ZyxtSharedLibsModule } from "./index";
 @NgModule({
-    imports: [ZyxtSharedLibsModule],
-    declarations: [JhiAlertComponent, JhiAlertErrorComponent],
-    exports: [ZyxtSharedLibsModule, JhiAlertComponent, JhiAlertErrorComponent]
+  imports: [ZyxtSharedLibsModule],
+  declarations: [],
+  exports: [ZyxtSharedLibsModule]
 })
 export class ZyxtSharedCommonModule {}

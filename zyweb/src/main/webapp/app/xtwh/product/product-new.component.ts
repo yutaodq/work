@@ -4,7 +4,7 @@ import { HttpResponse, HttpErrorResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { JhiAlertService } from "ng-jhipster";
 
-import { IProductEntity } from "app/shared/model/product.model";
+import { IProductEntity } from "app/models";
 import { ProductService } from "./product.service";
 
 import { ProductFormGroup } from "./product-form-group";

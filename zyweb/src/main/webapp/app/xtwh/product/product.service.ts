@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 
 import { SERVER_API_URL } from "app/app.constants";
 import { createRequestOption } from "app/shared";
-import { IProductEntity } from "app/shared/model/product.model";
+import { IProductEntity } from "app/models";
 
 type EntityResponseType = HttpResponse<IProductEntity>;
 type EntityArrayResponseType = HttpResponse<IProductEntity[]>;

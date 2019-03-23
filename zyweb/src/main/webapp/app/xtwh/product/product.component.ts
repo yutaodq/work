@@ -4,11 +4,11 @@ import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { JhiEventManager, JhiAlertService } from "ng-jhipster";
 
-import { IProductEntity } from "app/shared/model/product.model";
+import { IProductEntity } from "app/models";
 import { ProductService } from "./product.service";
 
 @Component({
-  selector: "jhi-product",
+  selector: "zy-product",
   templateUrl: "./product.component.html"
 })
 export class ProductComponent implements OnInit, OnDestroy {

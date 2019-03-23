@@ -26,8 +26,8 @@ import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
 import * as fromStore from "./store";
 
 import { environment } from "../../../environments/environment";
-import { ErrorHandlerInterceptor } from "./blocks/interceptor/errorhandler.interceptor";
-import { NotificationInterceptor } from "./blocks/interceptor/notification.interceptor";
+// import { ErrorHandlerInterceptor } from "./blocks/interceptor/errorhandler.interceptor";
+// import { NotificationInterceptor } from "./blocks/interceptor/notification.interceptor";
 import { ZyxtAppRoutingModule } from "./app-routing.module";
 import { ZyxtHomeModule } from "./home";
 import { ZyxtAboutModule } from "./about";
@@ -80,20 +80,7 @@ import { AppComponent } from "app/core/containers/app.component";
     EffectsModule.forRoot([])
   ],
   declarations: [],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorHandlerInterceptor,
-      multi: true,
-      deps: [JhiEventManager]
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: NotificationInterceptor,
-      multi: true,
-      deps: [Injector]
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class ZyxtAppModule {}

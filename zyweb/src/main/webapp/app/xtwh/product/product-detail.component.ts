@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
-import { IProductEntity } from "app/shared/model/product.model";
+import { IProductEntity } from "app/models";
 
 @Component({
   selector: "zy-product-detail",
