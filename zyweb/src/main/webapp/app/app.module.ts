@@ -33,9 +33,8 @@ import { ZyxtHomeModule } from "./home";
 import { ZyxtAboutModule } from "./about";
 import { CoreModule } from "app/core";
 import { ZyxtSharedModule } from "app/shared";
-import { JhiEventManager } from "ng-jhipster";
 import { ZyxtXtwhModule } from "app/xtwh/xtwh.module";
-import { ThemeModule } from "./theme";
+// import { ThemeModule } from "./theme";
 import { UserModule } from "./user";
 
 import { AppComponent } from "app/core/containers/app.component";
@@ -60,7 +59,7 @@ import { AppComponent } from "app/core/containers/app.component";
     CoreModule,
     UserModule,
     NgbModule,
-    ThemeModule.forRoot(),
+    // ThemeModule.forRoot(),
 
     /*StoreModule。在根模块中导入一次forRoot，接受一个还原函数或还原函数的对象映射。
      *如果传递了一个简化程序的对象，那么将运行组合还原程序来创建您的应用程序元简化程序。

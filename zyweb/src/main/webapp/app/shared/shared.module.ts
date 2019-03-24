@@ -6,7 +6,7 @@ import { LayoutModule } from "./layout";
 
 const BASE_MODULES = [
   CommonModule,
-  ThemeNebularModule,
+  ThemeNebularModule.forRoot(),
   RouterModule,
   LayoutModule
 ];

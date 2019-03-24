@@ -1,0 +1,33 @@
+主页面布局
+<!--简单布局-->
+
+<nb-layout  windowMode>
+    <nb-layout-header fixed>
+        <zy-header></zy-header>
+    </nb-layout-header>
+
+    <nb-sidebar class="menu-sidebar"
+                tag="menu-sidebar"
+                responsive
+    >
+        <nb-menu [items]="menu"></nb-menu>
+    </nb-sidebar>
+
+    <nb-layout-column class="main-content">
+        <router-outlet></router-outlet>
+    </nb-layout-column>
+
+
+    <nb-layout-footer fixed>
+        <zy-footer></zy-footer>
+    </nb-layout-footer>
+
+</nb-layout>
+
+
+<!--<zy-sample-layout>-->
+<!--<zy-header></zy-header>-->
+<!--<nb-menu [items]="menu"></nb-menu>-->
+<!--<router-outlet></router-outlet>-->
+<!--<zy-footer></zy-footer>-->
+<!--</zy-sample-layout>-->
