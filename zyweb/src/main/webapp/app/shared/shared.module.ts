@@ -1,14 +1,21 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { NgbDateAdapter } from "@ng-bootstrap/ng-bootstrap";
+import { ThemeNebularModule } from "./theme-nebular.module";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { LayoutModule } from "./layout";
 
-// import { NgbDateMomentAdapter } from './util/datepicker-adapter';
-// import {ZyxtSharedLibsModule, ZyxtSharedCommonModule} from './index';
-// import {ZyxtSharedCommonModule} from './index';
+const BASE_MODULES = [
+  CommonModule,
+  ThemeNebularModule,
+  RouterModule,
+  LayoutModule
+];
+const EXPORTS_MODULES = [ThemeNebularModule, RouterModule, LayoutModule];
 
 @NgModule({
-  imports: [],
+  imports: [...BASE_MODULES],
   providers: [],
-  exports: [],
+  exports: [...EXPORTS_MODULES],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ZyxtSharedModule {}
