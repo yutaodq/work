@@ -29,7 +29,7 @@ import { environment } from "../../../environments/environment";
 // import { ErrorHandlerInterceptor } from "./blocks/interceptor/errorhandler.interceptor";
 // import { NotificationInterceptor } from "./blocks/interceptor/notification.interceptor";
 import { ZyxtAppRoutingModule } from "./app-routing.module";
-import { ZyxtHomeModule } from "./home";
+import { HomeModule } from "./features/home";
 import { ZyxtAboutModule } from "./about";
 import { CoreModule } from "app/core";
 import { ZyxtSharedModule } from "app/shared";
@@ -55,7 +55,7 @@ import { AppComponent } from "app/core/containers/app.component";
     ZyxtSharedModule,
     ZyxtAboutModule,
     ZyxtXtwhModule,
-    ZyxtHomeModule,
+    HomeModule,
     CoreModule,
     UserModule,
     NgbModule,
