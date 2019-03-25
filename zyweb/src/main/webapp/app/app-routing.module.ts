@@ -16,16 +16,15 @@ const ROUTES: Routes = [
     component: MainLayoutComponent,
     data: { pageTitle: "Home" },
     children: [
-      // {
-      //   path: "",
-      //   // redirectTo: "home/main",
-      //   loadChildren: "./features/home/home.module#HomeModule",
-      //   pathMatch: "full"
-      // },
       {
         path: "",
-        component: HomeComponent,
+        redirectTo: "home",
         // loadChildren: "./features/home/home.module#HomeModule",
+        pathMatch: "full"
+      },
+      {
+        path: "home",
+        loadChildren: "./features/home/home.module#HomeModule",
         data: { pageTitle: "App Views" }
       },
       {
