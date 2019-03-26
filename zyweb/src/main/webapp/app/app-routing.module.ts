@@ -6,10 +6,8 @@ import { MainLayoutComponent } from "./shared/layout";
 import { AboutComponent } from "app/about";
 import { HomeComponent } from "app/features/home/home.component";
 import { KufangComponent } from "app/xtwh/kufang";
-// import { AuthLayoutComponent } from "./shared/layout/app-layouts/auth-layout.component";
-// import { HomeLayoutComponent } from "./shared/layout/app-layouts/home-layout.component";
 
-const ROUTES: Routes = [
+const routes: Routes = [
   // { path: "", redirectTo: "home", pathMatch: "full" },
   {
     path: "",
@@ -18,8 +16,7 @@ const ROUTES: Routes = [
     children: [
       {
         path: "",
-        redirectTo: "home",
-        // loadChildren: "./features/home/home.module#HomeModule",
+        redirectTo: "kufang",
         pathMatch: "full"
       },
       {
@@ -35,15 +32,20 @@ const ROUTES: Routes = [
       }
     ]
   },
-  { path: "about", component: AboutComponent }
+  { path: "about", loadChildren: "./about/about.module#AboutModule" }
+  // { path: "aboutds", component: AboutComponent }
 ];
 
 const CONFIG: ExtraOptions = {
-  useHash: true
+  useHash: true,
+  enableTracing: true
 };
+// imports: [RouterModule.forRoot([...routes], CONFIG)],
 
 @NgModule({
-  imports: [RouterModule.forRoot([...ROUTES], CONFIG)],
+  imports: [
+    RouterModule.forRoot(routes, { useHash: true, enableTracing: true })
+  ],
   exports: [RouterModule]
 })
-export class ZyxtAppRoutingModule {}
+export class AppRoutingModule {}

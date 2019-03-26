@@ -5,6 +5,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { RouterModule, ExtraOptions } from "@angular/router";
 
 import { Ng2Webstorage } from "ngx-webstorage";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -28,9 +29,9 @@ import * as fromStore from "./store";
 import { environment } from "../../../environments/environment";
 // import { ErrorHandlerInterceptor } from "./blocks/interceptor/errorhandler.interceptor";
 // import { NotificationInterceptor } from "./blocks/interceptor/notification.interceptor";
-import { ZyxtAppRoutingModule } from "./app-routing.module";
+import { AppRoutingModule } from "./app-routing.module";
 // import { HomeModule } from "./features/home";
-import { ZyxtAboutModule } from "./about";
+// import { ZyxtAboutModule } from "./about";
 import { CoreModule } from "app/core";
 import { ZyxtSharedModule } from "app/shared";
 import { ZyxtXtwhModule } from "app/xtwh/xtwh.module";
@@ -48,12 +49,12 @@ import { AppComponent } from "app/core/containers/app.component";
     FormsModule,
     DynamicFormsCoreModule,
     HttpClientModule,
-
-    ZyxtAppRoutingModule,
+    RouterModule,
+    AppRoutingModule,
 
     Ng2Webstorage.forRoot({ prefix: "zy", separator: "-" }),
     ZyxtSharedModule,
-    ZyxtAboutModule,
+    // ZyxtAboutModule,
     ZyxtXtwhModule,
     // HomeModule,
     CoreModule,

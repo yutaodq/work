@@ -1,3 +1,3 @@
-export * from './about.component';
-export * from './about.route';
-export * from './about.module';
+export * from "./about.component";
+export * from "./about-routing.module";
+export * from "./about.module";
