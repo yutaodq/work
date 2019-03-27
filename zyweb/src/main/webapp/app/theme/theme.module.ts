@@ -34,8 +34,8 @@ import {
   NbTooltipModule
 } from "@nebular/theme";
 import { NbSecurityModule } from "@nebular/security";
-import { SampleLayoutComponent } from "./layouts";
-import { FooterComponent, HeaderComponent } from "./components";
+// import { SampleLayoutComponent } from "./layouts";
+// import { FooterComponent, HeaderComponent } from "./components";
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 const NB_MODULES = [
@@ -70,7 +70,8 @@ const NB_MODULES = [
   NbSelectModule,
   NbTooltipModule
 ];
-const COMPONENTS = [SampleLayoutComponent, FooterComponent, HeaderComponent];
+// const COMPONENTS = [SampleLayoutComponent, FooterComponent, HeaderComponent];
+const COMPONENTS = [];
 const NB_THEME_PROVIDERS = [
   ...NbThemeModule.forRoot({
     name: "corporate"
