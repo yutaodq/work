@@ -4,7 +4,7 @@ import { Routes, RouterModule, ExtraOptions } from "@angular/router";
 import { MainLayoutComponent } from "./shared/layout";
 import { KufangComponent } from "app/xtwh/kufang";
 
-const ROUTES: Routes = [
+const routes: Routes = [
   // { path: "", redirectTo: "home", pathMatch: "full" },
   {
     path: "",
@@ -14,7 +14,6 @@ const ROUTES: Routes = [
       {
         path: "",
         redirectTo: "kufang",
-        // loadChildren: "./features/home/home.module#HomeModule",
         pathMatch: "full"
       },
       {
@@ -31,16 +30,19 @@ const ROUTES: Routes = [
     ]
   },
   // { path: "about", component: AboutComponent }
-  { path: "about", loadChildren: "./about/about.module#AboutModule" }
-
+  { path: "about", loadChildren: "./about/about.module#AboutModule"}
 ];
 
 const CONFIG: ExtraOptions = {
-  useHash: true
+  useHash: true,
+  enableTracing: true
 };
+// imports: [RouterModule.forRoot([...routes], CONFIG)],
 
 @NgModule({
-  imports: [RouterModule.forRoot([...ROUTES], CONFIG)],
+  imports: [
+    RouterModule.forRoot(routes, { useHash: true, enableTracing: true })
+  ],
   exports: [RouterModule]
 })
-export class ZyxtAppRoutingModule {}
+export class AppRoutingModule {}
