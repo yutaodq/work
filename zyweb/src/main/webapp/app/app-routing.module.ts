@@ -26,7 +26,7 @@ const ROUTES: Routes = [
         path: "kufang",
         component: KufangComponent,
         // loadChildren: "./features/home/home.module#HomeModule",
-        data: { pageTitle: "App Views" }
+        data: { pageTitle: "App Viewsddddd" }
       }
     ]
   },
