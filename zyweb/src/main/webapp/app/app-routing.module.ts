@@ -3,9 +3,9 @@ import { Routes, RouterModule, ExtraOptions } from "@angular/router";
 // import { HomeComponent } from "./home";
 
 import { MainLayoutComponent } from "./shared/layout";
-import { AboutComponent } from "app/about";
 import { HomeComponent } from "app/features/home/home.component";
 import { KufangComponent } from "app/xtwh/kufang";
+import { AboutComponent } from "app/about/about.component";
 // import { AuthLayoutComponent } from "./shared/layout/app-layouts/auth-layout.component";
 // import { HomeLayoutComponent } from "./shared/layout/app-layouts/home-layout.component";
 
@@ -18,7 +18,7 @@ const ROUTES: Routes = [
     children: [
       {
         path: "",
-        redirectTo: "home",
+        redirectTo: "kufang",
         // loadChildren: "./features/home/home.module#HomeModule",
         pathMatch: "full"
       },

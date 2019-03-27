@@ -1,10 +1,10 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { ABOUT_ROUTE, AboutComponent } from "./index";
+import { NgModule } from "@angular/core";
+import { AboutRoutingModule } from "app/about/about-routint.module";
+import { CommonModule } from "@angular/common";
+import { AboutComponent } from "app/about/about.component";
 
 @NgModule({
-  imports: [RouterModule.forChild([ABOUT_ROUTE])],
+  imports: [CommonModule, AboutRoutingModule],
   declarations: [AboutComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ZyxtAboutModule {}
