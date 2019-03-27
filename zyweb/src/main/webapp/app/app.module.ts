@@ -29,7 +29,6 @@ import { environment } from "../../../environments/environment";
 // import { ErrorHandlerInterceptor } from "./blocks/interceptor/errorhandler.interceptor";
 // import { NotificationInterceptor } from "./blocks/interceptor/notification.interceptor";
 import { ZyxtAppRoutingModule } from "./app-routing.module";
-// import { HomeModule } from "./features/home";
 import { CoreModule } from "app/core";
 import { ZyxtSharedModule } from "app/shared";
 import { ZyxtXtwhModule } from "app/xtwh/xtwh.module";
@@ -37,7 +36,6 @@ import { ZyxtXtwhModule } from "app/xtwh/xtwh.module";
 import { UserModule } from "./user";
 
 import { AppComponent } from "app/core/containers/app.component";
-import { ZyxtAboutModule } from "app/about/about.module";
 
 @NgModule({
   imports: [
@@ -53,9 +51,7 @@ import { ZyxtAboutModule } from "app/about/about.module";
 
     Ng2Webstorage.forRoot({ prefix: "zy", separator: "-" }),
     ZyxtSharedModule,
-    ZyxtAboutModule,
     ZyxtXtwhModule,
-    // HomeModule,
     CoreModule,
     UserModule,
     NgbModule,

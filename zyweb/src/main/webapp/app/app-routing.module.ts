@@ -1,13 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule, ExtraOptions } from "@angular/router";
-// import { HomeComponent } from "./home";
 
 import { MainLayoutComponent } from "./shared/layout";
-import { HomeComponent } from "app/features/home/home.component";
 import { KufangComponent } from "app/xtwh/kufang";
-import { AboutComponent } from "app/about/about.component";
-// import { AuthLayoutComponent } from "./shared/layout/app-layouts/auth-layout.component";
-// import { HomeLayoutComponent } from "./shared/layout/app-layouts/home-layout.component";
 
 const ROUTES: Routes = [
   // { path: "", redirectTo: "home", pathMatch: "full" },
@@ -35,7 +30,9 @@ const ROUTES: Routes = [
       }
     ]
   },
-  { path: "about", component: AboutComponent }
+  // { path: "about", component: AboutComponent }
+  { path: "about", loadChildren: "./about/about.module#AboutModule" }
+
 ];
 
 const CONFIG: ExtraOptions = {
