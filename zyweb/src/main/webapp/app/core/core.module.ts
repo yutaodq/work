@@ -60,7 +60,7 @@ const ENTRY_COMPONENTS = [RemoveDialogComponent];
 
 @NgModule({
   imports: [...BASE_MODULES, RouterModule],
-  exports: [, ...COMPONENTS],
+  exports: [ ...COMPONENTS],
   declarations: [...COMPONENTS],
   providers: [...SERVICE],
   entryComponents: [...ENTRY_COMPONENTS],
