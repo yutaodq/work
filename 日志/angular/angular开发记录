@@ -1,5 +1,20 @@
 angular 开发记录
+2019-03-29
+1- 加入D:\yutao\work\zyweb\src\main\webapp\content\scss\vendor.scss
+   编译提示错误
+   怀疑：项目初始是css 现在使用scss,所以出错
+   解决方案：D:\yutao\work\zyweb\webpack\webpack.dev.js
+         {
+        test: /\.scss$/,
+        loaders: ['to-string-loader', 'css-loader', 'sass-loader'],
+        exclude: /(vendor\.scss|global\.scss)/
+      },
+      {
+        test: /(vendor\.scss|global\.scss)/,
+        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+      },
 
+   
 2019-3-28 
 
 1- 下载模版代码
@@ -32,7 +47,6 @@ tyarn add @ng-dynamic-forms/core @ng-dynamic-forms/ui-ng-bootstrap angular2-text
         },
         
 4- 样式文件 scss
-   一定要用  cnpm install node-sass -save--dev
 
    D:\yutao\work\zyweb\src\main\webapp\content\scss\vendor.scss
    D:\yutao\work\zyweb\src\main\webapp\app\vendor.ts
